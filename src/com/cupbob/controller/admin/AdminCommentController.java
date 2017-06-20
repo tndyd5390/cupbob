@@ -1,4 +1,4 @@
-package com.cupbob.controller.user;
+package com.cupbob.controller.admin;
 
 import javax.annotation.Resource;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import com.cupbob.service.ICommentService;
 
 @Controller
-public class CommnetController {
+public class AdminCommentController {
 	private Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name="CommentService")

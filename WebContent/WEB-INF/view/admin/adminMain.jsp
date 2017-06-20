@@ -5,7 +5,7 @@
 <%@include file="/include/head.jsp"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>인서트 타이틀 히얼ggg</title>
+<title>Insert title kskdskdskskds here</title>
 </head>
 <body>
 <%@include file="/include/naviBarAndasideBar.jsp"%>

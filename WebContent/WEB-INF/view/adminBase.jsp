@@ -5,14 +5,15 @@
 <%@include file="/include/head.jsp"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>ttttttttttttttttttttttttttttttttttttt</title>
 </head>
 <body>
+	<section id="container" class="">sss 
+	<section id="container" class="">sss <header>
 
 <!-- 아아아아아 -->
 <!-- 풀한뒤 새로테스트 -->
-	<section id="container" class=""> <header
-		class="header dark-bg">
+	<section id="container" class="">
 	<div class="toggle-nav">
 		<div class="icon-reorder tooltips"
 			data-original-title="Toggle Navigation" data-placement="bottom">
@@ -21,7 +22,7 @@
 	</div>
 
 	<!--logo start--> <a href="index.html" class="logo">Nice <span
-		class="lite">Admin111</span></a> <!--logo end-->
+		class="lite">Admin</span></a> <!--logo end-->
 
 	<div class="nav search-row" id="top_menu">
 		<!--  search form start -->

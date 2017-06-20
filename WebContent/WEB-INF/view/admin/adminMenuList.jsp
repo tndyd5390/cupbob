@@ -41,7 +41,7 @@
 						<tr>
 							<td><input type="checkbox"></td>
 							<td>3</td>
-							<td><a href="adminMenuDetail1.do">불고기 컵밥</a></td>
+							<td><a href="#">불고기 컵밥</a></td>
 							<td>3000원</td>
 							<td>400kcal</td>
 							<td>270g</td>
@@ -50,7 +50,7 @@
 						<tr>
 							<td><input type="checkbox"></td>
 							<td>2</td>
-							<td><a href="adminMenuDetail2.do">김치 컵밥</a></td>
+							<td><a href="#">김치 컵밥</a></td>
 							<td>3500원</td>
 							<td>270kcal</td>
 							<td>320g</td>
@@ -59,7 +59,7 @@
 						<tr>
 							<td><input type="checkbox"></td>
 							<td>1</td>
-							<td><a href="adminMenuDetail3.do">숙주 컵밥</a></td>
+							<td><a href="#">숙주 컵밥</a></td>
 							<td>3300원</td>
 							<td>300kcal</td>
 							<td>340g</td>
