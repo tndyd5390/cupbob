@@ -29,7 +29,6 @@ public class AdminUserController {
 	public String adminUserList(HttpSession session, HttpServletRequest req, HttpServletResponse res, Model model)
 			throws Exception {
 		log.info(this.getClass() + "adminUserList start!!!");
-
 		List<User_infoDTO> UserList = userService.getUserList();
 
 		if (UserList == null) {
@@ -96,4 +95,5 @@ public class AdminUserController {
 		log.info("adminLogout end");
 		return "redirect:adminLogin.do";
 	}
+	
 }
