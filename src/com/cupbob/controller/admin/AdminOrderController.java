@@ -26,4 +26,11 @@ public class AdminOrderController {
 		log.info("orderList end");
 		return "admin/adminMain";
 	}
+	
+	@RequestMapping(value = "orderView")
+	public String orderView(HttpServletRequest request, HttpServletResponse response, Model model){
+		
+		log.info("order test");
+		return "admin/adminMain";
+	}
 }
