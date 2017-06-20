@@ -5,10 +5,10 @@
 <%@include file="/include/head.jsp"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>sanghoon</title>
+<title>zzzzzzzzzzzzzzzzzzzzzdadfafdasfzzasfdafszzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</title>
 </head>
 <body>
-	<section id="container" class="">sss <header
+	<section id="container" class=""> <header
 		class="header dark-bg">
 	<div class="toggle-nav">
 		<div class="icon-reorder tooltips"
