@@ -14,9 +14,16 @@ import com.cupbob.service.IBoardService;
 public class BoardService implements IBoardService {
 	@Resource(name="BoardMapper")
 	private BoardMapper boardMapper;
-
 	@Override
 	public List<User_boardDTO> getBoardList() throws Exception {
 		return boardMapper.getBoardList();
+	}
+	@Override
+	public User_boardDTO getBoardDetail(User_boardDTO bdto) throws Exception {
+		return boardMapper.getBoardDetail(bdto);
+	}
+	@Override
+	public int deleteBoardDetailDelete(User_boardDTO bdto) throws Exception {
+		return boardMapper.deleteBoartDetailDelete(bdto);
 	}
 }

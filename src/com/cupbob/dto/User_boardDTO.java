@@ -10,6 +10,13 @@ public class User_boardDTO {
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
+	private String user_id;
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public String getPost_no() {
 		return post_no;
 	}
