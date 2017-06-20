@@ -60,9 +60,6 @@ public class AdminUserController {
 		uDTO.setUser_id(user_id);
 		uDTO.setPassword(password);
 		
-		System.out.println(uDTO.getUser_id());
-		System.out.println(uDTO.getPassword());
-		
 		uDTO = userService.login(uDTO);
 		
 		if(uDTO==null){
