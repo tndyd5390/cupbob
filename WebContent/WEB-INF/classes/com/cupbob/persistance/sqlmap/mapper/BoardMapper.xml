@@ -14,6 +14,11 @@
          WHERE UI.USER_NO = UB.USER_NO
          ORDER BY REG_DT DESC
 	</select>
+	<!-- 게시판 등록 쿼리 -->
+	<insert id="insertBoard" parameterType="User_boardDTO">
+		INSERT INTO USER_BOARD(TITLE,CONTENTS,VIEW_CNT,REG_USER_NO,REG_DT,CHG_USER_NO,CHG_DT) VALUES (#{title},'컨텐트',3,1,SYSDATE(),1,SYSDATE())
+	</insert>
+	
 <!-- 상세보기SELECT UB.POST_NO,
 	   UB.TITLE,
        UB.CONTENTS,

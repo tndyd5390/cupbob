@@ -9,4 +9,6 @@ import com.cupbob.dto.User_boardDTO;
 @Mapper("BoardMapper")
 public interface BoardMapper {
 	public List<User_boardDTO> getBoardList() throws Exception;
+
+	void insertBoard(User_boardDTO uDTO) throws Exception;
 }
