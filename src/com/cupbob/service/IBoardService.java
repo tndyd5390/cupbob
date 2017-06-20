@@ -1,5 +1,9 @@
 package com.cupbob.service;
 
-public interface IBoardService {
+import java.util.List;
 
+import com.cupbob.dto.User_boardDTO;
+
+public interface IBoardService {
+	public List<User_boardDTO> getBoardList() throws Exception;
 }
