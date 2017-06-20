@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.cupbob.dto.User_boardDTO;
 import com.cupbob.service.IBoardService;
 
+
 @Controller
 public class AdminBoardController {
 	private Logger log = Logger.getLogger(this.getClass());
@@ -28,6 +29,8 @@ public class AdminBoardController {
 		if (boardList == null) {
 			boardList = new ArrayList<>();
 		}
+		
+		log.info(boardList.size());
 		model.addAttribute("boardList", boardList);
 		log.info(this.getClass() + "adminBoardList end!!!");
 		boardList = null;
@@ -74,5 +77,37 @@ public class AdminBoardController {
 		bdto = null;
 		log.info(this.getClass() + ".adminBoardDetailDelete end !!");
 		return "admin/boardAlert";
+	}
+	@RequestMapping(value="adminBoardReg",method=RequestMethod.GET)
+	public String adminBoardReg(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + " adminBoardReg Start !! !!");
+		
+		log.info(this.getClass() + " adminBoardReg End !! !!");
+		
+		
+		return "admin/adminBoardReg";
+	}
+	
+	@RequestMapping(value="adminBoardProc",method=RequestMethod.POST)
+	public String adminBoardProc(HttpServletRequest req, HttpServletResponse resp,Model model) throws Exception{
+		log.info(this.getClass() + " adminBoardProc Start !! ");
+		String boardTitle = req.getParameter("board_title");
+		String boardContent = req.getParameter("board_content");
+		log.info("boardTitle  :  "  + boardTitle);
+		log.info("boardContent  :  "  + boardContent);
+		
+		User_boardDTO uDTO = new User_boardDTO();
+		
+		
+		uDTO.setTitle(boardTitle);
+		
+		boardService.insertBoard(uDTO);
+				
+		uDTO = null;
+		
+		log.info(this.getClass() + " adminBoardProc Ent !! ");
+				
+		return "redirect:adminBoardList.do";
+		
 	}
 }
