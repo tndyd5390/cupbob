@@ -5,11 +5,8 @@
 <%@include file="/include/head.jsp"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<<<<<<< HEAD
 <title>이번에는 순조롭게 해보자aaa</title>
-=======
 <title>sang!!</title>
->>>>>>> refs/remotes/origin/test
 </head>
 <body>
 <%@include file="/include/naviBarAndasideBar.jsp"%>
