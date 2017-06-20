@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>이번에는 순조롭게 해보자aaa시발</title>
-<title>sang!!</title>
 </head>
 <body>
 <%@include file="/include/naviBarAndasideBar.jsp"%>
