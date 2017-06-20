@@ -5,8 +5,12 @@
 <%@include file="/include/head.jsp"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
+
+=======
 <title>Insert title kskdskdskskds here</title>
 </head>
+>>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
 <body>
 <%@include file="/include/naviBarAndasideBar.jsp"%>
 	<!-- <section id="container" class=""> <header
