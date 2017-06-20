@@ -14,10 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.cupbob.dto.User_boardDTO;
 import com.cupbob.dto.User_infoDTO;
 import com.cupbob.service.IUserService;
-import com.cupbob.service.impl.UserService;
 
 @Controller
 public class AdminUserController {
