@@ -20,9 +20,11 @@ public class UserService implements IUserService {
 		return userMapper.getUserList();
 	}
 
-
-
-
+	@Override
+	public User_infoDTO login(User_infoDTO uDTO) {
+		System.out.println(uDTO.getUser_id());
+		return userMapper.login(uDTO);
+	}
 	
 	
 }
