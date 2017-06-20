@@ -13,4 +13,7 @@ public class AdminBoardController {
 	
 	@Resource(name="BoardService")
 	private IBoardService boardService;
+	
+	
+	
 }
