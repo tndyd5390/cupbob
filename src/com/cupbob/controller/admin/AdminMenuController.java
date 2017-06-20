@@ -18,11 +18,7 @@ public class AdminMenuController {
 	@Resource(name="MenuService")
 	private IMenuService menuService;
 
-<<<<<<< HEAD
-	@RequestMapping(value="menuList")
-=======
 	@RequestMapping(value="AdminMenuList")
->>>>>>> refs/remotes/origin/test
 	public String getUserList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		
 		log.info("menuList start");

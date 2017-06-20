@@ -18,7 +18,6 @@ import com.cupbob.service.IUserService;
 @Controller
 public class MenuController {
 	private Logger log = Logger.getLogger(this.getClass());
-<<<<<<< HEAD
 	
 	@Resource(name="UserService")
 	private IUserService userService;
@@ -37,7 +36,5 @@ public class MenuController {
 		return "admin/adminUserJoin";
 		
 	}
-=======
 
->>>>>>> refs/remotes/origin/test
 }

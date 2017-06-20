@@ -32,11 +32,7 @@ public class UserController {
 		}
 		model.addAttribute("userList", userList);
 		log.info("getUserList end");
-<<<<<<< HEAD
 		return "admin/adminUserList";
-=======
-		return "admin/adminMain";
->>>>>>> refs/remotes/origin/test
 		
 	}
 }
