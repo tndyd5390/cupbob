@@ -16,7 +16,7 @@ public class AdminController {
 	@RequestMapping(value="adminMain")
 	public String adminMain(HttpServletRequest req, HttpServletResponse resp,Model model)throws Exception{
 		log.info("adminMain Start ! ! ");
-		log.info("adminMain Start ! ! ");
+		log.info("sang hoon ! ! ");
 		
 		log.info("adminMain End ! !");
 		log.info("adminMain End ! !");

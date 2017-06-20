@@ -5,10 +5,10 @@
 <%@include file="/include/head.jsp"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>sanghoon</title>
 </head>
 <body>
-	<section id="container" class=""> <header
+	<section id="container" class="">sss <header
 		class="header dark-bg">
 	<div class="toggle-nav">
 		<div class="icon-reorder tooltips"
