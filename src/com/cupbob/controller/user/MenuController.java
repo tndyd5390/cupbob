@@ -18,10 +18,11 @@ import com.cupbob.service.IUserService;
 @Controller
 public class MenuController {
 	private Logger log = Logger.getLogger(this.getClass());
-	@Resource(name="userService")
+	
+	@Resource(name="UserService")
 	private IUserService userService;
 
-	@RequestMapping(value="userList")
+	@RequestMapping(value="menuList")
 	public String getUserList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		
 		log.info("getUserList start");
