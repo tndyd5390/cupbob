@@ -2,9 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cupbob.persistance.mapper.BoardMapper">
 
-
-	<select id="getBoardList" resultType="User_infoDTO">
-		SELECT * FROM USER_BOARD
+	<!-- 게시판 리스트 쿼리 -->
+	<select id="getBoardList" resultType="User_boardDTO">
+		SELECT UB.POST_NO,
+	           UB.TITLE,               
+               UB.VIEW_CNT,
+               UI.USER_ID,
+               DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
+          FROM USER_INFO UI,
+               USER_BOARD UB
+         WHERE UI.USER_NO = UB.USER_NO
+         ORDER BY REG_DT DESC
 	</select>
-
+<!-- 상세보기SELECT UB.POST_NO,
+	   UB.TITLE,
+       UB.CONTENTS,
+       UB.VIEW_CNT,
+       UI.USER_ID,
+       DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
+  FROM USER_INFO UI,
+       USER_BOARD UB
+ WHERE UI.USER_NO = UB.USER_NO
+   AND UB.POST_NO = '1'; -->
 </mapper>
