@@ -5,9 +5,13 @@
 <%@include file="/include/head.jsp"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
 <title></title>
 
 <title>sanghoon</title>
+=======
+<title>aaaaaaaaaaaaaaaaaaaaaaaasdfasdfaaaaaaa</title>
+>>>>>>> refs/remotes/origin/sanghoontest
 </head>
 <body>
 <<<<<<< HEAD
