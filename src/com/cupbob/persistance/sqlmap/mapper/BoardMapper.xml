@@ -3,6 +3,8 @@
 <mapper namespace="com.cupbob.persistance.mapper.BoardMapper">
 
 
-
+	<select id="getBoardList" resultType="User_infoDTO">
+		SELECT * FROM USER_BOARD
+	</select>
 
 </mapper>

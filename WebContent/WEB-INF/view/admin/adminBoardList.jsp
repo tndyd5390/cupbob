@@ -1,5 +1,12 @@
+<%@page import="com.cupbob.dto.User_boardDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+
+	List<User_boardDTO> bList = (List<User_boardDTO>)request.getAttribute("boardList");
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@include file="/include/head.jsp"%>
@@ -44,30 +51,19 @@
 							</tr>
 						</thead>
 						<tbody>
+						<%
+							for(User_boardDTO bdto : bList){
+						%>
 							<tr>
-								<td><input type="checkbox" id="inlineCheckbox1"
-									value="option2"></td>
-								<td>3</td>
-								<td><a href="#">컵밥 종류는 어떻게 되나요 ?</a></td>
-								<td>김상훈</td>
-								<td>20171107</td>
+								<td><input type="checkbox" id="inlineCheckbox1"	value="option2"></td>
+								<td><%=bdto.getPost_no() %></td>
+								<td><a href="#"><%=bdto.getTitle()%></a></td>
+								<td><%=bdto.getReg_user_no()%></td>
+								<td><%=bdto.getReg_dt() %></td>
 							</tr>
-							<tr>
-								<td><input type="checkbox" id="inlineCheckbox1"
-									value="option2"></td>
-								<td>2</td>
-								<td><a href="#">컵밥 주문 가능 시간은 언제에요?</a></td>
-								<td>박수용</td>
-								<td>20171107</td>
-							</tr>
-							<tr>
-								<td><input type="checkbox" id="inlineCheckbox1"
-									value="option2"></td>
-								<td>1</td>
-								<td><a href="#">컵밥이랑 할인되는 메뉴 있나요 ?</a></td>
-								<td>최한용</td>
-								<td>20171107</td>
-							</tr>
+						<%
+							}
+						%>
 						</tbody>
 					</table>
 				</div>
