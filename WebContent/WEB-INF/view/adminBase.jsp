@@ -5,27 +5,15 @@
 <%@include file="/include/head.jsp"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<title></title>
-
-<title>sanghoon</title>
-=======
-<title>aaaaaaaaaaaaaaaaaaaaaaaasdfasdfaaaaaaa</title>
->>>>>>> refs/remotes/origin/sanghoontest
-=======
 <title>ttttttttttttttttttttttttttttttttttttt</title>
->>>>>>> refs/remotes/origin/sanghoontest
 </head>
 <body>
-<<<<<<< HEAD
+	<section id="container" class="">sss 
 	<section id="container" class="">sss <header>
 
 <!-- 아아아아아 -->
 <!-- 풀한뒤 새로테스트 -->
-	<section id="container" class=""> <header
->>>>>>> refs/remotes/origin/chy
-		class="header dark-bg">
+	<section id="container" class="">
 	<div class="toggle-nav">
 		<div class="icon-reorder tooltips"
 			data-original-title="Toggle Navigation" data-placement="bottom">
