@@ -18,9 +18,5 @@ import com.cupbob.service.IUserService;
 @Controller
 public class MenuController {
 	private Logger log = Logger.getLogger(this.getClass());
-	
-	@Resource(name="UserService")
-	private IUserService userService;
 
-	
 }
