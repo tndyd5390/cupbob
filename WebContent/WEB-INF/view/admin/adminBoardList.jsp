@@ -34,8 +34,8 @@
 			목록</header>
 			<div class="panel-body">
 				<div class="table-responsive">
-					<table class="table" style="text-align: center">
-						<thead style="align: center">
+					<table class="table" align="center">
+						<thead>
 							<tr>
 
 								<th>

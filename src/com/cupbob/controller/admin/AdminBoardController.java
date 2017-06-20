@@ -20,22 +20,24 @@ import com.cupbob.service.IBoardService;
 @Controller
 public class AdminBoardController {
 	private Logger log = Logger.getLogger(this.getClass());
-	
-	@Resource(name="BoardService")
+
+	@Resource(name = "BoardService")
 	private IBoardService boardService;
-	
-	@RequestMapping(value="adminBoardList", method=RequestMethod.GET)
-	public String adminBoardList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+
+	@RequestMapping(value = "adminBoardList", method = RequestMethod.GET)
+	public String adminBoardList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
 		log.info(this.getClass() + "adminBoardList start!!!");
+
 		List<User_boardDTO> boardList = boardService.getBoardList();
-		if(boardList == null){
+
+		if (boardList == null) {
 			boardList = new ArrayList<>();
 		}
-		
+
 		model.addAttribute("boardList", boardList);
-		
-		log.info(this.getClass() + "adminBoardList start!!!");
+
+		log.info(this.getClass() + "adminBoardList end!!!");
 		return "admin/adminBoardList";
 	}
-	
+
 }

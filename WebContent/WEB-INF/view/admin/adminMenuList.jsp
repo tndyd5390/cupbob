@@ -14,8 +14,7 @@
 		<div class="col-lg-12">
 			<h3 class="page-header">메뉴 관리</h3>
 			<ol class="breadcrumb">
-				<li><i class="icon_house_alt"></i><a href="adminMain.do">메인
-						화면</a></li>
+				<li><i class="icon_house_alt"></i><a href="adminMain.do">메인화면</a></li>
 				<li><i class="icon_document_alt"></i>메뉴 관리</li>
 			</ol>
 		</div>
