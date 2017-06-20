@@ -18,14 +18,4 @@ public class AdminMenuController {
 	@Resource(name="MenuService")
 	private IMenuService menuService;
 
-	@RequestMapping(value="menuList")
-	public String getUserList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
-		
-		log.info("menuList start");
-		
-		System.out.println("test");
-		
-		log.info("menuList end");
-		return "admin/adminMenuList";
-	}
 }
