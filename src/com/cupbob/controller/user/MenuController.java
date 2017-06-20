@@ -18,5 +18,23 @@ import com.cupbob.service.IUserService;
 @Controller
 public class MenuController {
 	private Logger log = Logger.getLogger(this.getClass());
+	
+	@Resource(name="UserService")
+	private IUserService userService;
+
+	@RequestMapping(value="menuList")
+	public String getUserList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		
+		log.info("getUserList start");
+		
+		List userList = userService.getUserList();
+		if(userList == null){
+			userList = new ArrayList<>();
+		}
+		model.addAttribute("userList", userList);
+		log.info("getUserList end");
+		return "admin/adminUserJoin";
+		
+	}
 
 }
