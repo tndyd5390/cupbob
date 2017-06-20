@@ -48,7 +48,7 @@
 								<td><input type="checkbox" id="inlineCheckbox1"
 									value="option2"></td>
 								<td>3</td>
-								<td><a href="#">컵밥 종류는 어떻게 되나요 ?</a></td>
+								<td><a href="adminBoardDetail1.do">컵밥 종류는 어떻게 되나요 ?</a></td>
 								<td>김상훈</td>
 								<td>20171107</td>
 							</tr>
@@ -56,7 +56,7 @@
 								<td><input type="checkbox" id="inlineCheckbox1"
 									value="option2"></td>
 								<td>2</td>
-								<td><a href="#">컵밥 주문 가능 시간은 언제에요?</a></td>
+								<td><a href="adminBoardDetail2.do">컵밥 주문 가능 시간은 언제에요?</a></td>
 								<td>박수용</td>
 								<td>20171107</td>
 							</tr>
@@ -64,7 +64,7 @@
 								<td><input type="checkbox" id="inlineCheckbox1"
 									value="option2"></td>
 								<td>1</td>
-								<td><a href="#">컵밥이랑 할인되는 메뉴 있나요 ?</a></td>
+								<td><a href="adminBoardDetail3.do">컵밥이랑 할인되는 메뉴 있나요 ?</a></td>
 								<td>최한용</td>
 								<td>20171107</td>
 							</tr>

@@ -44,7 +44,7 @@
                                 <tr>
                                   <td><input type="checkbox" id="inlineCheckbox1" value="option2"></td>
                                   <td>20170003</td>
-                                  <td><a href="#">1158816@naver.com</a></td>
+                                  <td><a href="adminUserDetail1.do">1158816@naver.com</a></td>
                                   <td>김상훈</td>
                                   <td>20171107</td>
                                   <td>01095989408</td>
@@ -52,7 +52,7 @@
                                 <tr>
                                   <td><input type="checkbox" id="inlineCheckbox1" value="option2"></td>
                                   <td>20170002</td>
-                                  <td><a href="#">tndyd5390@naver.com</a></td>
+                                  <td><a href="adminUserDetail2.do">tndyd5390@naver.com</a></td>
                                   <td>박수용</td>
                                   <td>20171107</td>
                                   <td>01057907883</td>
@@ -60,7 +60,7 @@
                                 <tr>
                                   <td><input type="checkbox" id="inlineCheckbox1" value="option2"></td>
                                   <td>20170001</td>
-                                  <td><a href="#">rambo@naver.com</a></td>
+                                  <td><a href="adminUserDetail3.do">rambo@naver.com</a></td>
                                   <td>최한용</td>
                                   <td>20171107</td>
                                   <td>01012345678</td>

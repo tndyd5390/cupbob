@@ -8,12 +8,8 @@
 <title>ttttttttttttttttttttttttttttttttttttt</title>
 </head>
 <body>
-	<section id="container" class="">sss 
-	<section id="container" class="">sss <header>
-
-<!-- 아아아아아 -->
-<!-- 풀한뒤 새로테스트 -->
-	<section id="container" class="">
+	<section id="container" class="">sss <header
+		class="header dark-bg">
 	<div class="toggle-nav">
 		<div class="icon-reorder tooltips"
 			data-original-title="Toggle Navigation" data-placement="bottom">
