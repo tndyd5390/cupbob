@@ -55,11 +55,6 @@
 							for(User_boardDTO bdto : bList){
 						%>
 							<tr>
-								<td><input type="checkbox" id="inlineCheckbox1" value="option2"></td>
-								<td>3</td>
-								<td><a href="adminBoardDetail1.do">컵밥 종류는 어떻게 되나요 ?</a></td>
-								<td>김상훈</td>
-								<td>20171107</td>
 								<td><input type="checkbox" id="inlineCheckbox1"	value="option2"></td>
 								<td><%=bdto.getPost_no() %></td>
 								<td><a href="#"><%=bdto.getTitle()%></a></td>
