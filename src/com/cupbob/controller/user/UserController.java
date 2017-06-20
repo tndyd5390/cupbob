@@ -31,7 +31,7 @@ public class UserController {
 		}
 		model.addAttribute("userList", userList);
 		log.info("getUserList end");
-		return "admin/adminUserJoin";
+		return "userList";
 		
 	}
 }
