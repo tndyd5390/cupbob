@@ -21,12 +21,13 @@ import com.cupbob.util.CmmUtil;
 @Controller
 public class AdminUserController {
 	private Logger log = Logger.getLogger(this.getClass());
-	
-	@Resource(name="UserService")
+
+	@Resource(name = "UserService")
 	private IUserService userService;
-	
+
 	@RequestMapping(value = "adminUserList", method = RequestMethod.GET)
-	public String adminUserList(HttpSession session, HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
+	public String adminUserList(HttpSession session, HttpServletRequest req, HttpServletResponse res, Model model)
+			throws Exception {
 		log.info(this.getClass() + "adminUserList start!!!");
 
 		List<User_infoDTO> UserList = userService.getUserList();
@@ -40,47 +41,59 @@ public class AdminUserController {
 		log.info(this.getClass() + "adminUserList end!!!");
 		return "admin/adminUserList";
 	}
-	
+
 	@RequestMapping(value = "adminLogin")
-	public String adminLogin(HttpServletRequest req, HttpServletRequest resp, Model model){
+	public String adminLogin(HttpServletRequest req, HttpServletRequest resp, Model model) {
 		log.info("adminLogin Start");
-		
+
 		log.info("adminLogin end");
 		return "admin/adminUserLogin";
 	}
-	
+
 	@RequestMapping(value = "adminLoginProc")
-	public String adminLoginProc(HttpSession session, HttpServletRequest req, HttpServletRequest resp, Model model){
+	public String adminLoginProc(HttpSession session, HttpServletRequest req, HttpServletRequest resp, Model model) {
 		log.info("adminLoginProc Start");
 		String user_id = CmmUtil.nvl(req.getParameter("user_id"));
 		String password = CmmUtil.nvl(req.getParameter("password"));
-		
+
 		User_infoDTO uDTO = new User_infoDTO();
-		
+
 		uDTO.setUser_id(user_id);
 		uDTO.setPassword(password);
-		
+
 		uDTO = userService.login(uDTO);
-		
-		if(uDTO==null){
+
+		if (uDTO == null) {
 			log.info("adminLoginProc fail!");
-			return "admin/adminUserLogin";
-		}
-		else{
+			return "redirect:adminLogin.do";
+		} else {
 			session.setAttribute("ss_user_id", CmmUtil.nvl(uDTO.getUser_id()));
-			session.setAttribute("ss_user_name", CmmUtil.nvl(uDTO.getUser_name()));			
+			session.setAttribute("ss_user_name", CmmUtil.nvl(uDTO.getUser_name()));
 			uDTO = null;
 			log.info("adminLoginProc end");
-			return "redirect:adminloginSuccess.do";
+			return "redirect:adminLoginSuccess.do";
 		}
 	}
-	@RequestMapping(value="adminloginSuccess")
-	public String loginSuccess(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model){
-		
+
+	@RequestMapping(value = "adminLoginSuccess")
+	public String loginSuccess(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
+
 		log.info("adminLoginSuccess start");
-		
+
 		log.info("adminLoginSuccess end");
-		
+
 		return "admin/adminLoginSuccess";
+	}
+
+	@RequestMapping(value = "adminLogout")
+	public String adminLogout(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
+
+		log.info("adminLogout start");
+
+		session.setAttribute("ss_user_id", "");
+		session.setAttribute("ss_user_name", "");
+
+		log.info("adminLogout end");
+		return "redirect:adminLogin.do";
 	}
 }

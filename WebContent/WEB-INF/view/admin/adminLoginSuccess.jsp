@@ -18,5 +18,9 @@
 
 <%= ss_user_id %>
 <%= ss_user_name %>
+
+<form name="f" method="post" action="adminLogout.do">
+<input type="submit" value="·Î±×¾Æ¿ô">
+</form>
 </body>
 </html>
