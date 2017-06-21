@@ -57,7 +57,7 @@
 							<tr>
 								<td><input type="checkbox" id="inlineCheckbox1"	value="option2"></td>
 								<td><%=bdto.getPost_no() %></td>
-								<td><a href="#"><%=bdto.getTitle()%></a></td>
+								<td><a href="adminBoardDetail.do?bnum=<%=bdto.getPost_no()%>"><%=bdto.getTitle()%></a></td>
 								<td><%=bdto.getReg_user_no()%></td>
 								<td><%=bdto.getReg_dt() %></td>
 							</tr>

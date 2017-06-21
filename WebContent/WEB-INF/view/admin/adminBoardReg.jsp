@@ -26,16 +26,17 @@
 			<div class="col-lg-12">
 				<section class="panel"> <header class="panel-heading">
 				게시글 등록 </header>
-				<form role="form">
+				<form role="form" action="adminBoardProc.do" method="POST">
 					<div class="panel-body">
 						<div class="form-group">
-							<label for="exampleInputEmail1">제목</label> <input type="email"
-								class="form-control" id="exampleInputEmail1"
+							<label for="exampleInputEmail1">제목</label> <input type="text"
+								class="form-control" id="exampleInputEmail1" name="board_title"
 								placeholder="제목을 작성해주세요.">
 						</div>
-						<div id="editor" class="btn-toolbar" data-role="editor-toolbar"
+						<div name="board_content" id="editor" class="btn-toolbar" data-role="editor-toolbar"
 							data-target="#editor"></div>
 					</div>
+					<input type="submit" value="등록">
 				</form>
 				</section>
 				<div style="float: right">

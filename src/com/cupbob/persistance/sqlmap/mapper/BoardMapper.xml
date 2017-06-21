@@ -14,6 +14,26 @@
          WHERE UI.USER_NO = UB.USER_NO
          ORDER BY REG_DT DESC
 	</select>
+	<select id="getBoardDetail" resultType="User_boardDTO" parameterType="User_boardDTO">
+		SELECT UB.POST_NO,
+			   UB.TITLE,
+		       UB.CONTENTS,
+		       UB.VIEW_CNT,
+		       UI.USER_ID,
+		       DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
+		  FROM USER_INFO UI,
+		       USER_BOARD UB
+		WHERE UI.USER_NO = UB.USER_NO
+		   AND UB.POST_NO = #{post_no};
+   </select>
+   <delete id="deleteBoartDetailDelete" parameterType="User_boardDTO">
+		DELETE FROM USER_BOARD WHERE POST_NO = #{post_no}
+   </delete>
+	<!-- 게시판 등록 쿼리 -->
+	<insert id="insertBoard" parameterType="User_boardDTO">
+		INSERT INTO USER_BOARD(TITLE,CONTENTS,VIEW_CNT,REG_USER_NO,REG_DT,CHG_USER_NO,CHG_DT) VALUES (#{title},'컨텐트',3,1,SYSDATE(),1,SYSDATE())
+	</insert>
+	
 <!-- 상세보기SELECT UB.POST_NO,
 	   UB.TITLE,
        UB.CONTENTS,

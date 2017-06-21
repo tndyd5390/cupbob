@@ -1,5 +1,9 @@
+<%@page import="com.cupbob.dto.User_boardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	User_boardDTO bdto = (User_boardDTO)request.getAttribute("bdto");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@include file="/include/head.jsp"%>
@@ -36,10 +40,10 @@
 							<th width="10%"><center>
 									</i>제목
 								</center></th>
-							<th width="45%">컵밥 종류는 어떻게 되나요 ?</th>
-							<th width="20%"><center>2017.05.20</center></th>
+							<th width="45%"><%=bdto.getTitle() %></th>
+							<th width="20%"><center><%=bdto.getReg_dt() %></center></th>
 							<th width="20%"><center>
-									<i class="icon_profile"></i> 김상훈
+									<i class="icon_profile"></i> <%=bdto.getUser_id() %>
 								</center></th>
 						</tr>
 					</tbody>
@@ -47,7 +51,7 @@
 				<div class="form-group ">
 					<div class="col-lg-12">
 						<textarea class="form-control " id="ccomment" name="comment"
-							rows="10" disabled>컵밥 종류가 어떻게 되는지 궁금합니다.
+							rows="10" disabled><%=bdto.getContents() %>
                                               </textarea>
 					</div>
 				</div>
@@ -55,7 +59,7 @@
 			</section>
 			<div style="float: right">
 				<a class="btn btn-info" href="#" title="선택하신게 수정됩니다.">수정</a>
-				<a class="btn btn-info" href="#" title="선택하신게 삭제됩니다.">삭제</a>
+				<a class="btn btn-info" href="adminBoardDetailDelete.do?bnum=<%=bdto.getPost_no() %>" title="선택하신게 삭제됩니다.">삭제</a>
 			</div>
 		</div>
 

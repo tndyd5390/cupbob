@@ -3,7 +3,7 @@ package com.cupbob.dto;
 public class User_infoDTO {
 	private String user_no;
 	private String user_name;
-	private String user_id;
+	private String email;
 	private String password;
 	private String gender;
 	private String birthday;
@@ -12,6 +12,7 @@ public class User_infoDTO {
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
+	
 	public String getUser_no() {
 		return user_no;
 	}
@@ -24,11 +25,11 @@ public class User_infoDTO {
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
-	public String getUser_id() {
-		return user_id;
+	public String getEmail() {
+		return email;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getPassword() {
 		return password;

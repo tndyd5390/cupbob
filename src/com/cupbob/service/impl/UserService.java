@@ -21,10 +21,12 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public User_infoDTO login(User_infoDTO uDTO) {
-		System.out.println(uDTO.getUser_id());
+	public User_infoDTO login(User_infoDTO uDTO) throws Exception{
 		return userMapper.login(uDTO);
 	}
-	
+	@Override
+	public void join(User_infoDTO uDTO) throws Exception{
+		userMapper.join(uDTO);
+	}
 	
 }

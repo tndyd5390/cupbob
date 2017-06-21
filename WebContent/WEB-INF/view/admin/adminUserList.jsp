@@ -60,7 +60,7 @@
 						<tr>
 							<td><input type="checkbox" id="inlineCheckbox1"	value="option2"></td>
 							<td><%=udto.getUser_no()%></td>
-							<td><a href="#"><%=udto.getUser_id()%></a></td>
+							<td><a href="#"><%=udto.getEmail()%></a></td>
 							<td><%=udto.getUser_name()%></td>
 							<td><%=udto.getReg_dt()%></td>
 							<td><%=udto.getContact_addr()%></td>
@@ -75,7 +75,6 @@
 					<a class="btn btn-info" href="#" title="클릭하시면 선택항목이 삭제됩니다.">삭제</a>
 				</div>
 			</div>
-
 			</section>
 		</div>
 	</div>

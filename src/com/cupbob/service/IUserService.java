@@ -8,6 +8,9 @@ public interface IUserService {
 	public List<User_infoDTO> getUserList()throws Exception;
 	
 	
-	public User_infoDTO login(User_infoDTO uDTO);
+	public User_infoDTO login(User_infoDTO uDTO) throws Exception;
+
+
+	public void join(User_infoDTO uDTO) throws Exception;
 	
 }
