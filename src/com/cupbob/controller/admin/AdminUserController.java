@@ -68,6 +68,8 @@ public class AdminUserController {
 		} else {
 			session.setAttribute("ss_user_id", CmmUtil.nvl(uDTO.getUser_id()));
 			session.setAttribute("ss_user_name", CmmUtil.nvl(uDTO.getUser_name()));
+			session.setAttribute("ss_user_no", CmmUtil.nvl(uDTO.getUser_no()));
+			
 			uDTO = null;
 			log.info(this.getClass().getName() + " adminLoginProc end");
 			return "redirect:adminLoginSuccess.do";
@@ -88,9 +90,10 @@ public class AdminUserController {
 	public String adminLogout(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
 
 		log.info(this.getClass().getName() + " adminLogout start");
-
+		
 		session.setAttribute("ss_user_id", "");
 		session.setAttribute("ss_user_name", "");
+		session.setAttribute("ss_user_no", "");
 
 		log.info(this.getClass().getName() + " adminLogout end");
 		return "redirect:adminLogin.do";

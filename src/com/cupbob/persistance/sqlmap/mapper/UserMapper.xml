@@ -8,6 +8,6 @@
 	</select>
 	
 	<select id="login" resultType="User_infoDTO" parameterType="User_infoDTO">
-		SELECT USER_ID, USER_NAME FROM USER_INFO WHERE USER_ID = #{user_id} AND PASSWORD = #{password}
+		SELECT USER_ID, USER_NAME, USER_NO FROM USER_INFO WHERE USER_ID = #{user_id} AND PASSWORD = #{password}
 	</select>
 </mapper>

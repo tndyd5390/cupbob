@@ -6,6 +6,7 @@
 <% 
 	String ss_user_id = CmmUtil.nvl((String) session.getAttribute("ss_user_id"));
 	String ss_user_name = CmmUtil.nvl((String) session.getAttribute("ss_user_name"));
+	String ss_user_no = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,7 +19,7 @@
 
 <%= ss_user_id %>
 <%= ss_user_name %>
-
+<%= ss_user_no %>
 <form name="f" method="post" action="adminLogout.do">
 <input type="submit" value="·Î±×¾Æ¿ô">
 </form>
