@@ -29,4 +29,9 @@ public class UserService implements IUserService {
 		userMapper.join(uDTO);
 	}
 	
+	@Override
+	public int overlapEmail(User_infoDTO uDTO) throws Exception {
+		return userMapper.overlapEmail(uDTO);
+	}
+	
 }

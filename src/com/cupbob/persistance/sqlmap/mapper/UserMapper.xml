@@ -33,4 +33,7 @@
 		)
 	</insert>
 	
+	<select id="overlapEmail" parameterType="User_infoDTO" resultType="int">
+		SELECT COUNT(*) FROM USER_INFO WHERE EMAIL = #{email}
+	</select>
 </mapper>

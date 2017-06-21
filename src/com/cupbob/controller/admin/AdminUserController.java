@@ -1,5 +1,6 @@
 package com.cupbob.controller.admin;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +51,8 @@ public class AdminUserController {
 	}
 
 	@RequestMapping(value = "adminLoginProc")
-	public String adminLoginProc(HttpSession session, HttpServletRequest req, HttpServletRequest resp, Model model) throws Exception {
+	public String adminLoginProc(HttpSession session, HttpServletRequest req, HttpServletRequest resp, Model model)
+			throws Exception {
 		log.info(this.getClass().getName() + " adminLoginProc Start");
 		String email = CmmUtil.nvl(req.getParameter("email"));
 		String password = CmmUtil.nvl(req.getParameter("password"));
@@ -108,7 +110,8 @@ public class AdminUserController {
 	}
 
 	@RequestMapping(value = "adminJoinProc")
-	public String adminJoinProc(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
+	public String adminJoinProc(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model)
+			throws Exception {
 		log.info(this.getClass().getName() + " adminJoinProc start");
 
 		String email = CmmUtil.nvl(req.getParameter("email"));
@@ -118,23 +121,38 @@ public class AdminUserController {
 		String gender = CmmUtil.nvl(req.getParameter("gender"));
 		String birthday = CmmUtil.nvl(req.getParameter("birthday"));
 		String contactAddr = CmmUtil.nvl(req.getParameter("phone"));
-		
-		
+
 		System.out.println(user_name);
-		
+
 		User_infoDTO uDTO = new User_infoDTO();
-		
+
 		uDTO.setEmail(email);
 		uDTO.setUser_name(user_name);
 		uDTO.setPassword(password);
 		uDTO.setGender(gender);
 		uDTO.setBirthday(birthday);
 		uDTO.setContact_addr(contactAddr);
-		
+
 		userService.join(uDTO);
-		
+
 		log.info(this.getClass().getName() + " adminJoinProc end");
 		return "redirect:adminLogin.do";
+	}
+
+	@RequestMapping(value = "overlapEmail")
+	public void overlapEmail(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model)
+			throws Exception {
+		PrintWriter out = resp.getWriter();
+		String email = CmmUtil.nvl(req.getParameter("email"));
+		System.out.println(email);
+		User_infoDTO uDTO = new User_infoDTO();
+
+		uDTO.setEmail(email);
+		int check = userService.overlapEmail(uDTO);
+		System.out.println(check);
+		out.print(check);
+		out.flush();
+		out.close();
 	}
 
 }

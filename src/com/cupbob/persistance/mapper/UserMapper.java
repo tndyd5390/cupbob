@@ -12,4 +12,6 @@ public interface UserMapper {
 	public User_infoDTO login(User_infoDTO uDTO);
 
 	public void join(User_infoDTO uDTO);
+
+	public int overlapEmail(User_infoDTO uDTO);
 }

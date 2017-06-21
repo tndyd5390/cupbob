@@ -12,5 +12,8 @@ public interface IUserService {
 
 
 	public void join(User_infoDTO uDTO) throws Exception;
+
+
+	public int overlapEmail(User_infoDTO uDTO) throws Exception;
 	
 }
