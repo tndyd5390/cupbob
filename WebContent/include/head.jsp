@@ -35,4 +35,5 @@
         Author: BootstrapMade
         Author URL: https://bootstrapmade.com
     ======================================================= -->
+    <script src="//code.jquery.com/jquery.min.js"></script>
   </head>
