@@ -156,7 +156,7 @@ public class AdminUserController {
 	public String adminUserDetail(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
 		log.info(this.getClass().getName() + " adminUserDetail start");
 
-		String unum = req.getParameter("unum");
+		String unum = CmmUtil.nvl(req.getParameter("unum"));
 		User_infoDTO udto = new User_infoDTO();
 		udto.setUser_no(unum);
 		udto = userService.getUserDetail(udto);
@@ -182,7 +182,7 @@ public class AdminUserController {
 	public String adminUserDelete(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
 		log.info(this.getClass().getName() + " adminUserDelete start");
 
-		String unum = req.getParameter("unum");
+		String unum = CmmUtil.nvl(req.getParameter("unum"));
 		log.info(unum);
 		User_infoDTO udto = new User_infoDTO();
 

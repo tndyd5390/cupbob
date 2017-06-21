@@ -1,6 +1,7 @@
-<%@page import="com.cupbob.dto.User_infoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.cupbob.dto.User_infoDTO"%>
+<%@page import="com.cupbob.util.CmmUtil" %>
 <%
 	User_infoDTO udto = (User_infoDTO)request.getAttribute("udto");
 %>
@@ -16,8 +17,6 @@
 		}else{
 			return false
 		}
-			
-		
 	}
 
 </script>
@@ -44,12 +43,12 @@
 			<div class="panel-body">
 				<div class="form">
 					<form class="form-validate form-horizontal " id="f" method="post" action="adminUserUpdateProc.do" onsubmit="return doUpdate();">
-						<input type=hidden name="uNum" value="<%=udto.getUser_no() %>">
+						<input type=hidden name="uNum" value="<%=CmmUtil.nvl(udto.getUser_no())%>">
 						<div class="form-group ">
 							<label for="fullname" class="control-label col-lg-2">성명 <span class="required">*</span>
 							</label>
 							<div class="col-lg-10">
-								<input class=" form-control" id="cname" name="user_name" type="text" value="<%=udto.getUser_name() %>" />
+								<input class=" form-control" id="cname" name="user_name" type="text" value="<%=CmmUtil.nvl(udto.getUser_name())%>" />
 							</div>
 						</div>
 						
@@ -57,28 +56,28 @@
 							<label for="email" class="control-label col-lg-2">이메일 <span class="required">*</span>
 							</label>
 							<div class="col-lg-10">
-								<input class="form-control " id="email" name="email" type="email" value="<%=udto.getEmail() %>" readonly/>
+								<input class="form-control " id="email" name="email" type="email" value="<%=CmmUtil.nvl(udto.getEmail())%>" readonly/>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label col-lg-2" for="inputSuccess">성별</label>
 							<div class="col-lg-10">
-								<input class="form-control " id="gender" name="gender" type="gender" value="<%=udto.getGender()%>"/>
+								<input class="form-control " id="gender" name="gender" type="gender" value="<%=CmmUtil.nvl(udto.getGender())%>"/>
 							</div>
 						</div>
 						<div class="form-group ">
 							<label for="username" class="control-label col-lg-2">생년월일 <span class="required">*</span>
 							</label>
 							<div class="col-lg-10">
-								<input class="form-control " id="username" name="birthday" type="text" value="<%=udto.getBirthday()%>"/>
+								<input class="form-control " id="username" name="birthday" type="text" value="<%=CmmUtil.nvl(udto.getBirthday())%>"/>
 							</div>
 						</div>
 						<div class="form-group ">
 							<label for="username" class="control-label col-lg-2">연락처 <span class="required">*</span>
 							</label>
 							<div class="col-lg-10">
-								<input class="form-control " id="phone" name="phone" type="text" value="<%=udto.getContact_addr()%>"/>
+								<input class="form-control " id="phone" name="phone" type="text" value="<%=CmmUtil.nvl(udto.getContact_addr())%>"/>
 							</div>
 						</div>
 
@@ -88,7 +87,7 @@
 							<div style = float:right>
 							
 								<button class="btn btn-primary" type="submit" >수정</button>
-								<button class="btn btn-default" type="button" onclick = "location.href='adminUserDelete.do?unum=<%=udto.getUser_no()%>'">삭제</button>
+								<button class="btn btn-default" type="button" onclick = "location.href='adminUserDelete.do?unum=<%=CmmUtil.nvl(udto.getUser_no())%>'">삭제</button>
 								</div>
 							</div>
 						</div>
