@@ -32,8 +32,8 @@ public class BoardService implements IBoardService {
 	}
 	
 	@Override
-	public void updateBoard(User_boardDTO uDTO) throws Exception {
-		boardMapper.updateBoard(uDTO);
+	public int updateBoard(User_boardDTO uDTO) throws Exception {
+		return boardMapper.updateBoard(uDTO);
 	}
 	@Override
 	public boolean deleteAllCheck(User_boardDTO bdto) throws Exception{

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cupbob.dto.User_boardDTO;
 import com.cupbob.service.IBoardService;
+import com.cupbob.util.CmmUtil;
 
 @Controller
 public class AdminBoardController {
@@ -148,21 +149,32 @@ public class AdminBoardController {
 		return "admin/adminBoardUpdateView";
 	}
 	
-	@RequestMapping(value="adminBoardUpdate",method=RequestMethod.GET)
+	@RequestMapping(value="adminBoardUpdate",method=RequestMethod.POST)
 	public String adminBoardUpdate(HttpServletRequest req,HttpServletResponse resp,Model model) throws Exception{
 		log.info(this.getClass() + "adminBoardUpdate Start !!");
-		
 		String bnum=req.getParameter("bnum");
-		log.info("bnum :" + bnum);
-		
+		log.info(this.getClass() + ".bnum :" + bnum);
+		String title = CmmUtil.nvl(req.getParameter("title"));
+		log.info(this.getClass() + ".title : " + title);
+		String contents = CmmUtil.nvl(req.getParameter("contents"));
+		log.info(this.getClass() + ".contents : " + contents);
 		User_boardDTO bdto = new User_boardDTO();
-		
 		bdto.setPost_no(bnum);
-		
-		boardService.updateBoard(bdto);
-		
+		bdto.setTitle(title);
+		bdto.setContents(contents);
+		int result = boardService.updateBoard(bdto);
+		if(result != 0){
+			model.addAttribute("msg", "수정 완료");
+			model.addAttribute("url" , "adminBoardDetail.do?bnum=" + bnum);
+		}else{
+			model.addAttribute("msg", "수정 실패");
+			model.addAttribute("url", "adminBoardList.do");
+		}
+		bnum = null;
+		title = null;
+		contents = null;
+		bdto = null;
 		log.info(this.getClass() + "adminBoardUpdate END !!");
-		
-		return "redirect:adminBoardList.do";
+		return "admin/boardAlert";
 	}
 }

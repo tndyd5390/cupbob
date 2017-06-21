@@ -37,7 +37,7 @@
   FROM USER_INFO UI,
        USER_BOARD UB
  WHERE UI.USER_NO = UB.USER_NO
-   AND UB.POST_NO = '20';
+   AND UB.POST_NO = #{post_no};
 	</select>
 	<delete id="deleteBoartDetailDelete" parameterType="User_boardDTO">
 		DELETE FROM
@@ -57,12 +57,10 @@
 	</insert>
 	<update id="updateBoard" parameterType="User_boardDTO">
 		update user_board SET
-		TITLE = '몰라' -- varchar(300)
-		,CONTENTS = '안녕' -- varchar(4000)
-		,VIEW_CNT = 3 -- int(11)
-		,USER_NO = 1 -- int(11)
-		,REG_USER_NO = 1 -- int(11)
+		TITLE = #{title} -- varchar(300)
+		,CONTENTS = #{contents} -- varchar(4000)
 		,CHG_USER_NO = 0 -- int(11)
+		,CHG_DT = NOW()
 		WHERE POST_NO = #{post_no} -- int(11)
 	</update>
 	<delete id="deleteBoardAllCheck" parameterType="User_boardDTO">
