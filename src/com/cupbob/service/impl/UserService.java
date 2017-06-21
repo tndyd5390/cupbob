@@ -16,7 +16,6 @@ public class UserService implements IUserService {
 
 	@Override
 	public List<User_infoDTO> getUserList() throws Exception {
-		// TODO Auto-generated method stub
 		return userMapper.getUserList();
 	}
 
@@ -31,19 +30,22 @@ public class UserService implements IUserService {
 
 	@Override
 	public User_infoDTO getUserDetail(User_infoDTO udto) throws Exception {
-		// TODO Auto-generated method stub
 		return userMapper.getUserDetail(udto);
 	}
 
 	@Override
 	public int userDelete(User_infoDTO udto) throws Exception {
-		// TODO Auto-generated method stub
 		return userMapper.userDelete(udto);
 	}
 	
 	@Override
 	public int overlapEmail(User_infoDTO uDTO) throws Exception {
 		return userMapper.overlapEmail(uDTO);
+	}
+
+	@Override
+	public void updateUserDetail(User_infoDTO uDTO) {
+		userMapper.updateUserDetail(uDTO);
 	}
 	
 }

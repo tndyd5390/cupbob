@@ -1,6 +1,5 @@
 package com.cupbob.controller.admin;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,7 +116,6 @@ public class AdminUserController {
 		String email = CmmUtil.nvl(req.getParameter("email"));
 		String user_name = CmmUtil.nvl(req.getParameter("user_name"));
 		String password = CmmUtil.nvl(req.getParameter("password"));
-		String confirmPassword = CmmUtil.nvl(req.getParameter("confirm_password"));
 		String gender = CmmUtil.nvl(req.getParameter("gender"));
 		String birthday = CmmUtil.nvl(req.getParameter("birthday"));
 		String contactAddr = CmmUtil.nvl(req.getParameter("phone"));
@@ -209,5 +207,34 @@ public class AdminUserController {
 		log.info(this.getClass().getName() + " adminUserDelete end");
 		return "admin/userAlert";
 	}
-
+	
+	@RequestMapping(value="adminUserUpdateProc")
+	public String adminUserUpdateProc(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model){
+		log.info(this.getClass().getName() + " adminUserUpdateProc start");
+		
+		String uNum = CmmUtil.nvl(req.getParameter("uNum"));
+		String user_no = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
+		String email = CmmUtil.nvl(req.getParameter("email"));
+		String user_name = CmmUtil.nvl(req.getParameter("user_name"));
+		String gender = CmmUtil.nvl(req.getParameter("gender"));
+		String birthday = CmmUtil.nvl(req.getParameter("birthday"));
+		String contactAddr = CmmUtil.nvl(req.getParameter("phone"));
+		
+		User_infoDTO uDTO = new User_infoDTO();
+		
+		uDTO.setUser_no(uNum);
+		uDTO.setUser_name(user_name);
+		uDTO.setEmail(email);
+		uDTO.setGender(gender);
+		uDTO.setBirthday(birthday);
+		uDTO.setContact_addr(contactAddr);
+		uDTO.setChg_user_no(uNum);
+		
+		userService.updateUserDetail(uDTO);
+		
+		uDTO=null;
+		
+		log.info(this.getClass().getName() + " adminUserUpdateProc end");
+		return "redirect:adminUserDetail.do?unum="+uNum;
+	}
 }

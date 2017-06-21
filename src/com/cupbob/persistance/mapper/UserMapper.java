@@ -17,4 +17,6 @@ public interface UserMapper {
 	public User_infoDTO getUserDetail(User_infoDTO udto);
 	
 	public int userDelete(User_infoDTO udto);
+
+	public void updateUserDetail(User_infoDTO uDTO);
 }
