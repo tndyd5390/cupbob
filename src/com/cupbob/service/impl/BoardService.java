@@ -29,7 +29,10 @@ public class BoardService implements IBoardService {
 	@Override
 	public void insertBoard(User_boardDTO uDTO) throws Exception {
 		boardMapper.insertBoard(uDTO);
-		System.out.println("서비스");
-		
+	}
+	
+	@Override
+	public void updateBoard(User_boardDTO uDTO) throws Exception {
+		boardMapper.updateBoard(uDTO);
 	}
 }

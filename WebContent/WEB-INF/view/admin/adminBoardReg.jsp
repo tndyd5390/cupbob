@@ -33,16 +33,14 @@
 								class="form-control" id="exampleInputEmail1" name="board_title"
 								placeholder="제목을 작성해주세요.">
 						</div>
-						<div name="board_content" id="editor" class="btn-toolbar" data-role="editor-toolbar"
-							data-target="#editor"></div>
+						<div name="board_content" id="editor" class="btn-toolbar"
+							data-role="editor-toolbar" data-target="#editor"></div>
 					</div>
-					<input type="submit" value="등록">
+				<div style="float: right">
+					<input class="btn btn-info" type="submit" value="등록">
+				</div>
 				</form>
 				</section>
-				<div style="float: right">
-					<a class="btn btn-info" href="adminBoardList.do" title="선택하신게 수정됩니다.">수정</a> <a
-						class="btn btn-info" href="#" title="선택하신게 삭제됩니다.">삭제</a>
-				</div>
 			</div>
 		</div>
 	</section> </section>

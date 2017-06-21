@@ -100,7 +100,6 @@ public class AdminBoardController {
 		log.info("boardContent  :  " + boardContent);
 
 		User_boardDTO uDTO = new User_boardDTO();
-
 		uDTO.setTitle(boardTitle);
 
 		boardService.insertBoard(uDTO);
@@ -111,5 +110,44 @@ public class AdminBoardController {
 
 		return "redirect:adminBoardList.do";
 
+	}
+	
+	@RequestMapping(value="adminBoardUpdateView",method=RequestMethod.GET)
+	public String adminBoardUpdateView(HttpServletRequest req,HttpServletResponse resp,Model model) throws Exception{
+		log.info(this.getClass() + "adminBoardUpdateView Start!!");
+		
+		String bnum = req.getParameter("bnum");
+		log.info("bnum :: " + bnum);
+		
+		User_boardDTO bdto = new User_boardDTO();
+		
+		bdto.setPost_no(bnum);
+		
+		bdto=boardService.getBoardDetail(bdto);
+		
+		log.info(bdto.getPost_no());
+		model.addAttribute("bdto",bdto);
+		
+		log.info(this.getClass() + "adminBoardUpdateView END!!");
+		
+		return "admin/adminBoardUpdateView";
+	}
+	
+	@RequestMapping(value="adminBoardUpdate",method=RequestMethod.GET)
+	public String adminBoardUpdate(HttpServletRequest req,HttpServletResponse resp,Model model) throws Exception{
+		log.info(this.getClass() + "adminBoardUpdate Start !!");
+		
+		String bnum=req.getParameter("bnum");
+		log.info("bnum :" + bnum);
+		
+		User_boardDTO bdto = new User_boardDTO();
+		
+		bdto.setPost_no(bnum);
+		
+		boardService.updateBoard(bdto);
+		
+		log.info(this.getClass() + "adminBoardUpdate END !!");
+		
+		return "redirect:adminBoardList.do";
 	}
 }

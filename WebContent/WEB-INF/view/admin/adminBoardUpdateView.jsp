@@ -51,14 +51,14 @@
 				<div class="form-group ">
 					<div class="col-lg-12">
 						<textarea class="form-control " id="ccomment" name="comment"
-							rows="10" disabled><%=bdto.getContents() %>
+							rows="10"><%=bdto.getContents() %>
                                               </textarea>
 					</div>
 				</div>
 			</div>
 			</section>
 			<div style="float: right">
-				<a class="btn btn-info" href="adminBoardUpdateView.do?bnum=<%=bdto.getPost_no() %>" title="선택하신게 수정됩니다.">수정</a>
+				<a class="btn btn-info" href="adminBoardUpdate.do?bnum=<%=bdto.getPost_no() %>" title="선택하신게 수정됩니다.">수정</a>
 				<a class="btn btn-info" href="adminBoardDetailDelete.do?bnum=<%=bdto.getPost_no() %>" title="선택하신게 삭제됩니다.">삭제</a>
 			</div>
 		</div>
