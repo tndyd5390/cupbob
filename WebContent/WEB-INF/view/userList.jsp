@@ -15,7 +15,7 @@
 </h1>
 <%
 	for(User_infoDTO a : list){
-		out.println(a.getUser_id());
+		out.println(a.getEmail());
 
 	}
 %>
