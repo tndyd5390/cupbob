@@ -1,5 +1,10 @@
+<%@page import="com.cupbob.dto.User_infoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	User_infoDTO udto = (User_infoDTO)request.getAttribute("udto");
+%>
+	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@include file="/include/head.jsp"%>
@@ -30,7 +35,7 @@
 							<label for="fullname" class="control-label col-lg-2">성명 <span class="required">*</span>
 							</label>
 							<div class="col-lg-10">
-								<input class=" form-control" id="cname" name="fullname" type="text" value="김상훈" />
+								<input class=" form-control" id="cname" name="fullname" type="text" value="<%=udto.getUser_name() %>" />
 							</div>
 						</div>
 						
@@ -38,32 +43,28 @@
 							<label for="email" class="control-label col-lg-2">Email <span class="required">*</span>
 							</label>
 							<div class="col-lg-10">
-								<input class="form-control " id="email" name="email" type="email" value="1158816@naver.com"/>
+								<input class="form-control " id="email" name="email" type="email" value="<%=udto.getEmail() %>"/>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label class="control-label col-lg-2" for="inputSuccess">성별</label>
 							<div class="col-lg-10">
-								<select class="form-control m-bot15" >
-									<option value="checked">남자</option>
-									<option>여자</option>
-								</select>
-
+								<input class="form-control " id="gender" name="gender" type="gender" value="<%=udto.getGender()%>"/>
 							</div>
 						</div>
 						<div class="form-group ">
 							<label for="username" class="control-label col-lg-2">생년월일 <span class="required">*</span>
 							</label>
 							<div class="col-lg-10">
-								<input class="form-control " id="username" name="username" type="text" value="20171107"/>
+								<input class="form-control " id="username" name="username" type="text" value="<%=udto.getBirthday()%>"/>
 							</div>
 						</div>
 						<div class="form-group ">
 							<label for="username" class="control-label col-lg-2">연락처 <span class="required">*</span>
 							</label>
 							<div class="col-lg-10">
-								<input class="form-control " id="phone" name="phone" type="text" value="01089152056"/>
+								<input class="form-control " id="phone" name="phone" type="text" value="<%=udto.getContact_addr()%>"/>
 							</div>
 						</div>
 
@@ -73,7 +74,7 @@
 							<div style = float:right>
 							
 								<button class="btn btn-primary" type="submit">수정</button>
-								<button class="btn btn-default" type="button">삭제</button>
+								<button class="btn btn-default" type="button" onclick = "location.href='adminUserDelete.do?unum=<%=udto.getUser_no()%>'">삭제</button>
 								</div>
 							</div>
 						</div>
