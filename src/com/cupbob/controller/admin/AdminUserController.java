@@ -142,17 +142,17 @@ public class AdminUserController {
 	@RequestMapping(value = "overlapEmail")
 	public void overlapEmail(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model)
 			throws Exception {
-		PrintWriter out = resp.getWriter();
+		log.info(this.getClass().getName() + " [ajax] overlapEmail start");
 		String email = CmmUtil.nvl(req.getParameter("email"));
-		System.out.println(email);
 		User_infoDTO uDTO = new User_infoDTO();
 
 		uDTO.setEmail(email);
 		int check = userService.overlapEmail(uDTO);
 		System.out.println(check);
-		out.print(check);
-		out.flush();
-		out.close();
+		resp.getWriter().print(check);
+		resp.getWriter().flush();
+		resp.getWriter().close();
+		log.info(this.getClass().getName() + " [ajax] overlapEmail end");
 	}
 
 }

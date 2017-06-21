@@ -23,7 +23,7 @@
 			USER_NAME
 		) VALUES (
 			#{email},
-			sysdate(),
+			now(),
 			last_insert_id(),
 			#{contact_addr},
 			#{birthday},

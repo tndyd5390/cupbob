@@ -9,6 +9,49 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script>
+	var ovlapE = false;
+	function doJoin() {
+		var email = $('#email');
+		var user_name = $('#user_name');
+		var password = $('#password');
+		var confirmPassword = $('#confirm_password');
+		var birthday = $('#birthday');
+
+		if (email.val() == "") {
+			alert("이메일을 입력하세요")
+			email.focus();
+			return false;
+		} else if (user_name.val() == "") {
+			alert("성명을 입력하세요");
+			user_name.focus();
+			return false;
+		} else if (password.val() == "") {
+			alert("비밀번호를 입력하세요");
+			password.focus();
+			return false;
+		} else if (confirmPassword.val() == "") {
+			alert("비밀번호 재확인을 입력하세요");
+			confirmPassword.focus();
+			return false;
+		} else if (password.val() != confirmPassword.val()) {
+			alert("비밀번호가 일치하지 않습니다");
+			confirmPassword.focus();
+			return false;
+		} else if (birthday.val() == "") {
+			alert("생년월일을 입력하세요");
+			birthday.focus();
+			return false;
+		} else if (ovlapE == false) {
+			alert("아이디 중복확인이 필요합니다")
+			return false;
+		} else {
+			if (confirm("가입하시겠습니까?")) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
 	function overlapEmail() {
 		$.ajax({
 			type : "POST",
@@ -20,16 +63,34 @@
 			success : function(data) {
 				if ($.trim(data) == 0) {
 					$('#checkEmail').html("가능합니다")
+					ovlapE = true;
 				} else {
 					$('#checkEmail').html("불가능합니다")
+					$('#email').focus();
+					ovlapE = false;
 				}
 			}
-
 		})
+	};
+
+	function doKeyOnlyNumber(event) {
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+
+		if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105)
+				|| keyID == 8 || keyID == 109 || keyID == 189 || keyID == 16 || keyID == 20 || keyID == 9 || keyID==13) {
+			return true;
+		} else {
+			alert("숫자만 입력가능 합니다");
+			return false;
+		}
+	}
 	
+	function doCancle(){
+		location.href("adminLogin.do");
+	}
 	
 </script>
-
 <title>회원가입</title>
 </head>
 <body>
@@ -55,7 +116,8 @@
 			<div class="panel-body">
 				<div class="form">
 					<form class="form-validate form-horizontal" id="f" name="f"
-						method="post" action="">
+						method="post" action="adminJoinProc.do"
+						onsubmit="return doJoin();">
 						<div class="form-group ">
 							<label for="fullname" class="control-label col-lg-2">성명 <span
 								class="required">*</span>
@@ -114,7 +176,7 @@
 							</label>
 							<div class="col-lg-10">
 								<input class="form-control " id="birthday" name="birthday"
-									type="text" placeholder="생년월일을 입력해주세요. ex)940808" />
+									type="text" placeholder="생년월일을 입력해주세요. ex)940808" onKeyDown="return doKeyOnlyNumber(event);"/>
 							</div>
 						</div>
 						<div class="form-group ">
@@ -123,7 +185,7 @@
 							</label>
 							<div class="col-lg-10">
 								<input class="form-control " id="phone" name="phone" type="text"
-									placeholder="연락처를 입력해주세요. ex)01012345678" />
+									placeholder="연락처를 입력해주세요. ex)01012345678" onKeyDown="return doKeyOnlyNumber(event);"/>
 							</div>
 						</div>
 
@@ -132,7 +194,7 @@
 							<div class="col-lg-offset-2 col-lg-10">
 								<div style="float: right">
 									<button class="btn btn-primary" type="submit">가입</button>
-									<button class="btn btn-default" type="button">취소</button>
+									<button class="btn btn-default" type="button" onclick="doCancle()">취소</button>
 								</div>
 							</div>
 						</div>
