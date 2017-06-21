@@ -85,8 +85,6 @@
 								<input class="form-control " id="phone" name="phone" type="text" placeholder="연락처를 입력해주세요. ex)01012345678"/>
 							</div>
 						</div>
-
-
 						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
 							<div style = float:right>

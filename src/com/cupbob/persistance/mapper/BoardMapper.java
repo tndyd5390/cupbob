@@ -13,4 +13,5 @@ public interface BoardMapper {
 	public int deleteBoartDetailDelete(User_boardDTO bdto) throws Exception;
 
 	void insertBoard(User_boardDTO uDTO) throws Exception;
+	public void updateBoard(User_boardDTO uDTO) throws Exception;
 }
