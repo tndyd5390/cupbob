@@ -7,7 +7,7 @@
 		SELECT UB.POST_NO,
 	           UB.TITLE,               
                UB.VIEW_CNT,
-               UI.USER_ID,
+               UI.EMAIL,
                DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
           FROM USER_INFO UI,
                USER_BOARD UB
@@ -19,7 +19,7 @@
 			   UB.TITLE,
 		       UB.CONTENTS,
 		       UB.VIEW_CNT,
-		       UI.USER_ID,
+		       UI.EMAIL,
 		       DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
 		  FROM USER_INFO UI,
 		       USER_BOARD UB
@@ -34,14 +34,8 @@
 		INSERT INTO USER_BOARD(TITLE,CONTENTS,VIEW_CNT,REG_USER_NO,REG_DT,CHG_USER_NO,CHG_DT) VALUES (#{title},'컨텐트',3,1,SYSDATE(),1,SYSDATE())
 	</insert>
 	
-<!-- 상세보기SELECT UB.POST_NO,
-	   UB.TITLE,
-       UB.CONTENTS,
-       UB.VIEW_CNT,
-       UI.USER_ID,
-       DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
-  FROM USER_INFO UI,
-       USER_BOARD UB
- WHERE UI.USER_NO = UB.USER_NO
-   AND UB.POST_NO = '1'; -->
+	<delete id="deleteBoardAllCheck" parameterType="User_boardDTO">
+		DELETE FROM USER_BOARD WHERE POST_NO IN
+		<foreach item="post_no" index="index" collection="allCheck" open="(" separator="," close=")">#{post_no}</foreach>
+	</delete>
 </mapper>

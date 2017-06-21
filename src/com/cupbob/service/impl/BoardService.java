@@ -29,7 +29,14 @@ public class BoardService implements IBoardService {
 	@Override
 	public void insertBoard(User_boardDTO uDTO) throws Exception {
 		boardMapper.insertBoard(uDTO);
-		System.out.println("서비스");
-		
+	}
+	@Override
+	public boolean deleteAllCheck(User_boardDTO bdto) throws Exception{
+		int result = boardMapper.deleteBoardAllCheck(bdto);
+		if(result != 0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
