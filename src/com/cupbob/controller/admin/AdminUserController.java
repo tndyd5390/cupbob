@@ -1,6 +1,5 @@
 package com.cupbob.controller.admin;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,7 +116,6 @@ public class AdminUserController {
 		String email = CmmUtil.nvl(req.getParameter("email"));
 		String user_name = CmmUtil.nvl(req.getParameter("user_name"));
 		String password = CmmUtil.nvl(req.getParameter("password"));
-		String confirmPassword = CmmUtil.nvl(req.getParameter("confirm_password"));
 		String gender = CmmUtil.nvl(req.getParameter("gender"));
 		String birthday = CmmUtil.nvl(req.getParameter("birthday"));
 		String contactAddr = CmmUtil.nvl(req.getParameter("phone"));
