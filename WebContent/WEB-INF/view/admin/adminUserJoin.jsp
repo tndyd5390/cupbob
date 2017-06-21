@@ -30,7 +30,7 @@
 	
 </script>
 
-<title>Insert title here</title>
+<title>회원가입</title>
 </head>
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>
