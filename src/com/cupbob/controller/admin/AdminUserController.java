@@ -152,5 +152,60 @@ public class AdminUserController {
 		resp.getWriter().close();
 		log.info(this.getClass().getName() + " [ajax] overlapEmail end");
 	}
+	@RequestMapping(value = "adminUserDetail", method = RequestMethod.GET)
+	public String adminUserDetail(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
+		log.info(this.getClass().getName() + " adminUserDetail start");
+
+		String unum = req.getParameter("unum");
+		User_infoDTO udto = new User_infoDTO();
+		udto.setUser_no(unum);
+		udto = userService.getUserDetail(udto);
+
+		if (udto == null) {
+			udto = new User_infoDTO();
+		}
+		log.info("유저번호 = " + udto.getUser_no());
+		log.info("이름 = " + udto.getUser_name());
+		log.info("이메일 = " + udto.getEmail());
+		log.info("성별 = " + udto.getGender());
+		log.info("생년월일 = " + udto.getBirthday());
+		log.info("전화번호 = " + udto.getContact_addr());
+
+		model.addAttribute("udto", udto);
+		udto = null;
+
+		log.info(this.getClass().getName() + " adminUserDetail end");
+		return "admin/adminUserDetail";
+	}
+
+	@RequestMapping(value = "adminUserDelete", method = RequestMethod.GET)
+	public String adminUserDelete(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
+		log.info(this.getClass().getName() + " adminUserDelete start");
+
+		String unum = req.getParameter("unum");
+		log.info(unum);
+		User_infoDTO udto = new User_infoDTO();
+
+		udto.setUser_no(unum);
+		log.info(unum);
+
+		int result = userService.userDelete(udto);
+
+		String msg = " ";
+		String url = " ";
+
+		if (result > 0) {
+			msg = "삭제가 완료되었습니다.";
+			url = "adminUserList.do";
+		} else {
+			msg = "정상 처리되지 않았습니다.";
+			url = "adminUserDetail.do?unum=" + unum;
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		log.info(this.getClass().getName() + " adminUserDelete end");
+		return "admin/userAlert";
+	}
 
 }
