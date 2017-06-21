@@ -1,5 +1,6 @@
 <%@page import="com.cupbob.dto.User_infoDTO"%>
 <%@page import="java.util.List"%>
+<%@page import="com.cupbob.util.CmmUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -55,11 +56,11 @@
 						<tr>
 							<td><input type="checkbox" id="inlineCheckbox1"
 								value="option2"></td>
-							<td><%=udto.getUser_no()%></td>
-							<td><a href="adminUserDetail.do?unum=<%=udto.getUser_no()%>"><%=udto.getEmail()%></a></td>
-							<td><%=udto.getUser_name()%></td>
-							<td><%=udto.getReg_dt()%></td>
-							<td><%=udto.getContact_addr()%></td>
+							<td><%=CmmUtil.nvl(udto.getUser_no())%></td>
+							<td><a href="adminUserDetail.do?unum=<%=CmmUtil.nvl(udto.getUser_no())%>"><%=CmmUtil.nvl(udto.getEmail())%></a></td>
+							<td><%=CmmUtil.nvl(udto.getUser_name())%></td>
+							<td><%=CmmUtil.nvl(udto.getReg_dt())%></td>
+							<td><%=CmmUtil.nvl(udto.getContact_addr())%></td>
 						</tr>
 						<%
 							}
