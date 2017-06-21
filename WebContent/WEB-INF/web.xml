@@ -68,6 +68,7 @@
     	<param-value>/WEB-INF/log4j.properties</param-value>
 	</context-param>
 	
+
 	<!-- 도메인만 입력했을 경우, 보여주는 페이지 -->
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
