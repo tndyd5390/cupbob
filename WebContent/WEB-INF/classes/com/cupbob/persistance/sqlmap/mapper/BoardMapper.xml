@@ -5,13 +5,6 @@
 	<!-- 게시판 리스트 쿼리 -->
 	<select id="getBoardList" resultType="User_boardDTO">
 		SELECT UB.POST_NO,
-		UB.TITLE,
-		UB.VIEW_CNT,
-		UI.USER_NAME,
-		DATE_FORMAT(UB.REG_DT, '%Y-%m-%d')
-		AS REG_DT
-		FROM USER_INFO UI,
-		USER_BOARD UB
 	           UB.TITLE,               
                UB.VIEW_CNT,
                UI.EMAIL,
