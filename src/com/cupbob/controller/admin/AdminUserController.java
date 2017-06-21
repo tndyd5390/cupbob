@@ -28,7 +28,7 @@ public class AdminUserController {
 	@RequestMapping(value = "adminUserList", method = RequestMethod.GET)
 	public String adminUserList(HttpSession session, HttpServletRequest req, HttpServletResponse res, Model model)
 			throws Exception {
-		log.info(this.getClass() + "adminUserList start!!!");
+		log.info(this.getClass().getName() + " adminUserList start!!!");
 		List<User_infoDTO> UserList = userService.getUserList();
 
 		if (UserList == null) {
@@ -37,21 +37,21 @@ public class AdminUserController {
 
 		model.addAttribute("UserList", UserList);
 
-		log.info(this.getClass() + "adminUserList end!!!");
+		log.info(this.getClass().getName() +  " adminUserList end!!!");
 		return "admin/adminUserList";
 	}
 
 	@RequestMapping(value = "adminLogin")
 	public String adminLogin(HttpServletRequest req, HttpServletRequest resp, Model model) {
-		log.info("adminLogin Start");
+		log.info(this.getClass().getName() + " adminLogin Start");
 
-		log.info("adminLogin end");
+		log.info(this.getClass().getName() + " adminLogin end");
 		return "admin/adminUserLogin";
 	}
 
 	@RequestMapping(value = "adminLoginProc")
 	public String adminLoginProc(HttpSession session, HttpServletRequest req, HttpServletRequest resp, Model model) {
-		log.info("adminLoginProc Start");
+		log.info(this.getClass().getName() + " adminLoginProc Start");
 		String user_id = CmmUtil.nvl(req.getParameter("user_id"));
 		String password = CmmUtil.nvl(req.getParameter("password"));
 
@@ -69,7 +69,7 @@ public class AdminUserController {
 			session.setAttribute("ss_user_id", CmmUtil.nvl(uDTO.getUser_id()));
 			session.setAttribute("ss_user_name", CmmUtil.nvl(uDTO.getUser_name()));
 			uDTO = null;
-			log.info("adminLoginProc end");
+			log.info(this.getClass().getName() + " adminLoginProc end");
 			return "redirect:adminLoginSuccess.do";
 		}
 	}
@@ -77,9 +77,9 @@ public class AdminUserController {
 	@RequestMapping(value = "adminLoginSuccess")
 	public String loginSuccess(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
 
-		log.info("adminLoginSuccess start");
+		log.info(this.getClass().getName() + " adminLoginSuccess start");
 
-		log.info("adminLoginSuccess end");
+		log.info(this.getClass().getName() + " adminLoginSuccess end");
 
 		return "admin/adminLoginSuccess";
 	}
@@ -87,13 +87,13 @@ public class AdminUserController {
 	@RequestMapping(value = "adminLogout")
 	public String adminLogout(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
 
-		log.info("adminLogout start");
+		log.info(this.getClass().getName() + " adminLogout start");
 
 		session.setAttribute("ss_user_id", "");
 		session.setAttribute("ss_user_name", "");
 
-		log.info("adminLogout end");
+		log.info(this.getClass().getName() + " adminLogout end");
 		return "redirect:adminLogin.do";
 	}
-	
+
 }
