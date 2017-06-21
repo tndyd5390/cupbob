@@ -4,7 +4,7 @@
 <%@ page import = "com.cupbob.dto.User_infoDTO"  %>
 
 <% 
-	String ss_user_id = CmmUtil.nvl((String) session.getAttribute("ss_user_id"));
+	String ss_user_email = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 	String ss_user_name = CmmUtil.nvl((String) session.getAttribute("ss_user_name"));
 	String ss_user_no = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 %>
@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<%= ss_user_id %>
+<%= ss_user_email %>
 <%= ss_user_name %>
 <%= ss_user_no %>
 <form name="f" method="post" action="adminLogout.do">

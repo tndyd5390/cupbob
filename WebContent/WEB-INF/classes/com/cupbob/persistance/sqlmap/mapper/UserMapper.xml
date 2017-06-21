@@ -8,6 +8,29 @@
 	</select>
 	
 	<select id="login" resultType="User_infoDTO" parameterType="User_infoDTO">
-		SELECT USER_ID, USER_NAME, USER_NO FROM USER_INFO WHERE USER_ID = #{user_id} AND PASSWORD = #{password}
+		SELECT EMAIL, USER_NAME, USER_NO FROM USER_INFO WHERE EMAIL = #{email} AND PASSWORD = #{password}
 	</select>
+	
+	<insert id="join" parameterType="User_infoDTO">
+		INSERT INTO USER_INFO(
+			EMAIL,
+			REG_DT,
+			REG_USER_NO,
+			CONTACT_ADDR,
+			BIRTHDAY,
+			GENDER,
+			PASSWORD,
+			USER_NAME
+		) VALUES (
+			#{email},
+			sysdate(),
+			last_insert_id(),
+			#{contact_addr},
+			#{birthday},
+			#{gender},
+			#{password},
+			#{user_name}
+		)
+	</insert>
+	
 </mapper>

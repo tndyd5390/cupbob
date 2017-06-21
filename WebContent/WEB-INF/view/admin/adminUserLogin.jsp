@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<% request.setCharacterEncoding("euc-kr"); %>
 <html>
 <head>
 <%@include file="/include/head.jsp"%>
 
+<script>
+function doJoin(){
+	location.href = "adminJoin.do";	
+}
+
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 </head>
@@ -17,7 +24,7 @@
 				</p>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_profile"></i></span>
-					<input type="text" class="form-control" placeholder="아이디" autofocus name="user_id">
+					<input type="text" class="form-control" placeholder="이메일" autofocus name="email">
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_key_alt"></i></span>
@@ -29,7 +36,7 @@
 				</span>
 				</label>
 				<button class="btn btn-primary btn-lg btn-block" type="submit">로그인</button>
-				<button class="btn btn-info btn-lg btn-block" type="submit">회원가입</button>
+				<button class="btn btn-info btn-lg btn-block" type="button" Onclick="doJoin()">회원가입</button>
 			</div>
 		</form>
 		<div class="text-right">

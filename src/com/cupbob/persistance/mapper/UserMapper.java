@@ -10,4 +10,6 @@ public interface UserMapper {
 	public List<User_infoDTO> getUserList() throws Exception;
 
 	public User_infoDTO login(User_infoDTO uDTO);
+
+	public void join(User_infoDTO uDTO);
 }
