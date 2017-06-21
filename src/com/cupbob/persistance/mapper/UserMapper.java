@@ -12,4 +12,8 @@ public interface UserMapper {
 	public User_infoDTO login(User_infoDTO uDTO);
 
 	public void join(User_infoDTO uDTO);
+
+	public User_infoDTO getUserDetail(User_infoDTO udto);
+	
+	public int userDelete(User_infoDTO udto);
 }

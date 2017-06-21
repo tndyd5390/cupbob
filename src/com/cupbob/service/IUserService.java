@@ -13,4 +13,8 @@ public interface IUserService {
 
 	public void join(User_infoDTO uDTO) throws Exception;
 	
+	public User_infoDTO getUserDetail(User_infoDTO udto) throws Exception;
+	
+	public int userDelete(User_infoDTO udto) throws Exception;
+	
 }

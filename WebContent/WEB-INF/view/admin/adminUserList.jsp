@@ -60,7 +60,7 @@
 						<tr>
 							<td><input type="checkbox" id="inlineCheckbox1"	value="option2"></td>
 							<td><%=udto.getUser_no()%></td>
-							<td><a href="#"><%=udto.getEmail()%></a></td>
+							<td><a href="adminUserDetail.do?unum=<%=udto.getUser_no()%>"><%=udto.getEmail()%></a></td>
 							<td><%=udto.getUser_name()%></td>
 							<td><%=udto.getReg_dt()%></td>
 							<td><%=udto.getContact_addr()%></td>

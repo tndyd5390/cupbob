@@ -28,5 +28,17 @@ public class UserService implements IUserService {
 	public void join(User_infoDTO uDTO) throws Exception{
 		userMapper.join(uDTO);
 	}
+
+	@Override
+	public User_infoDTO getUserDetail(User_infoDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		return userMapper.getUserDetail(udto);
+	}
+
+	@Override
+	public int userDelete(User_infoDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		return userMapper.userDelete(udto);
+	}
 	
 }
