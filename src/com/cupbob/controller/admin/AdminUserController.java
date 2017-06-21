@@ -139,7 +139,6 @@ public class AdminUserController {
 		return "redirect:adminLogin.do";
 	}
 
-<<<<<<< HEAD
 	@RequestMapping(value = "overlapEmail")
 	public void overlapEmail(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model)
 			throws Exception {
@@ -154,7 +153,7 @@ public class AdminUserController {
 		out.print(check);
 		out.flush();
 		out.close();
-=======
+	}
 	@RequestMapping(value = "adminUserDetail", method = RequestMethod.GET)
 	public String adminUserDetail(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
 		log.info(this.getClass().getName() + " adminUserDetail start");
@@ -209,7 +208,6 @@ public class AdminUserController {
 
 		log.info(this.getClass().getName() + " adminUserDelete end");
 		return "admin/userAlert";
->>>>>>> refs/remotes/origin/ksh
 	}
 
 }

@@ -34,12 +34,9 @@
 		)
 	</insert>
 	
-<<<<<<< HEAD
 	<select id="overlapEmail" parameterType="User_infoDTO" resultType="int">
 		SELECT COUNT(*) FROM USER_INFO WHERE EMAIL = #{email}
 	</select>
-</mapper>
-=======
 	<select id="getUserDetail" resultType="User_infoDTO" parameterType="User_infoDTO">
 		SELECT USER_NO, USER_NAME, EMAIL, GENDER, BIRTHDAY, CONTACT_ADDR FROM USER_INFO WHERE USER_NO =
 		#{user_no}
@@ -49,4 +46,3 @@
 		DELETE FROM USER_INFO WHERE USER_NO = #{user_no}
 	</delete>
 </mapper> 
->>>>>>> refs/remotes/origin/ksh
