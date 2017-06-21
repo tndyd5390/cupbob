@@ -11,6 +11,13 @@ public class User_boardDTO {
 	private String chg_user_no;
 	private String chg_dt;
 	private String user_id;
+	private String[] allCheck;
+	public String[] getAllCheck() {
+		return allCheck;
+	}
+	public void setAllCheck(String[] allCheck) {
+		this.allCheck = allCheck;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

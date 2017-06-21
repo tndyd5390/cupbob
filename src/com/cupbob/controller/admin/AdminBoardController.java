@@ -98,7 +98,6 @@ public class AdminBoardController {
 		String boardContent = req.getParameter("board_content");
 		log.info("boardTitle  :  " + boardTitle);
 		log.info("boardContent  :  " + boardContent);
-
 		User_boardDTO uDTO = new User_boardDTO();
 		uDTO.setTitle(boardTitle);
 
@@ -109,7 +108,23 @@ public class AdminBoardController {
 		log.info(this.getClass() + " adminBoardProc Ent !! ");
 
 		return "redirect:adminBoardList.do";
-
+	}
+	
+	@RequestMapping(value="adminBoardCheckedDelete", method = RequestMethod.POST)
+	public String adminBoardCheckedDelete(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		String[] del_check = req.getParameterValues("del_check");
+		log.info(this.getClass() + (del_check + ""));
+		User_boardDTO bdto = new User_boardDTO();
+		bdto.setAllCheck(del_check);
+		if(boardService.deleteAllCheck(bdto)){
+			model.addAttribute("msg", "삭제 완료");
+		}else{
+			model.addAttribute("msg", "삭제 실패");
+		}
+		model.addAttribute("url", "adminBoardList.do");
+		bdto = null;
+		del_check = null;
+		return "admin/boardAlert";
 	}
 	
 	@RequestMapping(value="adminBoardUpdateView",method=RequestMethod.GET)
