@@ -21,7 +21,7 @@
          WHERE UI.USER_NO = UB.USER_NO
          ORDER BY REG_DT DESC
 	</select>
-	<select id="getBoardDetail" resultType="User_boardDTO" parameterType="User_boardDTO">
+	<!-- <select id="getBoardDetail" resultType="User_boardDTO" parameterType="User_boardDTO">
 		SELECT UB.POST_NO,
 			   UB.TITLE,
 		       UB.CONTENTS,
@@ -32,21 +32,19 @@
 		       USER_BOARD UB
 		WHERE UI.USER_NO = UB.USER_NO
 		ORDER BY REG_DT DESC
-	</select>
+	</select> -->
 	<select id="getBoardDetail" resultType="User_boardDTO"
 		parameterType="User_boardDTO">
 		SELECT UB.POST_NO,
-		UB.TITLE,
-		UB.CONTENTS,
-		UB.VIEW_CNT,
-		UI.USER_NAME,
-		DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
-		FROM
-		USER_INFO UI,
-		USER_BOARD UB
-		WHERE UI.USER_NO = UB.USER_NO
-		AND UB.POST_NO
-		= #{post_no};
+	   UB.TITLE,
+       UB.CONTENTS,
+       UB.VIEW_CNT,
+       UI.EMAIL,
+       DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
+  FROM USER_INFO UI,
+       USER_BOARD UB
+ WHERE UI.USER_NO = UB.USER_NO
+   AND UB.POST_NO = '20';
 	</select>
 	<delete id="deleteBoartDetailDelete" parameterType="User_boardDTO">
 		DELETE FROM
