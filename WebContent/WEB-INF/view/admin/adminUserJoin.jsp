@@ -64,20 +64,18 @@ $(function(){
 				"email" : $('#email').val()
 			},
 			success : function(data) {
-				if ($.trim(data) == 1) {
-					$('#checkEmail').html("불가능합니다")
 					$('#email').focus();
 					ovlapE = false;
-				} else if ($('#email').val() == "") {
-					$('#checkEmail').html("이메일을 입력해주세요")
+				 if ($('#email').val() == "") {
+					$('label.A').html("<h5><Strong>불가능합니다</Strong></h5>")
 					$('#email').focus();
 					ovlapE = false;
 				} else if(!regExp.test($('email').val())){
-					$('#checkEmail').html("이메일을 입력해주세요")
+					$('label.A').html("<h5><Strong>불가능합니다</Strong></h5>")
 					$('#email').focus();
 					ovlapE = false;	
 				} else {
-					$('#checkEmail').html("가능합니다")
+					$('label.A').html("<h5><Strong>가능합니다</Strong></h5>")
 					ovlapE = true;
 				}
 			}
@@ -140,8 +138,9 @@ $(function(){
 									id="checkEmail" class="control-label col-lg-4"></label>
 							</div>
 							<div class="col-lg-2">
-								<button class="btn btn-primary" type="button"
-									onclick="overlapEmail()">중복체크</button>
+								<input class="btn btn-primary col-lg-4" type="button" name="overLap" id="overLap"
+									onclick="overlapEmail()" value="중복체크">
+								<label class="A col-lg-6"></label>
 							</div>
 						</div>
 						<div class="form-group ">

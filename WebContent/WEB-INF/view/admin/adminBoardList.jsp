@@ -67,18 +67,15 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
-			<section class="panel"> <header class="panel-heading">회원
-			목록</header>
+			<section class="panel"> <header class="panel-heading">게시글 목록</header>
 			<div class="panel-body">
-				<div class="table-responsive">
+				<div class="table-borderd">
 					<table class="table" align="center">
 						<thead>
 							<tr>
 
 								<th>
-									<center>
-										<input type="checkbox" name="all" onclick="check();">
-									</center>
+										<center><input type="checkbox" name="all" onclick="check();"></center>
 								</th>
 
 								<th><center>글 번호</center></th>
@@ -92,11 +89,11 @@
 							for(User_boardDTO bdto : bList){
 						%>
 							<tr>
-								<td><input type="checkbox" name="del_check" value="<%=CmmUtil.nvl(bdto.getPost_no())%>"></td>
-								<td><%=CmmUtil.nvl(bdto.getPost_no()) %></td>
-								<td><a href="adminBoardDetail.do?bnum=<%=CmmUtil.nvl(bdto.getPost_no())%>"><%=CmmUtil.nvl(bdto.getTitle())%></a></td>
-								<td><%=CmmUtil.nvl(bdto.getReg_user_no())%></td>
-								<td><%=CmmUtil.nvl(bdto.getReg_dt()) %></td>
+								<td width="" align=center><input type="checkbox" name="del_check" value="<%=CmmUtil.nvl(bdto.getPost_no())%>"></td>
+								<td width="" align=center><%=CmmUtil.nvl(bdto.getPost_no()) %></td>
+								<td width="" align=center><a href="adminBoardDetail.do?bnum=<%=CmmUtil.nvl(bdto.getPost_no())%>"><%=CmmUtil.nvl(bdto.getTitle())%></a></td>
+								<td width="" align=center><%=CmmUtil.nvl(bdto.getReg_user_no())%></td>
+								<td width="" align=center><%=CmmUtil.nvl(bdto.getReg_dt()) %></td>
 							</tr>
 						<%
 							}
