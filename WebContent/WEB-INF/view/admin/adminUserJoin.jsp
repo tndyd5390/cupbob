@@ -67,16 +67,20 @@ $(function(){
 					$('#email').focus();
 					ovlapE = false;
 				 if ($('#email').val() == "") {
-					$('label.A').html("<h5><Strong>불가능합니다</Strong></h5>")
+					$('label.A').html("<h5><Strong>이메일을 입력해주세요</Strong></h5>")
 					$('#email').focus();
 					ovlapE = false;
 				} else if(!regExp.test($('email').val())){
-					$('label.A').html("<h5><Strong>불가능합니다</Strong></h5>")
+					$('label.A').html("<h5><Strong>이메일을 입력해주세요</Strong></h5>")
 					$('#email').focus();
-					ovlapE = false;	
+					ovlapE = false;
+				} else if($('#email').val() == 1){
+					$('label.A').html("<h5><Strong>이미 존재 합니다</Strong></h5>")
+					$('#email').focus();
+					ovlapE = false;
 				} else {
 					$('label.A').html("<h5><Strong>가능합니다</Strong></h5>")
-					ovlapE = true;
+					ovlapE = true;	
 				}
 			}
 		})
@@ -140,7 +144,7 @@ $(function(){
 							<div class="col-lg-2">
 								<input class="btn btn-primary col-lg-4" type="button" name="overLap" id="overLap"
 									onclick="overlapEmail()" value="중복체크">
-								<label class="A col-lg-6"></label>
+								<label class="A"></label>
 							</div>
 						</div>
 						<div class="form-group ">
