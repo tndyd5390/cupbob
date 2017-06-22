@@ -50,8 +50,10 @@ public class AdminBoardController {
 		if (bdto == null) {
 			bdto = new User_boardDTO();
 		}
+		bdto.setContents(CmmUtil.exchangeEscape(bdto.getContents()));//특수문자 처리
 		model.addAttribute("bdto", bdto);
 		bdto = null;
+		bnum = null;
 		log.info(this.getClass() + ".adminBoardDetail end !!");
 		return "admin/adminBoardDetail";
 	}
@@ -131,8 +133,13 @@ public class AdminBoardController {
 		User_boardDTO bdto = new User_boardDTO();
 		bdto.setPost_no(bnum);
 		bdto=boardService.getAdminBoardDetail(bdto);
-		log.info(bdto.getPost_no());
+		if(bdto == null){
+			bdto = new User_boardDTO();
+		}
+		bdto.setContents(CmmUtil.exchangeEscape(bdto.getContents()));//특수문자 처리
 		model.addAttribute("bdto",bdto);
+		bdto = null;
+		bnum = null;
 		log.info(this.getClass() + "adminBoardUpdateView END!!");
 		return "admin/adminBoardUpdateView";
 	}
