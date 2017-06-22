@@ -241,7 +241,7 @@ public class AdminUserController {
 
 	
 	@RequestMapping(value="commJson")
-	public @ResponseBody List commJson(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+	public @ResponseBody List<User_infoDTO> commJson() throws Exception{
 		log.info(this.getClass().getName()+ " commJson start");
 		
 		List<User_infoDTO> userList = userService.getUserList();
