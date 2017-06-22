@@ -1,9 +1,14 @@
 package com.cupbob.controller.admin;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cupbob.service.ICommentService;
 
@@ -13,4 +18,14 @@ public class AdminCommentController {
 	
 	@Resource(name="CommentService")
 	private ICommentService commentService;
+	
+	@RequestMapping(value="commTest")
+	public String commTest(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
+		log.info(this.getClass().getName() + " commTest start");
+		
+		
+		
+		log.info(this.getClass().getName() + " commTest end");
+		return "admin/test";
+	}
 }

@@ -14,30 +14,30 @@ public class BoardService implements IBoardService {
 	@Resource(name="BoardMapper")
 	private BoardMapper boardMapper;
 	@Override
-	public List<User_boardDTO> getBoardList() throws Exception {
-		return boardMapper.getBoardList();
+	public List<User_boardDTO> getAdminBoardList() throws Exception {
+		return boardMapper.getAdminBoardList();
 	}
 	@Override
-	public User_boardDTO getBoardDetail(User_boardDTO bdto) throws Exception {
-		return boardMapper.getBoardDetail(bdto);
+	public User_boardDTO getAdminBoardDetail(User_boardDTO bdto) throws Exception {
+		return boardMapper.getAdminBoardDetail(bdto);
 	}
 	@Override
-	public int deleteBoardDetailDelete(User_boardDTO bdto) throws Exception {
-		return boardMapper.deleteBoartDetailDelete(bdto);
-	}
-	
-	@Override
-	public void insertBoard(User_boardDTO uDTO) throws Exception {
-		boardMapper.insertBoard(uDTO);
+	public int deleteAdminBoardDetailDelete(User_boardDTO bdto) throws Exception {
+		return boardMapper.deleteAdminBoartDetailDelete(bdto);
 	}
 	
 	@Override
-	public int updateBoard(User_boardDTO uDTO) throws Exception {
-		return boardMapper.updateBoard(uDTO);
+	public void insertAdminBoard(User_boardDTO uDTO) throws Exception {
+		boardMapper.insertAdminBoard(uDTO);
+	}
+	
+	@Override
+	public int updateAdminBoard(User_boardDTO uDTO) throws Exception {
+		return boardMapper.updateAdminBoard(uDTO);
 	}
 	@Override
-	public boolean deleteAllCheck(User_boardDTO bdto) throws Exception{
-		int result = boardMapper.deleteBoardAllCheck(bdto);
+	public boolean deleteAdminAllCheck(User_boardDTO bdto) throws Exception{
+		int result = boardMapper.deleteAdminBoardAllCheck(bdto);
 		if(result != 0){
 			return true;
 		}else{

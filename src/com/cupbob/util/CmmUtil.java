@@ -41,4 +41,11 @@ public class CmmUtil {
 			return "";
 		}
 	}
+	
+	public static String exchangeEscape(String value){
+		value = value.replaceAll("& lt;", "<").replaceAll("& gt;", ">");
+        value = value.replaceAll("& #40;", "\\(").replaceAll("& #41;", "\\)");
+        value = value.replaceAll("& #39;", "'");
+        return value;
+	}
 }

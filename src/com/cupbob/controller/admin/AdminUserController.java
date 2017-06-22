@@ -1,6 +1,5 @@
 package com.cupbob.controller.admin;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cupbob.dto.User_infoDTO;
 import com.cupbob.service.IUserService;
@@ -33,7 +33,7 @@ public class AdminUserController {
 		List<User_infoDTO> UserList = userService.getUserList();
 
 		if (UserList == null) {
-			UserList = new ArrayList<>();
+			UserList = new ArrayList<User_infoDTO>();
 		}
 
 		model.addAttribute("UserList", UserList);
@@ -117,7 +117,6 @@ public class AdminUserController {
 		String email = CmmUtil.nvl(req.getParameter("email"));
 		String user_name = CmmUtil.nvl(req.getParameter("user_name"));
 		String password = CmmUtil.nvl(req.getParameter("password"));
-		String confirmPassword = CmmUtil.nvl(req.getParameter("confirm_password"));
 		String gender = CmmUtil.nvl(req.getParameter("gender"));
 		String birthday = CmmUtil.nvl(req.getParameter("birthday"));
 		String contactAddr = CmmUtil.nvl(req.getParameter("phone"));
@@ -142,23 +141,23 @@ public class AdminUserController {
 	@RequestMapping(value = "overlapEmail")
 	public void overlapEmail(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model)
 			throws Exception {
-		PrintWriter out = resp.getWriter();
+		log.info(this.getClass().getName() + " [ajax] overlapEmail start");
 		String email = CmmUtil.nvl(req.getParameter("email"));
-		System.out.println(email);
 		User_infoDTO uDTO = new User_infoDTO();
 
 		uDTO.setEmail(email);
 		int check = userService.overlapEmail(uDTO);
 		System.out.println(check);
-		out.print(check);
-		out.flush();
-		out.close();
+		resp.getWriter().print(check);
+		resp.getWriter().flush();
+		resp.getWriter().close();
+		log.info(this.getClass().getName() + " [ajax] overlapEmail end");
 	}
 	@RequestMapping(value = "adminUserDetail", method = RequestMethod.GET)
 	public String adminUserDetail(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception {
 		log.info(this.getClass().getName() + " adminUserDetail start");
 
-		String unum = req.getParameter("unum");
+		String unum = CmmUtil.nvl(req.getParameter("unum"));
 		User_infoDTO udto = new User_infoDTO();
 		udto.setUser_no(unum);
 		udto = userService.getUserDetail(udto);
@@ -166,12 +165,12 @@ public class AdminUserController {
 		if (udto == null) {
 			udto = new User_infoDTO();
 		}
-		log.info("유저번호 = " + udto.getUser_no());
-		log.info("이름 = " + udto.getUser_name());
-		log.info("이메일 = " + udto.getEmail());
-		log.info("성별 = " + udto.getGender());
-		log.info("생년월일 = " + udto.getBirthday());
-		log.info("전화번호 = " + udto.getContact_addr());
+		log.info("������ȣ = " + udto.getUser_no());
+		log.info("�̸� = " + udto.getUser_name());
+		log.info("�̸��� = " + udto.getEmail());
+		log.info("���� = " + udto.getGender());
+		log.info("������� = " + udto.getBirthday());
+		log.info("��ȭ��ȣ = " + udto.getContact_addr());
 
 		model.addAttribute("udto", udto);
 		udto = null;
@@ -184,7 +183,7 @@ public class AdminUserController {
 	public String adminUserDelete(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
 		log.info(this.getClass().getName() + " adminUserDelete start");
 
-		String unum = req.getParameter("unum");
+		String unum = CmmUtil.nvl(req.getParameter("unum"));
 		log.info(unum);
 		User_infoDTO udto = new User_infoDTO();
 
@@ -197,10 +196,10 @@ public class AdminUserController {
 		String url = " ";
 
 		if (result > 0) {
-			msg = "삭제가 완료되었습니다.";
+			msg = "������ �Ϸ�Ǿ����ϴ�.";
 			url = "adminUserList.do";
 		} else {
-			msg = "정상 처리되지 않았습니다.";
+			msg = "���� ó������ �ʾҽ��ϴ�.";
 			url = "adminUserDetail.do?unum=" + unum;
 		}
 		model.addAttribute("msg", msg);
@@ -210,4 +209,47 @@ public class AdminUserController {
 		return "admin/userAlert";
 	}
 	
+	@RequestMapping(value="adminUserUpdateProc")
+	public String adminUserUpdateProc(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model){
+		log.info(this.getClass().getName() + " adminUserUpdateProc start");
+		
+		String uNum = CmmUtil.nvl(req.getParameter("uNum"));
+		String user_no = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
+		String email = CmmUtil.nvl(req.getParameter("email"));
+		String user_name = CmmUtil.nvl(req.getParameter("user_name"));
+		String gender = CmmUtil.nvl(req.getParameter("gender"));
+		String birthday = CmmUtil.nvl(req.getParameter("birthday"));
+		String contactAddr = CmmUtil.nvl(req.getParameter("phone"));
+		
+		User_infoDTO uDTO = new User_infoDTO();
+		
+		uDTO.setUser_no(uNum);
+		uDTO.setUser_name(user_name);
+		uDTO.setEmail(email);
+		uDTO.setGender(gender);
+		uDTO.setBirthday(birthday);
+		uDTO.setContact_addr(contactAddr);
+		uDTO.setChg_user_no(uNum);
+		
+		userService.updateUserDetail(uDTO);
+		
+		uDTO=null;
+		
+		log.info(this.getClass().getName() + " adminUserUpdateProc end");
+		return "redirect:adminUserDetail.do?unum="+uNum;
+	}
+
+	
+	@RequestMapping(value="commJson")
+	public @ResponseBody User_infoDTO commJson(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		log.info(this.getClass().getName()+ " commJson start");
+		String user_no = "1";
+		User_infoDTO uDTO = new User_infoDTO();
+		uDTO.setUser_no(user_no);		
+		uDTO = userService.getUserDetail(uDTO);
+		
+		log.info(this.getClass().getName()+ " commJson end");
+		
+		return uDTO;
+	}
 }

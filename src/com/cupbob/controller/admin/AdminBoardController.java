@@ -26,9 +26,9 @@ public class AdminBoardController {
 	@RequestMapping(value = "adminBoardList", method = RequestMethod.GET)
 	public String adminBoardList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
 		log.info(this.getClass() + ".adminBoardList start!!!");
-		List<User_boardDTO> boardList = boardService.getBoardList();
+		List<User_boardDTO> boardList = boardService.getAdminBoardList();
 		if (boardList == null) {
-			boardList = new ArrayList<>();
+			boardList = new ArrayList<User_boardDTO>();
 		}
 
 		log.info(boardList.size());
@@ -46,12 +46,14 @@ public class AdminBoardController {
 		log.info("bnum : " + bnum);
 		User_boardDTO bdto = new User_boardDTO();
 		bdto.setPost_no(bnum);
-		bdto = boardService.getBoardDetail(bdto);
+		bdto = boardService.getAdminBoardDetail(bdto);
 		if (bdto == null) {
 			bdto = new User_boardDTO();
 		}
+		bdto.setContents(CmmUtil.exchangeEscape(bdto.getContents()));//특수문자 처리
 		model.addAttribute("bdto", bdto);
 		bdto = null;
+		bnum = null;
 		log.info(this.getClass() + ".adminBoardDetail end !!");
 		return "admin/adminBoardDetail";
 	}
@@ -64,14 +66,14 @@ public class AdminBoardController {
 		log.info("bnum : " + bnum);
 		User_boardDTO bdto = new User_boardDTO();
 		bdto.setPost_no(bnum);
-		int result = boardService.deleteBoardDetailDelete(bdto);
+		int result = boardService.deleteAdminBoardDetailDelete(bdto);
 		String msg = "";
 		String url = "";
 		if (result > 0) {
-			msg = "삭제되었습니다";
+			msg = "�궘�젣�릺�뿀�뒿�땲�떎";
 			url = "adminBoardList.do";
 		} else {
-			msg = "삭제 실패";
+			msg = "�궘�젣 �떎�뙣";
 			url = "adminBoardDetail.do?bnum=" + bnum;
 		}
 		model.addAttribute("msg", msg);
@@ -86,9 +88,7 @@ public class AdminBoardController {
 	@RequestMapping(value = "adminBoardReg", method = RequestMethod.GET)
 	public String adminBoardReg(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
 		log.info(this.getClass() + " adminBoardReg Start !! !!");
-
 		log.info(this.getClass() + " adminBoardReg End !! !!");
-
 		return "admin/adminBoardReg";
 	}
 
@@ -96,18 +96,15 @@ public class AdminBoardController {
 	public String adminBoardProc(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
 		log.info(this.getClass() + " adminBoardProc Start !! ");
 		String boardTitle = req.getParameter("board_title");
-		String boardContent = req.getParameter("board_content");
+		String boardContent = req.getParameter("contents");
 		log.info("boardTitle  :  " + boardTitle);
 		log.info("boardContent  :  " + boardContent);
-		User_boardDTO uDTO = new User_boardDTO();
-		uDTO.setTitle(boardTitle);
-
-		boardService.insertBoard(uDTO);
-
-		uDTO = null;
-
+		User_boardDTO bDTO = new User_boardDTO();
+		bDTO.setTitle(boardTitle);
+		bDTO.setContents(boardContent);
+		boardService.insertAdminBoard(bDTO);
+		bDTO = null;
 		log.info(this.getClass() + " adminBoardProc Ent !! ");
-
 		return "redirect:adminBoardList.do";
 	}
 	
@@ -117,10 +114,10 @@ public class AdminBoardController {
 		log.info(this.getClass() + (del_check + ""));
 		User_boardDTO bdto = new User_boardDTO();
 		bdto.setAllCheck(del_check);
-		if(boardService.deleteAllCheck(bdto)){
-			model.addAttribute("msg", "삭제 완료");
+		if(boardService.deleteAdminAllCheck(bdto)){
+			model.addAttribute("msg", "�궘�젣 �셿猷�");
 		}else{
-			model.addAttribute("msg", "삭제 실패");
+			model.addAttribute("msg", "�궘�젣 �떎�뙣");
 		}
 		model.addAttribute("url", "adminBoardList.do");
 		bdto = null;
@@ -131,21 +128,19 @@ public class AdminBoardController {
 	@RequestMapping(value="adminBoardUpdateView",method=RequestMethod.GET)
 	public String adminBoardUpdateView(HttpServletRequest req,HttpServletResponse resp,Model model) throws Exception{
 		log.info(this.getClass() + "adminBoardUpdateView Start!!");
-		
 		String bnum = req.getParameter("bnum");
 		log.info("bnum :: " + bnum);
-		
 		User_boardDTO bdto = new User_boardDTO();
-		
 		bdto.setPost_no(bnum);
-		
-		bdto=boardService.getBoardDetail(bdto);
-		
-		log.info(bdto.getPost_no());
+		bdto=boardService.getAdminBoardDetail(bdto);
+		if(bdto == null){
+			bdto = new User_boardDTO();
+		}
+		bdto.setContents(CmmUtil.exchangeEscape(bdto.getContents()));//특수문자 처리
 		model.addAttribute("bdto",bdto);
-		
+		bdto = null;
+		bnum = null;
 		log.info(this.getClass() + "adminBoardUpdateView END!!");
-		
 		return "admin/adminBoardUpdateView";
 	}
 	
@@ -162,12 +157,12 @@ public class AdminBoardController {
 		bdto.setPost_no(bnum);
 		bdto.setTitle(title);
 		bdto.setContents(contents);
-		int result = boardService.updateBoard(bdto);
+		int result = boardService.updateAdminBoard(bdto);
 		if(result != 0){
-			model.addAttribute("msg", "수정 완료");
+			model.addAttribute("msg", "�닔�젙 �셿猷�");
 			model.addAttribute("url" , "adminBoardDetail.do?bnum=" + bnum);
 		}else{
-			model.addAttribute("msg", "수정 실패");
+			model.addAttribute("msg", "�닔�젙 �떎�뙣");
 			model.addAttribute("url", "adminBoardList.do");
 		}
 		bnum = null;

@@ -29,7 +29,7 @@ public class MenuController {
 		
 		List userList = userService.getUserList();
 		if(userList == null){
-			userList = new ArrayList<>();
+			userList = new ArrayList();
 		}
 		model.addAttribute("userList", userList);
 		log.info("getUserList end");
