@@ -10,7 +10,7 @@ public class Product_infoDTO {
 	private String file_path;
 	private String view_cnt;
 	private String reg_user_no;
-	private String res_dt;
+	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
 	public String getPrdt_no() {
@@ -67,11 +67,11 @@ public class Product_infoDTO {
 	public void setReg_user_no(String reg_user_no) {
 		this.reg_user_no = reg_user_no;
 	}
-	public String getRes_dt() {
-		return res_dt;
+	public String getReg_dt() {
+		return reg_dt;
 	}
-	public void setRes_dt(String res_dt) {
-		this.res_dt = res_dt;
+	public void setReg_dt(String res_dt) {
+		this.reg_dt = res_dt;
 	}
 	public String getChg_user_no() {
 		return chg_user_no;

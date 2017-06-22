@@ -70,7 +70,6 @@
 				<a class="btn btn-info" href="adminBoardDetailDelete.do?bnum=<%=CmmUtil.nvl(bdto.getPost_no()) %>" title="선택하신게 삭제됩니다.">삭제</a>
 			</div>
 		</div>
-
 	</div>
 	</section> <!-- page end--> </section>
 	</section>

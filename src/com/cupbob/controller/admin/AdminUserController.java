@@ -30,13 +30,13 @@ public class AdminUserController {
 	public String adminUserList(HttpSession session, HttpServletRequest req, HttpServletResponse res, Model model)
 			throws Exception {
 		log.info(this.getClass().getName() + " adminUserList start!!!");
-		List<User_infoDTO> UserList = userService.getUserList();
+		List<User_infoDTO> userList = userService.getUserList();
 
-		if (UserList == null) {
-			UserList = new ArrayList<User_infoDTO>();
+		if (userList == null) {
+			userList = new ArrayList<User_infoDTO>();
 		}
 
-		model.addAttribute("UserList", UserList);
+		model.addAttribute("userList", userList);
 
 		log.info(this.getClass().getName() + " adminUserList end!!!");
 		return "admin/adminUserList";
@@ -241,15 +241,17 @@ public class AdminUserController {
 
 	
 	@RequestMapping(value="commJson")
-	public @ResponseBody User_infoDTO commJson(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+	public @ResponseBody List<User_infoDTO> commJson() throws Exception{
 		log.info(this.getClass().getName()+ " commJson start");
-		String user_no = "1";
-		User_infoDTO uDTO = new User_infoDTO();
-		uDTO.setUser_no(user_no);		
-		uDTO = userService.getUserDetail(uDTO);
+		
+		List<User_infoDTO> userList = userService.getUserList();
+
+		if (userList == null) {
+			userList = new ArrayList<User_infoDTO>();
+		}
 		
 		log.info(this.getClass().getName()+ " commJson end");
 		
-		return uDTO;
+		return userList;
 	}
 }

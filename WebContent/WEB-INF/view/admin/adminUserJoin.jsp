@@ -9,6 +9,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script>
+$(function(){
+})
+	var regExp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 	var ovlapE = false;
 	function doJoin() {
 		var email = $('#email');
@@ -61,13 +64,21 @@
 				"email" : $('#email').val()
 			},
 			success : function(data) {
-				if ($.trim(data) == 0) {
-					$('#checkEmail').html("가능합니다")
-					ovlapE = true;
-				} else {
-					$('#checkEmail').html("불가능합니다")
+				 if ($.trim(data) == 1) {
+					$('label.A').html("<h5><Strong>이미 존재합니다</Strong></h5>")
 					$('#email').focus();
 					ovlapE = false;
+				} else if(!regExp.test($('#email').val())){
+					$('label.A').html("<h5><Strong>이메일을 입력해주세요</Strong></h5>")
+					$('#email').focus();
+					ovlapE = false;
+				} else if($('#email').val() == ""){
+					$('label.A').html("<h5><Strong>이메일을 입력해주세요</Strong></h5>")
+					$('#email').focus();
+					ovlapE = false;
+				} else {
+					$('label.A').html("<h5><Strong>가능합니다</Strong></h5>")
+					ovlapE = true;	
 				}
 			}
 		})
@@ -78,18 +89,19 @@
 		var keyID = (event.which) ? event.which : event.keyCode;
 
 		if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105)
-				|| keyID == 8 || keyID == 109 || keyID == 189 || keyID == 16 || keyID == 20 || keyID == 9 || keyID==13) {
+				|| keyID == 8 || keyID == 109 || keyID == 189 || keyID == 16
+				|| keyID == 20 || keyID == 9 || keyID == 13) {
 			return true;
 		} else {
 			alert("숫자만 입력가능 합니다");
 			return false;
 		}
 	}
-	
-	function doCancle(){
+
+	function doCancle() {
 		location.href("adminLogin.do");
 	}
-	
+
 </script>
 <title>회원가입</title>
 </head>
@@ -119,16 +131,6 @@
 						method="post" action="adminJoinProc.do"
 						onsubmit="return doJoin();">
 						<div class="form-group ">
-							<label for="fullname" class="control-label col-lg-2">성명 <span
-								class="required">*</span>
-							</label>
-							<div class="col-lg-10">
-								<input class=" form-control" id="user_name" name="user_name"
-									type="text" placeholder="이름을 입력해주세요." />
-							</div>
-						</div>
-
-						<div class="form-group ">
 							<label for="email" class="control-label col-lg-2">이메일 <span
 								class="required">*</span>
 							</label>
@@ -138,10 +140,21 @@
 									id="checkEmail" class="control-label col-lg-4"></label>
 							</div>
 							<div class="col-lg-2">
-								<button class="btn btn-primary" type="button"
-									onclick="overlapEmail()">중복체크</button>
+								<input class="btn btn-primary col-lg-4" type="button" name="overLap" id="overLap"
+									onclick="overlapEmail()" value="중복체크">
+								<label class="A"></label>
 							</div>
 						</div>
+						<div class="form-group ">
+							<label for="fullname" class="control-label col-lg-2">성명 <span
+								class="required">*</span>
+							</label>
+							<div class="col-lg-10">
+								<input class=" form-control" id="user_name" name="user_name"
+									type="text" placeholder="이름을 입력해주세요." />
+							</div>
+						</div>
+
 						<div class="form-group ">
 							<label for="password" class="control-label col-lg-2">비밀번호
 								<span class="required">*</span>
@@ -176,7 +189,8 @@
 							</label>
 							<div class="col-lg-10">
 								<input class="form-control " id="birthday" name="birthday"
-									type="text" placeholder="생년월일을 입력해주세요. ex)940808" onKeyDown="return doKeyOnlyNumber(event);"/>
+									type="text" placeholder="생년월일을 입력해주세요. ex)940808"
+									onKeyDown="return doKeyOnlyNumber(event);" />
 							</div>
 						</div>
 						<div class="form-group ">
@@ -185,7 +199,8 @@
 							</label>
 							<div class="col-lg-10">
 								<input class="form-control " id="phone" name="phone" type="text"
-									placeholder="연락처를 입력해주세요. ex)01012345678" onKeyDown="return doKeyOnlyNumber(event);"/>
+									placeholder="연락처를 입력해주세요. ex)01012345678"
+									onKeyDown="return doKeyOnlyNumber(event);" />
 							</div>
 						</div>
 
@@ -194,7 +209,8 @@
 							<div class="col-lg-offset-2 col-lg-10">
 								<div style="float: right">
 									<button class="btn btn-primary" type="submit">가입</button>
-									<button class="btn btn-default" type="button" onclick="doCancle()">취소</button>
+									<button class="btn btn-default" type="button"
+										onclick="doCancle()">취소</button>
 								</div>
 							</div>
 						</div>
