@@ -62,10 +62,10 @@
 			},
 			success : function(data) {
 				if ($.trim(data) == 0) {
-					$('#checkEmail').html("가능합니다")
+					$('label.A').html("<h5><Strong>가능합니다</Strong></h5>")
 					ovlapE = true;
 				} else {
-					$('#checkEmail').html("불가능합니다")
+					$('label.A').html("<h5><Strong>불가능합니다</Strong></h5>")
 					$('#email').focus();
 					ovlapE = false;
 				}
@@ -128,7 +128,7 @@
 							</div>
 						</div>
 
-						<div class="form-group ">
+						<div class="form-group">
 							<label for="email" class="control-label col-lg-2">이메일 <span
 								class="required">*</span>
 							</label>
@@ -138,8 +138,9 @@
 									id="checkEmail" class="control-label col-lg-4"></label>
 							</div>
 							<div class="col-lg-2">
-								<button class="btn btn-primary" type="button"
-									onclick="overlapEmail()">중복체크</button>
+								<input class="btn btn-primary col-lg-4" type="button" name="overLap" id="overLap"
+									onclick="overlapEmail()" value="중복체크">
+								<label class="A col-lg-6"></label>
 							</div>
 						</div>
 						<div class="form-group ">
