@@ -61,13 +61,18 @@
 				"email" : $('#email').val()
 			},
 			success : function(data) {
-				if ($.trim(data) == 0) {
-					$('#checkEmail').html("가능합니다")
-					ovlapE = true;
-				} else {
+				if ($.trim(data) == 1) {
 					$('#checkEmail').html("불가능합니다")
 					$('#email').focus();
 					ovlapE = false;
+				}else if($('#email').val()==""){
+					$('#checkEmail').html("불가능합니다")
+					$('#email').focus();
+					ovlapE = false;
+				}else{
+					$('#checkEmail').html("가능합니다")
+					ovlapE = true;
+					
 				}
 			}
 		})
