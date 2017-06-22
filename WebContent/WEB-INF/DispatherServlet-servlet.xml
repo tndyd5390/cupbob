@@ -27,6 +27,8 @@
 	<context:component-scan base-package="com.cupbob.service" />
 	<context:component-scan base-package="com.cupbob.persistance.mapper" />
  	
+ 	
+
 	<!-- ViewResolver : 뷰 선택자 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="order" value="1"/>
@@ -50,6 +52,8 @@
 		
 	<!-- 파일업로드 기능 -->		
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" 
-		p:maxUploadSize="104857600" p:maxInMemorySize="104857600" />
-
+		p:maxUploadSize="104857600" p:maxInMemorySize="104857600" />	
+	
 </beans>
+
+

@@ -28,7 +28,7 @@ public class AdminBoardController {
 		log.info(this.getClass() + ".adminBoardList start!!!");
 		List<User_boardDTO> boardList = boardService.getAdminBoardList();
 		if (boardList == null) {
-			boardList = new ArrayList<>();
+			boardList = new ArrayList<User_boardDTO>();
 		}
 
 		log.info(boardList.size());
@@ -68,10 +68,10 @@ public class AdminBoardController {
 		String msg = "";
 		String url = "";
 		if (result > 0) {
-			msg = "삭제되었습니다";
+			msg = "�궘�젣�릺�뿀�뒿�땲�떎";
 			url = "adminBoardList.do";
 		} else {
-			msg = "삭제 실패";
+			msg = "�궘�젣 �떎�뙣";
 			url = "adminBoardDetail.do?bnum=" + bnum;
 		}
 		model.addAttribute("msg", msg);
@@ -113,9 +113,9 @@ public class AdminBoardController {
 		User_boardDTO bdto = new User_boardDTO();
 		bdto.setAllCheck(del_check);
 		if(boardService.deleteAdminAllCheck(bdto)){
-			model.addAttribute("msg", "삭제 완료");
+			model.addAttribute("msg", "�궘�젣 �셿猷�");
 		}else{
-			model.addAttribute("msg", "삭제 실패");
+			model.addAttribute("msg", "�궘�젣 �떎�뙣");
 		}
 		model.addAttribute("url", "adminBoardList.do");
 		bdto = null;
@@ -152,10 +152,10 @@ public class AdminBoardController {
 		bdto.setContents(contents);
 		int result = boardService.updateAdminBoard(bdto);
 		if(result != 0){
-			model.addAttribute("msg", "수정 완료");
+			model.addAttribute("msg", "�닔�젙 �셿猷�");
 			model.addAttribute("url" , "adminBoardDetail.do?bnum=" + bnum);
 		}else{
-			model.addAttribute("msg", "수정 실패");
+			model.addAttribute("msg", "�닔�젙 �떎�뙣");
 			model.addAttribute("url", "adminBoardList.do");
 		}
 		bnum = null;
