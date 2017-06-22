@@ -209,5 +209,5 @@ public class AdminUserController {
 		log.info(this.getClass().getName() + " adminUserDelete end");
 		return "admin/userAlert";
 	}
-
+	
 }
