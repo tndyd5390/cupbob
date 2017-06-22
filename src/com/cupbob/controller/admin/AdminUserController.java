@@ -237,4 +237,7 @@ public class AdminUserController {
 		log.info(this.getClass().getName() + " adminUserUpdateProc end");
 		return "redirect:adminUserDetail.do?unum="+uNum;
 	}
+
+	
+
 }
