@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cupbob.dto.User_infoDTO;
 import com.cupbob.service.IUserService;
@@ -32,7 +33,7 @@ public class AdminUserController {
 		List<User_infoDTO> UserList = userService.getUserList();
 
 		if (UserList == null) {
-			UserList = new ArrayList<>();
+			UserList = new ArrayList<User_infoDTO>();
 		}
 
 		model.addAttribute("UserList", UserList);
@@ -164,12 +165,12 @@ public class AdminUserController {
 		if (udto == null) {
 			udto = new User_infoDTO();
 		}
-		log.info("유저번호 = " + udto.getUser_no());
-		log.info("이름 = " + udto.getUser_name());
-		log.info("이메일 = " + udto.getEmail());
-		log.info("성별 = " + udto.getGender());
-		log.info("생년월일 = " + udto.getBirthday());
-		log.info("전화번호 = " + udto.getContact_addr());
+		log.info("������ȣ = " + udto.getUser_no());
+		log.info("�̸� = " + udto.getUser_name());
+		log.info("�̸��� = " + udto.getEmail());
+		log.info("���� = " + udto.getGender());
+		log.info("������� = " + udto.getBirthday());
+		log.info("��ȭ��ȣ = " + udto.getContact_addr());
 
 		model.addAttribute("udto", udto);
 		udto = null;
@@ -195,10 +196,10 @@ public class AdminUserController {
 		String url = " ";
 
 		if (result > 0) {
-			msg = "삭제가 완료되었습니다.";
+			msg = "������ �Ϸ�Ǿ����ϴ�.";
 			url = "adminUserList.do";
 		} else {
-			msg = "정상 처리되지 않았습니다.";
+			msg = "���� ó������ �ʾҽ��ϴ�.";
 			url = "adminUserDetail.do?unum=" + unum;
 		}
 		model.addAttribute("msg", msg);
@@ -239,5 +240,18 @@ public class AdminUserController {
 	}
 
 	
-
+	@RequestMapping(value="commJson")
+	public @ResponseBody User_infoDTO commJson(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		log.info(this.getClass().getName()+ " commJson start");
+		String user_no = "1";
+		User_infoDTO uDTO = new User_infoDTO();
+		uDTO.setUser_no(user_no);		
+		uDTO = userService.getUserDetail(uDTO);
+		
+		
+		
+		log.info(this.getClass().getName()+ " commJson end");
+		
+		return uDTO;
+	}
 }

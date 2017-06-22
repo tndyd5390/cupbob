@@ -20,7 +20,7 @@ public class AdminCommentController {
 	private ICommentService commentService;
 	
 	@RequestMapping(value="commTest")
-	public String commTest(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model){
+	public String commTest(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) {
 		log.info(this.getClass().getName() + " commTest start");
 		
 		

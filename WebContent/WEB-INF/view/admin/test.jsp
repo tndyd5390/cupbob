@@ -8,24 +8,24 @@
 <script>
 
 $(function(){
-	
 });
 
 function testJson(){
 	$.ajax({
-		
 		url:"commJson.do",
 		method:"post",
 		type:"json",
-		contentType:"application/json",
-		data: JSON.stringify(form),
 		success:function(data){
-			$('#json1').html(data);
+			var content = "";
+			$.each(data, function(key, value){
+					content +="<p>"+ value +"</p>"
+					$("#wewe").html(content)
+			})
 		}
 		
 	})
-	
 }
+
 
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -34,8 +34,9 @@ function testJson(){
 <body>
 	<h2>commTest</h2>
 
-	<input type="button" name="test" onclick="" value="테스트">
+	<input type="button" name="test" onclick="testJson()" value="테스트">
 	
 	<input type="text" id="json1" value="">
+	<div id="wewe"></div>
 </body>
 </html>
