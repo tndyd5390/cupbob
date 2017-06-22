@@ -8,25 +8,28 @@
 <script>
 
 $(function(){
-});
-
-function testJson(){
-	$.ajax({
-		url:"commJson.do",
-		method:"post",
-		type:"json",
-		success:function(data){
-			var content = "";
-			$.each(data, function(key, value){
-					content +="<p>"+ value+ "</p>"
-					content +="<p>"+ key+ "</p>"
-					
-					$("#wewe").html(content)
-			})
-		}
-		
+	$('#test').bind("click",function(){
+		$.ajax({
+			url:"commJson.do",
+			method:"post",
+			type:"json",
+			data:"json",
+			success:function(data){
+				var contents = "";
+			//	var content = "";
+				$.each(data, function(key, value){
+			//			content +="<p>"+ key.user_no+ "</p>"
+			//		contents += "<p>" + data.user_no +"</p>";
+			//		contents += "<p>" + data.email +"</p>";
+			//		contents += "<p>" + data.user_name +"</p>";
+					contents += "<p>" + value.user_name +"</p>";
+			
+					$('#wewe').html(contents);
+				})
+			}
+		})
 	})
-}
+});
 
 
 </script>
@@ -36,7 +39,7 @@ function testJson(){
 <body>
 	<h2>commTest</h2>
 
-	<input type="button" name="test" onclick="testJson()" value="테스트">
+	<input type="button" id="test" value="테스트">
 	
 	<input type="text" id="json1" value="">
 	<div id="wewe"></div>
