@@ -84,7 +84,7 @@
 						
 						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
-							<div style = float:right>
+							<div style = float:center>
 							
 								<button class="btn btn-primary" type="submit" >수정</button>
 								<button class="btn btn-default" type="button" onclick = "location.href='adminUserDelete.do?unum=<%=CmmUtil.nvl(udto.getUser_no())%>'">삭제</button>
