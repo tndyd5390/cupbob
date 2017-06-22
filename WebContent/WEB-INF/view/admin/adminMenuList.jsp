@@ -1,5 +1,10 @@
+<%@page import="com.cupbob.dto.Product_infoDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	List<Product_infoDTO> pList = (List<Product_infoDTO>)request.getAttribute("pList");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@include file="/include/head.jsp"%>
@@ -37,33 +42,17 @@
 						</tr>
 					</thead>
 					<tbody>
+					<%for(Product_infoDTO pDTO : pList){ %>
 						<tr>
 							<td><input type="checkbox"></td>
-							<td>3</td>
-							<td><a href="adminMenuDetail1.do">불고기 컵밥</a></td>
-							<td>3000원</td>
-							<td>400kcal</td>
+							<td><%=pDTO.getPrdt_no() %></td>
+							<td><a href="adminMenuDetail1.do"><%=pDTO.getPrdt_name() %></a></td>
+							<td><%=pDTO.getPrdt_price() %></td>
+							<td><%=pDTO.getContents() %></td>
 							<td>270g</td>
-							<td>2017/01/01</td>
+							<td><%=pDTO.getReg_dt() %></td>
 						</tr>
-						<tr>
-							<td><input type="checkbox"></td>
-							<td>2</td>
-							<td><a href="adminMenuDetail2.do">김치 컵밥</a></td>
-							<td>3500원</td>
-							<td>270kcal</td>
-							<td>320g</td>
-							<td>2017/01/06</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox"></td>
-							<td>1</td>
-							<td><a href="adminMenuDetail3.do">숙주 컵밥</a></td>
-							<td>3300원</td>
-							<td>300kcal</td>
-							<td>340g</td>
-							<td>2017/01/09</td>
-						</tr>
+					<%} %>
 					</tbody>
 				</table>
 			</div>
