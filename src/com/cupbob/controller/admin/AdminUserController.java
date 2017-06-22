@@ -248,8 +248,6 @@ public class AdminUserController {
 		uDTO.setUser_no(user_no);		
 		uDTO = userService.getUserDetail(uDTO);
 		
-		
-		
 		log.info(this.getClass().getName()+ " commJson end");
 		
 		return uDTO;

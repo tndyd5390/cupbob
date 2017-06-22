@@ -18,7 +18,9 @@ function testJson(){
 		success:function(data){
 			var content = "";
 			$.each(data, function(key, value){
-					content +="<p>"+ value +"</p>"
+					content +="<p>"+ value+ "</p>"
+					content +="<p>"+ key+ "</p>"
+					
 					$("#wewe").html(content)
 			})
 		}
