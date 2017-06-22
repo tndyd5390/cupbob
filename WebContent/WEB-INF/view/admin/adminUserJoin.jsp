@@ -11,7 +11,7 @@
 <script>
 $(function(){
 })
-	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; 
+	var regExp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 	var ovlapE = false;
 	function doJoin() {
 		var email = $('#email');
@@ -64,18 +64,16 @@ $(function(){
 				"email" : $('#email').val()
 			},
 			success : function(data) {
+				 if ($.trim(data) == 1) {
+					$('label.A').html("<h5><Strong>이미 존재합니다</Strong></h5>")
 					$('#email').focus();
 					ovlapE = false;
-				 if ($('#email').val() == "") {
+				} else if(!regExp.test($('#email').val())){
 					$('label.A').html("<h5><Strong>이메일을 입력해주세요</Strong></h5>")
 					$('#email').focus();
 					ovlapE = false;
-				} else if(!regExp.test($('email').val())){
+				} else if($('#email').val() == ""){
 					$('label.A').html("<h5><Strong>이메일을 입력해주세요</Strong></h5>")
-					$('#email').focus();
-					ovlapE = false;
-				} else if($('#email').val() == 1){
-					$('label.A').html("<h5><Strong>이미 존재 합니다</Strong></h5>")
 					$('#email').focus();
 					ovlapE = false;
 				} else {
