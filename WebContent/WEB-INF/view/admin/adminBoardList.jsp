@@ -108,13 +108,10 @@
 			</section>
 			<div style="float: right">
 				<a class="btn btn-info" href="adminBoardReg.do" title="선택하신게 수정됩니다.">등록</a> 
-				<input type="button" class="btn btn-info" title="선택하신게 수정됩니다." onclick="userdel_check()" value="삭제">
+				<input type="button" class="btn btn-info" title="선택하신게 삭제됩니다." onclick="userdel_check()" value="삭제">
 			</div>
 		</div>
 	</div>
-
-
-	</section></section>
 	</section>
 	<%@include file="/include/bottomJavaScript.jsp"%>
 			</form>

@@ -3,6 +3,9 @@
 	pageEncoding="UTF-8"%>
 <%
 	User_boardDTO bdto = (User_boardDTO)request.getAttribute("bdto");
+	String contents = bdto.getContents();
+	contents.replaceAll("& gt;", ">");
+	bdto.setContents(contents);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
