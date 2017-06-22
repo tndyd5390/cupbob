@@ -50,14 +50,10 @@ public class AdminBoardController {
 		if (bdto == null) {
 			bdto = new User_boardDTO();
 		}
-		String content = bdto.getContents();
-		content = content.replaceAll("& gt;", ">").replaceAll("& lt;", "<");
-		content = content.replaceAll("& #40;", "\\(").replaceAll("& #41;", "\\)");
-		bdto.setContents(content);
+		bdto.setContents(CmmUtil.exchangeEscape(bdto.getContents()));//특수문자 처리
 		model.addAttribute("bdto", bdto);
 		bdto = null;
 		bnum = null;
-		content = null;
 		log.info(this.getClass() + ".adminBoardDetail end !!");
 		return "admin/adminBoardDetail";
 	}
@@ -140,13 +136,9 @@ public class AdminBoardController {
 		if(bdto == null){
 			bdto = new User_boardDTO();
 		}
-		String content = bdto.getContents();
-		content = content.replaceAll("& gt;", ">").replaceAll("& lt;", "<");
-		content = content.replaceAll("& #40;", "\\(").replaceAll("& #41;", "\\)");
-		bdto.setContents(content);
+		bdto.setContents(CmmUtil.exchangeEscape(bdto.getContents()));//특수문자 처리
 		model.addAttribute("bdto",bdto);
 		bdto = null;
-		content = null;
 		bnum = null;
 		log.info(this.getClass() + "adminBoardUpdateView END!!");
 		return "admin/adminBoardUpdateView";
