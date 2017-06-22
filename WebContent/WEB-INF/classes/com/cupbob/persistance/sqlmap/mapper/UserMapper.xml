@@ -8,7 +8,8 @@
 	</select>
 	
 	<select id="login" resultType="User_infoDTO" parameterType="User_infoDTO">
-		SELECT EMAIL, USER_NAME, USER_NO FROM USER_INFO WHERE EMAIL = #{email} AND PASSWORD = #{password}
+		SELECT EMAIL, USER_NAME, USER_NO FROM USER_INFO WHERE EMAIL = 
+		#{email} AND PASSWORD = #{password}
 	</select>
 	
 	<insert id="join" parameterType="User_infoDTO">
@@ -23,7 +24,7 @@
 			USER_NAME
 		) VALUES (
 			#{email},
-			sysdate(),
+			now(),
 			last_insert_id(),
 			#{contact_addr},
 			#{birthday},
@@ -33,4 +34,20 @@
 		)
 	</insert>
 	
-</mapper>
+	<select id="overlapEmail" parameterType="User_infoDTO" resultType="int">
+		SELECT COUNT(*) FROM USER_INFO WHERE EMAIL = #{email}
+	</select>
+	<select id="getUserDetail" resultType="User_infoDTO" parameterType="User_infoDTO">
+		SELECT USER_NO, USER_NAME, EMAIL, GENDER, BIRTHDAY, CONTACT_ADDR FROM USER_INFO WHERE USER_NO =
+		#{user_no}
+	</select>
+	
+	<delete id="userDelete" parameterType="user_infoDTO">
+		DELETE FROM USER_INFO WHERE USER_NO = #{user_no}
+	</delete>
+	
+	<update id="updateUserDetail" parameterType="user_infoDTO">
+		UPDATE USER_INFO SET EMAIL=#{email}, USER_NAME=#{user_name}, GENDER=#{gender}, BIRTHDAY=#{birthday},
+		CONTACT_ADDR = #{contact_addr}, CHG_USER_NO=#{chg_user_no}, CHG_DT = SYSDATE() WHERE USER_NO = #{user_no}
+	</update>
+</mapper> 
