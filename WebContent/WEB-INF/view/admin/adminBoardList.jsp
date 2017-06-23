@@ -46,10 +46,6 @@
 		}
 	}
 </script>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
 <body>
 				<form action="adminBoardCheckedDelete.do" method="post" id="f">
 	<%@include file="/include/naviBarAndasideBar.jsp"%>

@@ -41,6 +41,19 @@
 
 	<input type="text" id="json1" value="">
 	<div id="wewe"></div>
+				<div class="act-time">
+					<div class="activity-body act-in">
+						<div class="text">
+							<p class="attribution">
+								<a href="#">최한용</a> at 4:25pm, 30th Octmber 2014
+							</p>
+							<textarea class="form-control " id="ccomment" name="comment"
+								rows="4"></textarea>
+							<br>
+							<button class="btn btn-primary btn-sm" id="cmtCreate">등록</button>
+						</div>
+					</div>
+				</div>
 
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.cupbob.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -8,7 +10,7 @@ import com.cupbob.dto.Comment_infoDTO;
 import com.cupbob.persistance.mapper.CommentMapper;
 import com.cupbob.service.ICommentService;
 
-@Service("CommentService")
+@Service("CommnetService")
 public class CommentService implements ICommentService{
 
 	@Resource(name="CommentMapper")
@@ -17,5 +19,12 @@ public class CommentService implements ICommentService{
 	@Override
 	public void createComment(Comment_infoDTO cDTO) throws Exception {
 		commentMapper.createComment(cDTO);
+	}
+
+	@Override
+	public List<Comment_infoDTO> getCommentList(Comment_infoDTO cDTO) throws Exception {
+		
+		
+		return commentMapper.getCommentList(cDTO);
 	}
 }

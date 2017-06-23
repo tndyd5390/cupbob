@@ -1,8 +1,11 @@
 <%@page import="com.cupbob.dto.User_boardDTO"%>
+<%@page import="com.cupbob.dto.Comment_infoDTO"%>
+<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	User_boardDTO bdto = (User_boardDTO)request.getAttribute("bdto");
+	User_boardDTO bdto = (User_boardDTO) request.getAttribute("bdto");
+	List<Comment_infoDTO> cList = (List<Comment_infoDTO>) request.getAttribute("cList");
 	String contents = bdto.getContents();
 	contents.replaceAll("& gt;", ">");
 	bdto.setContents(contents);
@@ -12,6 +15,59 @@
 <%@include file="/include/head.jsp"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+	$(function() {
+
+		$('#cmtCreate')
+				.bind(
+						'click',
+						function() {
+							var pNo = $('#pNo').val();
+							var cnts = $('#cmts').val();
+							var allData = {
+								"contents" : cnts,
+								"pNo" : pNo
+							};
+							$.ajax({
+										url : 'createComment.do',
+										method : 'post',
+										data : allData,
+										dataType : "json",
+										success : function(data) {
+											var contents = "";
+											$
+													.each(
+															data,
+															function(key, value) {
+
+																contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
+																contents += "<div class="+"text"+">";
+																contents += "<p class="+"attribution"+">";
+																contents += "<a href="+"#"+">"
+																		+ value.user_name
+																		+ " </a> "
+																		+ value.reg_dt
+																		+ " </p> ";
+																contents += "<textarea class="+"form-control"+" id="+"ccoment"+" name="+value.cmt_no+" rows="+"4"+">"
+																		+ value.contents
+																		+ "</textarea>";
+																contents += " </br>";
+																contents += " </div>";
+																contents += " </div>";
+
+																$('#cmtList')
+																		.html(
+																				contents);
+
+															})
+										}
+
+									})
+						})
+
+	})
+</script>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -38,6 +94,8 @@
 			<section class="panel"> <header class="panel-heading">
 			게시글 상세 </header>
 			<div class="panel-body">
+				<input type="hidden" id="pNo" name="pNo"
+					value="<%=bdto.getPost_no()%>">
 				<table
 					class="table table-striped table-advance table-hover table-bordered">
 					<tbody>
@@ -69,16 +127,13 @@
 						title="선택하신게 삭제됩니다.">삭제</a>
 				</div>
 				<div class="act-time">
-					<div class="activity-body act-in">
-					</div>
+					<div class="activity-body act-in"></div>
 				</div>
 				<div class="act-time">
-					<div class="activity-body act-in">
-					</div>
+					<div class="activity-body act-in"></div>
 				</div>
 				<div class="act-time">
-					<div class="activity-body act-in">
-					</div>
+					<div class="activity-body act-in"></div>
 				</div>
 				<div class="act-time">
 					<div class="activity-body act-in">
@@ -93,37 +148,32 @@
 							<p class="attribution">
 								<a href="#">최한용</a> at 4:25pm, 30th Octmber 2014
 							</p>
-							<textarea class="form-control " id="ccomment" name="comment"
+							<textarea class="form-control " id="cmts" name="ccomment"
 								rows="4"></textarea>
 							<br>
-							<button class="btn btn-primary btn-sm">등록</button>
+							<button class="btn btn-primary btn-sm" id="cmtCreate">등록</button>
 						</div>
 					</div>
 				</div>
-				<div class="act-time">
+				<div class="act-time" id="cmtList">
+					<%
+						for (Comment_infoDTO cDTO : cList) {
+					%>
 					<div class="activity-body act-in">
 						<div class="text">
 							<p class="attribution">
-								<a href="#">김상훈</a> at 4:25pm, 30th Octmber 2014
-								<button class="btn btn-primary btn-sm btn-success">수정</button>
-								<button class="btn btn-primary btn-sm btn-info">삭제</button>
+								<a href="#"><%=cDTO.getUser_name()%></a>
+								<%=cDTO.getReg_dt()%>
 							</p>
-							<p>감사ㅋ</p>
-							<p>
+							<textarea class="form-control " id="ccomment" name="ccomment"
+								rows="4"><%=cDTO.getContents()%></textarea>
+							<br>
 						</div>
 					</div>
+					<%
+						}
+					%>
 				</div>
-				<div class="act-time">
-					<div class="activity-body act-in">
-						<div class="text">
-							<p class="attribution">
-								<a href="#">박수용</a>at 4:25pm, 30th Octmber 2014
-							</p>
-							<p>저도ㅋ</p>
-						</div>
-					</div>
-				</div>
-			</div>
 			</section>
 		</div>
 	</section> <!-- page end--> </section>
