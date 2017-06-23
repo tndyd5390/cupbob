@@ -19,6 +19,7 @@ public class BoardService implements IBoardService {
 	}
 	@Override
 	public User_boardDTO getAdminBoardDetail(User_boardDTO bdto) throws Exception {
+		boardMapper.updateViewCNT(bdto);
 		return boardMapper.getAdminBoardDetail(bdto);
 	}
 	@Override

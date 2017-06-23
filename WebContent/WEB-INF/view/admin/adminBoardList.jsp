@@ -94,7 +94,7 @@
 								<td width="30%" align=center><a href="adminBoardDetail.do?bnum=<%=CmmUtil.nvl(bdto.getPost_no())%>"><%=CmmUtil.nvl(bdto.getTitle())%></a></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bdto.getReg_user_no())%></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bdto.getReg_dt()) %></td>
-								<td width="15%" align=center><%=CmmUtil.nvl(bdto.getReg_dt()) %></td>
+								<td width="15%" align=center><%=CmmUtil.nvl(bdto.getView_cnt()) %></td>
 							</tr>
 						<%
 							}

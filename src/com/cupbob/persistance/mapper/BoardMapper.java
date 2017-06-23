@@ -14,4 +14,5 @@ public interface BoardMapper {
 	public int updateAdminBoard(User_boardDTO uDTO) throws Exception;
 	public int deleteAdminBoardAllCheck(User_boardDTO bdto) throws Exception;
 	void insertAdminBoard(User_boardDTO bDTO) throws Exception;
+	public void updateViewCNT(User_boardDTO bdto) throws Exception;
 }
