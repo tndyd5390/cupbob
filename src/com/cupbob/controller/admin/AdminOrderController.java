@@ -3,6 +3,7 @@ package com.cupbob.controller.admin;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -19,9 +20,11 @@ public class AdminOrderController {
 	private IOrderService orderService;
 	
 	@RequestMapping(value="orderList")
-	public String getOrderList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+	public String getOrderList(HttpSession session,HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		
 		log.info("orderList start");
+		log.info(session.getAttribute("ss_user_email"));
+		log.info(session.getAttribute("ss_user_name"));
 		
 		log.info("orderList end");
 		return "admin/adminMain";

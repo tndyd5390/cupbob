@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import = "com.cupbob.util.CmmUtil"  %>
+	
+
+<% 
+	String ss_user_name = CmmUtil.nvl((String) session.getAttribute("ss_user_name"));
+%>
+<script type="text/javascript">
+	function logOut(){
+		if(confirm("로그아웃 하시겠습니까?")){
+			location.href="adminLogout.do";
+		}
+	}
+
+
+</script>
 <section id="container" class=""> <header
 		class="header dark-bg">
 	<div class="toggle-nav">
@@ -151,7 +166,7 @@
 			<!-- user login dropdown start-->
 			<li class="dropdown"><a data-toggle="dropdown"
 				class="dropdown-toggle" href="#"> <span class="profile-ava">
-				</span> <span class="username">관리자</span> <b class="caret"></b>
+				</span> <span class="username"><%=ss_user_name%></span> <b class="caret"></b>
 			</a>
 				<ul class="dropdown-menu extended logout">
 					<div class="log-arrow-up"></div>
@@ -160,7 +175,7 @@
 					<!-- <li><a href="#"><i class="icon_mail_alt"></i> My Inbox</a></li>
 					<li><a href="#"><i class="icon_clock_alt"></i> 타임라인</a></li>
 					<li><a href="#"><i class="icon_chat_alt"></i> 차트</a></li> -->
-					<li><a href="#"><i class="icon_key_alt"></i> 로그아웃</a></li>
+					<li><a href="#" onclick="logOut();"><i class="icon_key_alt"></i> 로그아웃</a></li>
 					<!-- <li><a href="documentation.html"><i class="icon_key_alt"></i>
 							Documentation</a></li>
 					<li><a href="documentation.html"><i class="icon_key_alt"></i>

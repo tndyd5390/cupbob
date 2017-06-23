@@ -43,9 +43,10 @@ public class AdminUserController {
 	}
 
 	@RequestMapping(value = "adminLogin")
-	public String adminLogin(HttpServletRequest req, HttpServletRequest resp, Model model) {
+	public String adminLogin(HttpSession session,HttpServletRequest req, HttpServletRequest resp, Model model) {
 		log.info(this.getClass().getName() + " adminLogin Start");
-
+		log.info(session.getAttribute("ss_user_email"));
+		log.info(session.getAttribute("ss_user_name"));
 		log.info(this.getClass().getName() + " adminLogin end");
 		return "admin/adminUserLogin";
 	}
@@ -85,7 +86,7 @@ public class AdminUserController {
 
 		log.info(this.getClass().getName() + " adminLoginSuccess end");
 
-		return "admin/adminLoginSuccess";
+		return "redirect:orderList.do";
 	}
 
 	@RequestMapping(value = "adminLogout")
