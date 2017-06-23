@@ -11,6 +11,13 @@ public class Comment_infoDTO {
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
+	private String user_name;
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
 	public String getCmt_no() {
 		return cmt_no;
 	}

@@ -1,12 +1,9 @@
 package com.cupbob.controller.admin;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,16 +13,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cupbob.dto.Comment_infoDTO;
 import com.cupbob.dto.User_boardDTO;
 import com.cupbob.service.IBoardService;
+import com.cupbob.service.ICommentService;
 import com.cupbob.util.CmmUtil;
-import com.mysql.jdbc.StringUtils;
 
 @Controller
 public class AdminBoardController {
 	private Logger log = Logger.getLogger(this.getClass());
 	@Resource(name = "BoardService")
 	private IBoardService boardService;
+	@Resource(name = "CommnetService")
+	private ICommentService commentService;
+
 
 	@RequestMapping(value = "adminBoardList", method = RequestMethod.GET)
 	public String adminBoardList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
@@ -55,7 +56,17 @@ public class AdminBoardController {
 			bdto = new User_boardDTO();
 		}
 		bdto.setContents(CmmUtil.exchangeEscape(bdto.getContents()));//특수문자 처리
+		
+		Comment_infoDTO cDTO = new Comment_infoDTO();
+		cDTO.setPost_no(bnum);
+		
+		List<Comment_infoDTO> cList = commentService.getCommentList(cDTO);
+		
+		
+		
 		model.addAttribute("bdto", bdto);
+		model.addAttribute("cList", cList);
+		cList=null;
 		bdto = null;
 		bnum = null;
 		log.info(this.getClass() + ".adminBoardDetail end !!");

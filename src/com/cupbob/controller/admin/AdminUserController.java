@@ -263,7 +263,6 @@ public class AdminUserController {
 	
 	}
 
-	
 	@RequestMapping(value="commJson")
 	public @ResponseBody List<User_infoDTO> commJson() throws Exception{
 		log.info(this.getClass().getName()+ " commJson start");

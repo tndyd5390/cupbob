@@ -20,8 +20,10 @@ public class AdminOrderController {
 	
 	@RequestMapping(value="orderList")
 	public String getOrderList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
-		
 		log.info("orderList start");
+		
+		
+		
 		
 		log.info("orderList end");
 		return "admin/adminMain";
