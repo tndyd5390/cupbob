@@ -12,7 +12,7 @@
 <%@include file="/include/head.jsp"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>게시글 상세 보기</title>
 </head>
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>
@@ -25,7 +25,7 @@
 				<i class="fa fa-table"></i> 게시판
 			</h3>
 			<ol class="breadcrumb">
-				<li><i class="fa fa-home"></i><a href="adminMain.do">메인 화면</a></li>
+				<li><i class="fa fa-home"></i><a href="orderList.do">메인 화면</a></li>
 				<li><i class="fa fa-table"></i><a href="adminBoardList.do">게시판
 						관리</a></li>
 				<li><i class="fa fa-th-list"></i>게시글 상세</li>

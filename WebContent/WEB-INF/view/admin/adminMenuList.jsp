@@ -17,7 +17,8 @@
 	<section id="main-content"> <section class="wrapper">
 	<div class="row">
 		<div class="col-lg-12">
-			<h3 class="page-header">메뉴 관리</h3>
+			<h3 class="page-header">
+				<i class="icon_document_alt"></i>메뉴 관리</h3>
 			<ol class="breadcrumb">
 				<li><i class="icon_house_alt"></i><a href="orderList.do">메인화면</a></li>
 				<li><i class="icon_document_alt"></i>메뉴 관리</li>
