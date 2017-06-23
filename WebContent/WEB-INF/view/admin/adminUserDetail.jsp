@@ -17,8 +17,8 @@
 		}else{
 			return false
 		}
+		
 	}
-
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -51,7 +51,6 @@
 								<input class=" form-control" id="cname" name="user_name" type="text" value="<%=CmmUtil.nvl(udto.getUser_name())%>" />
 							</div>
 						</div>
-						
 						<div class="form-group ">
 							<label for="email" class="control-label col-lg-2">이메일 <span class="required">*</span>
 							</label>
@@ -59,7 +58,6 @@
 								<input class="form-control " id="email" name="email" type="email" value="<%=CmmUtil.nvl(udto.getEmail())%>" readonly/>
 							</div>
 						</div>
-
 						<div class="form-group">
 							<label class="control-label col-lg-2" for="inputSuccess">성별</label>
 							<div class="col-lg-10">
@@ -80,12 +78,9 @@
 								<input class="form-control " id="phone" name="phone" type="text" value="<%=CmmUtil.nvl(udto.getContact_addr())%>"/>
 							</div>
 						</div>
-
-						
 						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
 							<div style = float:right>
-							
 								<button class="btn btn-primary" type="submit" >수정</button>
 								<button class="btn btn-default" type="button" onclick = "location.href='adminUserDelete.do?unum=<%=CmmUtil.nvl(udto.getUser_no())%>'">삭제</button>
 								</div>
@@ -95,10 +90,7 @@
 				</div>
 			</div>
 			</section>
-			
 		</div>
-	
-	
 	<%@include file="/include/bottomJavaScript.jsp"%>
 </body>
 </html>
