@@ -1,8 +1,13 @@
+<%@page import="com.cupbob.util.CmmUtil"%>
+<%@page import="com.cupbob.dto.Product_infoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@include file="/include/head.jsp"%>
+<%
+	Product_infoDTO pDTO = (Product_infoDTO)request.getAttribute("pDTO");
+%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -33,15 +38,11 @@
                                       <label for="exampleInputPassword1">Password</label>
                                       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                   </div> -->
-				<form class="form-horizontal">
 					<div class="col-lg-5">
 						<center><span class="profile-ava"> <img alt=""
-							src="http://placehold.it/400x400"
+							src="<%= "menuImg/" + pDTO.getFile_name() %>"
 							style="width: 400px" style="height:400px">
 						</span>
-						
-						<input type="file" id="exampleInputFile">
-						<p class="help-block">현재 이미지 그대로 사용자 화면에 업로드 됩니다.</p>
 					</center>
 					</div>
 					
@@ -49,45 +50,26 @@
 						<div class="form-group">
 							<label class="control-label col-sm-4">상품명</label>
 							<div class="col-sm-8">
-								<input id="cp1" type="text" value="불고기 컵밥" size="16"
-									class="form-control">
+								<input id="cp1" type="text" value="<%=CmmUtil.nvl(pDTO.getPrdt_name()) %>" size="16"
+									class="form-control" readonly >
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-4">가격</label>
 							<div class="col-sm-8">
-								<input id="cp1" type="text" value="3500원" size="16"
-									class="form-control">
+								<input id="cp1" type="text" value="<%=CmmUtil.nvl(pDTO.getPrdt_price()) %>" size="16"
+									class="form-control" readonly>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-4">kcal</label>
 							<div class="col-sm-8">
-								<input id="cp1" type="text" value="500" size="16"
-									class="form-control">
+								<input id="cp1" type="text" value="<%=CmmUtil.nvl(pDTO.getPrdt_kcal() + "kcal") %>" size="16"
+									class="form-control" readonly>
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4">재료</label>
-							<div class="col-sm-8">
-								<input id="cp1" type="text" value="소고기(국내산), 쌀(국내산), 양파(국내산), 당근(국내산)" size="16"
-									class="form-control">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4">날짜</label>
-							<div class="col-sm-6">
-
-
-								<div class="input-append date" id="dpYears"
-									data-date="18-06-2017" data-date-format="dd-mm-yyyy"
-									data-date-viewmode="years">
-									<input class="form-control" size="16" type="text"
-										value="28-06-2013" readonly> <span class="add-on"><i
-										class="icon-calendar"></i></span>
-								</div>
-							</div>
-						</div>
+						
+					
 						<div class="form-group">
 							<!-- <label class="control-label col-sm-2">상세 설명</label>
 							<div class="col-sm-10">
@@ -95,16 +77,14 @@
 							</div> -->
 							<label class="control-label col-sm-2">상세 설명</label>
 							<div class="col-sm-10">
-								<div id="editor" class="btn-toolbar" data-role="editor-toolbar"
-									data-target="#editor"></div>
+								<textarea class="form-control" name="editor1" rows="6" readonly><%=CmmUtil.nvl(pDTO.getContents()) %></textarea>
 							</div>
 						</div> 
 						<span style="float:right">
 							<a class="btn btn-info" href="#" title="클릭하시면 수정 됩니다.">수정</a>
-				<a class="btn btn-info" href="#" title="클릭하시면 삭제됩니다.">삭제</a>
+				<a class="btn btn-info" href="adminMenuDeleteOne.do?pnum=<%=pDTO.getPrdt_no() %>" title="클릭하시면 삭제됩니다.">삭제</a>
 						</span>
 					</div>
-				</form>
 			</div>
 			</section>
 		</div>

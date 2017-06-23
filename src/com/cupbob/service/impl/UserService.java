@@ -48,4 +48,17 @@ public class UserService implements IUserService {
 		userMapper.updateUserDetail(uDTO);
 	}
 	
+	@Override
+	public boolean deleteUserAllChecked(User_infoDTO uDTO) throws Exception{
+		System.out.println(uDTO.getAllCheck().length);
+		System.out.println(uDTO.getUser_no());
+		int result = userMapper.deleteUserAllChecked(uDTO);
+		if(result != 0){
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	
 }

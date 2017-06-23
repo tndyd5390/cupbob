@@ -19,4 +19,6 @@ public interface UserMapper {
 	public int userDelete(User_infoDTO udto);
 
 	public void updateUserDetail(User_infoDTO uDTO);
+
+	public int deleteUserAllChecked(User_infoDTO uDTO) throws Exception;
 }
