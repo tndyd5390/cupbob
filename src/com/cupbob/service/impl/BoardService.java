@@ -38,6 +38,8 @@ public class BoardService implements IBoardService {
 	}
 	@Override
 	public boolean deleteAdminAllCheck(User_boardDTO bdto) throws Exception{
+		System.out.println(bdto.getPost_no());
+		System.out.println(bdto.getAllCheck().length);
 		int result = boardMapper.deleteAdminBoardAllCheck(bdto);
 		if(result != 0){
 			return true;

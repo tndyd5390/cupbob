@@ -9,7 +9,7 @@
 		</div>
 	</div>
 
-	<!--logo start--> <a href="adminMain.do" class="logo">sora <span
+	<!--logo start--> <a href="orderList.do" class="logo">sora<span
 		class="lite">cupbob</span></a> <!--logo end-->
 
 	<div class="nav search-row" id="top_menu">
@@ -116,7 +116,6 @@
 					<li>
 						<p class="blue">You have 5 new messages</p>
 					</li>
-					
 					<li><a href="#">See all messages</a></li>
 				</ul></li>
 			<!-- inbox notificatoin end -->
@@ -175,7 +174,7 @@
 	<div id="sidebar" class="nav-collapse ">
 		<!-- sidebar menu start-->
 		<ul class="sidebar-menu">
-			<li class="active"><a class="" href="adminMain.do"> <i
+			<li class="active"><a class="" href="orderList.do"> <i
 					class="icon_house_alt"></i> <span>메인 화면</span>
 			</a></li>
 			<li><a class="" href="adminMenuList.do"> <i

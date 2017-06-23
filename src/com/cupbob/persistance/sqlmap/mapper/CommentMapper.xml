@@ -3,9 +3,4 @@
 <mapper namespace="com.cupbob.persistance.mapper.CommentMapper">
 
 
-<insert id="createComment" parameterType="User_DTO">
-	
-</insert>
-	
-
 </mapper>
