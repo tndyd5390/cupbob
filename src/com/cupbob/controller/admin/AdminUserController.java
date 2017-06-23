@@ -239,7 +239,6 @@ public class AdminUserController {
 		return "redirect:adminUserDetail.do?unum="+uNum;
 	}
 
-	
 	@RequestMapping(value="commJson")
 	public @ResponseBody List<User_infoDTO> commJson() throws Exception{
 		log.info(this.getClass().getName()+ " commJson start");
