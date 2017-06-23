@@ -1,9 +1,12 @@
 package com.cupbob.controller.admin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.cupbob.dto.User_boardDTO;
 import com.cupbob.service.IBoardService;
 import com.cupbob.util.CmmUtil;
+import com.mysql.jdbc.StringUtils;
 
 @Controller
 public class AdminBoardController {
@@ -30,7 +34,7 @@ public class AdminBoardController {
 		if (boardList == null) {
 			boardList = new ArrayList<User_boardDTO>();
 		}
-
+		
 		log.info(boardList.size());
 		model.addAttribute("boardList", boardList);
 		log.info(this.getClass() + "adminBoardList end!!!");
