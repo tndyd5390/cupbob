@@ -4,4 +4,26 @@
 	<select id="getAdminMenuList" resultType="Product_infoDTO">
 		SELECT * FROM PRODUCT_INFO
 	</select>
+	
+	<insert id="insertAdminMenu" parameterType="Product_infoDTO">
+		INSERT INTO
+		PRODUCT_INFO
+		(
+		PRDT_NAME, PRDT_PRICE, CONTENTS, PRDT_KCAL, FILE_NAME, FILE_ORG_NAME, FILE_PATH, VIEW_CNT, USER_NO, REG_USER_NO, REG_DT
+		)
+		VALUES
+		(
+		#{prdt_name}, #{prdt_price}, #{contents},#{prdt_kcal}, #{file_name}, #{file_org_name}, #{file_path}, 0, 1, 1, now()
+		);
+	</insert>
+	
+	<select id="getAdminMenuDetail" parameterType="Product_infoDTO" resultType="Product_infoDTO">
+		SELECT * FROM PRODUCT_INFO WHERE PRDT_NO = #{prdt_no}
+	</select>
+	
+	<delete id="deleteAdminMenuOne" parameterType="Product_infoDTO">
+		DELETE
+		FROM
+		PRODUCT_INFO WHERE PRDT_NO = #{prdt_no}
+	</delete>
 </mapper>
