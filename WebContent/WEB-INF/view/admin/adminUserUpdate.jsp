@@ -9,7 +9,6 @@
 </head>
 <body>
 <%@include file="/include/naviBarAndasideBar.jsp"%>
-   
   	<section id="main-content"> <section class="wrapper">
 	<div class="row">
 		<div class="col-lg-12">
@@ -37,7 +36,6 @@
 								<input class=" form-control" id="cname" name="fullname" type="text" placeholder="회원 이름" disabled/>
 							</div>
 						</div>
-						
 						<div class="form-group ">
 							<label for="email" class="control-label col-lg-2">Email <span class="required">*</span>
 							</label>
@@ -45,7 +43,6 @@
 								<input class="form-control " id="email" name="email" type="email" placeholder="회원이메일"disabled/>
 							</div>
 						</div>
-
 						<div class="form-group ">
 							<label for="password" class="control-label col-lg-2">비밀번호 <span class="required">*</span>
 							</label>
@@ -60,7 +57,6 @@
 								<input class="form-control " id="confirm_password" name="confirm_password" type="password" placeholder="비밀번호를 다시 입력해주세요."/>
 							</div>
 						</div>
-						
 						<div class="form-group ">
 							<label for="gender" class="control-label col-lg-2">성별 <span class="required">*</span>
 							</label>
@@ -83,12 +79,9 @@
 								<input class="form-control " id="phone" name="phone" type="text" placeholder="연락처를 입력해주세요. ex)01012345678" />
 							</div>
 						</div>
-
-
 						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
 							<div style = float:right>
-							
 								<button class="btn btn-primary" type="submit">수정</button>
 								<button class="btn btn-default" type="button">취소</button>
 								</div>
@@ -98,13 +91,10 @@
 				</div>
 			</div>
 			</section>
-			
 		</div>
 	</div>
 				</section>
 				<!-- 회원수정 폼 끝 -->
-   
-   
    </section></section>
     <%@include file="/include/bottomJavaScript.jsp"%>
 </body>
