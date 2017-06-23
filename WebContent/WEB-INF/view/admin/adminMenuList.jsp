@@ -46,7 +46,7 @@
 						<tr>
 							<td><input type="checkbox"></td>
 							<td><%=pDTO.getPrdt_no() %></td>
-							<td><a href="adminMenuDetail1.do"><%=pDTO.getPrdt_name() %></a></td>
+							<td><a href="adminMenuDetail.do?pnum=<%=pDTO.getPrdt_no()%>"><%=pDTO.getPrdt_name() %></a></td>
 							<td><%=pDTO.getPrdt_price() %></td>
 							<td><%=pDTO.getContents() %></td>
 							<td>270g</td>

@@ -18,4 +18,19 @@ public class MenuService implements IMenuService{
 	public List<Product_infoDTO> getAdminMenuList() throws Exception {
 		return menuMapper.getAdminMenuList();
 	}
+
+	@Override
+	public int insertAdminMenu(Product_infoDTO pDTO) throws Exception {
+		return menuMapper.insertAdminMenu(pDTO);
+	}
+
+	@Override
+	public Product_infoDTO getAdminMenuDetail(Product_infoDTO pDTO) throws Exception {
+		return menuMapper.getAdminMenuDetail(pDTO);
+	}
+
+	@Override
+	public int deleteAdminMenuOne(Product_infoDTO pDTO) throws Exception {
+		return menuMapper.deleteAdminMenuOne(pDTO);
+	}
 }
