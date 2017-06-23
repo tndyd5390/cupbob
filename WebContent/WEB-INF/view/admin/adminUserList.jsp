@@ -46,7 +46,7 @@
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원 목록</title>
+<title>회원 관리</title>
 </head>
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>
@@ -54,11 +54,11 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header">
-				<i class="fa fa-table"></i> 회원 목록
+				<i class="fa fa-table"></i> 회원 관리
 			</h3>
 			<ol class="breadcrumb">
 				<li><i class="fa fa-home"></i><a href="orderList.do">메인 화면</a></li>
-				<li><i class="fa fa-th-list"></i>회원 목록</li>
+				<li><i class="fa fa-th-list"></i>회원 관리</li>
 			</ol>
 		</div>
 	</div>

@@ -57,11 +57,11 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header">
-				<i class="fa fa-table"></i> 게시판
+				<i class="fa fa-table"></i> 게시판 관리
 			</h3>
 			<ol class="breadcrumb">
 				<li><i class="fa fa-home"></i><a href="orderList.do">메인 화면</a></li>
-				<li><i class="fa fa-table"></i>게시판</li>
+				<li><i class="fa fa-table"></i>게시판 관리</li>
 			</ol>
 		</div>
 	</div>

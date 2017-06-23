@@ -41,7 +41,7 @@
     ======================================================= -->
     <!-- <link href="adminBootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="adminBootstrap/vendor/morrisjs/morris.css" rel="stylesheet">
- 
+ 	<title>분석 차트</title>
   </head>
 
 
