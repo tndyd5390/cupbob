@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import = "com.cupbob.util.CmmUtil"  %>
+	
+
+<% 
+	String ss_user_name = CmmUtil.nvl((String) session.getAttribute("ss_user_name"));
+%>
+<script type="text/javascript">
+	function logOut(){
+		if(confirm("로그아웃 하시겠습니까?")){
+			location.href="adminLogout.do";
+		}
+	}
+
+
+</script>
 <section id="container" class=""> <header
 		class="header dark-bg">
 	<div class="toggle-nav">
@@ -9,7 +24,7 @@
 		</div>
 	</div>
 
-	<!--logo start--> <a href="adminMain.do" class="logo">sora <span
+	<!--logo start--> <a href="orderList.do" class="logo">sora<span
 		class="lite">cupbob</span></a> <!--logo end-->
 
 	<div class="nav search-row" id="top_menu">
@@ -116,7 +131,6 @@
 					<li>
 						<p class="blue">You have 5 new messages</p>
 					</li>
-					
 					<li><a href="#">See all messages</a></li>
 				</ul></li>
 			<!-- inbox notificatoin end -->
@@ -152,7 +166,7 @@
 			<!-- user login dropdown start-->
 			<li class="dropdown"><a data-toggle="dropdown"
 				class="dropdown-toggle" href="#"> <span class="profile-ava">
-				</span> <span class="username">관리자</span> <b class="caret"></b>
+				</span> <span class="username"><%=ss_user_name%></span> <b class="caret"></b>
 			</a>
 				<ul class="dropdown-menu extended logout">
 					<div class="log-arrow-up"></div>
@@ -161,7 +175,7 @@
 					<!-- <li><a href="#"><i class="icon_mail_alt"></i> My Inbox</a></li>
 					<li><a href="#"><i class="icon_clock_alt"></i> 타임라인</a></li>
 					<li><a href="#"><i class="icon_chat_alt"></i> 차트</a></li> -->
-					<li><a href="#"><i class="icon_key_alt"></i> 로그아웃</a></li>
+					<li><a href="#" onclick="logOut();"><i class="icon_key_alt"></i> 로그아웃</a></li>
 					<!-- <li><a href="documentation.html"><i class="icon_key_alt"></i>
 							Documentation</a></li>
 					<li><a href="documentation.html"><i class="icon_key_alt"></i>
@@ -175,7 +189,7 @@
 	<div id="sidebar" class="nav-collapse ">
 		<!-- sidebar menu start-->
 		<ul class="sidebar-menu">
-			<li class="active"><a class="" href="adminMain.do"> <i
+			<li class="active"><a class="" href="orderList.do"> <i
 					class="icon_house_alt"></i> <span>메인 화면</span>
 			</a></li>
 			<li><a class="" href="adminMenuList.do"> <i

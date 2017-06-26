@@ -22,7 +22,7 @@
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>게시글 등록</title>
 </head>
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>
@@ -38,6 +38,7 @@
 				<li><i class="fa fa-table"></i>게시글 등록</li>
 			</ol>
 		</div>
+	</div>
 		<!-- 회원가입 폼 시작-->
 		<div class="row">
 			<div class="col-lg-12">
@@ -53,15 +54,14 @@
 						<textarea class="form-control " id="contents" name="contents"
 							rows="10"></textarea>
 					</div>
+				</section>
 				<div style="float: right">
 					<input type="button" class="btn btn-info" onclick="doSubmit()" value="등록">
 				</div>
-				</form>
-				</section>
-			</div>
+			</form>
+		</div>
 		</div>
 	</section> </section>
-	<!-- 회원가입 폼 끝 -->
 	<!-- page end-->
 	<%@include file="/include/bottomJavaScript.jsp"%>
 </body>

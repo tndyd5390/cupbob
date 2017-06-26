@@ -43,9 +43,10 @@ public class AdminUserController {
 	}
 
 	@RequestMapping(value = "adminLogin")
-	public String adminLogin(HttpServletRequest req, HttpServletRequest resp, Model model) {
+	public String adminLogin(HttpSession session,HttpServletRequest req, HttpServletRequest resp, Model model) {
 		log.info(this.getClass().getName() + " adminLogin Start");
-
+		log.info(session.getAttribute("ss_user_email"));
+		log.info(session.getAttribute("ss_user_name"));
 		log.info(this.getClass().getName() + " adminLogin end");
 		return "admin/adminUserLogin";
 	}
@@ -85,7 +86,7 @@ public class AdminUserController {
 
 		log.info(this.getClass().getName() + " adminLoginSuccess end");
 
-		return "admin/adminLoginSuccess";
+		return "redirect:orderList.do";
 	}
 
 	@RequestMapping(value = "adminLogout")
@@ -238,8 +239,31 @@ public class AdminUserController {
 		log.info(this.getClass().getName() + " adminUserUpdateProc end");
 		return "redirect:adminUserDetail.do?unum="+uNum;
 	}
-
 	
+	@RequestMapping(value="adminUserCheckedDelete",method=RequestMethod.POST)
+	public String adminUserCheckedDelete(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + " Start !!");
+		
+		String[] del_check = req.getParameterValues("del_check");
+		log.info("del_check" + del_check.length);
+		User_infoDTO uDTO = new User_infoDTO();
+		uDTO.setAllCheck(del_check);
+		if(userService.deleteUserAllChecked(uDTO)){
+			model.addAttribute("msg","삭제되었습니다.");
+			
+		}else {
+			model.addAttribute("msg","삭제 실패하였습니다.");
+		}
+		model.addAttribute("url","adminUserList.do");
+		uDTO = null;
+		del_check = null;
+		
+		log.info(this.getClass() + " End !!");
+		
+		return "admin/userAlert";
+	
+	}
+
 	@RequestMapping(value="commJson")
 	public @ResponseBody List<User_infoDTO> commJson() throws Exception{
 		log.info(this.getClass().getName()+ " commJson start");

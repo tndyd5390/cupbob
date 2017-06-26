@@ -19,6 +19,7 @@ public class BoardService implements IBoardService {
 	}
 	@Override
 	public User_boardDTO getAdminBoardDetail(User_boardDTO bdto) throws Exception {
+		boardMapper.updateViewCNT(bdto);
 		return boardMapper.getAdminBoardDetail(bdto);
 	}
 	@Override
@@ -37,6 +38,8 @@ public class BoardService implements IBoardService {
 	}
 	@Override
 	public boolean deleteAdminAllCheck(User_boardDTO bdto) throws Exception{
+		System.out.println(bdto.getPost_no());
+		System.out.println(bdto.getAllCheck().length);
 		int result = boardMapper.deleteAdminBoardAllCheck(bdto);
 		if(result != 0){
 			return true;

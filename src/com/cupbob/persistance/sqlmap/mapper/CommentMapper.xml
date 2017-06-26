@@ -3,6 +3,16 @@
 <mapper namespace="com.cupbob.persistance.mapper.CommentMapper">
 
 
+<insert id="createComment" parameterType="Comment_infoDTO">
+	INSERT INTO COMMENT_INFO (POST_NO, CONTENTS, USER_NO, REG_USER_NO, REG_DT) 
+						VALUES(#{post_no}, #{contents}, #{user_no}, #{user_no}, NOW())
+</insert>
 
+<select id="getCommentList" parameterType="Comment_infoDTO" resultType="Comment_infoDTO">
+	
+	SELECT C.CMT_NO, C.CONTENTS, U.USER_NAME, C.POST_NO,C.REG_DT FROM USER_INFO U, COMMENT_INFO C WHERE
+		 C.USER_NO= U.USER_NO AND C.POST_NO = #{post_no}
+	
+</select>	
 
 </mapper>

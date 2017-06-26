@@ -13,8 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cupbob.dto.Comment_infoDTO;
 import com.cupbob.dto.User_boardDTO;
 import com.cupbob.service.IBoardService;
+import com.cupbob.service.ICommentService;
 import com.cupbob.util.CmmUtil;
 
 @Controller
@@ -22,6 +24,9 @@ public class AdminBoardController {
 	private Logger log = Logger.getLogger(this.getClass());
 	@Resource(name = "BoardService")
 	private IBoardService boardService;
+	@Resource(name = "CommnetService")
+	private ICommentService commentService;
+
 
 	@RequestMapping(value = "adminBoardList", method = RequestMethod.GET)
 	public String adminBoardList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
@@ -30,7 +35,7 @@ public class AdminBoardController {
 		if (boardList == null) {
 			boardList = new ArrayList<User_boardDTO>();
 		}
-
+		
 		log.info(boardList.size());
 		model.addAttribute("boardList", boardList);
 		log.info(this.getClass() + "adminBoardList end!!!");
@@ -51,7 +56,17 @@ public class AdminBoardController {
 			bdto = new User_boardDTO();
 		}
 		bdto.setContents(CmmUtil.exchangeEscape(bdto.getContents()));//특수문자 처리
+		
+		Comment_infoDTO cDTO = new Comment_infoDTO();
+		cDTO.setPost_no(bnum);
+		
+		List<Comment_infoDTO> cList = commentService.getCommentList(cDTO);
+		
+		
+		
 		model.addAttribute("bdto", bdto);
+		model.addAttribute("cList", cList);
+		cList=null;
 		bdto = null;
 		bnum = null;
 		log.info(this.getClass() + ".adminBoardDetail end !!");

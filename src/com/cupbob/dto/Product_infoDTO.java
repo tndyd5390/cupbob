@@ -13,6 +13,21 @@ public class Product_infoDTO {
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
+	private String prdt_kcal;
+	private String file_org_name;
+	
+	public String getFile_org_name() {
+		return file_org_name;
+	}
+	public void setFile_org_name(String file_org_name) {
+		this.file_org_name = file_org_name;
+	}
+	public String getPrdt_kcal() {
+		return prdt_kcal;
+	}
+	public void setPrdt_kcal(String prdt_kcal) {
+		this.prdt_kcal = prdt_kcal;
+	}
 	public String getPrdt_no() {
 		return prdt_no;
 	}

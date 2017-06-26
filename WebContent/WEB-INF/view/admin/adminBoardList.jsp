@@ -48,7 +48,7 @@
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>게시판 관리</title>
 </head>
 <body>
 				<form action="adminBoardCheckedDelete.do" method="post" id="f">
@@ -57,11 +57,11 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header">
-				<i class="fa fa-table"></i> 게시판
+				<i class="fa fa-table"></i> 게시판 관리
 			</h3>
 			<ol class="breadcrumb">
-				<li><i class="fa fa-home"></i><a href="adminMain.do">메인 화면</a></li>
-				<li><i class="fa fa-table"></i>게시판</li>
+				<li><i class="fa fa-home"></i><a href="orderList.do">메인 화면</a></li>
+				<li><i class="fa fa-table"></i>게시판 관리</li>
 			</ol>
 		</div>
 	</div>
@@ -94,7 +94,7 @@
 								<td width="30%" align=center><a href="adminBoardDetail.do?bnum=<%=CmmUtil.nvl(bdto.getPost_no())%>"><%=CmmUtil.nvl(bdto.getTitle())%></a></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bdto.getReg_user_no())%></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bdto.getReg_dt()) %></td>
-								<td width="15%" align=center><%=CmmUtil.nvl(bdto.getReg_dt()) %></td>
+								<td width="15%" align=center><%=CmmUtil.nvl(bdto.getView_cnt()) %></td>
 							</tr>
 						<%
 							}

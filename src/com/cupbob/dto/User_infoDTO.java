@@ -12,6 +12,7 @@ public class User_infoDTO {
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
+	private String[] allCheck;
 	
 	public String getUser_no() {
 		return user_no;
@@ -78,5 +79,11 @@ public class User_infoDTO {
 	}
 	public void setChg_dt(String chg_dt) {
 		this.chg_dt = chg_dt;
+	}
+	public String[] getAllCheck() {
+		return allCheck;
+	}
+	public void setAllCheck(String[] allCheck) {
+		this.allCheck = allCheck;
 	}
 }

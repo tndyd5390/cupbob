@@ -1,9 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@include file="/include/head.jsp"%>
 <head>
+<script type="text/javascript">
+
+	function check(){
+		var file = document.querySelector('#getfile');
+		var filelist = file.files;
+		var reader = new FileReader();
+		reader.readAsDataURL(filelist[0]);
+		reader.onload = function(){
+			document.querySelector('#preview').src = reader.result;
+		}
+	}
+	
+	
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -14,7 +27,7 @@
 		<div class="col-lg-12">
 			<h3 class="page-header">메뉴 관리</h3>
 			<ol class="breadcrumb">
-				<li><i class="icon_house_alt"></i><a href="adminMain.do">메인 화면</a></li>
+				<li><i class="icon_house_alt"></i><a href="orderList.do">메인 화면</a></li>
 				<li><i class="icon_document_alt"></i><a href="adminMenuList.do">메뉴 관리</a></li>
 				<li><i class="icon_document_alt"></i>메뉴 등록</li>
 			</ol>
@@ -33,14 +46,13 @@
                                       <label for="exampleInputPassword1">Password</label>
                                       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                   </div> -->
-				<form class="form-horizontal">
+				<form class="form-horizontal" action="adminMenuRegProc.do" method="post" enctype="multipart/form-data" id="f">
 					<div class="col-lg-5">
-						<center><span class="profile-ava"> <img alt=""
-							src="http://placehold.it/400x400"
+						<center id="center"><span class="profile-ava" id="span"> <img id="preview" alt="" src="http://placehold.it/400x400"
 							style="width: 400px" style="height:400px">
 						</span>
 						
-						<input type="file" id="exampleInputFile">
+						<input type="file" name="prdtimg" id="getfile" accept="image/*" onchange="check()">
 						<p class="help-block">현재 이미지 그대로 사용자 화면에 업로드 됩니다.</p>
 					</center>
 					</div>
@@ -49,43 +61,22 @@
 						<div class="form-group">
 							<label class="control-label col-sm-4">상품명</label>
 							<div class="col-sm-8">
-								<input id="cp1" type="text" placeholder="상품명" size="16"
-									class="form-control">
+								<input id="cp1" name="name" type="text" placeholder="상품명" size="16"
+									class="form-control" required="required">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-4">가격</label>
 							<div class="col-sm-8">
-								<input id="cp1" type="text" placeholder="가격" size="16"
-									class="form-control">
+								<input id="cp1" name="price" type="text" placeholder="가격" size="16"
+									class="form-control" required="required">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-4">kcal</label>
 							<div class="col-sm-8">
-								<input id="cp1" type="text" placeholder="kcal" size="16"
-									class="form-control">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4">재료</label>
-							<div class="col-sm-8">
-								<input id="cp1" type="text" placeholder="재료" size="16"
-									class="form-control">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-4">날짜</label>
-							<div class="col-sm-6">
-
-
-								<div class="input-append date" id="dpYears"
-									data-date="18-06-2013" data-date-format="dd-mm-yyyy"
-									data-date-viewmode="years">
-									<input class="form-control" size="16" type="text"
-										value="28-06-2013" readonly> <span class="add-on"><i
-										class="icon-calendar"></i></span>
-								</div>
+								<input id="cp1" type="text" name="kcal" placeholder="kcal" size="16"
+									class="form-control" required="required">
 							</div>
 						</div>
 						<div class="form-group">
@@ -95,12 +86,11 @@
 							</div> -->
 							<label class="control-label col-sm-2">상세 설명</label>
 							<div class="col-sm-10">
-								<div id="editor" class="btn-toolbar" data-role="editor-toolbar"
-									data-target="#editor"></div>
+							<textarea class="form-control" name="contents" rows="6" required="required"></textarea>
 							</div>
 						</div> 
 						<span style="float:right">
-							<a class="btn btn-info" href="adminMenuList.do" title="클릭하시면 등록 화면으로 이동합니다.">등록</a>
+							<input type="submit" class="btn btn-info"  title="클릭하시면 등록 됩니다." value="등록">
 				<a class="btn btn-info" href="" title="클릭하시면 취소됩니다.">취소</a>
 						</span>
 					</div>

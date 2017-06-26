@@ -15,7 +15,7 @@
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>게시글 수정</title>
 </head>
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>
@@ -30,7 +30,7 @@
 			<ol class="breadcrumb">
 				<li><i class="fa fa-home"></i><a href="adminMain.do">메인 화면</a></li>
 				<li><i class="fa fa-table"></i><a href="adminBoardList.do">게시판 관리</a></li>
-				<li><i class="fa fa-th-list"></i>게시글 상세</li>
+				<li><i class="fa fa-th-list"></i>게시글 수정</li>
 			</ol>
 		</div>
 	</div>
@@ -38,21 +38,19 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<section class="panel"> <header class="panel-heading">
-			게시글 상세 </header>
+			게시글 수정 </header>
 			<div class="panel-body">
 			<form action="adminBoardUpdate.do" method="post" id="f">
 				<input type="hidden" name="bnum" value="<%=CmmUtil.nvl(bdto.getPost_no()) %>">
 				<table class="table table-striped table-advance table-hover">
 					<tbody>
 						<tr>
-							<th width="10%"><center>
-									</i>제목
+							<th width="15%"><center>
+									제목
 								</center></th>
-							<th width="45%"><input class="form-control" name="title" type="text" value="<%=CmmUtil.nvl(bdto.getTitle()) %>"></th>
-							<th width="20%"><center><%=CmmUtil.nvl(bdto.getReg_dt()) %></center></th>
-							<th width="20%"><center>
-									<i class="icon_profile"></i> <%=CmmUtil.nvl(bdto.getUser_id()) %>
-								</center></th>
+							<th width="60%"><input class="form-control" name="title" type="text" value="<%=CmmUtil.nvl(bdto.getTitle()) %>"></th>
+							<th width="10%"><center>수정일</center></th>
+							<th width="15%"><center><%=CmmUtil.nvl(bdto.getReg_dt()) %></center></th>
 						</tr>
 					</tbody>
 				</table>
