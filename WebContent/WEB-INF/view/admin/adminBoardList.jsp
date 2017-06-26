@@ -112,6 +112,6 @@
 	</div>
 	</section>
 	<%@include file="/include/bottomJavaScript.jsp"%>
-			</form>
+	</form>
 </body>
 </html>

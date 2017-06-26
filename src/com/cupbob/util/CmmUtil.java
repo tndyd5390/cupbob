@@ -48,4 +48,8 @@ public class CmmUtil {
         value = value.replaceAll("& #39;", "'");
         return value;
 	}
+	public static String replaceBr(String str){
+		str = str.replaceAll("\n", "</br>");
+		return str;
+	}
 }
