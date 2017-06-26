@@ -67,7 +67,6 @@
 				})
 				}
 			})
-			
 	})
 	function cmtDelete(cmt_no){
 		var cmtNo = cmt_no;
