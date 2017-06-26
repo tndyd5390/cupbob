@@ -155,7 +155,7 @@
 							<th width="10%"><center>작성자</center></th>
 							<th width="15%"><center>
 									<i class="icon_profile"></i>
-									<%=bdto.getUser_id()%>
+									<%=bdto.getEmail()%>
 								</center></th>
 							<th width="10%"><center>작성일</center></th>
 							<th width="15%"><center><%=bdto.getReg_dt()%></center></th>
