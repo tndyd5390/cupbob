@@ -207,7 +207,7 @@
 					class="menu-arrow arrow_carrot-right"></span>
 			</a>
 			</li> -->
-			<li><a class="" href="adminBoardList.do"> <i class="icon_genius"></i>
+			<li><a class="" href="adminBoardList.do"> <i class="fa fa-table"></i>
 					<span>게시판 관리</span>
 			</a></li>
 			<li><a class="" href="adminChart.do"> <i

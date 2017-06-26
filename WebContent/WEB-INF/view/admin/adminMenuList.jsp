@@ -20,7 +20,7 @@
 			<h3 class="page-header">
 				<i class="icon_document_alt"></i>메뉴 관리</h3>
 			<ol class="breadcrumb">
-				<li><i class="icon_house_alt"></i><a href="orderList.do">메인화면</a></li>
+				<li><i class="fa fa-home"></i><a href="orderList.do">메인화면</a></li>
 				<li><i class="icon_document_alt"></i>메뉴 관리</li>
 			</ol>
 		</div>

@@ -30,11 +30,12 @@
           <section class="wrapper">
 		  <div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header">회원 관리</h3>
+					<h3 class="page-header"><i class="icon_profile"></i>회원 관리</h3>
 					<ol class="breadcrumb">
-						<li><i class="icon_profile"></i><a href="adminUserList.do">회원 관리</a></li>
-						<li><i class="icon_profile"></i>회원 상세</li>
-					</ol>
+				<li><i class="fa fa-home"></i><a href="orderList.do">메인 화면</a></li>
+				<li><i class="icon_profile"></i><a href="adminUserList.do">회원 관리</a></li>
+				<li><i class="icon_documents_alt"></i>회원 상세</li>
+			</ol>
 				</div>
 			</div>
 			<div class="col-lg-12">
