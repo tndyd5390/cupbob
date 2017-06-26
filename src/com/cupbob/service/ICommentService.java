@@ -10,4 +10,6 @@ public interface ICommentService {
 
 	public List<Comment_infoDTO> getCommentList(Comment_infoDTO cDTO) throws Exception;
 
+	public void deleteComment(Comment_infoDTO cDTO) throws Exception;
+
 }

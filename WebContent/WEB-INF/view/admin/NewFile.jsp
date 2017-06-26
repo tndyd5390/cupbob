@@ -218,7 +218,7 @@
 								<span><%=CmmUtil.replaceBr(cDTO.getContents())%></span>
 							</div>
 							<%
-							if(cDTO.getUser_name().equals("admin")){
+							if(cDTO.getUser_name()=="1"){
 							%>
 							<br>
 							<button class='btn btn-info btn-sm' onclick='cmtUpdate(<%=cDTO.getCmt_no()%>)'>수정</button>							
