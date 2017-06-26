@@ -1,5 +1,4 @@
 package com.cupbob.controller.admin;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,10 +20,10 @@ public class AdminOrderController {
 	
 	@RequestMapping(value="orderList")
 	public String getOrderList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
-		log.info("orderList start");
+		log.info(this.getClass() + "orderList start");
 		
 		
-		log.info("orderList end");
+		log.info(this.getClass() + "orderList end");
 		return "admin/adminMain";
 	}
 

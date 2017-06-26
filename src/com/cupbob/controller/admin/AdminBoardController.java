@@ -49,13 +49,13 @@ public class AdminBoardController {
 		log.info(this.getClass() + ".adminBoardDetail start !!");
 		String bnum = req.getParameter("bnum");
 		log.info("bnum : " + bnum);
-		User_boardDTO bdto = new User_boardDTO();
-		bdto.setPost_no(bnum);
-		bdto = boardService.getAdminBoardDetail(bdto);
-		if (bdto == null) {
-			bdto = new User_boardDTO();
+		User_boardDTO bDTO = new User_boardDTO();
+		bDTO.setPost_no(bnum);
+		bDTO = boardService.getAdminBoardDetail(bDTO);
+		if (bDTO == null) {
+			bDTO = new User_boardDTO();
 		}
-		bdto.setContents(CmmUtil.exchangeEscape(bdto.getContents()));//특수문자 처리
+		bDTO.setContents(CmmUtil.exchangeEscape(bDTO.getContents()));//특수문자 처리
 		
 		Comment_infoDTO cDTO = new Comment_infoDTO();
 		cDTO.setPost_no(bnum);
@@ -64,10 +64,10 @@ public class AdminBoardController {
 		
 		
 		
-		model.addAttribute("bdto", bdto);
+		model.addAttribute("bDTO", bDTO);
 		model.addAttribute("cList", cList);
 		cList=null;
-		bdto = null;
+		bDTO = null;
 		bnum = null;
 		log.info(this.getClass() + ".adminBoardDetail end !!");
 		return "admin/adminBoardDetail";
@@ -79,9 +79,9 @@ public class AdminBoardController {
 		log.info(this.getClass() + ".adminBoardDetailDelete start !!");
 		String bnum = req.getParameter("bnum");
 		log.info("bnum : " + bnum);
-		User_boardDTO bdto = new User_boardDTO();
-		bdto.setPost_no(bnum);
-		int result = boardService.deleteAdminBoardDetailDelete(bdto);
+		User_boardDTO bDTO = new User_boardDTO();
+		bDTO.setPost_no(bnum);
+		int result = boardService.deleteAdminBoardDetailDelete(bDTO);
 		String msg = "";
 		String url = "";
 		if (result > 0) {
@@ -95,7 +95,7 @@ public class AdminBoardController {
 		model.addAttribute("url", url);
 		msg = null;
 		url = null;
-		bdto = null;
+		bDTO = null;
 		log.info(this.getClass() + ".adminBoardDetailDelete end !!");
 		return "admin/boardAlert";
 	}
@@ -127,15 +127,15 @@ public class AdminBoardController {
 	public String adminBoardCheckedDelete(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		String[] del_check = req.getParameterValues("del_check");
 		log.info(this.getClass() + (del_check + ""));
-		User_boardDTO bdto = new User_boardDTO();
-		bdto.setAllCheck(del_check);
-		if(boardService.deleteAdminAllCheck(bdto)){
+		User_boardDTO bDTO = new User_boardDTO();
+		bDTO.setAllCheck(del_check);
+		if(boardService.deleteAdminAllCheck(bDTO)){
 			model.addAttribute("msg", "삭제되었습니다.");
 		}else{
 			model.addAttribute("msg", "삭제 실패");
 		}
 		model.addAttribute("url", "adminBoardList.do");
-		bdto = null;
+		bDTO = null;
 		del_check = null;
 		return "admin/boardAlert";
 	}
@@ -145,15 +145,15 @@ public class AdminBoardController {
 		log.info(this.getClass() + "adminBoardUpdateView Start!!");
 		String bnum = req.getParameter("bnum");
 		log.info("bnum :: " + bnum);
-		User_boardDTO bdto = new User_boardDTO();
-		bdto.setPost_no(bnum);
-		bdto=boardService.getAdminBoardDetail(bdto);
-		if(bdto == null){
-			bdto = new User_boardDTO();
+		User_boardDTO bDTO = new User_boardDTO();
+		bDTO.setPost_no(bnum);
+		bDTO=boardService.getAdminBoardDetail(bDTO);
+		if(bDTO == null){
+			bDTO = new User_boardDTO();
 		}
-		bdto.setContents(CmmUtil.exchangeEscape(bdto.getContents()));//특수문자 처리
-		model.addAttribute("bdto",bdto);
-		bdto = null;
+		bDTO.setContents(CmmUtil.exchangeEscape(bDTO.getContents()));//특수문자 처리
+		model.addAttribute("bDTO",bDTO);
+		bDTO = null;
 		bnum = null;
 		log.info(this.getClass() + "adminBoardUpdateView END!!");
 		return "admin/adminBoardUpdateView";
@@ -168,11 +168,11 @@ public class AdminBoardController {
 		log.info(this.getClass() + ".title : " + title);
 		String contents = CmmUtil.nvl(req.getParameter("contents"));
 		log.info(this.getClass() + ".contents : " + contents);
-		User_boardDTO bdto = new User_boardDTO();
-		bdto.setPost_no(bnum);
-		bdto.setTitle(title);
-		bdto.setContents(contents);
-		int result = boardService.updateAdminBoard(bdto);
+		User_boardDTO bDTO = new User_boardDTO();
+		bDTO.setPost_no(bnum);
+		bDTO.setTitle(title);
+		bDTO.setContents(contents);
+		int result = boardService.updateAdminBoard(bDTO);
 		if(result != 0){
 			model.addAttribute("msg", "수정되었습니다.");
 		}else{
@@ -182,7 +182,7 @@ public class AdminBoardController {
 		bnum = null;
 		title = null;
 		contents = null;
-		bdto = null;
+		bDTO = null;
 		log.info(this.getClass() + "adminBoardUpdate END !!");
 		return "admin/boardAlert";
 	}
