@@ -84,7 +84,7 @@ $(function(){
 		})
 	};
 
-	function doKeyOnlyNumber(event) {
+	function doKeyOnlyNumberPhone(event) {
 		event = event || window.event;
 		var keyID = (event.which) ? event.which : event.keyCode;
 
@@ -94,6 +94,23 @@ $(function(){
 			return true;
 		} else {
 			alert("숫자만 입력가능 합니다");
+			var val = document.getElementById("phone");
+			val.value = val.value.subString(0,val.value.length-1);
+			return false;
+		}
+	}
+	function doKeyOnlyNumberBirth(event) {
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+
+		if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105)
+				|| keyID == 8 || keyID == 109 || keyID == 189 || keyID == 16
+				|| keyID == 20 || keyID == 9 || keyID == 13) {
+			return true;
+		} else {
+			alert("숫자만 입력가능 합니다");
+			var val = document.getElementById("birthday");
+			val.value = val.value.subString(0,val.value.length-1);
 			return false;
 		}
 	}
@@ -190,7 +207,7 @@ $(function(){
 							<div class="col-lg-10">
 								<input class="form-control " id="birthday" name="birthday"
 									type="text" placeholder="생년월일을 입력해주세요. ex)940808"
-									onKeyDown="return doKeyOnlyNumber(event);" />
+									onKeyDown="return doKeyOnlyNumberBirth(event);" />
 							</div>
 						</div>
 						<div class="form-group ">
@@ -200,7 +217,7 @@ $(function(){
 							<div class="col-lg-10">
 								<input class="form-control " id="phone" name="phone" type="text"
 									placeholder="연락처를 입력해주세요. ex)01012345678"
-									onKeyDown="return doKeyOnlyNumber(event);" />
+									onKeyDown="return doKeyOnlyNumberPhone(event);" />
 							</div>
 						</div>
 

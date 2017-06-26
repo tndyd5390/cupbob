@@ -28,7 +28,36 @@
 		}
 		document.getElementById('pid').innerHTML = "현재 이미지 그대로 업로드 됩니다.";
 	}
-	
+	function doKeyOnlyNumberPrice(event) {
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+
+		if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105)
+				|| keyID == 8 || keyID == 109 || keyID == 189 || keyID == 16
+				|| keyID == 20 || keyID == 9 || keyID == 13) {
+			return true;
+		} else {
+			alert("숫자만 입력가능 합니다");
+			var val = document.getElementById("price");
+			val.value = val.value.subString(0,val.value.length-1);
+			return false;
+		}
+	}
+	function doKeyOnlyNumberKcal(event) {
+		event = event || window.event;
+		var keyID = (event.which) ? event.which : event.keyCode;
+
+		if ((keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105)
+				|| keyID == 8 || keyID == 109 || keyID == 189 || keyID == 16
+				|| keyID == 20 || keyID == 9 || keyID == 13) {
+			return true;
+		} else {
+			alert("숫자만 입력가능 합니다");
+			var val = document.getElementById("kcal");
+			val.value = val.value.subString(0,val.value.length-1);
+			return false;
+		}
+	}
 	
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -83,15 +112,15 @@
 						<div class="form-group">
 							<label class="control-label col-sm-4">가격</label>
 							<div class="col-sm-8">
-								<input id="cp1" name="price" type="text" placeholder="가격" size="16"
-									class="form-control" required="required" value="<%=CmmUtil.nvl(pDTO.getPrdt_price()) %>">
+								<input id="price" name="price" type="text" placeholder="가격" size="16"
+									class="form-control" required="required" value="<%=CmmUtil.nvl(pDTO.getPrdt_price()) %>" onkeydown="return doKeyOnlyNumberPrice(event);">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-4">kcal</label>
 							<div class="col-sm-8">
 								<input id="cp1" type="text" name="kcal" placeholder="kcal" size="16"
-									class="form-control" required="required" value="<%=CmmUtil.nvl(pDTO.getPrdt_kcal())%>">
+									class="form-control" required="required" value="<%=CmmUtil.nvl(pDTO.getPrdt_kcal())%>" onkeydown="return doKeyOnlyNumberKcal(event);">
 							</div>
 						</div>
 						<div class="form-group">
