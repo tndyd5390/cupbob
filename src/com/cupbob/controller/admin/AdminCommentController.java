@@ -54,16 +54,20 @@ public class AdminCommentController {
 		return cList;
 	}
 	@RequestMapping(value="cmtDelete")
-	public @ResponseBody List<Comment_infoDTO> cmtDelete(@RequestParam(value="cmtNo") String cmtNo) throws Exception{
+	public @ResponseBody List<Comment_infoDTO> cmtDelete(@RequestParam(value="cmtNo", required=false) String cmtNo, @RequestParam(value="pNo") String pNo) throws Exception{
 		log.info(this.getClass().getName()+"cmtDelete start");
-
+		System.out.println(cmtNo);
 		Comment_infoDTO ctDTO = new Comment_infoDTO();
 		ctDTO.setCmt_no(cmtNo);
-		
+		ctDTO.setPost_no(pNo);
 		commentService.deleteComment(ctDTO);
-		List<Comment_infoDTO> cList= commentService.getCommentList(ctDTO);
-
 		
+		List<Comment_infoDTO> cList= commentService.getCommentList(ctDTO);
+		
+		if(cList==null){
+			
+		}
+		ctDTO = null;
 		log.info(this.getClass().getName()+"cmtDelete end");
 		return cList;
 	}
