@@ -47,7 +47,7 @@ public class AdminBoardController {
 	@RequestMapping(value = "adminBoardDetail", method = RequestMethod.GET)
 	public String adminBoardDetail(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
 		log.info(this.getClass() + ".adminBoardDetail start !!");
-		String bnum = req.getParameter("bnum");
+		String bnum = CmmUtil.nvl(req.getParameter("bnum"));
 		log.info("bnum : " + bnum);
 		User_boardDTO bdto = new User_boardDTO();
 		bdto.setPost_no(bnum);
@@ -77,7 +77,7 @@ public class AdminBoardController {
 	public String adminBoardDetailDelete(HttpServletRequest req, HttpServletResponse resp, Model model)
 			throws Exception {
 		log.info(this.getClass() + ".adminBoardDetailDelete start !!");
-		String bnum = req.getParameter("bnum");
+		String bnum = CmmUtil.nvl(req.getParameter("bnum"));
 		log.info("bnum : " + bnum);
 		User_boardDTO bdto = new User_boardDTO();
 		bdto.setPost_no(bnum);
@@ -110,8 +110,8 @@ public class AdminBoardController {
 	@RequestMapping(value = "adminBoardProc", method = RequestMethod.POST)
 	public String adminBoardProc(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
 		log.info(this.getClass() + " adminBoardProc Start !! ");
-		String boardTitle = req.getParameter("board_title");
-		String boardContent = req.getParameter("contents");
+		String boardTitle = CmmUtil.nvl(req.getParameter("board_title"));
+		String boardContent = CmmUtil.nvl(req.getParameter("contents"));
 		log.info("boardTitle  :  " + boardTitle);
 		log.info("boardContent  :  " + boardContent);
 		User_boardDTO bDTO = new User_boardDTO();
@@ -143,7 +143,7 @@ public class AdminBoardController {
 	@RequestMapping(value="adminBoardUpdateView",method=RequestMethod.GET)
 	public String adminBoardUpdateView(HttpServletRequest req,HttpServletResponse resp,Model model) throws Exception{
 		log.info(this.getClass() + "adminBoardUpdateView Start!!");
-		String bnum = req.getParameter("bnum");
+		String bnum = CmmUtil.nvl(req.getParameter("bnum"));
 		log.info("bnum :: " + bnum);
 		User_boardDTO bdto = new User_boardDTO();
 		bdto.setPost_no(bnum);
@@ -162,7 +162,7 @@ public class AdminBoardController {
 	@RequestMapping(value="adminBoardUpdate",method=RequestMethod.POST)
 	public String adminBoardUpdate(HttpServletRequest req,HttpServletResponse resp,Model model) throws Exception{
 		log.info(this.getClass() + "adminBoardUpdate Start !!");
-		String bnum=req.getParameter("bnum");
+		String bnum=CmmUtil.nvl(req.getParameter("bnum"));
 		log.info(this.getClass() + ".bnum :" + bnum);
 		String title = CmmUtil.nvl(req.getParameter("title"));
 		log.info(this.getClass() + ".title : " + title);
