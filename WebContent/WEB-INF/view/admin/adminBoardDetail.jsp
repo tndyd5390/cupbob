@@ -146,7 +146,7 @@
 			게시글 상세 </header>
 			<div class="panel-body">
 				<input type="hidden" id="pNo" name="pNo"
-					value="<%=bdto.getPost_no()%>">
+					value="<%=CmmUtil.nvl(bdto.getPost_no())%>">
 				<table
 					class="table table-striped table-advance table-hover table-bordered">
 					<tbody>
@@ -159,21 +159,21 @@
 									<%=bdto.getEmail()%>
 								</center></th>
 							<th width="10%"><center>작성일</center></th>
-							<th width="15%"><center><%=bdto.getReg_dt()%></center></th>
+							<th width="15%"><center><%=CmmUtil.nvl(bdto.getReg_dt())%></center></th>
 						</tr>
 					</tbody>
 				</table>
 				<div class="form-group ">
 					<div class="col-lg-12">
 						<textarea class="form-control " id="ccomment" name="comment"
-							rows="10" disabled><%=bdto.getContents()%></textarea>
+							rows="10" disabled><%=CmmUtil.nvl(bdto.getContents())%></textarea>
 					</div>
 				</div>
 				<div style="float: right">
 					<a class="btn btn-info"
-						href="adminBoardUpdateView.do?bnum=<%=bdto.getPost_no()%>"
+						href="adminBoardUpdateView.do?bnum=<%=CmmUtil.nvl(bdto.getPost_no())%>"
 						title="선택하신게 수정됩니다.">수정</a> <a class="btn btn-info"
-						href="adminBoardDetailDelete.do?bnum=<%=bdto.getPost_no()%>"
+						href="adminBoardDetailDelete.do?bnum=<%=CmmUtil.nvl(bdto.getPost_no())%>"
 						title="선택하신게 삭제됩니다.">삭제</a>
 				</div>
 				<div class="act-time">
@@ -212,18 +212,18 @@
 					<div class="activity-body act-in">
 						<div class="text">
 							<p class="attribution">
-								<a href="#"><%=cDTO.getUser_name()%></a>
-								<%=cDTO.getReg_dt()%>
+								<a href="#"><%=CmmUtil.nvl(cDTO.getUser_name())%></a>
+								<%=CmmUtil.nvl(cDTO.getReg_dt())%>
 							</p>
-							<div id="ccomment" rows="4" name="<%=cDTO.getCmt_no() %>">
-								<span><%=CmmUtil.replaceBr(cDTO.getContents())%></span>
+							<div id="ccomment" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
+								<span><%=CmmUtil.replaceBr(CmmUtil.nvl(cDTO.getContents()))%></span>
 							</div>
 							<%
 							if(cDTO.getUser_no().equals("1")){
 							%>
 							<br>
 							<button class='btn btn-info btn-sm' id="cmtUpdate">수정</button>							
-							<button class='btn btn-info btn-sm' onclick='cmtDelete(<%=cDTO.getCmt_no()%>)'>삭제</button>							
+							<button class='btn btn-info btn-sm' onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>							
 							<%
 							}
 							%>
