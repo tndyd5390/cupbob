@@ -51,5 +51,10 @@ public class CmmUtil {
 	public static String replaceBr(String str){
 		str = str.replaceAll("\n", "</br>");
 		return str;
+	}	
+	public static String exchangeEscapeNvl(String value){
+		value = CmmUtil.nvl(value);
+		value = exchangeEscape(value);
+		return value;
 	}
 }

@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cupbob.dto.Product_infoDTO;
 import com.cupbob.service.IMenuService;
+import com.cupbob.util.CmmUtil;
 
 @Controller
 public class AdminMenuController {
@@ -27,6 +28,8 @@ public class AdminMenuController {
 	
 	@Resource(name="MenuService")
 	private IMenuService menuService;
+	
+	String savePath="C:/Users/Data3811-32/git/cupbob/WebContent/menuImg/";
 
 	@RequestMapping(value="adminMenuList", method = RequestMethod.GET)
 	public String getUserList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
@@ -62,14 +65,16 @@ public class AdminMenuController {
 		
 		String reFileName = "";
 		String fileOrgName = file.getOriginalFilename();
+		System.out.println("fileorgname : " + file.getOriginalFilename());
 		String extended = fileOrgName.substring(fileOrgName.indexOf("."), fileOrgName.length());
-		String savePath="C:/Users/Data3811-32/git/cupbob/WebContent/menuImg/";
+		System.out.println("extended : " + extended);
 		String now = new SimpleDateFormat("yyyyMMddhmsS").format(new Date());
+		System.out.println("now : " + now);
+		Product_infoDTO pDTO = new Product_infoDTO();
+		savePath = CmmUtil.nvl(savePath, "C:/Users/Data3811-32/git/cupbob/WebContent/menuImg/");
 		reFileName = savePath + now + extended;
 		File newFile = new File(reFileName);
 		file.transferTo(newFile);
-		
-		Product_infoDTO pDTO = new Product_infoDTO();
 		pDTO.setFile_org_name(fileOrgName);
 		pDTO.setFile_name(now + extended);
 		pDTO.setFile_path(savePath);
@@ -86,6 +91,16 @@ public class AdminMenuController {
 			model.addAttribute("msg", "메뉴등록이 실패했습니다.");
 		}
 		model.addAttribute("url", "adminMenuList.do");
+		name = null;
+		price = null;
+		kcal = null;
+		contents = null;
+		reFileName = null;
+		fileOrgName = null;
+		extended = null;
+		savePath = null;
+		now = null;
+		pDTO = null;
 		log.info(this.getClass() + ".adminMenuRegProc end!!");
 		return "admin/boardAlert";
 	}
@@ -103,6 +118,7 @@ public class AdminMenuController {
 		}
 		model.addAttribute("pDTO", pDTO);
 		pDTO = null;
+		pnum = null;
 		log.info(this.getClass() + ".adminMenuRegDetail end!!");
 		return "admin/adminMenuDetail";
 	}
@@ -122,7 +138,82 @@ public class AdminMenuController {
 			model.addAttribute("msg", "메뉴 삭제가 실패했습니다.");
 		}
 		model.addAttribute("url", "adminMenuList.do");
+		pnum = null;
+		pDTO = null;
 		log.info(this.getClass() + ".adminMenuDeleteOne end!!");
+		return "admin/boardAlert";
+	}
+	@RequestMapping(value="adminMenuUpdateView", method = RequestMethod.GET)
+	public String adminMenuUpdateView(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + ".adminMenuUpdateView start!!");
+		String pnum = req.getParameter("pnum");
+		Product_infoDTO pDTO = new Product_infoDTO();
+		pDTO.setPrdt_no(pnum);
+		pDTO = menuService.getAdminMenuDetail(pDTO);
+		if(pDTO == null){
+			pDTO = new Product_infoDTO();
+		}
+		model.addAttribute("pDTO", pDTO);
+		pDTO = null;
+		log.info(this.getClass() + ".adminMenuUpdateView end!!");
+		return "admin/adminMenuUpdateView";
+	}
+	
+	
+	@RequestMapping(value="adminMenuUpdateProc", method = RequestMethod.POST)
+	public String adminMenuUpdateProc(HttpServletRequest req, HttpServletResponse resp , Model model, @RequestParam("prdtimg") MultipartFile file) throws Exception{
+		log.info(this.getClass() + ".adminMenuUpadateProc start!!");
+		String pnum = req.getParameter("pnum");
+		log.info(this.getClass() + ".adminMenuUpdateProc.pnum : " + pnum);
+		String name = req.getParameter("name");
+		log.info(this.getClass() + ".adminMenuUpdateProc.name : " + name);
+		String price = req.getParameter("price");
+		log.info(this.getClass() + ".adminMenuUpdateProc.price : " + price);
+		String kcal = req.getParameter("kcal");
+		log.info(this.getClass() + ".adminMenuUpdateProc.kcal : " + kcal);
+		String contents = req.getParameter("contents");
+		log.info(this.getClass() + ".adminMenuUpdateProc.contents : " + contents);
+		
+		Product_infoDTO pDTO = new Product_infoDTO();
+		pDTO.setPrdt_no(pnum);
+		pDTO.setPrdt_name(name);
+		pDTO.setPrdt_price(price);
+		pDTO.setPrdt_kcal(kcal);
+		pDTO.setContents(contents);
+		int result = -1;
+		result = menuService.updateAdminMenu(pDTO, file, savePath);
+		String msg;
+		if(result != 0){
+			msg = "메뉴가 수정되었습니다.";
+		}else{
+			msg = "메뉴 수정에 실패했습니다.";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", "adminMenuList.do");
+		pnum = null;
+		name = null;
+		price = null;
+		kcal = null;
+		contents = null;
+		pDTO = null;
+		log.info(this.getClass() + ".adminMeneUpdateProc end!!");
+		return "admin/boardAlert";
+	}
+	@RequestMapping(value="adminMenuCheckedDelete", method = RequestMethod.POST)
+	public String adminMenuCheckedDelete(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + ".adminMeneCheckedDelete start!!");
+		String[] del_check = req.getParameterValues("del_check");
+		Product_infoDTO pDTO = new Product_infoDTO();
+		pDTO.setAllCheck(del_check);
+		if(menuService.deleteAdminMenuChecked(pDTO)){
+			model.addAttribute("msg", "삭제되었습니다.");
+		}else{
+			model.addAttribute("msg", "삭제 실패");
+		}
+		model.addAttribute("url", "adminMenuList.do");
+		pDTO = null;
+		del_check = null;
+		log.info(this.getClass() + ".adminMeneCheckedDelete end!!");
 		return "admin/boardAlert";
 	}
 }
