@@ -4,11 +4,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	User_boardDTO bdto = (User_boardDTO) request.getAttribute("bdto");
+	User_boardDTO bDTO = (User_boardDTO) request.getAttribute("bDTO");
 	List<Comment_infoDTO> cList = (List<Comment_infoDTO>) request.getAttribute("cList");
-	String contents = bdto.getContents();
+	String contents = bDTO.getContents();
 	contents.replaceAll("& gt;", ">");
-	bdto.setContents(contents);
+	bDTO.setContents(contents);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -96,35 +96,35 @@
 			게시글 상세 </header>
 			<div class="panel-body">
 				<input type="hidden" id="pNo" name="pNo"
-					value="<%=bdto.getPost_no()%>">
+					value="<%=bDTO.getPost_no()%>">
 				<table
 					class="table table-striped table-advance table-hover table-bordered">
 					<tbody>
 						<tr>
 							<th width="10%"><center>제목</center></th>
-							<th width="40%"><%=bdto.getTitle()%></th>
+							<th width="40%"><%=bDTO.getTitle()%></th>
 							<th width="10%"><center>작성자</center></th>
 							<th width="15%"><center>
 									<i class="icon_profile"></i>
-									<%=bdto.getUser_id()%>
+									<%=bDTO.getUser_id()%>
 								</center></th>
 							<th width="10%"><center>작성일</center></th>
-							<th width="15%"><center><%=bdto.getReg_dt()%></center></th>
+							<th width="15%"><center><%=bDTO.getReg_dt()%></center></th>
 						</tr>
 					</tbody>
 				</table>
 				<div class="form-group ">
 					<div class="col-lg-12">
 						<textarea class="form-control " id="ccomment" name="comment"
-							rows="10" disabled><%=bdto.getContents()%>
+							rows="10" disabled><%=bDTO.getContents()%>
                                               </textarea>
 					</div>
 				</div>
 				<div style="float: right">
 					<a class="btn btn-info"
-						href="adminBoardUpdateView.do?bnum=<%=bdto.getPost_no()%>"
+						href="adminBoardUpdateView.do?bnum=<%=bDTO.getPost_no()%>"
 						title="선택하신게 수정됩니다.">수정</a> <a class="btn btn-info"
-						href="adminBoardDetailDelete.do?bnum=<%=bdto.getPost_no()%>"
+						href="adminBoardDetailDelete.do?bnum=<%=bDTO.getPost_no()%>"
 						title="선택하신게 삭제됩니다.">삭제</a>
 				</div>
 				<div class="act-time">

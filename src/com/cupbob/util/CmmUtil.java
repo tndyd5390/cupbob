@@ -48,4 +48,10 @@ public class CmmUtil {
         value = value.replaceAll("& #39;", "'");
         return value;
 	}
+	
+	public static String exchangeEscapeNvl(String value){
+		value = CmmUtil.nvl(value);
+		value = exchangeEscape(value);
+		return value;
+	}
 }

@@ -2,6 +2,8 @@ package com.cupbob.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.cupbob.dto.Product_infoDTO;
 
 public interface IMenuService {
@@ -9,4 +11,6 @@ public interface IMenuService {
 	public int insertAdminMenu(Product_infoDTO pDTO) throws Exception;
 	public Product_infoDTO getAdminMenuDetail(Product_infoDTO pDTO) throws Exception;
 	public int deleteAdminMenuOne(Product_infoDTO pDTO) throws Exception;
+	public int updateAdminMenu(Product_infoDTO pDTO, MultipartFile file, String savePath) throws Exception;
+	public boolean deleteAdminMenuChecked(Product_infoDTO pDTO) throws Exception;
 }
