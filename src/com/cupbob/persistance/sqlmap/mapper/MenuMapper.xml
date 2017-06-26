@@ -26,4 +26,30 @@
 		FROM
 		PRODUCT_INFO WHERE PRDT_NO = #{prdt_no}
 	</delete>
+	<update id="updateAdminMenuNoImg" parameterType="Product_infoDTO">
+		UPDATE
+		PRODUCT_INFO
+		SET PRDT_NAME = #{prdt_name}, PRDT_PRICE = #{prdt_price}, PRDT_KCAL = #{prdt_kcal}, CONTENTS = #{contents}, CHG_USER_NO = 1, CHG_DT = NOW()
+		WHERE PRDT_NO = #{prdt_no}
+	</update>
+	<update id="updateAdminMenuWithImg" parameterType="Product_infoDTO">
+		UPDATE
+		PRODUCT_INFO
+		SET PRDT_NAME = #{prdt_name}
+		,PRDT_PRICE = #{prdt_price}
+		,PRDT_KCAL = #{prdt_kcal}
+		,CONTENTS = #{contents}
+		,CHG_USER_NO = 1
+		,CHG_DT = NOW()
+		,FILE_ORG_NAME = #{file_org_name}
+		,FILE_PATH = #{file_path}
+		,FILE_NAME = #{file_name}
+		WHERE PRDT_NO = #{prdt_no}
+	</update>
+	
+	<delete id="deleteAdminMenuChecked" parameterType="Product_infoDTO">
+		DELETE FROM PRODUCT_INFO WHERE PRDT_NO IN
+		<foreach item="prdt_no" index="index" collection="allCheck"
+			open="(" separator="," close=")">#{prdt_no}</foreach>
+	</delete>
 </mapper>

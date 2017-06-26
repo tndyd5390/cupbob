@@ -12,6 +12,7 @@ public class User_boardDTO {
 	private String chg_dt;
 	private String email;
 	private String[] allCheck;
+	
 	public String[] getAllCheck() {
 		return allCheck;
 	}

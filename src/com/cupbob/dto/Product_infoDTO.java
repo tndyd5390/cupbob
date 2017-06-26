@@ -15,7 +15,13 @@ public class Product_infoDTO {
 	private String chg_dt;
 	private String prdt_kcal;
 	private String file_org_name;
-	
+	private String[] allCheck;
+	public String[] getAllCheck() {
+		return allCheck;
+	}
+	public void setAllCheck(String[] allCheck) {
+		this.allCheck = allCheck;
+	}
 	public String getFile_org_name() {
 		return file_org_name;
 	}
