@@ -74,45 +74,49 @@
 		var pNo = $('#pNo').val();
 		var allData = {"cmtNo" : cmtNo,
 						"pNo" : pNo};
-		$.ajax({url : 'cmtDelete.do',
-			method : 'post',
-			data : allData,
-			dataType : "json",
-			success : function(data) {
-						var contents = "";
-						$.each(data,function(key, value) {
-							if(value.user_no==1){
-								contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
-								contents += "<div class="+"text"+">";
-								contents += "<p class="+"attribution"+">";
-								contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
-								contents += "<div id="+"ccoment"+" name="+value.cmt_no+" rows="+"4"+">";
-								contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
-								contents +=	" </div>";
-								contents +=	" </br>";
-								contents += "<button class='btn btn-info btn-sm' onclick=cmtUpdate("+value.cmt_no+")>"+"수정"+"</button> ";
-								contents += " <button class='btn btn-info btn-sm' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
-								contents += " </div>";
-								contents += " </div>";
-							}else if(data==""){
-								alert("널이다");
-								contents = "";
+			$.ajax({url : 'cmtDelete.do',
+				method : 'post',
+				data : allData,
+				dataType : "json",
+				success : function(data) {
+							var contents = "";
+							if(data!=""){
+								$.each(data,function(key, value) {
+									if(value.user_no==1){
+										contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
+										contents += "<div class="+"text"+">";
+										contents += "<p class="+"attribution"+">";
+										contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
+										contents += "<div id="+"ccoment"+" name="+value.cmt_no+" rows="+"4"+">";
+										contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
+										contents +=	" </div>";
+										contents +=	" </br>";
+										contents += "<button class='btn btn-info btn-sm' onclick=cmtUpdate("+value.cmt_no+")>"+"수정"+"</button> ";
+										contents += " <button class='btn btn-info btn-sm' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
+										contents += " </div>";
+										contents += " </div>";
+									}else{
+										contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
+										contents += "<div class="+"text"+">";
+										contents += "<p class="+"attribution"+">";
+										contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
+										contents += "<div id="+"ccoment"+" name="+value.cmt_no+" rows="+"4"+">";
+										contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
+										contents +=	" </div>";
+										contents += " </div>";
+										contents += " </div>";
+									}
+									$('#cmtList').html(contents);
+								})
 							}else{
-								contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
-								contents += "<div class="+"text"+">";
-								contents += "<p class="+"attribution"+">";
-								contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
-								contents += "<div id="+"ccoment"+" name="+value.cmt_no+" rows="+"4"+">";
-								contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
-								contents +=	" </div>";
-								contents += " </div>";
-								contents += " </div>";
+								var cmtList = "<div class='act-time' id='cmtList'></div>";
+								alert("null1");
+								$('#cmtList').remove();
+								$('#cmtCreateDiv').append(cmtList);
 							}
-							$('#cmtList').html(contents);
-						})
-					}
-				})
-	}
+						}
+					})
+		}
 	
 </script>
 
@@ -191,7 +195,7 @@
 					</div>
 				</div>
 				<div class="act-time">
-					<div class="activity-body act-in">
+					<div class="activity-body act-in" id="cmtCreateDiv">
 						<div class="text">
 							<p class="attribution">
 								<a href="#">최한용</a> at 4:25pm, 30th Octmber 2014
