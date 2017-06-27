@@ -178,8 +178,6 @@ function cmtUpdateProc(cmt_no){
 		}
 	}
 }
-<<<<<<< HEAD
-=======
 function cmtUpdateCancle(){
 	var pNo = $('#pNo').val();
 	updateCheck = false;
@@ -220,9 +218,13 @@ function cmtUpdateCancle(){
 		}
 	})
 }
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/psytestbranch
+=======
 >>>>>>> refs/remotes/origin/psytestbranch
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function cmtUpdateCancle(){
 	var pNo = $('#pNo').val();
 	updateCheck = false;
@@ -263,6 +265,8 @@ function cmtUpdateCancle(){
 		}
 	})
 }
+=======
+>>>>>>> refs/remotes/origin/psytestbranch
 =======
 >>>>>>> refs/remotes/origin/psytestbranch
 </script>
