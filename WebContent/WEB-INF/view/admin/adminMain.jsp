@@ -132,7 +132,6 @@
                                  <td><%=CmmUtil.nvl(tDTO.getPrdt_name()) %></td>
                                  <td><%=CmmUtil.nvl(tDTO.getOrd_amnt()) %></td>
                                  <td><%=CmmUtil.nvl(tDTO.getUsr_rcv_time()) %></td>         
-                              </tr>                           
                                  <td>
                                   <div class="btn-group">
                                       <button class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></button>
