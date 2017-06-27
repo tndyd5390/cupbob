@@ -324,6 +324,8 @@ public class AdminUserController {
 		
 		model.addAttribute("email", udto.getEmail());
 		
+		udto = null;
+		
 		log.info(this.getClass().getName() + " adminUserFindEmail end");
 		return "admin/userFindEmail";
 	}
@@ -367,6 +369,7 @@ public class AdminUserController {
 			emailSender.SendEmail(sandEmail);
 			
 			model.addAttribute("resultPw", udto.getPassword());
+			udto = null;
 			
 		}
 		
