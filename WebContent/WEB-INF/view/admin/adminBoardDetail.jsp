@@ -21,67 +21,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script>
 
-	$(function(){
-		$('#cmtCreate').bind('click',function() {
-			var pNo = $('#pNo').val();
-			var cnts = $('#cmts').val();
-			if(cnts==""){
-				alert("댓글을 입력하세요");
+var updateCheck = false;
+
+ 	$(function(){
+ 		$('#cmtCreate').bind('click',function() {
+ 			var pNo = $('#pNo').val();
+ 			var cnts = $('#cmts').val();
+ 			if(cnts==""){
+ 				alert("댓글을 입력하세요");
 				$('#cmtCreate').focus();
-				return false;
-			}else{
-				var allData = {
+ 				return false;
+ 			}else{
+ 				var allData = {
 								"contents" : cnts,
 								"pNo" : pNo
-							};
-							$.ajax({
-										url : 'createComment.do',
-										method : 'post',
-										data : allData,
-										dataType : "json",
-										success : function(data) {
-											var contents = "";
-											$
-													.each(
-															data,
-															function(key, value) {
-
-																contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
-																contents += "<div class="+"text"+">";
-																contents += "<p class="+"attribution"+">";
-																contents += "<a href="+"#"+">"
-																		+ value.user_name
-																		+ " </a> "
-																		+ value.reg_dt
-																		+ " </p> ";
-																contents += "<textarea class="+"form-control"+" id="+"ccoment"+" name="+value.cmt_no+" rows="+"4"+">"
-																		+ value.contents
-																		+ "</textarea>";
-																contents += " </br>";
-																contents += " </div>";
-																contents += " </div>";
-
-																$('#cmtList')
-																		.html(
-																				contents);
-
-															})
-										}
-
-									})
 					  		  };
 			$.ajax({url : 'cmtCreate.do',
 			method : 'post',
 			data : allData,
 			dataType : "json",
-			success : function(data) {
-						var contents = "";
-						$.each(data,function(key, value) {
+ 			success : function(data) {
+ 						var contents = "";
+ 						$.each(data,function(key, value) {
+							if(value.user_no==1){
 							if(value.user_no==<%=ss_userNo%>){
-								contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
-								contents += "<div class="+"text"+">";
-								contents += "<p class="+"attribution"+">";
-								contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
+ 								contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
+ 								contents += "<div class="+"text"+">";
+ 								contents += "<p class="+"attribution"+">";
 								contents += "<div id="+"cmt_"+value.cmt_no+" name="+value.cmt_no+" rows="+"4"+">";
 								contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
 								contents +=	" </div>";
@@ -103,10 +69,11 @@
 							}			
 						$('#cmtList').html(contents);
 						$('#cmts').val("");
-						})
-
+					}
+				})
+				}
 	})
-		
+	
 	function cmtDelete(cmt_no){
 		var cmtNo = cmt_no;
 		var pNo = $('#pNo').val();
@@ -356,20 +323,47 @@
 								<%=CmmUtil.nvl(cDTO.getReg_dt())%>
 							</p>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> refs/remotes/origin/chy
 							<textarea class="form-control " id="ccomment" name="ccomment"
 								rows="4"><%=cDTO.getContents()%></textarea>
+<<<<<<< HEAD
 =======
+=======
+							<div id="cmt_<%=CmmUtil.nvl(cDTO.getCmt_no()) %>" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
+>>>>>>> refs/remotes/origin/test
+>>>>>>> refs/remotes/origin/chy
 							<div id="ccomment" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/chy
 							<div id="cmt_<%=CmmUtil.nvl(cDTO.getCmt_no()) %>" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
+=======
+<<<<<<< HEAD
+							<div id="cmt_<%=CmmUtil.nvl(cDTO.getCmt_no()) %>" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
+=======
+>>>>>>> refs/remotes/origin/test
+>>>>>>> refs/remotes/origin/chy
 								<span><%=CmmUtil.replaceBr(CmmUtil.nvl(cDTO.getContents()))%></span>
 							</div>
 							<%
 								if (cDTO.getUser_no().equals(ss_userNo)) {
 							%>
 							<br>
+<<<<<<< HEAD
 							<button class='btn btn-info btn-sm' onclick='cmtUpdate(<%=CmmUtil.nvl(cDTO.getCmt_no())%>,"<%=CmmUtil.nvl(cDTO.getUser_name())%>")'>수정</button>							
 							<button class='btn btn-info btn-sm' onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>							
+=======
+<<<<<<< HEAD
+							<button class='btn btn-info btn-sm' onclick='cmtUpdate(<%=CmmUtil.nvl(cDTO.getCmt_no())%>,"<%=CmmUtil.nvl(cDTO.getUser_name())%>")'>수정</button>							
+							<button class='btn btn-info btn-sm' onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>							
+=======
+							<button class='btn btn-info btn-sm' id="cmtUpdate">수정</button>
+							<button class='btn btn-info btn-sm'
+								onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>
+>>>>>>> refs/remotes/origin/test
+>>>>>>> refs/remotes/origin/chy
 							<%
 								}
 							%>

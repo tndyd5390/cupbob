@@ -47,4 +47,14 @@ public class BoardService implements IBoardService {
 			return false;
 		}
 	}
+	
+	@Override
+	public List<User_boardDTO> boardTitleSearch(User_boardDTO bDTO) throws Exception{
+		return boardMapper.boardTitleSearch(bDTO);
+	}
+	@Override
+	public List<User_boardDTO> boardEmailSearch(User_boardDTO bDTO) throws Exception{
+		return boardMapper.boardEmailSearch(bDTO);
+	}
+	
 }
