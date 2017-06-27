@@ -1,5 +1,9 @@
 package com.cupbob.service;
 
-public interface IOrderService {
+import java.util.List;
 
+import com.cupbob.dto.TotalOrderDTO;
+
+public interface IOrderService {
+	public List<TotalOrderDTO> getTotalOrderDTO() throws Exception;
 }
