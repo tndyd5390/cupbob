@@ -57,9 +57,6 @@
 			open="(" separator="," close=")">#{user_no}</foreach>
 	</delete>
 	
-	<select id="userSearch" resultType="User_infoDTO" parameterType="User_InfoDTO">
-		SELECT * FROM USER_INFO WHERE EMAIL = #{email} OR USER_NAME = #{user_name}
-	</select>
 	<select id="getUserFindEmail" parameterType="User_infoDTO" resultType="User_infoDTO">
 		SELECT EMAIL FROM USER_INFO WHERE USER_NAME=#{user_name} AND BIRTHDAY=#{birthday}
 	</select>
@@ -71,5 +68,8 @@
 	<update id="updateTempPw" parameterType="User_infoDTO">
 		UPDATE USER_INFO SET PASSWORD=#{temp_pw} WHERE USER_NAME=#{user_name} AND EMAIL=#{email} AND BIRTHDAY=#{birthday}
 	</update>
+	<select id="userSearch" resultType="User_infoDTO" parameterType="User_InfoDTO">
+		SELECT * FROM USER_INFO WHERE EMAIL = #{email} OR USER_NAME = #{user_name}
+	</select>
 	
 </mapper> 

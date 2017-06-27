@@ -23,11 +23,11 @@ public interface UserMapper {
 
 	public int deleteUserAllChecked(User_infoDTO uDTO) throws Exception;
 
-	public List<User_infoDTO> userSearch(User_infoDTO uDTO) throws Exception;
 	public User_infoDTO getUserFindEmail(User_infoDTO uDTO) throws Exception;
 	
 	public User_infoDTO getUserFindPw(User_infoDTO uDTO) throws Exception;
 
 	public void updateTempPw(User_infoDTO tempdto) throws Exception;
 	
+	public List<User_infoDTO> userSearch(User_infoDTO uDTO) throws Exception;
 }

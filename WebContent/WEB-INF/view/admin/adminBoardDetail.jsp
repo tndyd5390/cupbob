@@ -20,16 +20,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script>
-	$(function() {
-
-		$('#cmtCreate')
-				.bind(
-						'click',
-						function() {
-							var pNo = $('#pNo').val();
-							var cnts = $('#cmts').val();
-							var allData = {
-var updateCheck = false;
 
 	$(function(){
 		$('#cmtCreate').bind('click',function() {
@@ -365,19 +355,21 @@ var updateCheck = false;
 								<a href="#"><%=CmmUtil.nvl(cDTO.getUser_name())%></a>
 								<%=CmmUtil.nvl(cDTO.getReg_dt())%>
 							</p>
+<<<<<<< HEAD
 							<textarea class="form-control " id="ccomment" name="ccomment"
 								rows="4"><%=cDTO.getContents()%></textarea>
-							<div id="cmt_<%=CmmUtil.nvl(cDTO.getCmt_no()) %>" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
+=======
 							<div id="ccomment" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
+>>>>>>> refs/remotes/origin/chy
+							<div id="cmt_<%=CmmUtil.nvl(cDTO.getCmt_no()) %>" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
 								<span><%=CmmUtil.replaceBr(CmmUtil.nvl(cDTO.getContents()))%></span>
 							</div>
 							<%
 								if (cDTO.getUser_no().equals(ss_userNo)) {
 							%>
 							<br>
-							<button class='btn btn-info btn-sm' id="cmtUpdate">수정</button>
-							<button class='btn btn-info btn-sm'
-								onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>
+							<button class='btn btn-info btn-sm' onclick='cmtUpdate(<%=CmmUtil.nvl(cDTO.getCmt_no())%>,"<%=CmmUtil.nvl(cDTO.getUser_name())%>")'>수정</button>							
+							<button class='btn btn-info btn-sm' onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>							
 							<%
 								}
 							%>

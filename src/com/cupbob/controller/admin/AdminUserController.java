@@ -294,26 +294,6 @@ public class AdminUserController {
 		return userList;
 	}
 	
-	@RequestMapping(value="userSearch")
-	public @ResponseBody List<User_infoDTO> userSearch(@RequestParam(value = "word") String word) throws Exception{
-		log.info(this.getClass().getName()+ " userSearch start");
-		User_infoDTO uDTO = new User_infoDTO();
-		uDTO.setEmail(word);
-		uDTO.setUser_name(word);
-				
-		List<User_infoDTO> userList = userService.userSearch(uDTO);
-		
-		log.info(this.getClass().getName() + userList.size());
-		
-		if (userList == null) {
-			userList = new ArrayList<User_infoDTO>();
-		}
-		
-		log.info(this.getClass().getName()+ " userSearch end");
-		
-		return userList;
-	}
-	
 	@RequestMapping(value="adminUserFindInfo")
 	public String adminUserFindInfo (HttpServletRequest req, HttpServletResponse resp) throws Exception{
 		log.info(this.getClass().getName() + " adminUserFindInfo start");
@@ -397,4 +377,24 @@ public class AdminUserController {
 		log.info(this.getClass().getName() + " adminUserInfo end");
 		return "admin/userFindPw";
 	}
+	@RequestMapping(value="userSearch")
+	public @ResponseBody List<User_infoDTO> userSearch(@RequestParam(value = "word") String word) throws Exception{
+		log.info(this.getClass().getName()+ " userSearch start");
+		User_infoDTO uDTO = new User_infoDTO();
+		uDTO.setEmail(word);
+		uDTO.setUser_name(word);
+				
+		List<User_infoDTO> userList = userService.userSearch(uDTO);
+		
+		log.info(this.getClass().getName() + userList.size());
+		
+		if (userList == null) {
+			userList = new ArrayList<User_infoDTO>();
+		}
+		
+		log.info(this.getClass().getName()+ " userSearch end");
+		
+		return userList;
+	}
+	
 }
