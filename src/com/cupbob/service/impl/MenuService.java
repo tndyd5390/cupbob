@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,16 +38,16 @@ public class MenuService implements IMenuService{
 	}
 
 	@Override
-	public int deleteAdminMenuOne(Product_infoDTO pDTO) throws Exception {
+	public int deleteAdminMenuOne(Product_infoDTO pDTO, Logger log) throws Exception {
 		pDTO = menuMapper.getAdminMenuDetail(pDTO);
 		File f = new File(pDTO.getFile_path() + pDTO.getFile_name());
-		if(f.delete()) System.out.println("파일 삭제 완료");
-		else System.out.println("파일 삭제 실패");
+		if(f.delete()) log.info(this.getClass() + ".deleteAdminMenuOne file delete succes");
+		else log.info(this.getClass() + ".deleteAdminMenuOne file delete fail");
 		return menuMapper.deleteAdminMenuOne(pDTO);
 	}
 
 	@Override
-	public int updateAdminMenu(Product_infoDTO pDTO, MultipartFile file, String savePath) throws Exception {
+	public int updateAdminMenu(Product_infoDTO pDTO, MultipartFile file, String savePath, Logger log) throws Exception {
 		int result = 0;
 		if (file.getOriginalFilename().equals("")) {
 			// 파일이 없을때
@@ -54,8 +56,8 @@ public class MenuService implements IMenuService{
 			// 파일이 있을때
 			Product_infoDTO preDTO = menuMapper.getAdminMenuDetail(pDTO);
 			File f = new File(preDTO.getFile_path() + preDTO.getFile_name());
-			if(f.delete()) System.out.println("파일 삭제 완료");
-			else System.out.println("파일 삭제 실패");
+			if(f.delete()) log.info(this.getClass() + ".deleteAdminMenuOne file delete succes");
+			else log.info(this.getClass() + ".deleteAdminMenuOne file delete fail");
 			String reFileName = "";
 			String fileOrgName = file.getOriginalFilename();
 			String extended = fileOrgName.substring(fileOrgName.indexOf("."), fileOrgName.length());
@@ -73,7 +75,7 @@ public class MenuService implements IMenuService{
 	}
 
 	@Override
-	public boolean deleteAdminMenuChecked(Product_infoDTO pDTO) throws Exception {
+	public boolean deleteAdminMenuChecked(Product_infoDTO pDTO, Logger log) throws Exception {
 		boolean result = false;
 		String[] prdtNo = pDTO.getAllCheck();
 		for (int i = 0; i < prdtNo.length; i++) {
@@ -81,7 +83,8 @@ public class MenuService implements IMenuService{
 			preDTO.setPrdt_no(prdtNo[i]);
 			preDTO = menuMapper.getAdminMenuDetail(preDTO);
 			File f = new File(CmmUtil.nvl(preDTO.getFile_path()) + CmmUtil.nvl(preDTO.getFile_name()));
-			f.delete();
+			if(f.delete()) log.info(this.getClass() + ".deleteAdminMenuOne file delete succes");
+			else log.info(this.getClass() + ".deleteAdminMenuOne file delete fail");
 		}
 		int resultInt = menuMapper.deleteAdminMenuChecked(pDTO);
 		if (resultInt != 0) {
