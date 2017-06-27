@@ -74,6 +74,8 @@
 		var pNo = $('#pNo').val();
 		var allData = {"cmtNo" : cmtNo,
 						"pNo" : pNo};
+		
+		if(confirm("삭제하시겠습니까?")){
 			$.ajax({url : 'cmtDelete.do',
 				method : 'post',
 				data : allData,
@@ -115,6 +117,10 @@
 							}
 						}
 				})
+				return true;
+		}else{
+			return false;
+		}
 		}
 	
 	function cmtUpdate(cmt_no,user_name){
@@ -140,15 +146,22 @@
 		var allData = {"pNo" : pNo,
 				       "cmtNo" : cmtNo,
 				       "contents" : contents};
-		$.ajax({
-			url : 'cmtUpdateProc.do',
-			method : 'post',
-			data : allData,
-			dataType : 'json',
-			success : function(data){
-				cmtUpdateCancle();
-			}
-		})
+		
+		if(confirm("수정하시겠습니까?")){
+			
+			$.ajax({
+				url : 'cmtUpdateProc.do',
+				method : 'post',
+				data : allData,
+				dataType : 'json',
+				success : function(data){
+					cmtUpdateCancle();
+				}
+			})
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	
