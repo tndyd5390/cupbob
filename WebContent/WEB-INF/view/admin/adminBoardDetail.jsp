@@ -145,8 +145,7 @@
 			<section class="panel"> <header class="panel-heading">
 			게시글 상세 </header>
 			<div class="panel-body">
-				<input type="hidden" id="pNo" name="pNo"
-					value="<%=CmmUtil.nvl(bDTO.getPost_no())%>">
+				<input type="hidden" id="pNo" name="pNo" value="<%=CmmUtil.nvl(bDTO.getPost_no())%>">
 				<table
 					class="table table-striped table-advance table-hover table-bordered">
 					<tbody>
@@ -216,8 +215,7 @@
 								<a href="#"><%=CmmUtil.nvl(cDTO.getUser_name())%></a>
 								<%=CmmUtil.nvl(cDTO.getReg_dt())%>
 							</p>
-							<div id="ccomment" rows="4"
-								name="<%=CmmUtil.nvl(cDTO.getCmt_no())%>">
+							<div id="ccomment" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
 								<span><%=CmmUtil.replaceBr(CmmUtil.nvl(cDTO.getContents()))%></span>
 							</div>
 							<%
