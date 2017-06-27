@@ -73,16 +73,18 @@
 	</section>
 
 	<script type="text/javascript">
-		function InpuOnlyNumber(obj) {
-			if (event.keyCode >= 48 && event.keyCode <= 57) { //생년월일 숫자만 입력
-				return true;
-			} else if (event.keyCode == 13) // enter 클릭시 
-				action();
-			else {
-				event.returnValue = false;
-				alert("숫자만 입력 가능합니다.")
-			}
-		}
+    function InpuOnlyNumber(obj) 
+    {
+        if (event.keyCode >= 48 && event.keyCode <= 57) { //only number
+            return true;
+        } else {
+        	if(event.keyCode == 13){
+        		action();
+        	}
+			event.returnValue = false;        	
+            alert("숫자만 입력 가능합니다.")
+        }
+    }
 	</script>
 
 	<%@include file="/include/bottomJavaScript.jsp"%>
