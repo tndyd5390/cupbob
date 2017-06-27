@@ -95,7 +95,6 @@
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getReg_dt()) %></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getView_cnt()) %></td>
 							</tr>
-						<%
 							}
 						%>
 						</tbody>

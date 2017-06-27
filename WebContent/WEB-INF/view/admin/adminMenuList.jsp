@@ -72,7 +72,6 @@
 							<th>메뉴 이름</th>
 							<th>가격</th>
 							<th>kcal</th>
-							<th>중량</th>
 							<th>날짜</th>
 						</tr>
 					</thead>
@@ -83,8 +82,7 @@
 							<td><%=pDTO.getPrdt_no() %></td>
 							<td><a href="adminMenuDetail.do?pnum=<%=pDTO.getPrdt_no()%>"><%=pDTO.getPrdt_name() %></a></td>
 							<td><%=pDTO.getPrdt_price() %></td>
-							<td><%=pDTO.getContents() %></td>
-							<td>270g</td>
+							<td><%=pDTO.getPrdt_kcal() %></td>
 							<td><%=pDTO.getReg_dt() %></td>
 						</tr>
 					<%} %>
