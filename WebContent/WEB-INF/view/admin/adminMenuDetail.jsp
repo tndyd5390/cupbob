@@ -10,7 +10,7 @@
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>메뉴 상세 보기</title>
 </head>
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>
@@ -81,8 +81,8 @@
 							</div>
 						</div> 
 						<span style="float:right">
-							<a class="btn btn-info" href="#" title="클릭하시면 수정 됩니다.">수정</a>
-				<a class="btn btn-info" href="adminMenuDeleteOne.do?pnum=<%=pDTO.getPrdt_no() %>" title="클릭하시면 삭제됩니다.">삭제</a>
+							<a class="btn btn-info" href="adminMenuUpdateView.do?pnum=<%=CmmUtil.nvl(pDTO.getPrdt_no()) %>" title="클릭하시면 수정 됩니다.">수정</a>
+				<a class="btn btn-info" href="adminMenuDeleteOne.do?pnum=<%=CmmUtil.nvl(pDTO.getPrdt_no()) %>" title="클릭하시면 삭제됩니다.">삭제</a>
 						</span>
 					</div>
 			</div>

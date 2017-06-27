@@ -16,8 +16,8 @@
 				<i class="fa fa-files-o"></i> 회원 정보 수정
 			</h3>
 			<ol class="breadcrumb">
-				<li><i class="fa fa-home"></i><a href="#">메인 화면</a></li>
-				<li><i class="icon_document_alt"><a href="#"></i>회원 관리</li></a>
+				<li><i class="fa fa-home"></i><a href="orderList.do">메인 화면</a></li>
+				<li><i class="icon_document_alt"><a href="adminUserList.do"></i>회원 관리</li></a>
 				<li><i class="fa fa-files-o"></i>회원 정보 수정</li>
 			</ol>
 		</div>
@@ -57,11 +57,13 @@
 								<input class="form-control " id="confirm_password" name="confirm_password" type="password" placeholder="비밀번호를 다시 입력해주세요."/>
 							</div>
 						</div>
-						<div class="form-group ">
-							<label for="gender" class="control-label col-lg-2">성별 <span class="required">*</span>
-							</label>
+						<div class="form-group">
+							<label class="control-label col-lg-2" for="inputSuccess">성별</label>
 							<div class="col-lg-10">
-								<input class=" form-control" id="gender" name="gender" type="text" placeholder="회원 성별" disabled/>
+								<select class="form-control m-bot15" name="gender">
+									<option>남자</option>
+									<option>여자</option>
+								</select>
 							</div>
 						</div>
 						

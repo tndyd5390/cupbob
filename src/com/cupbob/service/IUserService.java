@@ -17,8 +17,12 @@ public interface IUserService {
 	
 	public int userDelete(User_infoDTO udto) throws Exception;
 
-	public void updateUserDetail(User_infoDTO uDTO);
+	public int updateUserDetail(User_infoDTO uDTO);
 
 	public boolean deleteUserAllChecked(User_infoDTO uDTO) throws Exception;
+
+	public User_infoDTO getUserFindEmail(User_infoDTO udto) throws Exception;
+
+	public User_infoDTO getUserFindPw(User_infoDTO udto) throws Exception;
 	
 }

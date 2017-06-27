@@ -9,10 +9,17 @@
 </insert>
 
 <select id="getCommentList" parameterType="Comment_infoDTO" resultType="Comment_infoDTO">
-	
-	SELECT C.CMT_NO, C.CONTENTS, U.USER_NAME, C.POST_NO,C.REG_DT FROM USER_INFO U, COMMENT_INFO C WHERE
+	SELECT C.CMT_NO, C.CONTENTS, U.USER_NAME, C.POST_NO,C.REG_DT, C.USER_NO FROM USER_INFO U, COMMENT_INFO C WHERE
 		 C.USER_NO= U.USER_NO AND C.POST_NO = #{post_no}
-	
-</select>	
+</select>
+
+<delete id="deleteComment" parameterType="Comment_infoDTO">
+	DELETE FROM COMMENT_INFO WHERE CMT_NO = #{cmt_no}
+</delete>
+
+<update id="updateComment" parameterType="Comment_infoDTO">
+	UPDATE COMMENT_INFO SET CONTENTS=#{contents}, CHG_USER_NO = #{chg_user_no}, CHG_DT = NOW()
+	WHERE CMT_NO = #{cmt_no}
+</update>
 
 </mapper>

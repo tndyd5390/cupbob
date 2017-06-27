@@ -44,8 +44,8 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void updateUserDetail(User_infoDTO uDTO) {
-		userMapper.updateUserDetail(uDTO);
+	public int updateUserDetail(User_infoDTO uDTO) {
+		return userMapper.updateUserDetail(uDTO);
 	}
 	
 	@Override
@@ -58,7 +58,39 @@ public class UserService implements IUserService {
 		}else{
 			return false;
 		}
+	}
+
+	@Override
+	public User_infoDTO getUserFindEmail(User_infoDTO udto) throws Exception{
+		// TODO Auto-generated method stub
+		return userMapper.getUserFindEmail(udto);
+	}
+
+	@Override
+	public User_infoDTO getUserFindPw(User_infoDTO udto) throws Exception {
+		// TODO Auto-generated method stub
+		User_infoDTO userDTO = null;
 		
+		userDTO = userMapper.getUserFindPw(udto);
+		
+		if(userDTO != null){
+			long temp_Pw = (long)(Math.random()*9000000000l) + 1000000000l;
+			String temp_password = Long.toHexString(temp_Pw);
+			
+			User_infoDTO tempdto = new User_infoDTO();
+			tempdto.setUser_name(udto.getUser_name());
+			tempdto.setEmail(udto.getEmail());
+			tempdto.setBirthday(udto.getBirthday());
+			tempdto.setTemp_pw(temp_password);
+			
+			userMapper.updateTempPw(tempdto);
+			
+			userDTO.setPassword(temp_password);
+			return userDTO;
+		}else{
+			return null;
+		}
+				
 	}
 	
 }

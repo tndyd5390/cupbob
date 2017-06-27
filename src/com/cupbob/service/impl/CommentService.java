@@ -23,8 +23,16 @@ public class CommentService implements ICommentService{
 
 	@Override
 	public List<Comment_infoDTO> getCommentList(Comment_infoDTO cDTO) throws Exception {
-		
-		
 		return commentMapper.getCommentList(cDTO);
+	}
+
+	@Override
+	public void deleteComment(Comment_infoDTO cDTO) throws Exception {
+		commentMapper.deleteComment(cDTO);
+	}
+
+	@Override
+	public void updateComment(Comment_infoDTO cDTO) throws Exception {
+		commentMapper.updateComment(cDTO);
 	}
 }

@@ -24,7 +24,6 @@
 		}
 	}
 	function userdel_check(){
-		console.log("userdel check()");
 		var checked=false;
 		var check = document.getElementsByName("del_check");
 		var f = document.getElementById("f");
@@ -42,7 +41,7 @@
 				f.submit();
 			}
 		}else{
-			alert("하나도 선택된 것이 없습니다.");
+			alert("선택된 것이 없습니다.");
 		}
 	}
 </script>
@@ -86,16 +85,15 @@
 						</thead>
 						<tbody>
 						<%
-							for(User_boardDTO bdto : bList){
+							for(User_boardDTO bDTO : bList){
 						%>
 							<tr>
-								<td width="5%" align=center><input type="checkbox" name="del_check" value="<%=CmmUtil.nvl(bdto.getPost_no())%>"></td>
-								<td width="10%" align=center><%=CmmUtil.nvl(bdto.getPost_no()) %></td>
-								<td width="30%" align=center><a href="adminBoardDetail.do?bnum=<%=CmmUtil.nvl(bdto.getPost_no())%>"><%=CmmUtil.nvl(bdto.getTitle())%></a></td>
-								<td width="15%" align=center><%=CmmUtil.nvl(bdto.getReg_user_no())%></td>
-								<td width="15%" align=center><%=CmmUtil.nvl(bdto.getReg_dt()) %></td>
-								<td width="15%" align=center><%=CmmUtil.nvl(bdto.getView_cnt()) %></td>
-							</tr>
+								<td width="5%" align=center><input type="checkbox" name="del_check" value="<%=CmmUtil.nvl(bDTO.getPost_no())%>"></td>
+								<td width="10%" align=center><%=CmmUtil.nvl(bDTO.getPost_no()) %></td>
+								<td width="30%" align=center><a href="adminBoardDetail.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>"><%=CmmUtil.nvl(bDTO.getTitle())%></a></td>
+								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getReg_user_no())%></td>
+								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getReg_dt()) %></td>
+								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getView_cnt()) %></td>
 						<%
 							}
 						%>
@@ -112,6 +110,6 @@
 	</div>
 	</section>
 	<%@include file="/include/bottomJavaScript.jsp"%>
-			</form>
+	</form>
 </body>
 </html>

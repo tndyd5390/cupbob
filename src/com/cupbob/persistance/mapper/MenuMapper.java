@@ -11,4 +11,7 @@ public interface MenuMapper {
 	public int insertAdminMenu(Product_infoDTO pDTO) throws Exception;
 	public Product_infoDTO getAdminMenuDetail(Product_infoDTO pDTO) throws Exception;
 	public int deleteAdminMenuOne(Product_infoDTO pDTO) throws Exception;
+	public int updateAdminMenuNoImg(Product_infoDTO pDTO) throws Exception;
+	public int updateAdminMenuWithImg(Product_infoDTO pDTO) throws Exception;
+	public int deleteAdminMenuChecked(Product_infoDTO pDTO) throws Exception;
 }
