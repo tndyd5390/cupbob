@@ -41,11 +41,11 @@
 								contents += "<div class="+"text"+">";
 								contents += "<p class="+"attribution"+">";
 								contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
-								contents += "<div id="+"ccoment"+" name="+value.cmt_no+" rows="+"4"+">";
+								contents += "<div id="+"cmt_"+value.cmt_no+" name="+value.cmt_no+" rows="+"4"+">";
 								contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
 								contents +=	" </div>";
 								contents +=	" </br>";
-								contents += "<button class='btn btn-info btn-sm' onclick=cmtUpdate("+value.cmt_no+")>"+"수정"+"</button> ";
+								contents += "<button class='btn btn-info btn-sm' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+")>"+"수정"+"</button> ";
 								contents += " <button class='btn btn-info btn-sm' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
 								contents += " </div>";
 								contents += " </div>";
@@ -54,7 +54,7 @@
 								contents += "<div class="+"text"+">";
 								contents += "<p class="+"attribution"+">";
 								contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
-								contents += "<div id="+"ccoment"+" name="+value.cmt_no+" rows="+"4"+">";
+								contents += "<div id="+"cmt_"+value.cmt_no+" name="+value.cmt_no+" rows="+"4"+">";
 								contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
 								contents +=	" </div>";
 								contents += " </div>";
@@ -68,11 +68,14 @@
 				}
 			})
 	})
+		
 	function cmtDelete(cmt_no){
 		var cmtNo = cmt_no;
 		var pNo = $('#pNo').val();
 		var allData = {"cmtNo" : cmtNo,
 						"pNo" : pNo};
+		
+		if(confirm("삭제하시겠습니까?")){
 			$.ajax({url : 'cmtDelete.do',
 				method : 'post',
 				data : allData,
@@ -86,11 +89,11 @@
 										contents += "<div class="+"text"+">";
 										contents += "<p class="+"attribution"+">";
 										contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
-										contents += "<div id="+"ccoment"+" name="+value.cmt_no+" rows="+"4"+">";
+										contents += "<div id="+"cmt_"+value.cmt_no+" name="+value.cmt_no+" rows="+"4"+">";
 										contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
 										contents +=	" </div>";
 										contents +=	" </br>";
-										contents += "<button class='btn btn-info btn-sm' onclick=cmtUpdate("+value.cmt_no+")>"+"수정"+"</button> ";
+										contents += " <button class='btn btn-info btn-sm' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+")>수정</button> ";
 										contents += " <button class='btn btn-info btn-sm' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
 										contents += " </div>";
 										contents += " </div>";
@@ -99,7 +102,7 @@
 										contents += "<div class="+"text"+">";
 										contents += "<p class="+"attribution"+">";
 										contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
-										contents += "<div id="+"ccoment"+" name="+value.cmt_no+" rows="+"4"+">";
+										contents += "<div id="+"cmt_"+value.cmt_no+" name="+value.cmt_no+" rows="+"4"+">";
 										contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
 										contents +=	" </div>";
 										contents += " </div>";
@@ -113,8 +116,95 @@
 								$('#cmtCreateDiv').append(cmtList);
 							}
 						}
-					})
+				})
+				return true;
+		}else{
+			return false;
 		}
+		}
+	
+	function cmtUpdate(cmt_no,user_name){
+		var cmtNo = cmt_no;
+		var userName = user_name;
+		var contents = $('#cmt_'+cmtNo+' > span').html().replace(/<br>/gi,'\n');
+		var updateForm = "<div class='activity-body act-in' id="+cmtNo+">" +
+		                 "<div class=text>" + 
+		                 "<p class = 'attribution'>" +
+		                 "<a href='#'>"+userName+"</a></p>" +
+		                 "<textarea class='form-control' id='cmtUpdateArea' name='cmtUpdateArea' rows='4'>" +
+		                 contents + "</textarea>" +
+		                 "<br>" +
+		                 "<button class='btn btn-primary btn-sm' id='cmtUpdateBtn' onclick='cmtUpdateProc("+cmtNo+")'>수정</button> "+
+		                 "<button class='btn btb-primary btn-sm' id='cmtUpdateCancle' onclick='cmtUpdateCancle()'>취소</button>"+
+		                 "</div>"+"</div>";
+		$('#'+cmtNo).html(updateForm);
+	}
+	function cmtUpdateProc(cmt_no){
+		var pNo = $('#pNo').val();
+		var cmtNo = cmt_no;
+		var contents = $('#cmtUpdateArea').val();
+		var allData = {"pNo" : pNo,
+				       "cmtNo" : cmtNo,
+				       "contents" : contents};
+		
+		if(confirm("수정하시겠습니까?")){
+			
+			$.ajax({
+				url : 'cmtUpdateProc.do',
+				method : 'post',
+				data : allData,
+				dataType : 'json',
+				success : function(data){
+					cmtUpdateCancle();
+				}
+			})
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
+	function cmtUpdateCancle(){
+		var pNo = $('#pNo').val();
+		$.ajax({
+			url : 'cmtList.do',
+			method : 'post',
+			data : {"pNo" : pNo},
+			dataType : 'json',
+			success : function(data) {
+				var contents = "";
+				$.each(data,function(key, value) {
+					if(value.user_no==1){
+						contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
+						contents += "<div class="+"text"+">";
+						contents += "<p class="+"attribution"+">";
+						contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
+						contents += "<div id="+"cmt_"+value.cmt_no+" name="+value.cmt_no+" rows="+"4"+">";
+						contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
+						contents +=	" </div>";
+						contents +=	" </br>";
+						contents += "<button class='btn btn-info btn-sm' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+")>"+"수정"+"</button> ";
+						contents += " <button class='btn btn-info btn-sm' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
+						contents += " </div>";
+						contents += " </div>";
+					}else{
+						contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
+						contents += "<div class="+"text"+">";
+						contents += "<p class="+"attribution"+">";
+						contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
+						contents += "<div id="+"cmt_"+value.cmt_no+" name="+value.cmt_no+" rows="+"4"+">";
+						contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
+						contents +=	" </div>";
+						contents += " </div>";
+						contents += " </div>";
+					}			
+				$('#cmtList').html(contents);
+				})
+			}
+		})
+	}
+
 	
 </script>
 
@@ -145,15 +235,8 @@
 			<section class="panel"> <header class="panel-heading">
 			게시글 상세 </header>
 			<div class="panel-body">
-<<<<<<< HEAD
 				<input type="hidden" id="pNo" name="pNo"
 					value="<%=CmmUtil.nvl(bDTO.getPost_no())%>">
-<<<<<<< HEAD
-=======
-				<input type="hidden" id="pNo" name="pNo" value="<%=CmmUtil.nvl(bDTO.getPost_no())%>">
->>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
-=======
->>>>>>> refs/remotes/origin/chy
 				<table
 					class="table table-striped table-advance table-hover table-bordered">
 					<tbody>
@@ -217,43 +300,22 @@
 					<%
 						for (Comment_infoDTO cDTO : cList) {
 					%>
-					<div class="activity-body act-in">
+					<div class="activity-body act-in" id='<%=cDTO.getCmt_no()%>'>
 						<div class="text">
 							<p class="attribution">
 								<a href="#"><%=CmmUtil.nvl(cDTO.getUser_name())%></a>
 								<%=CmmUtil.nvl(cDTO.getReg_dt())%>
 							</p>
-<<<<<<< HEAD
-<<<<<<< HEAD
-							<div id="ccomment" rows="4"
-								name="<%=CmmUtil.nvl(cDTO.getCmt_no())%>">
-=======
-							<div id="ccomment" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
->>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
-=======
-							<div id="ccomment" rows="4"
-								name="<%=CmmUtil.nvl(cDTO.getCmt_no())%>">
->>>>>>> refs/remotes/origin/chy
+							<div id="cmt_<%=CmmUtil.nvl(cDTO.getCmt_no()) %>" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
 								<span><%=CmmUtil.replaceBr(CmmUtil.nvl(cDTO.getContents()))%></span>
 							</div>
 							<%
 								if (cDTO.getUser_no().equals("1")) {
 							%>
 							<br>
-<<<<<<< HEAD
-<<<<<<< HEAD
 							<button class='btn btn-info btn-sm' id="cmtUpdate">수정</button>
 							<button class='btn btn-info btn-sm'
 								onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>
-=======
-							<button class='btn btn-info btn-sm' id="cmtUpdate">수정</button>							
-							<button class='btn btn-info btn-sm' onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>							
->>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
-=======
-							<button class='btn btn-info btn-sm' id="cmtUpdate">수정</button>
-							<button class='btn btn-info btn-sm'
-								onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>
->>>>>>> refs/remotes/origin/chy
 							<%
 								}
 							%>

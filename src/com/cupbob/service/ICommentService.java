@@ -12,4 +12,6 @@ public interface ICommentService {
 
 	public void deleteComment(Comment_infoDTO cDTO) throws Exception;
 
+	public void updateComment(Comment_infoDTO cDTO) throws Exception;
+
 }

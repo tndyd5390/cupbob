@@ -17,4 +17,9 @@
 	DELETE FROM COMMENT_INFO WHERE CMT_NO = #{cmt_no}
 </delete>
 
+<update id="updateComment" parameterType="Comment_infoDTO">
+	UPDATE COMMENT_INFO SET CONTENTS=#{contents}, CHG_USER_NO = #{chg_user_no}, CHG_DT = NOW()
+	WHERE CMT_NO = #{cmt_no}
+</update>
+
 </mapper>

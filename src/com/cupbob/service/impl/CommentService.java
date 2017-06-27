@@ -30,4 +30,9 @@ public class CommentService implements ICommentService{
 	public void deleteComment(Comment_infoDTO cDTO) throws Exception {
 		commentMapper.deleteComment(cDTO);
 	}
+
+	@Override
+	public void updateComment(Comment_infoDTO cDTO) throws Exception {
+		commentMapper.updateComment(cDTO);
+	}
 }
