@@ -116,7 +116,6 @@
                                  <th><i class="icon_calendar"></i>주문번호</th>
                                  <th><i class="icon_calendar"></i>주문자</th>
                                  <th><i class="icon_mail_alt"></i>상품명</th>
-                                 <th><i class="icon_pin_alt"></i>옵션</th>
                                  <th><i class="icon_mobile"></i>수량</th>
                                  <th><i class="icon_cogs"></i>수령시간</th>
                                  <th><i class="icon_cogs"></i>접수</th>
@@ -132,7 +131,6 @@
                                  <td><%=CmmUtil.nvl(tDTO.getOrd_no()) %></td>
                                  <td><%=CmmUtil.nvl(tDTO.getUser_name()) %>
                                  <td><%=CmmUtil.nvl(tDTO.getPrdt_name()) %></td>
-                                 <td align="center">-</td>
                                  <td><%=CmmUtil.nvl(tDTO.getOrd_amnt()) %></td>
                                  <td><%=CmmUtil.nvl(tDTO.getUsr_rcv_time()) %></td>         
                                  <td>
