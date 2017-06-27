@@ -61,7 +61,7 @@
 						<div class="form-group">
 							<label class="control-label col-lg-2" for="inputSuccess">성별</label>
 							<div class="col-lg-10">
-								<input class="form-control " id="gender" name="gender" type="gender" value="<%=CmmUtil.nvl(udto.getGender())%>"/>
+								<input class="form-control " id="gender" name="gender" type="gender" value="<%=CmmUtil.nvl(udto.getGender())%>"disabled/>
 							</div>
 						</div>
 						<div class="form-group ">
