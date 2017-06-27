@@ -128,7 +128,7 @@ public class AdminMenuController {
 		Product_infoDTO pDTO = new Product_infoDTO();
 		pDTO.setPrdt_no(pnum);
 		int result = -1;
-		result = menuService.deleteAdminMenuOne(pDTO);
+		result = menuService.deleteAdminMenuOne(pDTO, log);
 		if(result != 0){
 			model.addAttribute("msg", "메뉴가 삭제되었습니다.");
 		}else{
@@ -178,7 +178,7 @@ public class AdminMenuController {
 		pDTO.setPrdt_kcal(kcal);
 		pDTO.setContents(contents);
 		int result = -1;
-		result = menuService.updateAdminMenu(pDTO, file, savePath);
+		result = menuService.updateAdminMenu(pDTO, file, savePath, log);
 		String msg;
 		if(result != 0){
 			msg = "메뉴가 수정되었습니다.";
@@ -202,7 +202,7 @@ public class AdminMenuController {
 		String[] del_check = req.getParameterValues("del_check");
 		Product_infoDTO pDTO = new Product_infoDTO();
 		pDTO.setAllCheck(del_check);
-		if(menuService.deleteAdminMenuChecked(pDTO)){
+		if(menuService.deleteAdminMenuChecked(pDTO, log)){
 			model.addAttribute("msg", "삭제되었습니다.");
 		}else{
 			model.addAttribute("msg", "삭제 실패");
