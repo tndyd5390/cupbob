@@ -13,7 +13,14 @@ public class User_infoDTO {
 	private String chg_user_no;
 	private String chg_dt;
 	private String[] allCheck;
+	private String temp_pw;
 	
+	public String getTemp_pw() {
+		return temp_pw;
+	}
+	public void setTemp_pw(String temp_pw) {
+		this.temp_pw = temp_pw;
+	}
 	public String getUser_no() {
 		return user_no;
 	}

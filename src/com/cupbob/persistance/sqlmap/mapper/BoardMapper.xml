@@ -7,10 +7,9 @@
 		SELECT UB.POST_NO,
 		UB.TITLE,
 		UB.VIEW_CNT,
-		UI.EMAIL,
+		UI.USER_NAME,
 		DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
-		FROM USER_INFO UI,
-		USER_BOARD UB
+		FROM USER_INFO UI, USER_BOARD UB
 		WHERE UI.USER_NO = UB.USER_NO
 		ORDER BY UB.POST_NO DESC
 	</select>
@@ -29,6 +28,7 @@
 		UB.CONTENTS,
 		UB.VIEW_CNT,
 		UI.EMAIL,
+		UI.USER_NAME,
 		DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
 		FROM USER_INFO UI,
 		USER_BOARD UB
@@ -52,7 +52,7 @@
 		)
 		VALUES
 		(
-		#{title}, #{contents}, '0', '1', '1', sysdate()
+		#{title}, #{contents}, '0', #{user_no}, #{user_no}, sysdate()
 		);
 	</insert>
 	<update id="updateAdminBoard" parameterType="User_boardDTO">
