@@ -305,34 +305,15 @@
 								<a href="#"><%=CmmUtil.nvl(cDTO.getUser_name())%></a>
 								<%=CmmUtil.nvl(cDTO.getReg_dt())%>
 							</p>
-<<<<<<< HEAD
 							<div id="cmt_<%=CmmUtil.nvl(cDTO.getCmt_no()) %>" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
-=======
-<<<<<<< HEAD
-							<div id="ccomment" rows="4"
-								name="<%=CmmUtil.nvl(cDTO.getCmt_no())%>">
-=======
-							<div id="ccomment" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
->>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
->>>>>>> refs/remotes/origin/test
 								<span><%=CmmUtil.replaceBr(CmmUtil.nvl(cDTO.getContents()))%></span>
 							</div>
 							<%
 								if (cDTO.getUser_no().equals("1")) {
 							%>
 							<br>
-<<<<<<< HEAD
 							<button class='btn btn-info btn-sm' onclick='cmtUpdate(<%=CmmUtil.nvl(cDTO.getCmt_no())%>,"<%=CmmUtil.nvl(cDTO.getUser_name())%>")'>수정</button>							
-=======
-<<<<<<< HEAD
-							<button class='btn btn-info btn-sm' id="cmtUpdate">수정</button>
-							<button class='btn btn-info btn-sm'
-								onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>
-=======
-							<button class='btn btn-info btn-sm' id="cmtUpdate">수정</button>							
->>>>>>> refs/remotes/origin/test
 							<button class='btn btn-info btn-sm' onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>							
->>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
 							<%
 								}
 							%>
