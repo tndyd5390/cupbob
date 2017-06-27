@@ -42,7 +42,7 @@ public class AdminCommentController {
 				
 		Comment_infoDTO ctDTO = new Comment_infoDTO();
 		
-		ctDTO.setUser_no("1");
+		ctDTO.setUser_no(user_no);
 		ctDTO.setContents(cmtContents);
 		ctDTO.setPost_no(pNo);
 		
@@ -56,7 +56,6 @@ public class AdminCommentController {
 	@RequestMapping(value="cmtDelete")
 	public @ResponseBody List<Comment_infoDTO> cmtDelete(@RequestParam(value="cmtNo") String cmtNo, @RequestParam(value="pNo") String pNo) throws Exception{
 		log.info(this.getClass().getName()+"cmtDelete start");
-		System.out.println(cmtNo);
 		Comment_infoDTO ctDTO = new Comment_infoDTO();
 		ctDTO.setCmt_no(cmtNo);
 		ctDTO.setPost_no(pNo);
@@ -96,7 +95,7 @@ public class AdminCommentController {
 		ctDTO.setPost_no(pNo);
 		ctDTO.setCmt_no(cmtNo);
 		ctDTO.setContents(contents);;
-		ctDTO.setChg_user_no("1");
+		ctDTO.setChg_user_no(user_no);
 		commentService.updateComment(ctDTO);
 		
 		List<Comment_infoDTO> cList = commentService.getCommentList(ctDTO);

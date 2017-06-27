@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cupbob.persistance.mapper.MenuMapper">
 	<select id="getAdminMenuList" resultType="Product_infoDTO">
-		SELECT * FROM PRODUCT_INFO
+		SELECT PRDT_NO, PRDT_NAME, PRDT_PRICE, PRDT_KCAL, DATE_FORMAT(REG_DT, '%Y-%m-%d') AS REG_DT FROM PRODUCT_INFO
 	</select>
 	
 	<insert id="insertAdminMenu" parameterType="Product_infoDTO">

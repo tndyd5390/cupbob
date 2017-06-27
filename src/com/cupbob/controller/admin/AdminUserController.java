@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cupbob.dto.User_infoDTO;
 import com.cupbob.service.IUserService;
 import com.cupbob.util.CmmUtil;
+import com.cupbob.util.Email;
+import com.cupbob.util.EmailSender;
 
 @Controller
 public class AdminUserController {
@@ -27,6 +30,9 @@ public class AdminUserController {
 	@Resource(name = "UserService")
 	private IUserService userService;
 
+	@Autowired
+	private EmailSender emailSender;
+	
 	@RequestMapping(value = "adminUserList", method = RequestMethod.GET)
 	public String adminUserList(HttpSession session, HttpServletRequest req, HttpServletResponse res, Model model)
 			throws Exception {
@@ -167,12 +173,12 @@ public class AdminUserController {
 		if (udto == null) {
 			udto = new User_infoDTO();
 		}
-		log.info("������ȣ = " + udto.getUser_no());
-		log.info("�̸� = " + udto.getUser_name());
-		log.info("�̸��� = " + udto.getEmail());
-		log.info("���� = " + udto.getGender());
-		log.info("������� = " + udto.getBirthday());
-		log.info("��ȭ��ȣ = " + udto.getContact_addr());
+		log.info("유저번호 = " + udto.getUser_no());
+		log.info("이름 = " + udto.getUser_name());
+		log.info("이메일 = " + udto.getEmail());
+		log.info("성별 = " + udto.getGender());
+		log.info("생년월일 = " + udto.getBirthday());
+		log.info("전화번호 = " + udto.getContact_addr());
 
 		model.addAttribute("udto", udto);
 		udto = null;
@@ -198,10 +204,10 @@ public class AdminUserController {
 		String url = " ";
 
 		if (result > 0) {
-			msg = "������ �Ϸ�Ǿ����ϴ�.";
+			msg = "삭제완료되었습니다.";
 			url = "adminUserList.do";
 		} else {
-			msg = "���� ó������ �ʾҽ��ϴ�.";
+			msg = "삭제실패했습니다.";
 			url = "adminUserDetail.do?unum=" + unum;
 		}
 		model.addAttribute("msg", msg);
@@ -308,4 +314,87 @@ public class AdminUserController {
 		return userList;
 	}
 	
+	@RequestMapping(value="adminUserFindInfo")
+	public String adminUserFindInfo (HttpServletRequest req, HttpServletResponse resp) throws Exception{
+		log.info(this.getClass().getName() + " adminUserFindInfo start");
+		
+		log.info(this.getClass().getName() + " adminUserFindInfo end");
+		return "admin/adminUserFindInfo";
+	}
+	
+	@RequestMapping(value="adminUserFindEmail", method=RequestMethod.POST)
+	public String adminUserFindInId (HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass().getName() + " adminUserFindEmail start");
+		
+		String user_name = CmmUtil.nvl(req.getParameter("user_name"));
+		String birthday = CmmUtil.nvl(req.getParameter("birthday"));
+		
+		log.info("name = " + user_name);
+		log.info("birthday = " + birthday);
+		
+		User_infoDTO udto = new User_infoDTO();
+		
+		udto.setUser_name(user_name); 
+		udto.setBirthday(birthday);
+		
+		udto = userService.getUserFindEmail(udto);
+		
+		if(udto == null){
+			udto = new User_infoDTO();
+		}
+		
+		model.addAttribute("email", udto.getEmail());
+		
+		udto = null;
+		
+		log.info(this.getClass().getName() + " adminUserFindEmail end");
+		return "admin/userFindEmail";
+	}
+	
+	@RequestMapping(value="adminUserFindPw")
+	public String adminUserFindInPw (HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass().getName() + " adminUserInfo start");
+
+		Email sandEmail = new Email();
+		
+		String email = CmmUtil.nvl(req.getParameter("email"));
+		String user_name = CmmUtil.nvl(req.getParameter("user_name"));
+		String birthday = CmmUtil.nvl(req.getParameter("birthday"));
+		
+		log.info("email = " + email);
+		log.info("user_name = " + user_name);
+		log.info("birthday = " + birthday);
+				
+		User_infoDTO udto = new User_infoDTO();
+		udto.setEmail(email);
+		udto.setUser_name(user_name);
+		udto.setBirthday(birthday);
+		
+		udto = userService.getUserFindPw(udto);
+		
+		if(udto == null){
+			return "admin/userFindPw";
+		}
+		else{
+			log.info("password = " + udto.getPassword());
+			
+			sandEmail.setReciver(email);
+			System.out.println(sandEmail.getReciver());
+			
+			sandEmail.setSubject("소라 밥집 입니다.");
+			System.out.println(sandEmail.getSubject());
+			
+			sandEmail.setContent("회원님의 임시 비밀번호는" + udto.getPassword() + "입니다.");
+			System.out.println(sandEmail.getContent());
+			
+			emailSender.SendEmail(sandEmail);
+			
+			model.addAttribute("resultPw", udto.getPassword());
+			udto = null;
+			
+		}
+		
+		log.info(this.getClass().getName() + " adminUserInfo end");
+		return "admin/userFindPw";
+	}
 }
