@@ -127,10 +127,6 @@ function cmtDelete(cmt_no){
 		return false;
 	}
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/psytestbranch
 function cmtUpdate(cmt_no,user_name){
 	if(updateCheck==false){
 		var cmtNo = cmt_no;
@@ -182,8 +178,6 @@ function cmtUpdateProc(cmt_no){
 		}
 	}
 }
-<<<<<<< HEAD
-=======
 function cmtUpdateCancle(){
 	var pNo = $('#pNo').val();
 	updateCheck = false;
@@ -224,9 +218,6 @@ function cmtUpdateCancle(){
 		}
 	})
 }
->>>>>>> refs/remotes/origin/psytestbranch
-
-<<<<<<< HEAD
 function cmtUpdateCancle(){
 	var pNo = $('#pNo').val();
 	updateCheck = false;
@@ -267,8 +258,6 @@ function cmtUpdateCancle(){
 		}
 	})
 }
-=======
->>>>>>> refs/remotes/origin/psytestbranch
 </script>
 
 <title>게시글 상세 보기</title>
