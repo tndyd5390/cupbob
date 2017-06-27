@@ -365,8 +365,12 @@ var updateCheck = false;
 								<a href="#"><%=CmmUtil.nvl(cDTO.getUser_name())%></a>
 								<%=CmmUtil.nvl(cDTO.getReg_dt())%>
 							</p>
+<<<<<<< HEAD
 							<textarea class="form-control " id="ccomment" name="ccomment"
 								rows="4"><%=cDTO.getContents()%></textarea>
+=======
+							<div id="ccomment" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
+>>>>>>> refs/remotes/origin/chy
 							<div id="cmt_<%=CmmUtil.nvl(cDTO.getCmt_no()) %>" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
 								<span><%=CmmUtil.replaceBr(CmmUtil.nvl(cDTO.getContents()))%></span>
 							</div>
