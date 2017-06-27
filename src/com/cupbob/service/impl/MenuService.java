@@ -56,7 +56,7 @@ public class MenuService implements IMenuService{
 			String fileOrgName = file.getOriginalFilename();
 			String extended = fileOrgName.substring(fileOrgName.indexOf("."), fileOrgName.length());
 			String now = new SimpleDateFormat("yyyyMMddhmsS").format(new Date());
-			savePath = CmmUtil.nvl(savePath, "C:/Users/Data3811-32/git/cupbob/WebContent/menuImg/");
+			savePath = CmmUtil.nvl(savePath);
 			reFileName = savePath + now + extended;
 			File newFile = new File(reFileName);
 			file.transferTo(newFile);

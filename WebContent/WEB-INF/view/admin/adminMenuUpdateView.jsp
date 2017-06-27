@@ -61,7 +61,7 @@
 	
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>소라 컵밥 메뉴 수정하기</title>
+<title>메뉴 수정</title>
 </head>
 <body>
 <%@include file="/include/naviBarAndasideBar.jsp"%>
