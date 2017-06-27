@@ -20,6 +20,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script>
+	$(function() {
+
+		$('#cmtCreate')
+				.bind(
+						'click',
+						function() {
+							var pNo = $('#pNo').val();
+							var cnts = $('#cmts').val();
+							var allData = {
 var updateCheck = false;
 
 	$(function(){
@@ -34,6 +43,42 @@ var updateCheck = false;
 				var allData = {
 								"contents" : cnts,
 								"pNo" : pNo
+							};
+							$.ajax({
+										url : 'createComment.do',
+										method : 'post',
+										data : allData,
+										dataType : "json",
+										success : function(data) {
+											var contents = "";
+											$
+													.each(
+															data,
+															function(key, value) {
+
+																contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
+																contents += "<div class="+"text"+">";
+																contents += "<p class="+"attribution"+">";
+																contents += "<a href="+"#"+">"
+																		+ value.user_name
+																		+ " </a> "
+																		+ value.reg_dt
+																		+ " </p> ";
+																contents += "<textarea class="+"form-control"+" id="+"ccoment"+" name="+value.cmt_no+" rows="+"4"+">"
+																		+ value.contents
+																		+ "</textarea>";
+																contents += " </br>";
+																contents += " </div>";
+																contents += " </div>";
+
+																$('#cmtList')
+																		.html(
+																				contents);
+
+															})
+										}
+
+									})
 					  		  };
 			$.ajax({url : 'cmtCreate.do',
 			method : 'post',
@@ -69,10 +114,7 @@ var updateCheck = false;
 						$('#cmtList').html(contents);
 						$('#cmts').val("");
 						})
-					}
-				})
-				}
-			})
+
 	})
 		
 	function cmtDelete(cmt_no){
@@ -225,7 +267,6 @@ var updateCheck = false;
 	
 </script>
 
-<title>Insert title here</title>
 <title>게시글 상세 보기</title>
 </head>
 <body>
@@ -252,6 +293,8 @@ var updateCheck = false;
 			<section class="panel"> <header class="panel-heading">
 			게시글 상세 </header>
 			<div class="panel-body">
+				<input type="hidden" id="pNo" name="pNo"
+					value="<%=bDTO.getPost_no()%>">
 				<input type="hidden" id="pNo" name="pNo" value="<%=CmmUtil.nvl(bDTO.getPost_no())%>">
 				<table
 					class="table table-striped table-advance table-hover table-bordered">
@@ -300,7 +343,7 @@ var updateCheck = false;
 					</div>
 				</div>
 				<div class="act-time">
-					<div class="activity-body act-in" id="cmtCreateDiv">
+					<div class="activity-body act-in">
 						<div class="text">
 							<p class="attribution">
 								<a href="#"><%=ss_userName %></a>
@@ -322,6 +365,8 @@ var updateCheck = false;
 								<a href="#"><%=CmmUtil.nvl(cDTO.getUser_name())%></a>
 								<%=CmmUtil.nvl(cDTO.getReg_dt())%>
 							</p>
+							<textarea class="form-control " id="ccomment" name="ccomment"
+								rows="4"><%=cDTO.getContents()%></textarea>
 							<div id="cmt_<%=CmmUtil.nvl(cDTO.getCmt_no()) %>" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
 								<span><%=CmmUtil.replaceBr(CmmUtil.nvl(cDTO.getContents()))%></span>
 							</div>

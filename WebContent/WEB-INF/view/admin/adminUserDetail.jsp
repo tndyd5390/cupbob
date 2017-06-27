@@ -61,7 +61,7 @@
 						<div class="form-group">
 							<label class="control-label col-lg-2" for="inputSuccess">성별</label>
 							<div class="col-lg-10">
-								<input class="form-control " id="gender" name="gender" type="gender" value="<%=CmmUtil.nvl(udto.getGender())%>"/>
+								<input class="form-control " id="gender" name="gender" type="gender" value="<%=CmmUtil.nvl(udto.getGender())%>"disabled/>
 							</div>
 						</div>
 						<div class="form-group ">
@@ -80,6 +80,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
+							
 							<div style = float:right>
 								<button class="btn btn-primary" type="submit" >수정</button>
 								<button class="btn btn-default" type="button" onclick = "location.href='adminUserDelete.do?unum=<%=CmmUtil.nvl(udto.getUser_no())%>'">삭제</button>
