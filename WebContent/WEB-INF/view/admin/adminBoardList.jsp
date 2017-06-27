@@ -94,6 +94,10 @@
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getReg_user_no())%></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getReg_dt()) %></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getView_cnt()) %></td>
+<<<<<<< HEAD
+>>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
+=======
+>>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
 							</tr>
 						<%
 							}

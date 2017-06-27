@@ -1,7 +1,7 @@
 <%@page import="com.cupbob.dto.User_boardDTO"%>
 <%@page import="com.cupbob.dto.Comment_infoDTO"%>
 <%@ page import="java.util.List"%>
-<%@ page import="com.cupbob.util.CmmUtil" %>
+<%@ page import="com.cupbob.util.CmmUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -145,7 +145,12 @@
 			<section class="panel"> <header class="panel-heading">
 			게시글 상세 </header>
 			<div class="panel-body">
+<<<<<<< HEAD
+				<input type="hidden" id="pNo" name="pNo"
+					value="<%=CmmUtil.nvl(bDTO.getPost_no())%>">
+=======
 				<input type="hidden" id="pNo" name="pNo" value="<%=CmmUtil.nvl(bDTO.getPost_no())%>">
+>>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
 				<table
 					class="table table-striped table-advance table-hover table-bordered">
 					<tbody>
@@ -215,17 +220,28 @@
 								<a href="#"><%=CmmUtil.nvl(cDTO.getUser_name())%></a>
 								<%=CmmUtil.nvl(cDTO.getReg_dt())%>
 							</p>
+<<<<<<< HEAD
+							<div id="ccomment" rows="4"
+								name="<%=CmmUtil.nvl(cDTO.getCmt_no())%>">
+=======
 							<div id="ccomment" rows="4" name="<%=CmmUtil.nvl(cDTO.getCmt_no()) %>">
+>>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
 								<span><%=CmmUtil.replaceBr(CmmUtil.nvl(cDTO.getContents()))%></span>
 							</div>
 							<%
-							if(cDTO.getUser_no().equals("1")){
+								if (cDTO.getUser_no().equals("1")) {
 							%>
 							<br>
+<<<<<<< HEAD
+							<button class='btn btn-info btn-sm' id="cmtUpdate">수정</button>
+							<button class='btn btn-info btn-sm'
+								onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>
+=======
 							<button class='btn btn-info btn-sm' id="cmtUpdate">수정</button>							
 							<button class='btn btn-info btn-sm' onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>							
+>>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
 							<%
-							}
+								}
 							%>
 						</div>
 					</div>
