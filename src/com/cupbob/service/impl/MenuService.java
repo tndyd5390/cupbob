@@ -1,6 +1,7 @@
 package com.cupbob.service.impl;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +37,10 @@ public class MenuService implements IMenuService{
 
 	@Override
 	public int deleteAdminMenuOne(Product_infoDTO pDTO) throws Exception {
+		pDTO = menuMapper.getAdminMenuDetail(pDTO);
+		File f = new File(pDTO.getFile_path() + pDTO.getFile_name());
+		if(f.delete()) System.out.println("파일 삭제 완료");
+		else System.out.println("파일 삭제 실패");
 		return menuMapper.deleteAdminMenuOne(pDTO);
 	}
 
@@ -49,9 +54,8 @@ public class MenuService implements IMenuService{
 			// 파일이 있을때
 			Product_infoDTO preDTO = menuMapper.getAdminMenuDetail(pDTO);
 			File f = new File(preDTO.getFile_path() + preDTO.getFile_name());
-			if(f.delete()){
-				
-			}
+			if(f.delete()) System.out.println("파일 삭제 완료");
+			else System.out.println("파일 삭제 실패");
 			String reFileName = "";
 			String fileOrgName = file.getOriginalFilename();
 			String extended = fileOrgName.substring(fileOrgName.indexOf("."), fileOrgName.length());
