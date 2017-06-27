@@ -69,4 +69,11 @@
 		<foreach item="post_no" index="index" collection="allCheck"
 			open="(" separator="," close=")">#{post_no}</foreach>
 	</delete>
+	
+	<select id="boardTitleSearch" parameterType="User_boardDTO" resultType="User_boardDTO">
+		SELECT * FROM USER_BOARD WHERE TITLE = #{title}
+	</select>
+	<select id="boardEmailSearch" parameterType="User_boardDTO" resultType="User_boardDTO">
+		SELECT * FROM USER_INFO U, USER_BOARD B WHERE U.USER_NO = B.USER_NO AND U.EMAIL = #{email}
+	</select>
 </mapper>

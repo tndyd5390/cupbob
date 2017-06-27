@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cupbob.dto.Comment_infoDTO;
 import com.cupbob.dto.User_boardDTO;
@@ -185,5 +187,35 @@ public class AdminBoardController {
 		bDTO = null;
 		log.info(this.getClass() + "adminBoardUpdate END !!");
 		return "admin/boardAlert";
+	}
+	
+	@RequestMapping(value = "boardSearch")
+	public @ResponseBody List<User_boardDTO> boardSearch(@RequestParam(value = "word") String word,@RequestParam(value="selected") String selected) throws Exception{
+		log.info(this.getClass().getName() + "boardSearch Start !!");
+		log.info(selected);
+		
+		User_boardDTO bDTO = new User_boardDTO();
+		
+		if(selected.equals("제목")){
+			bDTO.setTitle(word);
+			log.info(bDTO.getTitle());
+			List <User_boardDTO> boardTitleSearch = boardService.boardTitleSearch(bDTO);
+			log.info(boardTitleSearch.size());
+			return boardTitleSearch;
+		}else if(selected.equals("작성자")){
+			bDTO.setEmail(word);
+			log.info(bDTO.getEmail());
+			List <User_boardDTO> boardEmailSearch = boardService.boardEmailSearch(bDTO); 
+			return boardEmailSearch;
+		}
+		
+		List<User_boardDTO> boardList = new ArrayList<User_boardDTO>(); 
+		
+		if(boardList == null) {
+			boardList = new ArrayList<User_boardDTO>();
+		}
+		log.info(this.getClass().getName() + "boardSearch END !!");
+		
+		return boardList;
 	}
 }

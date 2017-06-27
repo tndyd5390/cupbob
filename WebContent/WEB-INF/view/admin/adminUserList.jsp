@@ -67,11 +67,8 @@ $(function (){
 				$('#userList').html(contents);
 			}
 		})
-		
 	})
 })
-
-	
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -95,9 +92,9 @@ $(function (){
 		<div class="col-lg-12">
 			<section class="panel"> <header class="panel-heading">
 			회원 목록 
-                        <form class="navbar-form pull-right">
+                        <div class="navbar-form pull-right">
                             검색   :   <input class="form-control" placeholder="Search" type="text" id="userSearch">
-                        </form>
+                        </div>
 			</header>
 			<div class="table-responsive">
 <form action="adminUserCheckedDelete.do" method="post" id="f">
