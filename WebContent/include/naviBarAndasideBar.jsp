@@ -5,6 +5,7 @@
 
 <% 
 	String ss_user_name = CmmUtil.nvl((String) session.getAttribute("ss_user_name"));
+	String ss_user_no = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 %>
 <script type="text/javascript">
 	function logOut(){
@@ -121,48 +122,6 @@
 					<li class="external"><a href="#">See All Tasks</a></li>
 				</ul></li> -->
 			<!-- task notificatoin end -->
-			<!-- inbox notificatoin start-->
-			<li id="mail_notificatoin_bar" class="dropdown"><a
-				data-toggle="dropdown" class="dropdown-toggle" href="#"> <i
-					class="icon-envelope-l"></i> <span class="badge bg-important">5</span>
-			</a>
-				<ul class="dropdown-menu extended inbox">
-					<div class="notify-arrow notify-arrow-blue"></div>
-					<li>
-						<p class="blue">You have 5 new messages</p>
-					</li>
-					<li><a href="#">See all messages</a></li>
-				</ul></li>
-			<!-- inbox notificatoin end -->
-			<!-- alert notification start-->
-			<li id="alert_notificatoin_bar" class="dropdown"><a
-				data-toggle="dropdown" class="dropdown-toggle" href="#"> <i
-					class="icon-bell-l"></i> <span class="badge bg-important">7</span>
-			</a>
-				<ul class="dropdown-menu extended notification">
-					<div class="notify-arrow notify-arrow-blue"></div>
-					<li>
-						<p class="blue">You have 4 new notifications</p>
-					</li>
-					<li><a href="#"> <span class="label label-primary"><i
-								class="icon_profile"></i></span> Friend Request <span
-							class="small italic pull-right">5 mins</span>
-					</a></li>
-					<li><a href="#"> <span class="label label-warning"><i
-								class="icon_pin"></i></span> John location. <span
-							class="small italic pull-right">50 mins</span>
-					</a></li>
-					<li><a href="#"> <span class="label label-danger"><i
-								class="icon_book_alt"></i></span> Project 3 Completed. <span
-							class="small italic pull-right">1 hr</span>
-					</a></li>
-					<li><a href="#"> <span class="label label-success"><i
-								class="icon_like"></i></span> Mick appreciated your work. <span
-							class="small italic pull-right"> Today</span>
-					</a></li>
-					<li><a href="#">See all notifications</a></li>
-				</ul></li>
-			<!-- alert notification end-->
 			<!-- user login dropdown start-->
 			<li class="dropdown"><a data-toggle="dropdown"
 				class="dropdown-toggle" href="#"> <span class="profile-ava">
@@ -172,14 +131,7 @@
 					<div class="log-arrow-up"></div>
 					<li class="eborder-top"><a href="#"><i
 							class="icon_profile"></i> 프로필</a></li>
-					<!-- <li><a href="#"><i class="icon_mail_alt"></i> My Inbox</a></li>
-					<li><a href="#"><i class="icon_clock_alt"></i> 타임라인</a></li>
-					<li><a href="#"><i class="icon_chat_alt"></i> 차트</a></li> -->
 					<li><a href="#" onclick="logOut();"><i class="icon_key_alt"></i> 로그아웃</a></li>
-					<!-- <li><a href="documentation.html"><i class="icon_key_alt"></i>
-							Documentation</a></li>
-					<li><a href="documentation.html"><i class="icon_key_alt"></i>
-							Documentation</a></li> -->
 				</ul></li>
 			<!-- user login dropdown end -->
 		</ul>
@@ -198,16 +150,7 @@
 			<li><a class="" href="adminUserList.do"> <i
 					class="icon_profile"></i> <span>회원 관리</span>
 			</a></li>
-			<!-- <li class="sub-menu"><a href="javascript:;" class=""> <i
-					class="icon_document_alt"></i> <span>메뉴 관리</span> <span
-					class="menu-arrow arrow_carrot-right"></span>
-			</a>
-			<li class="sub-menu"><a href="javascript:;" class=""> <i
-					class="icon_desktop"></i> <span>회원 관리</span> <span
-					class="menu-arrow arrow_carrot-right"></span>
-			</a>
-			</li> -->
-			<li><a class="" href="adminBoardList.do"> <i class="icon_genius"></i>
+			<li><a class="" href="adminBoardList.do"> <i class="fa fa-table"></i>
 					<span>게시판 관리</span>
 			</a></li>
 			<li><a class="" href="adminChart.do"> <i
@@ -215,24 +158,6 @@
 
 			</a></li>
 
-			<!-- <li class="sub-menu"><a href="javascript:;" class=""> <i
-					class="icon_table"></i> <span>Tables</span> <span
-					class="menu-arrow arrow_carrot-right"></span>
-			</a>
-				<ul class="sub">
-					<li><a class="" href="basic_table.html">Basic Table</a></li>
-				</ul></li>
-
-			<li class="sub-menu"><a href="javascript:;" class=""> <i
-					class="icon_documents_alt"></i> <span>Pages</span> <span
-					class="menu-arrow arrow_carrot-right"></span>
-			</a>
-				<ul class="sub">
-					<li><a class="" href="profile.html">Profile</a></li>
-					<li><a class="" href="login.html"><span>Login Page</span></a></li>
-					<li><a class="" href="blank.html">Blank Page</a></li>
-					<li><a class="" href="404.html">404 Error</a></li>
-				</ul></li> -->
 
 		</ul>
 		<!-- sidebar menu end-->

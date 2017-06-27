@@ -238,12 +238,20 @@ public class AdminUserController {
 		uDTO.setContact_addr(contactAddr);
 		uDTO.setChg_user_no(uNum);
 		
-		userService.updateUserDetail(uDTO);
+		int result=0;
+		result = userService.updateUserDetail(uDTO);
 		
 		uDTO=null;
+		if(result!=0){
+			model.addAttribute("msg","수정되었습니다.");
+			model.addAttribute("url","adminUserDetail.do?unum="+uNum);
+		}else{
+			model.addAttribute("msg","실패하였습니다.");
+			model.addAttribute("url","adminUserDetail.do?unum="+uNum);
+		}
 		
 		log.info(this.getClass().getName() + " adminUserUpdateProc end");
-		return "redirect:adminUserDetail.do?unum="+uNum;
+		return "admin/userAlert";
 	}
 	
 	@RequestMapping(value="adminUserCheckedDelete",method=RequestMethod.POST)
