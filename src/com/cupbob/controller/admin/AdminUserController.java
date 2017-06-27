@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cupbob.dto.User_infoDTO;
@@ -286,4 +287,25 @@ public class AdminUserController {
 		
 		return userList;
 	}
+	
+	@RequestMapping(value="userSearch")
+	public @ResponseBody List<User_infoDTO> userSearch(@RequestParam(value = "word") String word) throws Exception{
+		log.info(this.getClass().getName()+ " userSearch start");
+		User_infoDTO uDTO = new User_infoDTO();
+		uDTO.setEmail(word);
+		uDTO.setUser_name(word);
+				
+		List<User_infoDTO> userList = userService.userSearch(uDTO);
+		
+		log.info(this.getClass().getName() + userList.size());
+		
+		if (userList == null) {
+			userList = new ArrayList<User_infoDTO>();
+		}
+		
+		log.info(this.getClass().getName()+ " userSearch end");
+		
+		return userList;
+	}
+	
 }

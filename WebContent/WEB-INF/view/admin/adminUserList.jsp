@@ -43,6 +43,35 @@
 			alert("하나도 선택된 것이 없습니다.");
 		}
 	}
+	
+$(function (){
+	$('#userSearch').keyup(function() {
+		var word = $('#userSearch').val();
+		$.ajax({
+			url : "userSearch.do",
+			method : "post",
+			data : {'word' : word},
+			dataType : "json",
+			success : function(data){
+				var contents = "";
+				$.each(data, function(key, value){
+					contents += "<tr>"
+					contents += "<td> <input type='checkbox' name='delCheck' id='inlineCheckbox1' value='"+value.user_no+"'"+">"
+					contents += "<td>"+value.user_no+"</td>"
+					contents += "<td>"+value.email+"</td>"
+					contents += "<td>"+value.user_name+"</td>"
+					contents += "<td>"+value.reg_dt+"</td>"
+					contents += "<td>"+value.contact_addr+"</td>"
+					contents += "</tr>"
+				})
+				$('#userList').html(contents);
+			}
+		})
+		
+	})
+})
+
+	
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -65,7 +94,11 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<section class="panel"> <header class="panel-heading">
-			회원 목록 </header>
+			회원 목록 
+                        <form class="navbar-form pull-right">
+                            검색   :   <input class="form-control" placeholder="Search" type="text" id="userSearch">
+                        </form>
+			</header>
 			<div class="table-responsive">
 <form action="adminUserCheckedDelete.do" method="post" id="f">
 				<table class="table" align="center">
@@ -81,7 +114,7 @@
 						</tr>
 					</thead>
 
-					<tbody>
+					<tbody id="userList">
 						<%
 							for (User_infoDTO udto : uList) {
 						%>
