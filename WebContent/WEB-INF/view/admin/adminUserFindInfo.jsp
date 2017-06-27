@@ -22,7 +22,7 @@
 	<div class="row">
 		<div class="col-lg-12">
 			<h3 class="page-header">
-				<i class="icon_lock_alt"></i></i> 아이디 비밀번호 찾기
+				<i class="icon_lock_alt"></i> 아이디 비밀번호 찾기
 			</h3>
 			<ol class="breadcrumb">
 				<li><i class="icon_key_alt"></i><a href="adminLogin.do">Login</a></li>
@@ -39,7 +39,6 @@
 					<input type="text" name="user_name" class="form-control" placeholder="이름" autofocus>
 				</div>
 				<br>
-				
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_calendar"></i></span>
 					<input type="text" name="birthday" class="form-control"	placeholder="생년월일 ex)940808" onkeypress="InpuOnlyNumber(this)">

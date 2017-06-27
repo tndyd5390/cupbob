@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <%
-	if(password == ""){
+	if(password.equals("")){
 %>
 		<script>
 			alert("등록된 정보가 없습니다.");
