@@ -16,8 +16,8 @@
 				<i class="fa fa-files-o"></i> 회원 정보 수정
 			</h3>
 			<ol class="breadcrumb">
-				<li><i class="fa fa-home"></i><a href="#">메인 화면</a></li>
-				<li><i class="icon_document_alt"><a href="#"></i>회원 관리</li></a>
+				<li><i class="fa fa-home"></i><a href="orderList.do">메인 화면</a></li>
+				<li><i class="icon_document_alt"><a href="adminUserList.do"></i>회원 관리</li></a>
 				<li><i class="fa fa-files-o"></i>회원 정보 수정</li>
 			</ol>
 		</div>

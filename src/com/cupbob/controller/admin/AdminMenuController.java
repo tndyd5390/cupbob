@@ -65,13 +65,11 @@ public class AdminMenuController {
 		
 		String reFileName = "";
 		String fileOrgName = file.getOriginalFilename();
-		System.out.println("fileorgname : " + file.getOriginalFilename());
+		log.info(this.getClass() + ".file.getOriginalFilename() : " + file.getOriginalFilename());
 		String extended = fileOrgName.substring(fileOrgName.indexOf("."), fileOrgName.length());
-		System.out.println("extended : " + extended);
 		String now = new SimpleDateFormat("yyyyMMddhmsS").format(new Date());
-		System.out.println("now : " + now);
 		Product_infoDTO pDTO = new Product_infoDTO();
-		savePath = CmmUtil.nvl(savePath, "C:/Users/Data3811-32/git/cupbob/WebContent/menuImg/");
+		savePath = CmmUtil.nvl(savePath);
 		reFileName = savePath + now + extended;
 		File newFile = new File(reFileName);
 		file.transferTo(newFile);
@@ -98,7 +96,6 @@ public class AdminMenuController {
 		reFileName = null;
 		fileOrgName = null;
 		extended = null;
-		savePath = null;
 		now = null;
 		pDTO = null;
 		log.info(this.getClass() + ".adminMenuRegProc end!!");
@@ -131,7 +128,7 @@ public class AdminMenuController {
 		Product_infoDTO pDTO = new Product_infoDTO();
 		pDTO.setPrdt_no(pnum);
 		int result = -1;
-		result = menuService.deleteAdminMenuOne(pDTO);
+		result = menuService.deleteAdminMenuOne(pDTO, log);
 		if(result != 0){
 			model.addAttribute("msg", "메뉴가 삭제되었습니다.");
 		}else{
@@ -181,7 +178,7 @@ public class AdminMenuController {
 		pDTO.setPrdt_kcal(kcal);
 		pDTO.setContents(contents);
 		int result = -1;
-		result = menuService.updateAdminMenu(pDTO, file, savePath);
+		result = menuService.updateAdminMenu(pDTO, file, savePath, log);
 		String msg;
 		if(result != 0){
 			msg = "메뉴가 수정되었습니다.";
@@ -205,7 +202,7 @@ public class AdminMenuController {
 		String[] del_check = req.getParameterValues("del_check");
 		Product_infoDTO pDTO = new Product_infoDTO();
 		pDTO.setAllCheck(del_check);
-		if(menuService.deleteAdminMenuChecked(pDTO)){
+		if(menuService.deleteAdminMenuChecked(pDTO, log)){
 			model.addAttribute("msg", "삭제되었습니다.");
 		}else{
 			model.addAttribute("msg", "삭제 실패");
