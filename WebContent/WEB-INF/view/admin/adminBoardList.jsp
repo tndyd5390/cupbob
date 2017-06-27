@@ -95,8 +95,11 @@
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getReg_dt()) %></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getView_cnt()) %></td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
 =======
+=======
+>>>>>>> refs/remotes/origin/chy
 >>>>>>> branch 'test' of https://github.com/moonjuhyeon/cupbob
 							</tr>
 						<%
