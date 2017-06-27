@@ -14,7 +14,7 @@
           <section class="wrapper">
 		  <div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa-table"></i>메인 화면</h3>
+					<h3 class="page-header"><i class="fa fa-home"></i>메인 화면</h3>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-home"></i>메인 화면</li>
 					</ol>
@@ -26,7 +26,6 @@
                           <header class="panel-heading">
                               실시간 주문 목록
                           </header>
-                          
                           <table class="table table-striped table-advance table-hover">
                            <tbody>
                               <tr>
@@ -115,9 +114,10 @@
                               </tr>                           
                            </tbody>
                         </table>
+                        </div>
                       </section>
                         <div style="float:right"><a class="btn btn-info" href="" title="선택하신게 삭제됩니다.">삭제</a></div>
-                  </div>
+                
               </div>
               <!-- page end-->
           </section>

@@ -44,8 +44,8 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void updateUserDetail(User_infoDTO uDTO) {
-		userMapper.updateUserDetail(uDTO);
+	public int updateUserDetail(User_infoDTO uDTO) {
+		return userMapper.updateUserDetail(uDTO);
 	}
 	
 	@Override
