@@ -11,5 +11,7 @@
 		<typeAlias type="com.cupbob.dto.Tmp_boardDTO" alias="Tmp_boardDTO"/>
 		<typeAlias type="com.cupbob.dto.User_boardDTO" alias="User_boardDTO"/>
 		<typeAlias type="com.cupbob.dto.User_infoDTO" alias="User_infoDTO"/>
+		<typeAlias type="com.cupbob.dto.TotalOrderInfoDTO" alias="TotalOrderInfoDTO"/>
+		<typeAlias type="com.cupbob.dto.TotalOrderItemDTO" alias="TotalOrderItemDTO"/>
     </typeAliases>
 </configuration>
