@@ -218,13 +218,6 @@ function cmtUpdateCancle(){
 		}
 	})
 }
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/psytestbranch
-=======
->>>>>>> refs/remotes/origin/psytestbranch
-
-<<<<<<< HEAD
-<<<<<<< HEAD
 function cmtUpdateCancle(){
 	var pNo = $('#pNo').val();
 	updateCheck = false;
@@ -265,10 +258,6 @@ function cmtUpdateCancle(){
 		}
 	})
 }
-=======
->>>>>>> refs/remotes/origin/psytestbranch
-=======
->>>>>>> refs/remotes/origin/psytestbranch
 </script>
 
 <title>게시글 상세 보기</title>
