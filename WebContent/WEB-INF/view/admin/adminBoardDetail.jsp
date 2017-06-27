@@ -45,7 +45,7 @@
 								contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
 								contents +=	" </div>";
 								contents +=	" </br>";
-								contents += "<button class='btn btn-info btn-sm' onclick=cmtUpdate("+value.cmt_no+")>"+"수정"+"</button> ";
+								contents += "<button class='btn btn-info btn-sm' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+","+"'"+value.contents+"'"+")>"+"수정"+"</button> ";
 								contents += " <button class='btn btn-info btn-sm' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
 								contents += " </div>";
 								contents += " </div>";
@@ -90,7 +90,7 @@
 										contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
 										contents +=	" </div>";
 										contents +=	" </br>";
-										contents += "<button class='btn btn-info btn-sm' onclick=cmtUpdate("+value.cmt_no+")>"+"수정"+"</button> ";
+										contents += " <button class='btn btn-info btn-sm' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+","+"'"+value.contents+"'"+")>수정</button> ";
 										contents += " <button class='btn btn-info btn-sm' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
 										contents += " </div>";
 										contents += " </div>";
@@ -115,6 +115,25 @@
 						}
 					})
 		}
+	function cmtUpdate(cmt_no,user_name,contents){
+		var cmtNo = cmt_no;
+		var userName = user_name;
+		var contents = contents;
+		var pNo = $('#pNo').val();
+		var allData = {'cmtNo' : cmtNo,
+						'pNo' : pNo};
+		var updateForm = "<div class='activity-body act-in' id="+cmtNo+">" +
+		                 "<div class=text>" + 
+		                 "<p class = 'attribution'>" +
+		                 "<a href='#'>"+userName+"</a></p>" +
+		                 "<textarea class='form-control' id='cmtUpdateArea' name='cmtUpdateArea' rows='4'>" +
+		                 contents + "</textarea>" +
+		                 "<br>" +
+		                 "<button class='btn btn-primary btn-sm' id='cmtUpdateBtn'>수정</button>"+
+		                 "</div>"+"</div>";
+		$('#'+cmtNo).html(updateForm);
+	}
+
 	
 </script>
 
@@ -209,7 +228,7 @@
 					<%
 						for (Comment_infoDTO cDTO : cList) {
 					%>
-					<div class="activity-body act-in">
+					<div class="activity-body act-in" id='<%=cDTO.getCmt_no()%>'>
 						<div class="text">
 							<p class="attribution">
 								<a href="#"><%=CmmUtil.nvl(cDTO.getUser_name())%></a>
@@ -222,7 +241,7 @@
 							if(cDTO.getUser_no().equals("1")){
 							%>
 							<br>
-							<button class='btn btn-info btn-sm' id="cmtUpdate">수정</button>							
+							<button class='btn btn-info btn-sm' onclick='cmtUpdate(<%=CmmUtil.nvl(cDTO.getCmt_no())%>,"<%=CmmUtil.nvl(cDTO.getUser_name())%>","<%=CmmUtil.nvl(cDTO.getContents())%>")'>수정</button>							
 							<button class='btn btn-info btn-sm' onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>							
 							<%
 							}
