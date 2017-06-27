@@ -10,5 +10,7 @@ public interface IBoardService {
 	public int deleteAdminBoardDetailDelete(User_boardDTO bdto) throws Exception;
 	public int updateAdminBoard(User_boardDTO bdto) throws Exception;
 	public void insertAdminBoard(User_boardDTO bDTO) throws Exception;
-	public boolean deleteAdminAllCheck(User_boardDTO bdto) throws Exception; 
+	public boolean deleteAdminAllCheck(User_boardDTO bdto) throws Exception;
+	public List<User_boardDTO> boardTitleSearch(User_boardDTO bDTO) throws Exception;
+	public List<User_boardDTO> boardEmailSearch(User_boardDTO bDTO) throws Exception; 
 }

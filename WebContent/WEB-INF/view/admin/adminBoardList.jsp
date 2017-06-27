@@ -44,6 +44,37 @@
 			alert("선택된 것이 없습니다.");
 		}
 	}
+	
+	$(function (){
+		$('#boardSearch').keyup(function() {
+			var word = $('#boardSearch').val();
+			var selected = $('#searchSelect').val();
+			$.ajax({
+				url : "boardSearch.do",
+				method : "post",
+				data : {
+					'word' : word,
+					'selected' : selected			
+				},
+				dataType : "json",
+				success : function(data){
+					var contents = "";
+					$.each(data, function(key,value){
+						contents += "<tr>";
+						contents += "<td width='5%' align=center> <input type='checkbox' name='del_check' value='"+ value.post_no +"'> </td>";
+						contents += "<td width='10%' align=center>" + value.post_no + "</td>";
+						contents += "<td width='40%' align=center>" + value.title + "</td>";
+						contents += "<td width='15%' align=center>" + value.email + "</td>";
+						contents += "<td width='15%' align=center>" + value.reg_dt + "</td>";
+						contents += "<td width='15%' align=center>" + value.view_cnt + "</td>";
+						contents += "</tr>";
+					})
+					$('#boardList').html(contents);
+				}
+			})
+		})
+	})
+
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -66,13 +97,23 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
-			<section class="panel"> <header class="panel-heading">게시글 목록</header>
+			<section class="panel"> <header class="panel-heading">
+			게시글 목록
+			</header>
 			<div class="panel-body">
+						<div class="navbar-form pull-right">
+                            검색   :
+                             <select id="searchSelect" class="input-sm" style="width:80px">
+                                              <option>제목</option>
+                                              <option>작성자</option>
+                                          </select>
+                            
+                            <input class="form-control" placeholder="Search" type="text" id="boardSearch">
+                        </div>
 				<div class="table-borderd">
 					<table class="table" align="center">
 						<thead>
 							<tr>
-
 								<th>
 										<center><input type="checkbox" name="all" onclick="check();"></center>
 								</th>
@@ -83,17 +124,20 @@
 								<th><center>조회수</center></th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="boardList">
 						<%
 							for(User_boardDTO bDTO : bList){
 						%>
 							<tr>
 								<td width="5%" align=center><input type="checkbox" name="del_check" value="<%=CmmUtil.nvl(bDTO.getPost_no())%>"></td>
 								<td width="10%" align=center><%=CmmUtil.nvl(bDTO.getPost_no()) %></td>
+								<td width="40%" align=center><a href="adminBoardDetail.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>"><%=CmmUtil.nvl(bDTO.getTitle())%></a></td>
+								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getEmail())%></td>
 								<td width="30%" align=center><a href="adminBoardDetail.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>"><%=CmmUtil.nvl(bDTO.getTitle())%></a></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getUser_name())%></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getReg_dt()) %></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getView_cnt()) %></td>
+							</tr>
 						<%
 							}
 						%>

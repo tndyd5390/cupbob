@@ -93,4 +93,9 @@ public class UserService implements IUserService {
 				
 	}
 	
+	@Override
+	public List<User_infoDTO> userSearch(User_infoDTO uDTO) throws Exception{
+		return userMapper.userSearch(uDTO);
+	}
+	
 }
