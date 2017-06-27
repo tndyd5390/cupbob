@@ -15,4 +15,6 @@ public interface BoardMapper {
 	public int deleteAdminBoardAllCheck(User_boardDTO bdto) throws Exception;
 	void insertAdminBoard(User_boardDTO bDTO) throws Exception;
 	public void updateViewCNT(User_boardDTO bdto) throws Exception;
+	public List<User_boardDTO> boardTitleSearch(User_boardDTO bDTO) throws Exception;
+	public List<User_boardDTO> boardEmailSearch(User_boardDTO bDTO) throws Exception;
 }

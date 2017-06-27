@@ -218,7 +218,6 @@ function cmtUpdateCancle(){
 		}
 	})
 }
-
 </script>
 
 <title>게시글 상세 보기</title>

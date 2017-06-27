@@ -64,7 +64,7 @@
 							style="width: 400px" style="height:400px">
 						</span>
 						
-						<input type="file" name="prdtimg" id="getfile" accept="image/*" onchange="check()" required="required">
+						<input type="file" name="prdtimg" id="getfile" accept="image/*" onchange="check()">
 						<p class="help-block">현재 이미지 그대로 사용자 화면에 업로드 됩니다.</p>
 					</center>
 					</div>
