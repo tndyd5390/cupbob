@@ -91,7 +91,7 @@
 								<td width="5%" align=center><input type="checkbox" name="del_check" value="<%=CmmUtil.nvl(bDTO.getPost_no())%>"></td>
 								<td width="10%" align=center><%=CmmUtil.nvl(bDTO.getPost_no()) %></td>
 								<td width="30%" align=center><a href="adminBoardDetail.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>"><%=CmmUtil.nvl(bDTO.getTitle())%></a></td>
-								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getReg_user_no())%></td>
+								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getUser_name())%></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getReg_dt()) %></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getView_cnt()) %></td>
 						<%

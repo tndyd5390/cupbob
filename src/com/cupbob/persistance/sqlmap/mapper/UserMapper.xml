@@ -4,7 +4,7 @@
 <mapper namespace="com.cupbob.persistance.mapper.UserMapper">
 
 	<select id="getUserList" resultType="User_infoDTO">
-		SELECT * FROM USER_INFO
+		SELECT USER_NO, USER_NAME, EMAIL, CONTACT_ADDR, DATE_FORMAT(REG_DT,'%Y-%m-%d %T') AS REG_DT FROM USER_INFO
 	</select>
 	
 	<select id="login" resultType="User_infoDTO" parameterType="User_infoDTO">

@@ -9,7 +9,7 @@
 </insert>
 
 <select id="getCommentList" parameterType="Comment_infoDTO" resultType="Comment_infoDTO">
-	SELECT C.CMT_NO, C.CONTENTS, U.USER_NAME, C.POST_NO,C.REG_DT, C.USER_NO FROM USER_INFO U, COMMENT_INFO C WHERE
+	SELECT C.CMT_NO, C.CONTENTS, U.USER_NAME, C.POST_NO, DATE_FORMAT(C.REG_DT, '%Y-%m-%d %T') AS REG_DT, C.USER_NO FROM USER_INFO U, COMMENT_INFO C WHERE
 		 C.USER_NO= U.USER_NO AND C.POST_NO = #{post_no}
 </select>
 

@@ -262,7 +262,7 @@ var updateCheck = false;
 							<th width="10%"><center>작성자</center></th>
 							<th width="15%"><center>
 									<i class="icon_profile"></i>
-									<%=bDTO.getEmail()%>
+									<%=bDTO.getUser_name()%>
 								</center></th>
 							<th width="10%"><center>작성일</center></th>
 							<th width="15%"><center><%=CmmUtil.nvl(bDTO.getReg_dt())%></center></th>
@@ -303,7 +303,7 @@ var updateCheck = false;
 					<div class="activity-body act-in" id="cmtCreateDiv">
 						<div class="text">
 							<p class="attribution">
-								<a href="#">최한용</a> at 4:25pm, 30th Octmber 2014
+								<a href="#"><%=ss_userName %></a>
 							</p>
 							<textarea class="form-control " id="cmts" name="ccomment"
 								rows="4"></textarea>

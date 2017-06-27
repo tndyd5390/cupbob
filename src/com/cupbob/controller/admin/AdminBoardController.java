@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -108,15 +109,18 @@ public class AdminBoardController {
 	}
 
 	@RequestMapping(value = "adminBoardProc", method = RequestMethod.POST)
-	public String adminBoardProc(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception {
+	public String adminBoardProc(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception {
 		log.info(this.getClass() + " adminBoardProc Start !! ");
 		String boardTitle = CmmUtil.nvl(req.getParameter("board_title"));
 		String boardContent = CmmUtil.nvl(req.getParameter("contents"));
+		String user_no = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
 		log.info("boardTitle  :  " + boardTitle);
 		log.info("boardContent  :  " + boardContent);
+		log.info("user_no  :  " + user_no);
 		User_boardDTO bDTO = new User_boardDTO();
 		bDTO.setTitle(boardTitle);
 		bDTO.setContents(boardContent);
+		bDTO.setUser_no(user_no);
 		boardService.insertAdminBoard(bDTO);
 		bDTO = null;
 		log.info(this.getClass() + " adminBoardProc Ent !! ");
