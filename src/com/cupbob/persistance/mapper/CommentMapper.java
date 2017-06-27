@@ -14,4 +14,6 @@ public interface CommentMapper {
 
 	void deleteComment(Comment_infoDTO cDTO) throws Exception;
 
+	void updateComment(Comment_infoDTO cDTO) throws Exception;
+
 }
