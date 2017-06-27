@@ -127,7 +127,10 @@ function cmtDelete(cmt_no){
 		return false;
 	}
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/psytestbranch
 function cmtUpdate(cmt_no,user_name){
 	if(updateCheck==false){
 		var cmtNo = cmt_no;
@@ -179,7 +182,8 @@ function cmtUpdateProc(cmt_no){
 		}
 	}
 }
-
+<<<<<<< HEAD
+=======
 function cmtUpdateCancle(){
 	var pNo = $('#pNo').val();
 	updateCheck = false;
@@ -220,6 +224,51 @@ function cmtUpdateCancle(){
 		}
 	})
 }
+>>>>>>> refs/remotes/origin/psytestbranch
+
+<<<<<<< HEAD
+function cmtUpdateCancle(){
+	var pNo = $('#pNo').val();
+	updateCheck = false;
+	$.ajax({
+		url : 'cmtList.do',
+		method : 'post',
+		data : {"pNo" : pNo},
+		dataType : 'json',
+		success : function(data) {
+			var contents = "";
+			$.each(data,function(key, value) {
+				if(value.user_no==<%=ss_userNo%>){
+					contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
+					contents += "<div class="+"text"+">";
+					contents += "<p class="+"attribution"+">";
+					contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
+					contents += "<div id="+"cmt_"+value.cmt_no+" name="+value.cmt_no+" rows="+"4"+">";
+					contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
+					contents +=	" </div>";
+					contents +=	" </br>";
+					contents += "<button class='btn btn-info btn-sm' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+")>"+"수정"+"</button> ";
+					contents += " <button class='btn btn-info btn-sm' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
+					contents += " </div>";
+					contents += " </div>";
+				}else{
+					contents += "<div class="+"'activity-body act-in'"+" id="+value.cmt_no+">"
+					contents += "<div class="+"text"+">";
+					contents += "<p class="+"attribution"+">";
+					contents += "<a href="+"#"+">"+ value.user_name+ " </a> "+ value.reg_dt+ " </p> ";
+					contents += "<div id="+"cmt_"+value.cmt_no+" name="+value.cmt_no+" rows="+"4"+">";
+					contents += "<span>"+ value.contents.replace(/\n/g,'</br>')+ "</span>";	
+					contents +=	" </div>";
+					contents += " </div>";
+					contents += " </div>";
+				}			
+			$('#cmtList').html(contents);
+			})
+		}
+	})
+}
+=======
+>>>>>>> refs/remotes/origin/psytestbranch
 </script>
 
 <title>게시글 상세 보기</title>

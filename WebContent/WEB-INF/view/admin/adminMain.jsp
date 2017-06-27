@@ -32,7 +32,6 @@
                                  <th><input type="checkbox"></th>
                                  <th><i class="icon_calendar"></i>주문번호</th>
                                  <th><i class="icon_mail_alt"></i>상품명</th>
-                                 <th><i class="icon_pin_alt"></i>옵션</th>
                                  <th><i class="icon_mobile"></i>수량</th>
                                  <th><i class="icon_cogs"></i>수령시간</th>
                                  <th><i class="icon_cogs"></i>접수</th>
@@ -42,75 +41,11 @@
                               </tr>
                               <tr>
                                  <td><input type="checkbox"></td>
-                                 <td>20170001</td>
-                                 <td>불고기컵밥</td>
-                                 <td align="center">-</td>
-                                 <td>1</td>
-                                 <td>13:00</td>         
-                                 <td>
-                                  <div class="btn-group">
-                                      <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
-                                  </div>
-                                  </td>
-                                 <td>
-                                  <div class="btn-group">
-                                      <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                                  </div>
-                                  </td>
-                                 <td>
-                                  <div class="btn-group">
-                                      <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
-                                  </div>
-                                  </td>
-                                  <td>3500</td>
-                              </tr>
-                              <tr>
-                                 <td><input type="checkbox"></td>
-                                 <td>20170002</td>
-                                 <td>김치컵밥</td>
-                                 <td>치즈토핑 1</td>
-                                 <td>1</td>
-                                 <td>13:10</td>	
-                                 <td>
-                                  <div class="btn-group">
-                                      <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
-                                  </div>
-                                  </td>
-                                 <td>
-                                  <div class="btn-group">
-                                      <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                                  </div>
-                                  </td>
-                                 <td>
-                                  <div class="btn-group">
-                                      <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
-                                  </div>
-                                  </td>
-                                  <td>4000</td>
-                              </tr>
-                              <tr>
-                                 <td><input type="checkbox"></td>
-                                 <td>20170003</td>
-                                 <td>불고기컵밥<br>숙주컵밥</td>
-                                 <td align="center">-</td>
-                                 <td>1<br>1</td>
-                                 <td>13:20</td>
-                                 <td>
-                                  <div class="btn-group">
-                                      <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
-                                  </div>
-                                  </td>
-                                 <td>
-                                  <div class="btn-group">
-                                      <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                                  </div>
-                                  </td>
-                                 <td>
-                                  <div class="btn-group">
-                                      <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
-                                  </div>
-                                  </td>
-                                  <td>7000</td>
+                                 <td><%=CmmUtil.nvl(tDTO.getOrd_no()) %></td>
+                                 <td><%=CmmUtil.nvl(tDTO.getUser_name()) %>
+                                 <td><%=CmmUtil.nvl(tDTO.getPrdt_name()) %></td>
+                                 <td><%=CmmUtil.nvl(tDTO.getOrd_amnt()) %></td>
+                                 <td><%=CmmUtil.nvl(tDTO.getUsr_rcv_time()) %></td>         
                               </tr>                           
                            </tbody>
                         </table>
