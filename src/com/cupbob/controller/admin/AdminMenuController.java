@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cupbob.dto.Product_infoDTO;
@@ -212,5 +213,21 @@ public class AdminMenuController {
 		del_check = null;
 		log.info(this.getClass() + ".adminMeneCheckedDelete end!!");
 		return "admin/boardAlert";
+	}
+	@RequestMapping(value="menuSearch")
+	public @ResponseBody List<Product_infoDTO> menuSearch(@RequestParam(value = "word") String word)throws Exception{
+		log.info(this.getClass() + "menuSearch start!!");
+		Product_infoDTO pDTO = new Product_infoDTO();
+		pDTO.setPrdt_name(word);
+		System.out.println(pDTO.getPrdt_name());
+		List<Product_infoDTO> menuList = menuService.menuSearch(pDTO);
+		
+		if(menuList == null){
+			menuList = new ArrayList<Product_infoDTO>();
+		}
+		
+		log.info(this.getClass() + "menuSearch end!!");
+		return menuList;
+		
 	}
 }
