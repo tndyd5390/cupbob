@@ -33,13 +33,6 @@
     <link href="adminBootstrap/css/style-responsive.css" rel="stylesheet" />
 	<link href="adminBootstrap/css/xcharts.min.css" rel=" stylesheet">	
 	<link href="adminBootstrap/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
-    <!-- =======================================================
-        Theme Name: NiceAdmin
-        Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-        Author: BootstrapMade
-        Author URL: https://bootstrapmade.com
-    ======================================================= -->
-    <!-- <link href="adminBootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="adminBootstrap/vendor/morrisjs/morris.css" rel="stylesheet">
  	<title>분석 차트</title>
   </head>
@@ -144,83 +137,22 @@
     <script src="adminBootstrap/vendor/morrisjs/morris.min.js"></script>
     <script>
     $(function() {
-
-    	Morris.Area({
-            element: 'morris-area-chart',
-            data: [{
-                period: '2010 Q1',
-                        불고기: 3502,
-                        김치: 2421,
-                        숙주: 6142
-            }, {
-                period: '2010 Q2',
-               	불고기: 3501,
-                        김치: 1235,
-               	숙주: 1457
-            }, {
-                period: '2010 Q3',
-                        불고기: 4912,
-               	김치: 1969,
-                        숙주: 2501
-            }, {
-                period: '2010 Q4',
-                        불고기: 3767,
-                        김치: 3597,
-                        숙주: 5689
-            }, {
-                period: '2011 Q1',
-               	불고기: 6810,
-                        김치: 1914,
-                        숙주: 2293
-            }, {
-                period: '2011 Q2',
-                        불고기: 5670,
-                        김치: 4293,
-                        숙주: 1881
-            }, {
-                period: '2011 Q3',
-                        불고기: 4820,
-                        김치: 3795,
-                        숙주: 1588
-            }, {
-                period: '2011 Q4',
-                        불고기: 15073,
-                        김치: 5967,
-                        숙주: 5175
-            }, {
-                period: '2012 Q1',
-                        불고기: 10687,
-                        김치: 4460,
-                        숙주: 2028
-            }, {
-                period: '2012 Q2',
-                        불고기: 8432,
-                        김치: 5713,
-                        숙주: 1791
-            }],
-            xkey: 'period',
-            ykeys: ['불고기', '김치', '숙주'],
-            labels: ['불고기', '김치', '숙주'],
-            pointSize: 2,
-            hideHover: 'auto',
-            resize: true
-        });
-
-        Morris.Donut({
-            element: 'morris-donut-chart',
-            data: [{
-                label: "불고기 컵밥",
-                value: 42
-            }, {
-                label: "김치 컵밥",
-                value: 30
-            }, {
-                label: "숙주 컵밥",
-                value: 25
-            }],
-            resize: true
-        });
-
+			$.ajax({
+				url : "monthChart.do",
+				method : "post",
+				dataType : "json",
+				success : function(data){
+					var ddata = JSON.stringify(data);
+					ddata = ddata.replace(/prdt_name/g,'label');
+					ddata = ddata.replace(/count/g,'value');
+					console.log(ddata)
+					Morris.Donut({
+						element : 'morris-donut-chart',
+						data : [{"label":"불고기 컵밥","value":"3"},{"label":"숙주 컵밥","value":"2"}]
+					});				
+				}
+			})
+			
         Morris.Bar({
             element: 'morris-bar-chart',
             data: [{

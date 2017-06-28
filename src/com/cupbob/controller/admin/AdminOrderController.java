@@ -56,12 +56,4 @@ public class AdminOrderController {
 		log.info("order test");
 		return "admin/adminMain";
 	}
-	@RequestMapping(value="adminChart")
-	public String getChart(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
-		
-		log.info("chList start");
-		
-		log.info("chList end");
-		return "admin/adminChart";
-	}
 }

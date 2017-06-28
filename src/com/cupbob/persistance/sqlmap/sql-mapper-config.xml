@@ -13,5 +13,6 @@
 		<typeAlias type="com.cupbob.dto.User_infoDTO" alias="User_infoDTO"/>
 		<typeAlias type="com.cupbob.dto.TotalOrderInfoDTO" alias="TotalOrderInfoDTO"/>
 		<typeAlias type="com.cupbob.dto.TotalOrderItemDTO" alias="TotalOrderItemDTO"/>
+		<typeAlias type="com.cupbob.dto.Chart_DTO" alias="Chart_DTO"/>
     </typeAliases>
 </configuration>

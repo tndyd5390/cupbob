@@ -376,6 +376,8 @@ function cmtUpdateCancle(){
 						}
 					%>
 				</div>
+				</div>
+						
 			</section>
 		</div>
 	</section> <!-- page end--> </section>
