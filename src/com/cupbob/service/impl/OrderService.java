@@ -1,7 +1,11 @@
 package com.cupbob.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import com.cupbob.dto.TotalOrderDTO;
@@ -24,14 +28,11 @@ public class OrderService implements IOrderService {
 			String prdtName = "";
 			String ordAmnt = "";
 			int price = 0;
-			for(int i = 0; i< tItemList.size()-2;i++){
+			for(int i = 0; i< tItemList.size();i++){
 				prdtName += tItemList.get(i).getPrdt_name() + "</br>";
 				ordAmnt += tItemList.get(i).getOrd_amnt() + "</br>";
-				price += Integer.parseInt(tItemList.get(i).getPrdt_price());
+				price += Integer.parseInt(tItemList.get(i).getPrdt_price()) * Integer.parseInt(tItemList.get(i).getOrd_amnt());
 			}
-			prdtName += tItemList.get(tItemList.size()-1).getPrdt_name();
-			ordAmnt += tItemList.get(tItemList.size()-1).getOrd_amnt();
-			price += Integer.parseInt(tItemList.get(tItemList.size()-1).getPrdt_price());
 			tDTO.setOrd_no(oDTO.getOrd_no());
 			tDTO.setTotal_ord_price(oDTO.getTotal_ord_price());
 			tDTO.setPayment_tp(oDTO.getPayment_tp());
@@ -49,6 +50,16 @@ public class OrderService implements IOrderService {
 			totalList.add(tDTO);
 		}
 		return totalList;
+	}
+
+	@Override
+	public List<TotalOrderDTO> updateAdminOrdNo(String ordNo, String statNo) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("ordNo", ordNo);
+		map.put("statNo", statNo);
+		orderMapper.updateAdminOrderProc(map);
+		List<TotalOrderDTO> oList = getTotalOrderDTO();
+		return oList;
 	}
 	
 }

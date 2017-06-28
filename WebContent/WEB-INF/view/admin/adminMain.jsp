@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>실시간 주문 목록</title>
 <script type="text/javascript">
-	$(function(){
+	 $(function(){
 		timer = setInterval( function () {
 			var contents = "";
 			$.ajax ({
@@ -26,12 +26,11 @@
 							contents += "<td>" + value.ord_no + "</td>";
 							contents += "<td>" + value.user_name + "</td>";
 							contents += "<td>" + value.prdt_name + "</td>";
-							contents += "<td align=\"center\"> </td>"
 							contents += "<td>" + value.ord_amnt + "</td>";
 							contents += "<td>" + value.usr_rcv_time + "</td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary\" href=\"#\">접수하기</button></div></td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success\" href=\"#\">조리 완료</button></div></td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger\" href=\"#\">수령 완료</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary\" onclick=\"orderProc("+ value.ord_no + ",2)\">접수하기</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success\" onclick=\"takeFirst()\">조리 완료</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
 							contents += "<td>" + value.prdt_price + "</td>";
 							contents += "</tr>"
 							$('#interval').html(contents);
@@ -41,12 +40,11 @@
 							contents += "<td>" + value.ord_no + "</td>";
 							contents += "<td>" + value.user_name + "</td>";
 							contents += "<td>" + value.prdt_name + "</td>";
-							contents += "<td align=\"center\"> </td>"
 							contents += "<td>" + value.ord_amnt + "</td>";
 							contents += "<td>" + value.usr_rcv_time + "</td>";
 							contents += "<td>접수 완료</td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success\" href=\"#\">조리 완료</button></div></td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger\" href=\"#\">수령 완료</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
 							contents += "<td>" + value.prdt_price + "</td>";
 							contents += "</tr>"
 							$('#interval').html(contents);
@@ -56,12 +54,11 @@
 							contents += "<td>" + value.ord_no + "</td>";
 							contents += "<td>" + value.user_name + "</td>";
 							contents += "<td>" + value.prdt_name + "</td>";
-							contents += "<td align=\"center\"> </td>"
 							contents += "<td>" + value.ord_amnt + "</td>";
 							contents += "<td>" + value.usr_rcv_time + "</td>";
 							contents += "<td>접수 완료</td>";
 							contents += "<td>조리 완료</td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger\" href=\"#\">수령 완료</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
 							contents += "<td>" + value.prdt_price + "</td>";
 							contents += "</tr>"
 							$('#interval').html(contents);
@@ -87,6 +84,17 @@
 			});
 		}, 5000);
 	})
+	function orderProc(ordNo, statNo){
+		 location.href="adminOrderProc.do?" + "ordNo=" + ordNo + "&statNo=" + statNo;
+	}
+	function takeFirst(){
+		 console.log("orderFirst");
+		 alert("접수를 먼저 해야 가능합니다.");
+	}
+	function cookFirst(){
+		console.log("cookFirst");
+		alert("조리완료를 먼저 해야 가능합니다.");
+	} 
 </script>
 </head>
 <body>
@@ -124,29 +132,58 @@
                               </tr>
 							</thead>
                            <tbody id="interval">
-                              <%for(TotalOrderDTO tDTO : tList){ %>
+                              <%for(TotalOrderDTO tDTO : tList){
+                            	  String ordStat = CmmUtil.nvl(tDTO.getOrd_stat());%>
                               <tr>
                                  <td><input type="checkbox"></td>
                                  <td><%=CmmUtil.nvl(tDTO.getOrd_no()) %></td>
                                  <td><%=CmmUtil.nvl(tDTO.getUser_name()) %>
                                  <td><%=CmmUtil.nvl(tDTO.getPrdt_name()) %></td>
                                  <td><%=CmmUtil.nvl(tDTO.getOrd_amnt()) %></td>
-                                 <td><%=CmmUtil.nvl(tDTO.getUsr_rcv_time()) %></td>         
-                                 <td>
-                                  <div class="btn-group">
-                                      <button class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></button>
-                                  </div>
-                                  </td>
-                                 <td>
-                                  <div class="btn-group">
-                                      <button class="btn btn-success" href="#"><i class="icon_check_alt2"></i></button>
-                                  </div>
-                                  </td>
-                                 <td>
-                                  <div class="btn-group">
-                                      <button class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></button>
-                                  </div>
-                                  </td>
+                                 <td><%=CmmUtil.nvl(tDTO.getUsr_rcv_time()) %></td>
+                                 <%if(ordStat.equals("1")){ %>         
+		                           		<td>
+			                                <div class="btn-group">
+			                                    <button class="btn btn-primary" onclick="orderProc(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 2);">접수 하기</button>
+			                                </div>
+		                                </td>
+		                                <td>
+		                                	<div class="btn-group">
+		                                    	<button class="btn btn-success" onclick="takeFirst();">조리 완료</button>
+		                                	</div>
+		                                </td>
+		                                <td>
+			                                <div class="btn-group">
+			                                    <button class="btn btn-danger" onclick="cookFirst();">수령 완료</button>
+			                                </div>
+		                                </td>
+                                  <%} else if(ordStat.equals("2")){ %>
+                                 		<td>
+			                                	접수완료
+		                                </td>
+		                                <td>
+		                                	<div class="btn-group">
+		                                    	<button class="btn btn-success" onclick="orderProc(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 3);">조리 완료</button>
+		                                	</div>
+		                                </td>
+		                                <td>
+			                                <div class="btn-group">
+			                                    <button class="btn btn-danger" onclick="cookFirst();">수령 완료</button>
+			                                </div>
+		                                </td> 
+                                  <%} else {%>
+                                  		<td>
+			                                 	접수완료
+		                                </td>
+		                                <td>
+		                                		조리 완료
+		                                </td>
+		                                <td>
+			                                <div class="btn-group">
+			                                    <button class="btn btn-danger" onclick="orderProc(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 4);">수령 완료</button>
+			                                </div>
+		                                </td> 
+                                  <%} %>
                                   <td><%=CmmUtil.nvl(tDTO.getPrdt_price())%></td>
                               </tr>
                               <%} %>
