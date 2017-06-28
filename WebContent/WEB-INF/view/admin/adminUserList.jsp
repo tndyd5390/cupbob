@@ -71,9 +71,9 @@
 																		contents += "<td>"
 																				+ value.user_no
 																				+ "</td>"
-																		contents += "<td>"
+																		contents += "<td> <a href='adminUserDetail.do?unum=" + value.user_no + "'>" 
 																				+ value.email
-																				+ "</td>"
+																				+ "</a> </td>"
 																		contents += "<td>"
 																				+ value.user_name
 																				+ "</td>"
