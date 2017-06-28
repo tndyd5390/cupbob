@@ -49,7 +49,6 @@
 		$('#boardSearch').keyup(function() {
 			var word = $('#boardSearch').val();
 			var selected = $('#searchSelect').val();
-			if(word != ""){
 				$.ajax({
 					url : "boardSearch.do",
 					method : "post",
@@ -73,7 +72,6 @@
 						$('#boardList').html(contents);
 					}
 				})
-			}
 		})
 	})
 

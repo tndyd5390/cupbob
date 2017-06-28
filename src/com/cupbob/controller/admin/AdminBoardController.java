@@ -200,17 +200,23 @@ public class AdminBoardController {
 		
 		User_boardDTO bDTO = new User_boardDTO();
 		
-		if(selected.equals("제목")){
-			bDTO.setTitle(word);
-			log.info(bDTO.getTitle());
-			List <User_boardDTO> boardTitleSearch = boardService.boardTitleSearch(bDTO);
-			log.info(boardTitleSearch.size());
-			return boardTitleSearch;
-		}else if(selected.equals("작성자")){
-			bDTO.setUser_name(word);
-			log.info(bDTO.getUser_name());
-			List <User_boardDTO> boardEmailSearch = boardService.boardNameSearch(bDTO); 
-			return boardEmailSearch;
+		if(word.length() == 0){
+			log.info(this.getClass().getName() + "공백 일 때");
+			List <User_boardDTO> boardList = boardService.getAdminBoardList();
+			return boardList;
+		}else{
+			if(selected.equals("제목")){
+				bDTO.setTitle(word);
+				log.info(bDTO.getTitle());
+				List <User_boardDTO> boardTitleSearch = boardService.boardTitleSearch(bDTO);
+				log.info(boardTitleSearch.size());
+				return boardTitleSearch;
+			}else if(selected.equals("작성자")){
+				bDTO.setUser_name(word);
+				log.info(bDTO.getUser_name());
+				List <User_boardDTO> boardNameSearch = boardService.boardNameSearch(bDTO); 
+				return boardNameSearch;
+			}
 		}
 		
 		List<User_boardDTO> boardList = new ArrayList<User_boardDTO>(); 
