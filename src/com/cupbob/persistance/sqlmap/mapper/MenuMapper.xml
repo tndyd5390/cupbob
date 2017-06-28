@@ -52,4 +52,8 @@
 		<foreach item="prdt_no" index="index" collection="allCheck"
 			open="(" separator="," close=")">#{prdt_no}</foreach>
 	</delete>
+	<select id="menuSearch" resultType="Product_infoDTO" parameterType="Product_infoDTO">
+		SELECT * FROM PRODUCT_INFO WHERE PRDT_NAME = #{prdt_name} 
+	</select>
+	
 </mapper>

@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 <!-- 아이디찾기 결과 -->
 <%
-	if (email == "") {
+	if (email.equals("")) {
 %>
 	<script>
 		alert("해당하는 아이디가 없습니다.");

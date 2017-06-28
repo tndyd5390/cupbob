@@ -1,7 +1,6 @@
 package com.cupbob.service.impl;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -91,5 +90,11 @@ public class MenuService implements IMenuService{
 			result = true;
 		}
 		return result;
+	}
+
+	@Override
+	public List<Product_infoDTO> menuSearch(Product_infoDTO pDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return menuMapper.menuSearch(pDTO);
 	}
 }
