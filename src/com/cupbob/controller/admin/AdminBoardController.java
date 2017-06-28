@@ -223,7 +223,7 @@ public class AdminBoardController {
 				}
 				log.info(this.getClass().getName() + "boardSearch END !!");
 				return boardList;
-			}else if(selected.equals("내용")){
+			}else{
 				bDTO.setContents(word);
 				List<User_boardDTO> boardList = boardService.boardContentSearch(bDTO);
 				if(boardList == null) {
@@ -233,6 +233,5 @@ public class AdminBoardController {
 				return boardList;
 			}
 		}
-		return null;
 	}
 }
