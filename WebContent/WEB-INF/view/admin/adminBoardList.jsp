@@ -49,29 +49,31 @@
 		$('#boardSearch').keyup(function() {
 			var word = $('#boardSearch').val();
 			var selected = $('#searchSelect').val();
-			$.ajax({
-				url : "boardSearch.do",
-				method : "post",
-				data : {
-					'word' : word,
-					'selected' : selected			
-				},
-				dataType : "json",
-				success : function(data){
-					var contents = "";
-					$.each(data, function(key,value){
-						contents += "<tr>";
-						contents += "<td width='5%' align=center> <input type='checkbox' name='del_check' value='"+ value.post_no +"'> </td>";
-						contents += "<td width='10%' align=center>" + value.post_no + "</td>";
-						contents += "<td width='40%' align=center>" + value.title + "</td>";
-						contents += "<td width='15%' align=center>" + value.email + "</td>";
-						contents += "<td width='15%' align=center>" + value.reg_dt + "</td>";
-						contents += "<td width='15%' align=center>" + value.view_cnt + "</td>";
-						contents += "</tr>";
-					})
-					$('#boardList').html(contents);
-				}
-			})
+			if(word != ""){
+				$.ajax({
+					url : "boardSearch.do",
+					method : "post",
+					data : {
+						'word' : word,
+						'selected' : selected			
+					},
+					dataType : "json",
+					success : function(data){
+						var contents = "";
+						$.each(data, function(key,value){
+							contents += "<tr>";
+							contents += "<td width='5%' align=center> <input type='checkbox' name='del_check' value='"+ value.post_no +"'> </td>";
+							contents += "<td width='10%' align=center>" + value.post_no + "</td>";
+							contents += "<td width='40%' align=center> <a href='adminBoardDetail.do?bnum=" + value.post_no + "'>" + value.title + "</a> </td>";
+							contents += "<td width='15%' align=center>" + value.user_name + "</td>";
+							contents += "<td width='15%' align=center>" + value.reg_dt + "</td>";
+							contents += "<td width='15%' align=center>" + value.view_cnt + "</td>";
+							contents += "</tr>";
+						})
+						$('#boardList').html(contents);
+					}
+				})
+			}
 		})
 	})
 

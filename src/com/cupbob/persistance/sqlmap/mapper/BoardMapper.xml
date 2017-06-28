@@ -71,9 +71,9 @@
 	</delete>
 	
 	<select id="boardTitleSearch" parameterType="User_boardDTO" resultType="User_boardDTO">
-		SELECT * FROM USER_BOARD WHERE TITLE = #{title}
+		SELECT * FROM USER_INFO U, USER_BOARD B WHERE U.USER_NO = B.USER_NO AND B.TITLE = #{title}
 	</select>
-	<select id="boardEmailSearch" parameterType="User_boardDTO" resultType="User_boardDTO">
-		SELECT * FROM USER_INFO U, USER_BOARD B WHERE U.USER_NO = B.USER_NO AND U.EMAIL = #{email}
+	<select id="boardNameSearch" parameterType="User_boardDTO" resultType="User_boardDTO">
+		SELECT * FROM USER_INFO U, USER_BOARD B WHERE U.USER_NO = B.USER_NO AND U.USER_NAME = #{user_name}
 	</select>
 </mapper>

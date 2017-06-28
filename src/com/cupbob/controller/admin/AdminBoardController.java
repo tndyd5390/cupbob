@@ -207,9 +207,9 @@ public class AdminBoardController {
 			log.info(boardTitleSearch.size());
 			return boardTitleSearch;
 		}else if(selected.equals("작성자")){
-			bDTO.setEmail(word);
-			log.info(bDTO.getEmail());
-			List <User_boardDTO> boardEmailSearch = boardService.boardEmailSearch(bDTO); 
+			bDTO.setUser_name(word);
+			log.info(bDTO.getUser_name());
+			List <User_boardDTO> boardEmailSearch = boardService.boardNameSearch(bDTO); 
 			return boardEmailSearch;
 		}
 		
