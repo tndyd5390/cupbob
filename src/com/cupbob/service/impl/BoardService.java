@@ -56,5 +56,9 @@ public class BoardService implements IBoardService {
 	public List<User_boardDTO> boardNameSearch(User_boardDTO bDTO) throws Exception{
 		return boardMapper.boardNameSearch(bDTO);
 	}
+	@Override
+	public List<User_boardDTO> boardContentSearch(User_boardDTO bDTO) throws Exception{
+		return boardMapper.boardContentSearch(bDTO);
+	}
 	
 }

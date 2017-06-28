@@ -44,7 +44,6 @@
 			alert("선택된 것이 없습니다.");
 		}
 	}
-	
 	$(function (){
 		$('#boardSearch').keyup(function() {
 			var word = $('#boardSearch').val();
@@ -74,7 +73,6 @@
 				})
 		})
 	})
-
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -99,17 +97,18 @@
 		<div class="col-lg-12">
 			<section class="panel"> <header class="panel-heading">
 			게시글 목록
-			</header>
-			<div class="panel-body">
 						<div class="navbar-form pull-right">
                             검색   :
                              <select id="searchSelect" class="input-sm" style="width:80px">
                                               <option>제목</option>
                                               <option>작성자</option>
+                                              <option>내용</option>
                                           </select>
                             
                             <input class="form-control" placeholder="Search" type="text" id="boardSearch">
                         </div>
+			</header>
+			<div class="panel-body">
 				<div class="table-borderd">
 					<table class="table" align="center">
 						<thead>

@@ -208,24 +208,31 @@ public class AdminBoardController {
 			if(selected.equals("제목")){
 				bDTO.setTitle(word);
 				log.info(bDTO.getTitle());
-				List <User_boardDTO> boardTitleSearch = boardService.boardTitleSearch(bDTO);
-				log.info(boardTitleSearch.size());
-				return boardTitleSearch;
+				List <User_boardDTO> boardList = boardService.boardTitleSearch(bDTO);
+				if(boardList == null) {
+					boardList = new ArrayList<User_boardDTO>();
+				}
+				log.info(this.getClass().getName() + "boardSearch END !!");
+				return boardList;
 			}else if(selected.equals("작성자")){
 				bDTO.setUser_name(word);
 				log.info(bDTO.getUser_name());
-				List <User_boardDTO> boardNameSearch = boardService.boardNameSearch(bDTO); 
-				return boardNameSearch;
+				List <User_boardDTO> boardList = boardService.boardNameSearch(bDTO); 
+				if(boardList == null) {
+					boardList = new ArrayList<User_boardDTO>();
+				}
+				log.info(this.getClass().getName() + "boardSearch END !!");
+				return boardList;
+			}else if(selected.equals("내용")){
+				bDTO.setContents(word);
+				List<User_boardDTO> boardList = boardService.boardContentSearch(bDTO);
+				if(boardList == null) {
+					boardList = new ArrayList<User_boardDTO>();
+				}
+				log.info(this.getClass().getName() + "boardSearch END !!");
+				return boardList;
 			}
 		}
-		
-		List<User_boardDTO> boardList = new ArrayList<User_boardDTO>(); 
-		
-		if(boardList == null) {
-			boardList = new ArrayList<User_boardDTO>();
-		}
-		log.info(this.getClass().getName() + "boardSearch END !!");
-		
-		return boardList;
+		return null;
 	}
 }

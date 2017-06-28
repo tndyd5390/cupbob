@@ -13,4 +13,5 @@ public interface IBoardService {
 	public boolean deleteAdminAllCheck(User_boardDTO bdto) throws Exception;
 	public List<User_boardDTO> boardTitleSearch(User_boardDTO bDTO) throws Exception;
 	public List<User_boardDTO> boardNameSearch(User_boardDTO bDTO) throws Exception;
+	public List<User_boardDTO> boardContentSearch(User_boardDTO bDTO) throws Exception;
 }
