@@ -16,7 +16,8 @@
   		FROM USER_INFO UI,
        		ORDER_INFO OI       
  		WHERE OI.ORD_NO = OI.ORD_NO
-   			AND UI.USER_NO = OI.USER_NO;
+   			AND UI.USER_NO = OI.USER_NO
+   			AND OI.ORD_STAT <![CDATA[ < ]]> 4;
 	</select>
 	<select id="getTotalOrderItemList" resultType="TotalOrderItemDTO" parameterType="String">
 		SELECT PI.PRDT_NAME,
@@ -25,8 +26,11 @@
   		FROM ORDER_INFO OI,
        		ORDER_ITEM OT,
        		PRODUCT_INFO PI
- 		WHERE OT.ORD_NO = '1'
+ 		WHERE OT.ORD_NO = OI.ORD_NO
    			AND OI.ORD_NO = #{orderNo}
    			AND OT.PRDT_NO = PI.PRDT_NO;
 	</select>
+	<update id="updateAdminOrderProc" parameterType="hashMap">
+		UPDATE ORDER_INFO SET ORD_STAT = #{statNo} WHERE ORD_NO = #{ordNo}
+	</update>
 </mapper>
