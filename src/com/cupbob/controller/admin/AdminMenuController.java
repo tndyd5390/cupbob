@@ -219,7 +219,6 @@ public class AdminMenuController {
 		log.info(this.getClass() + "menuSearch start!!");
 		Product_infoDTO pDTO = new Product_infoDTO();
 		pDTO.setPrdt_name(word);
-		System.out.println(pDTO.getPrdt_name());
 		List<Product_infoDTO> menuList = menuService.menuSearch(pDTO);
 		
 		if(menuList == null){
