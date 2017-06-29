@@ -142,18 +142,47 @@
 				method : "post",
 				dataType : "json",
 				success : function(data){
-					var ddata = JSON.stringify(data);
-					ddata = ddata.replace(/prdt_name/g,'label');
-					ddata = ddata.replace(/count/g,'value');
-					console.log(ddata)
+					var dt = "";
+					var arr = new Array();
+					$.each(data, function(key,value){
+						dt = {'label' : value.prdt_name, 'value' : value.count}
+						arr.push(dt)
+					});
 					Morris.Donut({
 						element : 'morris-donut-chart',
-						data : [{"label":"불고기 컵밥","value":"3"},{"label":"숙주 컵밥","value":"2"}]
+						data : arr
 					});				
 				}
 			})
 			
-        Morris.Bar({
+			$.ajax({
+				url : "monthChart.do",
+				method : "post",
+				dataType : "json",
+				success : function(data){
+					var dt = "";
+					var arr = new Array();
+					$.each(data, function(key, value){
+						dt = {'y' : value.reg_dt, 'a' : value.prdt_name, 'b' : value.count}
+						arr.push(dt)
+					});
+					console.log(JSON.stringify(arr))
+					Morris.Line({
+						element : 'morris-area-chart',
+						data : arr,
+						xkey: 'y',
+						ykey: ['a', 'b'],
+						labels:['a' , 'b'],
+						hideHover : 'auto',
+						resize : true
+					});
+				}
+				
+			})
+			
+			
+			
+			Morris.Bar({
             element: 'morris-bar-chart',
             data: [{
                 y: '2017.06.01',
