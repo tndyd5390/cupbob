@@ -217,17 +217,22 @@ public class AdminMenuController {
 	@RequestMapping(value="menuSearch")
 	public @ResponseBody List<Product_infoDTO> menuSearch(@RequestParam(value = "word") String word)throws Exception{
 		log.info(this.getClass() + "menuSearch start!!");
-		Product_infoDTO pDTO = new Product_infoDTO();
-		pDTO.setPrdt_name(word);
-		System.out.println(pDTO.getPrdt_name());
-		List<Product_infoDTO> menuList = menuService.menuSearch(pDTO);
 		
-		if(menuList == null){
-			menuList = new ArrayList<Product_infoDTO>();
+		if(word.length() == 0){
+			List<Product_infoDTO> menuList = menuService.getAdminMenuList();
+			return menuList;
+		}else{
+			Product_infoDTO pDTO = new Product_infoDTO();
+			pDTO.setPrdt_name(word);
+			System.out.println(pDTO.getPrdt_name());
+			List<Product_infoDTO> menuList = menuService.menuSearch(pDTO);
+			
+			if(menuList == null){
+				menuList = new ArrayList<Product_infoDTO>();
+			}
+			
+			log.info(this.getClass() + "menuSearch end!!");
+			return menuList;
 		}
-		
-		log.info(this.getClass() + "menuSearch end!!");
-		return menuList;
-		
 	}
 }
