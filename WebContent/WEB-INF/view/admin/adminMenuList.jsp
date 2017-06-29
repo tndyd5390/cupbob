@@ -61,7 +61,7 @@
 						contents += "<td><a href=adminMenuDetail.do?pnum="+value.prdt_no+">"+value.prdt_name+"</a></td>";
 						contents += "<td>"+value.prdt_price+"</td>";
 						contents += "<td>"+value.prdt_kcal+"</td>";
-						contents += "<td>"+value.prdt_dt+"</td>";
+						contents += "<td>"+value.reg_dt+"</td>";
 						contents += "</tr>";
 					})
 					$('#menuList').html(contents);
