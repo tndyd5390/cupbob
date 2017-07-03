@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<%@include file="/include/head.jsp"%>
 <script type="text/javascript">
 	function doSubmit(){
 		console.log("dosubmit");
@@ -21,6 +20,7 @@
 	}
 </script>
 <head>
+<%@include file="/include/head.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글 등록</title>
 </head>

@@ -1,4 +1,3 @@
-<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
@@ -29,6 +28,7 @@
     <link href="adminBootstrap/css/style-responsive.css" rel="stylesheet" />
 	<link href="adminBootstrap/css/xcharts.min.css" rel=" stylesheet">	
 	<link href="adminBootstrap/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+	 <link href="adminBootstrap/vendor/morrisjs/morris.css" rel="stylesheet">
     <!-- =======================================================
         Theme Name: NiceAdmin
         Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -36,4 +36,3 @@
         Author URL: https://bootstrapmade.com
     ======================================================= -->
     <script src="//code.jquery.com/jquery.min.js"></script>
-  </head>
