@@ -1,9 +1,13 @@
 package com.cupbob.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,6 +17,7 @@ import com.cupbob.dto.TotalOrderInfoDTO;
 import com.cupbob.dto.TotalOrderItemDTO;
 import com.cupbob.persistance.mapper.OrderMapper;
 import com.cupbob.service.IOrderService;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers.CalendarDeserializer;
 @Service("OrderService")
 public class OrderService implements IOrderService {
 	@Resource(name="OrderMapper")
@@ -47,6 +52,25 @@ public class OrderService implements IOrderService {
 			tDTO.setPrdt_name(prdtName);
 			tDTO.setPrdt_price(price + "");
 			tDTO.setOrd_amnt(ordAmnt);
+			//====================================
+			//남은 시간 세팅
+			Calendar c = Calendar.getInstance();
+			String tmp = "";
+			tmp += String.valueOf(c.get(Calendar.YEAR));
+			tmp += "-" + String.valueOf(c.get(Calendar.MONDAY) + 1);
+			tmp += "-" + String.valueOf(c.get(Calendar.DATE));
+			tmp += " " + tDTO.getUsr_rcv_time() + ":00";
+			System.out.println("tmp : " + tmp);
+			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.KOREA);
+			String now = sf.format(new Date());
+			Date order = sf.parse(tmp);
+			Date nowTime = sf.parse(now);
+			System.out.println("order : " + order.getHours()); 
+			long duration = order.getTime() - nowTime.getTime();
+			long sec = duration/1000%60;
+			long min = duration/60000;
+			System.out.println("duration: " + duration + ", min : " + (duration/60000));
+			tDTO.setOrd_remainTime(min + ":" + sec);
 			totalList.add(tDTO);
 		}
 		return totalList;
