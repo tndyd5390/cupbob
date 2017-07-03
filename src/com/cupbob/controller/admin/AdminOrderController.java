@@ -69,6 +69,25 @@ public class AdminOrderController {
 		return "admin/adminMain";
 	}
 	
+	@RequestMapping(value="adminOrderCancel", method=RequestMethod.GET)
+	public String adminOrderCancel(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() +  ".adminOrderCancel start!!");
+		String ordNo = req.getParameter("ordNo");
+		log.info(this.getClass() + ".adminOrderCancel  ordNo : " + ordNo);
+		String statNo = req.getParameter("statNo");
+		log.info(this.getClass() + ".adminOrderCancel statNo : " + statNo);
+		List<TotalOrderDTO> tList = orderService.updateAdminOrdNo(ordNo, statNo);
+		if(tList == null){
+			tList = new ArrayList<TotalOrderDTO>();
+		}
+		model.addAttribute("TotalOrderList", tList);
+		ordNo = null;
+		statNo = null;
+		tList = null;
+		log.info(this.getClass() +  ".adminOrderCancel end!!");
+		return "admin/adminMain";
+	}
+	
 	@RequestMapping(value = "orderView")
 	public String orderView(HttpServletRequest request, HttpServletResponse response, Model model){
 		

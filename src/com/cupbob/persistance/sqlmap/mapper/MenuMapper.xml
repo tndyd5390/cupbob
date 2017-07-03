@@ -53,7 +53,7 @@
 			open="(" separator="," close=")">#{prdt_no}</foreach>
 	</delete>
 	<select id="menuSearch" resultType="Product_infoDTO" parameterType="Product_infoDTO">
-		SELECT * FROM PRODUCT_INFO WHERE PRDT_NAME = #{prdt_name} 
+		SELECT * FROM PRODUCT_INFO WHERE PRDT_NAME LIKE CONCAT('%', #{prdt_name}, '%')  
 	</select>
 	
 </mapper>

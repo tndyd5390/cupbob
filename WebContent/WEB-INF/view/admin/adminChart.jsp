@@ -145,8 +145,6 @@
 				
 			})
 			
-			
-			
 			Morris.Bar({
             element: 'morris-bar-chart',
             data: [{

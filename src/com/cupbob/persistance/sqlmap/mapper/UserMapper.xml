@@ -69,7 +69,7 @@
 		UPDATE USER_INFO SET PASSWORD=#{temp_pw} WHERE USER_NAME=#{user_name} AND EMAIL=#{email} AND BIRTHDAY=#{birthday}
 	</update>
 	<select id="userSearch" resultType="User_infoDTO" parameterType="User_InfoDTO">
-		SELECT * FROM USER_INFO WHERE EMAIL = #{email} OR USER_NAME = #{user_name}
+		SELECT * FROM USER_INFO WHERE EMAIL LIKE CONCAT('%', #{email}, '%') OR USER_NAME LIKE CONCAT('%', #{user_name}, '%')  
 	</select>
 	
 </mapper> 
