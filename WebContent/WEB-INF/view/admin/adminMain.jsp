@@ -5,7 +5,6 @@
 <%
 	List<TotalOrderDTO> tList = (List<TotalOrderDTO>)request.getAttribute("TotalOrderList");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@include file="/include/head.jsp"%>
 <head>
@@ -22,43 +21,46 @@
 					$.each(data, function(key, value){
 						if(value.ord_stat == 1){
 							contents += "<tr>"
-							contents += "<td><input type=\"checkbox\"></td>";
 							contents += "<td>" + value.ord_no + "</td>";
 							contents += "<td>" + value.user_name + "</td>";
 							contents += "<td>" + value.prdt_name + "</td>";
 							contents += "<td>" + value.ord_amnt + "</td>";
 							contents += "<td>" + value.usr_rcv_time + "</td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary\" onclick=\"orderProc("+ value.ord_no + ",2)\">접수하기</button></div></td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success\" onclick=\"takeFirst()\">조리 완료</button></div></td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
+							contents +=  "<td>" +  value.ord_remainTime + "</td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary\" onclick=\"orderProc("+ value.ord_no + ",2);\">접수하기</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success\" onclick=\"takeFirst();\">조리 완료</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning\" onclick=\"cookFirst();\">수령 완료</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
 							contents += "<td>" + value.prdt_price + "</td>";
 							contents += "</tr>"
 							$('#interval').html(contents);
 						}else if(value.ord_stat == 2){
 							contents += "<tr>"
-							contents += "<td><input type=\"checkbox\"></td>";
 							contents += "<td>" + value.ord_no + "</td>";
 							contents += "<td>" + value.user_name + "</td>";
 							contents += "<td>" + value.prdt_name + "</td>";
 							contents += "<td>" + value.ord_amnt + "</td>";
 							contents += "<td>" + value.usr_rcv_time + "</td>";
+							contents +=  "<td>" +  value.ord_remainTime + "</td>";
 							contents += "<td>접수 완료</td>";
 							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
 							contents += "<td>" + value.prdt_price + "</td>";
 							contents += "</tr>"
 							$('#interval').html(contents);
 						}else if(value.ord_stat ==3){
 							contents += "<tr>"
-							contents += "<td><input type=\"checkbox\"></td>";
 							contents += "<td>" + value.ord_no + "</td>";
 							contents += "<td>" + value.user_name + "</td>";
 							contents += "<td>" + value.prdt_name + "</td>";
 							contents += "<td>" + value.ord_amnt + "</td>";
 							contents += "<td>" + value.usr_rcv_time + "</td>";
+							contents +=  "<td>" +  value.ord_remainTime + "</td>";
 							contents += "<td>접수 완료</td>";
 							contents += "<td>조리 완료</td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
+							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
 							contents += "<td>" + value.prdt_price + "</td>";
 							contents += "</tr>"
 							$('#interval').html(contents);
@@ -95,6 +97,12 @@
 		console.log("cookFirst");
 		alert("조리완료를 먼저 해야 가능합니다.");
 	} 
+	function orderCancel(ordNo, statNo){
+		if(confirm("주문을 취소하시겠습니까?")){
+			location.href="adminOrderCancel.do?" + "ordNo=" + ordNo + "&statNo=" + statNo;
+		}
+	}
+	
 </script>
 </head>
 <body>
@@ -119,15 +127,16 @@
                           <table class="table table-striped table-advance table-hover">
 							<thead>
 							 <tr>
-                                 <th><input type="checkbox"></th>
                                  <th><i class="icon_calendar"></i>주문번호</th>
                                  <th><i class="icon_calendar"></i>주문자</th>
                                  <th><i class="icon_mail_alt"></i>상품명</th>
                                  <th><i class="icon_mobile"></i>수량</th>
-                                 <th><i class="icon_cogs"></i>수령시간</th>
-                                 <th><i class="icon_cogs"></i>접수</th>
-                                 <th><i class="icon_cogs"></i>취소</th>
-                                 <th><i class="icon_cogs"></i>수령여부</th>
+                                 <th><i class="icon_cogs"></i>수령 시간</th>
+                                 <th><i class="icon_cogs"></i>남은 시간</th>
+                                 <th><i class="icon_cogs"></i>접수 여부</th>
+                                 <th><i class="icon_cogs"></i>조리 여부</th>
+                                 <th><i class="icon_cogs"></i>수령 여부</th>
+                                 <th><i class="icon_cogs"></i>취소 여부</th>
                                  <th><i class="icon_cogs"></i>금액</th>
                               </tr>
 							</thead>
@@ -135,12 +144,12 @@
                               <%for(TotalOrderDTO tDTO : tList){
                             	  String ordStat = CmmUtil.nvl(tDTO.getOrd_stat());%>
                               <tr>
-                                 <td><input type="checkbox"></td>
                                  <td><%=CmmUtil.nvl(tDTO.getOrd_no()) %></td>
                                  <td><%=CmmUtil.nvl(tDTO.getUser_name()) %>
                                  <td><%=CmmUtil.nvl(tDTO.getPrdt_name()) %></td>
                                  <td><%=CmmUtil.nvl(tDTO.getOrd_amnt()) %></td>
                                  <td><%=CmmUtil.nvl(tDTO.getUsr_rcv_time()) %></td>
+                                 <td><%=CmmUtil.nvl(tDTO.getOrd_remainTime()) %></td>
                                  <%if(ordStat.equals("1")){ %>         
 		                           		<td>
 			                                <div class="btn-group">
@@ -154,7 +163,12 @@
 		                                </td>
 		                                <td>
 			                                <div class="btn-group">
-			                                    <button class="btn btn-danger" onclick="cookFirst();">수령 완료</button>
+			                                    <button class="btn btn-warning" onclick="cookFirst();">수령 완료</button>
+			                                </div>
+		                                </td>
+		                                <td>
+			                                <div class="btn-group">
+			                                    <button class="btn btn-danger" onclick="orderCancel(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 5);">취소하기</button>
 			                                </div>
 		                                </td>
                                   <%} else if(ordStat.equals("2")){ %>
@@ -168,9 +182,14 @@
 		                                </td>
 		                                <td>
 			                                <div class="btn-group">
-			                                    <button class="btn btn-danger" onclick="cookFirst();">수령 완료</button>
+			                                    <button class="btn btn-warning" onclick="cookFirst();">수령 완료</button>
 			                                </div>
 		                                </td> 
+		                                <td>
+			                                <div class="btn-group">
+			                                    <button class="btn btn-danger" onclick="orderCancel(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 5);">취소하기</button>
+			                                </div>
+		                                </td>
                                   <%} else {%>
                                   		<td>
 			                                 	접수완료
@@ -180,7 +199,12 @@
 		                                </td>
 		                                <td>
 			                                <div class="btn-group">
-			                                    <button class="btn btn-danger" onclick="orderProc(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 4);">수령 완료</button>
+			                                    <button class="btn btn-warning" onclick="orderProc(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 4);">수령 완료</button>
+			                                </div>
+		                                </td>
+		                                <td>
+			                                <div class="btn-group">
+			                                    <button class="btn btn-danger" onclick="orderCancel(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 5);">취소하기</button>
 			                                </div>
 		                                </td> 
                                   <%} %>

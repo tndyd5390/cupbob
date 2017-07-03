@@ -15,6 +15,13 @@ public class TotalOrderDTO {
 	private String prdt_name;
 	private String prdt_price;
 	private String ord_amnt;
+	private String ord_remainTime;
+	public String getOrd_remainTime() {
+		return ord_remainTime;
+	}
+	public void setOrd_remainTime(String ord_remainTime) {
+		this.ord_remainTime = ord_remainTime;
+	}
 	public String getOrd_no() {
 		return ord_no;
 	}
