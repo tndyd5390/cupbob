@@ -67,20 +67,22 @@
 																			key,
 																			value) {
 																		contents += "<tr>"
-																		contents += "<td> <input type='checkbox' name='delCheck' id='inlineCheckbox1' value='"+value.user_no+"'"+">"
-																		contents += "<td>"
+																		contents += "<td><center> <input type='checkbox' name='delCheck' id='inlineCheckbox1' value='"+value.user_no+"'"+">"
+																		contents += "<td align=center>"
 																				+ value.user_no
 																				+ "</td>"
-																		contents += "<td> <a href='adminUserDetail.do?unum=" + value.user_no + "'>" 
+																		contents += "<td align=center> <a href='adminUserDetail.do?unum="
+																				+ value.user_no
+																				+ "'>"
 																				+ value.email
 																				+ "</a> </td>"
-																		contents += "<td>"
+																		contents += "<td align=center>"
 																				+ value.user_name
 																				+ "</td>"
-																		contents += "<td>"
+																		contents += "<td align=center>"
 																				+ value.reg_dt
 																				+ "</td>"
-																		contents += "<td>"
+																		contents += "<td align=center>"
 																				+ value.contact_addr
 																				+ "</td>"
 																		contents += "</tr>"
@@ -92,78 +94,74 @@
 								})
 			})
 </script>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원 관리</title>
-</head>
-<body>
-	<%@include file="/include/naviBarAndasideBar.jsp"%>
-	<section id="main-content"> <section class="wrapper">
-	<div class="row">
-		<div class="col-lg-12">
-			<h3 class="page-header">
-				<i class="icon_profile"></i> 회원 관리
-			</h3>
-			<ol class="breadcrumb">
-				<li><i class="fa fa-home"></i><a href="orderList.do">메인 화면</a></li>
-				<li><i class="icon_profile"></i>회원 관리</li>
-			</ol>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-12">
-			<section class="panel"> <header class="panel-heading">
-			회원 목록
-			<form class="navbar-form pull-right">
-				검색 : <input class="form-control" placeholder="Search" type="text"
-					id="userSearch">
-			</form>
-			</header>
-			<div class="table-responsive">
-				<form action="adminUserCheckedDelete.do" method="post" id="f">
-					<table class="table" align="center">
-						<thead>
-							<tr>
-								<th><input type="checkbox" id="inlineCheckbox1" name="all"
-									value="option1" onclick="check();"></th>
-								<th>회원번호</th>
-								<th>아이디</th>
-								<th>회원이름</th>
-								<th>가입일</th>
-								<th>연락처</th>
-							</tr>
-						</thead>
 
-						<tbody id="userList">
-							<%
-								for (User_infoDTO udto : uList) {
-							%>
-							<tr>
-								<td><input type="checkbox" name="del_check"
-									id="inlineCheckbox1"
-									value="<%=CmmUtil.nvl(udto.getUser_no())%>"></td>
-								<td><%=CmmUtil.nvl(udto.getUser_no())%></td>
-								<td><a
-									href="adminUserDetail.do?unum=<%=CmmUtil.nvl(udto.getUser_no())%>"><%=CmmUtil.nvl(udto.getEmail())%></a></td>
-								<td><%=CmmUtil.nvl(udto.getUser_name())%></td>
-								<td><%=CmmUtil.nvl(udto.getReg_dt())%></td>
-								<td><%=CmmUtil.nvl(udto.getContact_addr())%></td>
-							</tr>
-							<%
-								}
-							%>
-						</tbody>
-					</table>
-				</form>
-				<div style="float: right">
-					<a class="btn btn-info" href="#" title="클릭하시면 선택항목이 삭제됩니다."
-						onclick="userdel_check()">삭제</a>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>회원 관리</title>
+</head>
+
+<body>
+	<form action="adminUserCheckedDelete.do" method="post" id="f">
+		<%@include file="/include/naviBarAndasideBar.jsp"%>
+		<section id="main-content">
+			<section class="wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						<h3 class="page-header">
+							<i class="icon_profile"></i> 회원 관리
+						</h3>
+						<ol class="breadcrumb">
+							<li><i class="fa fa-home"></i><a href="orderList.do">메인 화면</a></li>
+							<li><i class="icon_profile"></i>회원 관리</li>
+						</ol>
+					</div>
 				</div>
-			</div>
-			</section>
-		</div>
-	</div>
-	</section> </section>
-	<%@ include file="/include/bottomJavaScript.jsp"%>
-</body>
+				<div class="row">
+					<div class="col-lg-12">
+						<section class="panel">
+							<header class="panel-heading">회원 목록
+								<div class="navbar-form pull-right">
+									검색 : <input class="form-control" placeholder="Search" type="text" id="userSearch">
+								</div>
+							</header>
+							<div class="panel-body">
+								<div class="table-borderd">
+									<table class="table" align="center">
+										<thead>
+											<tr>
+												<th><center><input type="checkbox" id="inlineCheckbox1" name="all" value="option1" onclick="check();"></center></th>
+												<th><center>회원번호</center></th>
+												<th><center>아이디</center></th>
+												<th><center>회원이름</center></th>
+												<th><center>가입일</center></th>
+												<th><center>연락처</center></th>
+											</tr>
+										</thead>
+									<tbody id="userList">
+										<%
+											for (User_infoDTO udto : uList) {
+										%>
+										<tr>
+											<td align=center><input type="checkbox" name="del_check" id="inlineCheckbox1" value="<%=CmmUtil.nvl(udto.getUser_no())%>"></td>
+											<td align=center><%=CmmUtil.nvl(udto.getUser_no())%></td>
+											<td align=center><a href="adminUserDetail.do?unum=<%=CmmUtil.nvl(udto.getUser_no())%>"><%=CmmUtil.nvl(udto.getEmail())%></a></td>
+											<td align=center><%=CmmUtil.nvl(udto.getUser_name())%></td>
+											<td align=center><%=CmmUtil.nvl(udto.getReg_dt())%></td>
+											<td align=center><%=CmmUtil.nvl(udto.getContact_addr())%></td>
+										</tr>
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</section>
+					<div style="float: right">
+						<a class="btn btn-info" href="#" title="클릭하시면 선택항목이 삭제됩니다." onclick="userdel_check()">삭제</a>
+					</div>
+				</div>
+			</section> <%@ include file="/include/bottomJavaScript.jsp"%>
+		</form>
+	</body>
 </html>
