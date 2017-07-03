@@ -57,6 +57,7 @@
 					},
 					dataType : "json",
 					success : function(data){
+						console.log(data);
 						var contents = "";
 						$.each(data, function(key,value){
 							contents += "<tr>";
