@@ -5,6 +5,7 @@
 <%
 	List<TotalOrderDTO> tList = (List<TotalOrderDTO>)request.getAttribute("TotalOrderList");
 %>
+<!DOCTYPE html>
 <html>
 <%@include file="/include/head.jsp"%>
 <head>
@@ -84,7 +85,7 @@
 			            }
 			    }
 			});
-		}, 5000);
+		}, 1000);
 	})
 	function orderProc(ordNo, statNo){
 		 location.href="adminOrderProc.do?" + "ordNo=" + ordNo + "&statNo=" + statNo;

@@ -5,7 +5,7 @@
 <%
 	List<Product_infoDTO> pList = (List<Product_infoDTO>) request.getAttribute("pList");
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <%@include file="/include/head.jsp"%>
 <head>

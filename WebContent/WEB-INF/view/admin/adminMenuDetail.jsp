@@ -2,7 +2,7 @@
 <%@page import="com.cupbob.dto.Product_infoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <%@include file="/include/head.jsp"%>
 <%
@@ -43,7 +43,7 @@
 							src="<%= "menuImg/" + pDTO.getFile_name() %>"
 							style="width: 400px" style="height:400px">
 						</span>
-					</center>
+						</center>
 					</div>
 					
 					<div class="col-lg-7">
