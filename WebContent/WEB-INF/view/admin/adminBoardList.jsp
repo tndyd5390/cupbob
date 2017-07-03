@@ -12,6 +12,8 @@
 <html>
 <%@include file="/include/head.jsp"%>
 <script type="text/javascript">
+	var count = 10;
+
 	function check(){
 		var f = document.getElementById("f");
 		var cbox = f.del_check;
@@ -61,7 +63,7 @@
 						var contents = "";
 						$.each(data, function(key,value){
 							contents += "<tr>";
-							contents += "<td width='5%' align=center> <input type='checkbox' name='del_check' value='"+ value.post_no +"'> </td>";
+							contents += "<td width='5%'> <input type='checkbox' name='del_check' value='"+ value.post_no +"'> </td>";
 							contents += "<td width='10%' align=center>" + value.post_no + "</td>";
 							contents += "<td width='40%' align=center> <a href='adminBoardDetail.do?bnum=" + value.post_no + "'>" + value.title + "</a> </td>";
 							contents += "<td width='15%' align=center>" + value.user_name + "</td>";
@@ -73,11 +75,47 @@
 					}
 				})
 		})
+		
+		$(".btn_more").click(function(){
+			$.ajax({
+				url : "readMore.do",
+				method : "post",
+				data : {
+					'count' : count
+				},
+				dataType : "json",
+				success : function(data){
+					var contents = "";
+					console.log(data)
+					$.each(data,function (key,value){
+						contents += "<tr>";
+						contents += "<td width='5%'> <input type='checkbox' name='del_check' value='"+ value.post_no +"'> </td>";
+						contents += "<td width='10%' align=center>" + value.post_no + "</td>";
+						contents += "<td width='40%' align=center> <a href='adminBoardDetail.do?bnum=" + value.post_no + "'>" + value.title + "</a> </td>";
+						contents += "<td width='15%' align=center>" + value.user_name + "</td>";
+						contents += "<td width='15%' align=center>" + value.reg_dt + "</td>";
+						contents += "<td width='15%' align=center>" + value.view_cnt + "</td>";
+						contents += "</tr>";
+					})
+					$('#boardList').append(contents)
+					if ((data).length==0) {
+						$('.btn_more').remove();
+					}
+				}
+			})
+			count += 10;
+		})
 	})
+	
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시판 관리</title>
+<style>
+.btn_more {float:left;width:100%;height:50px;border:0 none;border-top:2px solid transparent;background-color:#dddddd;border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;}
+.btn_more .ico_sample {padding-right:15px;font-size:20px;color:#777;background-position:100% -22px}
+</style>
 </head>
 <body>
 				<form action="adminBoardCheckedDelete.do" method="post" id="f">
@@ -115,7 +153,7 @@
 						<thead>
 							<tr>
 								<th>
-										<center><input type="checkbox" name="all" onclick="check();"></center>
+										<input type="checkbox" name="all" onclick="check();">
 								</th>
 								<th><center>글 번호</center></th>
 								<th><center>제목</center></th>
@@ -129,7 +167,7 @@
 							for(User_boardDTO bDTO : bList){
 						%>
 							<tr>
-								<td width="5%" align=center><input type="checkbox" name="del_check" value="<%=CmmUtil.nvl(bDTO.getPost_no())%>"></td>
+								<td width="5%"><input type="checkbox" name="del_check" value="<%=CmmUtil.nvl(bDTO.getPost_no())%>"></td>
 								<td width="10%" align=center><%=CmmUtil.nvl(bDTO.getPost_no()) %></td>
 								<td width="40%" align=center><a href="adminBoardDetail.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>"><%=CmmUtil.nvl(bDTO.getTitle())%></a></td>
 								<td width="15%" align=center><%=CmmUtil.nvl(bDTO.getUser_name())%></td>
@@ -142,6 +180,7 @@
 						</tbody>
 					</table>
 				</div>
+				<button type="button" class="btn_more"><span class="ico_sample">더보기</span></button>
 			</div>
 			</section>
 			<div style="float: right">

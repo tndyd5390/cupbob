@@ -60,5 +60,10 @@ public class BoardService implements IBoardService {
 	public List<User_boardDTO> boardContentSearch(User_boardDTO bDTO) throws Exception{
 		return boardMapper.boardContentSearch(bDTO);
 	}
+	@Override
+	public List<User_boardDTO> getReadMoreList(User_boardDTO bDTO) throws Exception{
+		System.out.println(bDTO.getReadmore());
+		return boardMapper.getReadMoreList(bDTO);
+	}
 	
 }

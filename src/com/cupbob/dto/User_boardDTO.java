@@ -13,6 +13,14 @@ public class User_boardDTO {
 	private String email;
 	private String[] allCheck;
 	private String user_name;
+	private String readmore;
+	
+	public String getReadmore() {
+		return readmore;
+	}
+	public void setReadmore(String readmore) {
+		this.readmore = readmore;
+	}
 	public String getUser_name() {
 		return user_name;
 	}

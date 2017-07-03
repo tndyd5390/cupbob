@@ -11,7 +11,8 @@
 		DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
 		FROM USER_INFO UI, USER_BOARD UB
 		WHERE UI.USER_NO = UB.USER_NO
-		ORDER BY UB.POST_NO DESC
+		ORDER BY UB.POST_NO DESC 
+		LIMIT 10
 	</select>
 	<!--  조회수 증가 쿼리 -->
 	<update id="updateViewCNT">
@@ -78,5 +79,16 @@
 	</select>
 	<select id="boardContentSearch" parameterType="User_boardDTO" resultType="User_boardDTO">
 		SELECT * FROM USER_INFO U, USER_BOARD B WHERE U.USER_NO = B.USER_NO AND B.CONTENTS LIKE CONCAT('%', #{contents}, '%')
+	</select>
+	<select id="getReadMoreList" parameterType="User_boardDTO" resultType="User_boardDTO">
+		SELECT UB.POST_NO,
+		UB.TITLE,
+		UB.VIEW_CNT,
+		UI.USER_NAME,
+		DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
+		FROM USER_INFO UI, USER_BOARD UB
+		WHERE UI.USER_NO = UB.USER_NO
+		ORDER BY UB.POST_NO DESC
+		LIMIT 10 OFFSET ${readmore}
 	</select>
 </mapper>

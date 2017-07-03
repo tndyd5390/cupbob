@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -234,4 +235,25 @@ public class AdminBoardController {
 			}
 		}
 	}
+	
+	@RequestMapping(value="readMore")
+	public @ResponseBody List<User_boardDTO> readMore(@RequestParam(value="count") String count) throws Exception{
+		log.info(this.getClass().getName() + "HI!!");
+		log.info(count);
+		
+		User_boardDTO uDTO = new User_boardDTO();
+		
+		uDTO.setReadmore(count);
+		
+		List <User_boardDTO> readMoreList = boardService.getReadMoreList(uDTO);
+		
+		log.info(readMoreList.size());
+		
+		for(User_boardDTO testDTO : readMoreList){
+			System.out.println(testDTO.getTitle());
+		}
+		
+		return readMoreList;
+	}
+	
 }
