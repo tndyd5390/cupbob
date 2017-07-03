@@ -85,7 +85,7 @@
 			            }
 			    }
 			});
-		}, 5000);
+		}, 1000);
 	})
 	function orderProc(ordNo, statNo){
 		 location.href="adminOrderProc.do?" + "ordNo=" + ordNo + "&statNo=" + statNo;
