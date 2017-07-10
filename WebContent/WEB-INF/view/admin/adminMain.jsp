@@ -68,11 +68,7 @@
 							contents += "</tr>"
 							$('#interval').html(contents);
 						}else if(value.ord_stat ==3){
-							if(remainMin < 0){
-								contents += "<tr align=center bgcolor=\"#F5A9A9\">";
-							}else{
-								contents += "<tr align=center>"
-							}
+							contents += "<tr align=center bgcolor=\"#9FF781\">";
 							contents += "<td>" + value.ord_no + "</td>";
 							contents += "<td>" + value.user_name + "</td>";
 							contents += "<td>" + value.prdt_name + "</td>";
@@ -205,10 +201,14 @@
                             	  String ordStat = CmmUtil.nvl(tDTO.getOrd_stat());
                             	  String[] arr = CmmUtil.nvl(tDTO.getOrd_remainTime()).split(":");
                             	  int remainMin = Integer.parseInt(arr[1]);
-                            	  if(remainMin < 0){%>
+                            	  if(remainMin < 0 && !(tDTO.getOrd_stat().equals("3"))){%>
                               <tr bgcolor="#F5A9A9">
                               <%
-                            	  }else{
+                            	  }else if(tDTO.getOrd_stat().equals("3")){
+                              %>
+                              <tr align=center bgcolor="#9FF781">
+                              <%
+                              	   }else{
                               %>
                               <tr>
                               <%
