@@ -12,6 +12,14 @@ public class TotalOrderInfoDTO {
 	private String ord_cancel_yn;
 	private String ord_cancel_time;
 	private String user_name;
+	private String ord_remainTime;
+	
+	public String getOrd_remainTime() {
+		return ord_remainTime;
+	}
+	public void setOrd_remainTime(String ord_remainTime) {
+		this.ord_remainTime = ord_remainTime;
+	}
 	public String getOrd_no() {
 		return ord_no;
 	}

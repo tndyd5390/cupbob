@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cupbob.dto.TotalOrderDTO;
+import com.cupbob.dto.TotalOrderInfoDTO;
 import com.cupbob.service.IOrderService;
 
 @Controller
@@ -86,6 +87,17 @@ public class AdminOrderController {
 		tList = null;
 		log.info(this.getClass() +  ".adminOrderCancel end!!");
 		return "admin/adminMain";
+	}
+	
+	@RequestMapping(value="adminOrderRemainTime.do")
+	public @ResponseBody List<TotalOrderInfoDTO> adminOrderRemainTime(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + ".adminOrderRemainTime start !!!");
+		List<TotalOrderInfoDTO> tList = orderService.getAdminOrderRemainTime();
+		if(tList == null){
+			tList = new ArrayList<TotalOrderInfoDTO>();
+		}
+		log.info(this.getClass() + ".adminOrderReaminTime end!!!");
+		return tList;
 	}
 	
 	@RequestMapping(value = "orderView")
