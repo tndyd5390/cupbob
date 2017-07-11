@@ -240,7 +240,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<webxml>WebContent\WEB-INF\web.xml</webxml>
+					<webxml>/WEB-INF/web.xml</webxml>
 					<warname>cupbob</warname>
 				</configuration>
 			</plugin>
