@@ -200,7 +200,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-				<warSourceDirectory>/</warSourceDirectory>
 				<webXml>WebContent/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
