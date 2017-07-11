@@ -22,7 +22,7 @@
 						var checkTimeOver = value.ord_remainTime.split(':');
 						var remainMin = Number(checkTimeOver[1]);
 						if(value.ord_stat == 1){
-							if(remainMin < 0){
+							if(remainMin <= 0){
 								contents += "<tr align=center bgcolor=\"#F5A9A9\">";
 							}else{
 								contents += "<tr align=center>"
@@ -32,7 +32,7 @@
 							contents += "<td>" + value.prdt_name + "</td>";
 							contents += "<td>" + value.ord_amnt + "</td>";
 							contents += "<td>" + value.usr_rcv_time + "</td>";
-							if(remainMin < 0){
+							if(remainMin <= 0){
 								contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
 							}else{
 								contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
@@ -45,7 +45,7 @@
 							contents += "</tr>"
 							$('#interval').html(contents);
 						}else if(value.ord_stat == 2){
-							if(remainMin < 0){
+							if(remainMin <= 0){
 								contents += "<tr align=center bgcolor=\"#F5A9A9\">";
 							}else{
 								contents += "<tr align=center>"
@@ -55,7 +55,7 @@
 							contents += "<td>" + value.prdt_name + "</td>";
 							contents += "<td>" + value.ord_amnt + "</td>";
 							contents += "<td>" + value.usr_rcv_time + "</td>";
-							if(remainMin < 0){
+							if(remainMin <= 0){
 								contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
 							}else{
 								contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
@@ -74,7 +74,7 @@
 							contents += "<td>" + value.prdt_name + "</td>";
 							contents += "<td>" + value.ord_amnt + "</td>";
 							contents += "<td>" + value.usr_rcv_time + "</td>";
-							if(remainMin < 0){
+							if(remainMin <= 0){
 								contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
 							}else{
 								contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
@@ -116,7 +116,7 @@
 			            }
 			    }
 			});
-		}, 1500);
+		}, 5000);
 	})
 	
 	function orderProc(ordNo, statNo){
