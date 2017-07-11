@@ -7,10 +7,6 @@
 	<name>SpringPRJ</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-
-
-
-
 	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>4.3.7.RELEASE</org.springframework-version>
@@ -244,7 +240,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<webxml>/WEB-INF/web.xml</webxml>
+					<webxml>WebContent\WEB-INF\web.xml</webxml>
 					<warname>cupbob</warname>
 				</configuration>
 			</plugin>
