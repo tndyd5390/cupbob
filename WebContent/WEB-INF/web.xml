@@ -71,7 +71,7 @@
 
 	<!-- 도메인만 입력했을 경우, 보여주는 페이지 -->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>adminLogin.do</welcome-file>
 	</welcome-file-list>
 		
 	<!-- 에러 발생시, 에러페이지 이동 -->
