@@ -13,7 +13,6 @@ public class Email {
     public void setReciver(String reciver) {
         this.reciver = reciver;
     }
-
     public String getSubject() {
         return subject;
     }
