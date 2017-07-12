@@ -4,7 +4,7 @@
 <mapper namespace="com.cupbob.persistance.mapper.UserMapper">
 
 	<select id="getUserList" resultType="User_infoDTO">
-		SELECT * FROM USER_INFO
+		SELECT USER_NO, USER_NAME, EMAIL, CONTACT_ADDR, DATE_FORMAT(REG_DT,'%Y-%m-%d %T') AS REG_DT FROM USER_INFO
 	</select>
 	
 	<select id="login" resultType="User_infoDTO" parameterType="User_infoDTO">
@@ -50,4 +50,26 @@
 		UPDATE USER_INFO SET EMAIL=#{email}, USER_NAME=#{user_name}, GENDER=#{gender}, BIRTHDAY=#{birthday},
 		CONTACT_ADDR = #{contact_addr}, CHG_USER_NO=#{chg_user_no}, CHG_DT = SYSDATE() WHERE USER_NO = #{user_no}
 	</update>
+	
+	<delete id="deleteUserAllChecked" parameterType="User_infoDTO">
+		DELETE FROM USER_INFO WHERE USER_NO IN
+		<foreach item="user_no" index="index" collection="allCheck"
+			open="(" separator="," close=")">#{user_no}</foreach>
+	</delete>
+	
+	<select id="getUserFindEmail" parameterType="User_infoDTO" resultType="User_infoDTO">
+		SELECT EMAIL FROM USER_INFO WHERE USER_NAME=#{user_name} AND BIRTHDAY=#{birthday}
+	</select>
+	
+	<select id="getUserFindPw" parameterType="User_infoDTO" resultType="User_infoDTO">
+		SELECT PASSWORD FROM USER_INFO WHERE USER_NAME=#{user_name} AND BIRTHDAY=#{birthday} AND EMAIL=#{email}
+	</select>
+	
+	<update id="updateTempPw" parameterType="User_infoDTO">
+		UPDATE USER_INFO SET PASSWORD=#{temp_pw} WHERE USER_NAME=#{user_name} AND EMAIL=#{email} AND BIRTHDAY=#{birthday}
+	</update>
+	<select id="userSearch" resultType="User_infoDTO" parameterType="User_InfoDTO">
+		SELECT * FROM USER_INFO WHERE EMAIL LIKE CONCAT('%', #{email}, '%') OR USER_NAME LIKE CONCAT('%', #{user_name}, '%')  
+	</select>
+	
 </mapper> 

@@ -3,6 +3,23 @@
 <mapper namespace="com.cupbob.persistance.mapper.CommentMapper">
 
 
+<insert id="createComment" parameterType="Comment_infoDTO">
+	INSERT INTO COMMENT_INFO (POST_NO, CONTENTS, USER_NO, REG_USER_NO, REG_DT) 
+						VALUES(#{post_no}, #{contents}, #{user_no}, #{user_no}, NOW())
+</insert>
 
+<select id="getCommentList" parameterType="Comment_infoDTO" resultType="Comment_infoDTO">
+	SELECT C.CMT_NO, C.CONTENTS, U.USER_NAME, C.POST_NO, DATE_FORMAT(C.REG_DT, '%Y-%m-%d %T') AS REG_DT, C.USER_NO FROM USER_INFO U, COMMENT_INFO C WHERE
+		 C.USER_NO= U.USER_NO AND C.POST_NO = #{post_no}
+</select>
+
+<delete id="deleteComment" parameterType="Comment_infoDTO">
+	DELETE FROM COMMENT_INFO WHERE CMT_NO = #{cmt_no}
+</delete>
+
+<update id="updateComment" parameterType="Comment_infoDTO">
+	UPDATE COMMENT_INFO SET CONTENTS=#{contents}, CHG_USER_NO = #{chg_user_no}, CHG_DT = NOW()
+	WHERE CMT_NO = #{cmt_no}
+</update>
 
 </mapper>
