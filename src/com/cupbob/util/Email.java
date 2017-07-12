@@ -6,7 +6,7 @@ public class Email {
     private String content;
     private String regdate;
     private String reciver;
-     
+
     public String getReciver() {
         return reciver;
     }
