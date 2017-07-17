@@ -10,7 +10,7 @@
         lazy-init="false">
  
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://192.168.0.10:3306/cupbobdb?useSSL=false&amp;serverTimezone=Asia/Seoul" />
+        <property name="url" value="jdbc:mysql://192.168.170.92:3306/cupbobdb?useSSL=false&amp;serverTimezone=Asia/Seoul" />
         <property name="username" value="cupbob" />
         <property name="password" value="1234" />
     </bean>
