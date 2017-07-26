@@ -54,23 +54,7 @@ public class OrderService implements IOrderService {
 			tDTO.setOrd_amnt(ordAmnt);
 			//====================================
 			//남은 시간 세팅
-			Calendar c = Calendar.getInstance();
-			String tmp = "";
-			tmp += String.valueOf(c.get(Calendar.YEAR));
-			tmp += "-" + String.valueOf(c.get(Calendar.MONDAY) + 1);
-			tmp += "-" + String.valueOf(c.get(Calendar.DATE));
-			tmp += " " + tDTO.getUsr_rcv_time() + ":00";
-			System.out.println("tmp : " + tmp);
-			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.KOREA);
-			String now = sf.format(new Date());
-			Date order = sf.parse(tmp);
-			Date nowTime = sf.parse(now);
-			System.out.println("order : " + order.getHours()); 
-			long duration = order.getTime() - nowTime.getTime();
-			long sec = duration/1000%60;
-			long min = duration/60000;
-			System.out.println("duration: " + duration + ", min : " + (duration/60000));
-			tDTO.setOrd_remainTime(min + ":" + sec);
+			tDTO.setOrd_remainTime(getRemainTime(tDTO.getUsr_rcv_time()));
 			totalList.add(tDTO);
 		}
 		return totalList;
@@ -85,5 +69,34 @@ public class OrderService implements IOrderService {
 		List<TotalOrderDTO> oList = getTotalOrderDTO();
 		return oList;
 	}
+
+	@Override
+	public List<TotalOrderInfoDTO> getAdminOrderRemainTime() throws Exception {
+		List<TotalOrderInfoDTO> tList = orderMapper.getTotalOrderInfoList();
+		for(TotalOrderInfoDTO tDTO : tList){
+			tDTO.setOrd_remainTime(getRemainTime(tDTO.getUsr_rcv_time()));
+		}
+		return tList;
+	}
 	
+
+	public String getRemainTime(String userRcvTime) throws Exception {
+		Calendar c = Calendar.getInstance();
+		String tmp = "";
+		tmp += String.valueOf(c.get(Calendar.YEAR));
+		tmp += "-" + String.valueOf(c.get(Calendar.MONDAY) + 1);
+		tmp += "-" + String.valueOf(c.get(Calendar.DATE));
+		tmp += " " + userRcvTime + ":00";
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss", Locale.KOREA);
+		String now = sf.format(new Date());
+		Date order = sf.parse(tmp);
+		Date nowTime = sf.parse(now);
+		long duration = order.getTime() - nowTime.getTime();
+		long min = duration/60000;
+		long hour = min/60;
+		min = min-(hour*60);
+		System.out.println("duration: " + duration + ", min : " + (duration/60000));
+		return hour + ":" + min;
+	}
+
 }

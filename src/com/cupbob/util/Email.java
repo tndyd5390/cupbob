@@ -6,14 +6,13 @@ public class Email {
     private String content;
     private String regdate;
     private String reciver;
-     
+
     public String getReciver() {
         return reciver;
     }
     public void setReciver(String reciver) {
         this.reciver = reciver;
     }
-
     public String getSubject() {
         return subject;
     }

@@ -18,16 +18,25 @@
 			$.ajax ({
 				url : "adminOrderInterval.do",  
 				success : function (data) {
-					console.log(data);
 					$.each(data, function(key, value){
+						var checkTimeOver = value.ord_remainTime.split(':');
+						var remainMin = Number(checkTimeOver[1]);
 						if(value.ord_stat == 1){
-							contents += "<tr align=center>"
+							if(remainMin <= 0){
+								contents += "<tr align=center bgcolor=\"#F5A9A9\">";
+							}else{
+								contents += "<tr align=center>"
+							}
 							contents += "<td>" + value.ord_no + "</td>";
 							contents += "<td>" + value.user_name + "</td>";
 							contents += "<td>" + value.prdt_name + "</td>";
 							contents += "<td>" + value.ord_amnt + "</td>";
 							contents += "<td>" + value.usr_rcv_time + "</td>";
-							contents +=  "<td>" +  value.ord_remainTime + "</td>";
+							if(remainMin <= 0){
+								contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
+							}else{
+								contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
+							}
 							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary btn-sm\" onclick=\"orderProc("+ value.ord_no + ",2);\">접수하기</button></div></td>";
 							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"takeFirst();\">조리 완료</button></div></td>";
 							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst();\">수령 완료</button></div></td>";
@@ -36,13 +45,21 @@
 							contents += "</tr>"
 							$('#interval').html(contents);
 						}else if(value.ord_stat == 2){
-							contents += "<tr align=center>"
+							if(remainMin <= 0){
+								contents += "<tr align=center bgcolor=\"#F5A9A9\">";
+							}else{
+								contents += "<tr align=center>"
+							}
 							contents += "<td>" + value.ord_no + "</td>";
 							contents += "<td>" + value.user_name + "</td>";
 							contents += "<td>" + value.prdt_name + "</td>";
 							contents += "<td>" + value.ord_amnt + "</td>";
 							contents += "<td>" + value.usr_rcv_time + "</td>";
-							contents +=  "<td>" +  value.ord_remainTime + "</td>";
+							if(remainMin <= 0){
+								contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
+							}else{
+								contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
+							}
 							contents += "<td>접수 완료</td>";
 							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
 							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
@@ -51,13 +68,17 @@
 							contents += "</tr>"
 							$('#interval').html(contents);
 						}else if(value.ord_stat ==3){
-							contents += "<tr align=center>"
+							contents += "<tr align=center bgcolor=\"#9FF781\">";
 							contents += "<td>" + value.ord_no + "</td>";
 							contents += "<td>" + value.user_name + "</td>";
 							contents += "<td>" + value.prdt_name + "</td>";
 							contents += "<td>" + value.ord_amnt + "</td>";
 							contents += "<td>" + value.usr_rcv_time + "</td>";
-							contents += "<td>" +  value.ord_remainTime + "</td>";
+							if(remainMin <= 0){
+								contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
+							}else{
+								contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
+							}
 							contents += "<td>접수 완료</td>";
 							contents += "<td>조리 완료</td>";
 							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
@@ -66,6 +87,16 @@
 							contents += "</tr>"
 							$('#interval').html(contents);
 						}
+						
+						/* if(remainMin > 0){
+							value.ord_no = setInterval(function(){
+								var arr = value.usr_rcv_time.split(':');
+								countRemainTime(arr[0], arr[1], value.ord_no, remainMin);
+							},1000);
+						}else{
+							clearInterval(value.ord_no);
+						} */
+						
 					})
 				},
 				error:function(x,e){
@@ -75,7 +106,7 @@
 			            }else if(x.status==404){
 			            alert('페이지를 찾을수가 없습니다. 지금은 주문을 받을 수 없습니다. 업체에게 문의하세요.');
 			            }else if(x.status==500){
-			            alert('서버에서 오류가 발생했습니다. 지금은 주문을 받을 수 없습니다. 업체게게 문의하세요.');
+			            alert('서버에서 오류가 발생했습니다. 지금은 주문을 받을 수 없습니다. 업체에게 문의하세요.');
 			            }else if(e=='parsererror'){
 			            alert('json파싱에 실패했습니다.');
 			            }else if(e=='timeout'){
@@ -85,17 +116,16 @@
 			            }
 			    }
 			});
-		}, 1000);
+		}, 5000);
 	})
+	
 	function orderProc(ordNo, statNo){
 		 location.href="adminOrderProc.do?" + "ordNo=" + ordNo + "&statNo=" + statNo;
 	}
 	function takeFirst(){
-		 console.log("orderFirst");
 		 alert("접수를 먼저 해야 가능합니다.");
 	}
 	function cookFirst(){
-		console.log("cookFirst");
 		alert("조리완료를 먼저 해야 가능합니다.");
 	} 
 	function orderCancel(ordNo, statNo){
@@ -104,6 +134,29 @@
 		}
 	}
 	
+	//setInterval 안에서 setInterval 돌리면 좆댐 스레드 존나 돌아감
+	/*  var cnt = 0;
+	function countRemainTime(h, m, ordNo, remain){
+		console.log(ordNo + " : " + remain);
+		if(remain < 0){
+			document.getElementById(ordNo).innerHTML = "<b>TimeOver</b>";
+		}else{
+			now = new Date();
+			dday = new Date(now.getFullYear(),(now.getMonth() + 1),now.getDate(),h,m,00);
+			days = (dday-now)/1000/60/60/24;
+			daysRound = Math.floor(days);
+			var test = dday - now;
+			hours = (dday - now)/1000/60/60-(24 * daysRound);
+			hoursRound = Math.floor(hours);
+			minutes = (dday - now)/1000/60-(24 * 60 * daysRound)-(60 * hoursRound);
+			minutesRound = Math.floor(minutes);
+			seconds = (dday - now) / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound);
+			secondsRound = Math.round(seconds);
+			document.getElementById(ordNo).innerHTML = hoursRound + ":" + minutesRound + ":" + secondsRound;
+			cnt++;
+		}
+		console.log(cnt);
+	}  */
 </script>
 </head>
 <body>
@@ -127,7 +180,7 @@
                           </header>
                           <div class="panel-body">
 								<div class="table-borderd">
-                          <table class="table table-striped table-advance table-hover">
+                          <table class="table table-advance">
 							<thead>
 							 <tr>
                                  <th align="center">주문번호</th>
@@ -141,77 +194,100 @@
                                  <th align="center">수령 여부</th>
                                  <th align="center">취소 여부<th>
                                  <th align="center">금액</th>
-                              </tr>
 							</thead>
                            <tbody id="interval">
                               <%for(TotalOrderDTO tDTO : tList){
-                            	  String ordStat = CmmUtil.nvl(tDTO.getOrd_stat());%>
+                            	  String ordStat = CmmUtil.nvl(tDTO.getOrd_stat());
+                            	  String[] arr = CmmUtil.nvl(tDTO.getOrd_remainTime()).split(":");
+                            	  int remainMin = Integer.parseInt(arr[1]);
+                            	  if(remainMin < 0 && !(tDTO.getOrd_stat().equals("3"))){%>
+                              <tr bgcolor="#F5A9A9">
+                              <%
+                            	  }else if(tDTO.getOrd_stat().equals("3")){
+                              %>
+                              <tr align=center bgcolor="#9FF781">
+                              <%
+                              	   }else{
+                              %>
                               <tr>
+                              <%
+                              	   }
+                              %>
                                  <td align=center><%=CmmUtil.nvl(tDTO.getOrd_no()) %></td>
                                  <td align=center><%=CmmUtil.nvl(tDTO.getUser_name()) %>
                                  <td align=center><%=CmmUtil.nvl(tDTO.getPrdt_name()) %></td>
                                  <td align=center><%=CmmUtil.nvl(tDTO.getOrd_amnt()) %></td>
                                  <td align=center><%=CmmUtil.nvl(tDTO.getUsr_rcv_time()) %></td>
-                                 <td align=center><%=CmmUtil.nvl(tDTO.getOrd_remainTime()) %></td>
+                                 <%
+                                 if(remainMin<0){
+                                 %>
+                                 <td align=center id="<%=CmmUtil.nvl(tDTO.getOrd_no())%>"><b>TimeOver</b></td>
+                                 <%
+                                 }else{
+                                 %>
+                                 <td align=center id="<%=CmmUtil.nvl(tDTO.getOrd_no())%>"><%=CmmUtil.nvl(tDTO.getOrd_remainTime()) %></td>
+                                 <%
+                                 }
+                                 %>
                                  <%if(ordStat.equals("1")){ %>         
-		                           		<td>
+		                           		<td align=center>
 			                                <div class="btn-group">
 			                                    <button class="btn btn-primary btn-sm" onclick="orderProc(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 2);">접수 하기</button>
 			                                </div>
 		                                </td>
-		                                <td>
+		                                <td align=center>
 		                                	<div class="btn-group">
 		                                    	<button class="btn btn-success btn-sm" onclick="takeFirst();">조리 완료</button>
 		                                	</div>
 		                                </td>
-		                                <td>
+		                                <td align=center>
 			                                <div class="btn-group">
 			                                    <button class="btn btn-warning btn-sm" onclick="cookFirst();">수령 완료</button>
 			                                </div>
 		                                </td>
-		                                <td>
+		                                <td align=center>
 			                                <div class="btn-group">
 			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 5);">취소하기</button>
 			                                </div>
 		                                </td>
                                   <%} else if(ordStat.equals("2")){ %>
-                                 		<td>
+                                 		<td align=center>
 			                                	접수완료
 		                                </td>
-		                                <td>
+		                                <td align=center>
 		                                	<div class="btn-group">
 		                                    	<button class="btn btn-success btn-sm" onclick="orderProc(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 3);">조리 완료</button>
 		                                	</div>
 		                                </td>
-		                                <td>
+		                                <td align=center>
 			                                <div class="btn-group">
 			                                    <button class="btn btn-warning btn-sm" onclick="cookFirst();">수령 완료</button>
 			                                </div>
 		                                </td> 
-		                                <td>
+		                                <td align=center>
 			                                <div class="btn-group">
 			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 5);">취소하기</button>
 			                                </div>
 		                                </td>
                                   <%} else {%>
-                                  		<td>
+                                  		<td align=center>
 			                                 	접수완료
 		                                </td>
-		                                <td>
+		                                <td align=center>
 		                                		조리 완료
 		                                </td>
-		                                <td>
+		                                <td align=center>
 			                                <div class="btn-group">
 			                                    <button class="btn btn-warning btn-sm" onclick="orderProc(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 4);">수령 완료</button>
 			                                </div>
 		                                </td>
-		                                <td>
+		                                <td align=center>
 			                                <div class="btn-group">
 			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 5);">취소하기</button>
 			                                </div>
 		                                </td> 
                                   <%} %>
-                                  <td><%=CmmUtil.nvl(tDTO.getPrdt_price())%></td>
+                                  <td align=center><%=CmmUtil.nvl(tDTO.getPrdt_price())%></td>
                               </tr>
                               <%} %>
                            </tbody>
