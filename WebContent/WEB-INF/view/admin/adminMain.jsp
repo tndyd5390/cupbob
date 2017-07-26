@@ -129,18 +129,18 @@
 								<div class="table-borderd">
                           <table class="table table-striped table-advance table-hover">
 							<thead>
-							 <tr align="center" valign="middle">
-                                 <th><center>주문번호<center></th>
-                                 <th><center>주문자</center></th>
-                                 <th><center>상품명</center></th>
-                                 <th><center>수량</center></th>
-                                 <th><center>수령 시간</center></th>
-                                 <th><center>남은 시간</center></th>
-                                 <th><center>접수 여부</center></th>
-                                 <th><center>조리 여부</center></th>
-                                 <th><center>수령 여부</center></th>
-                                 <th><center>취소 여부</center><th>
-                                 <th><center>금액</center></th>
+							 <tr>
+                                 <th align="center">주문번호</th>
+                                 <th align="center">주문자</th>
+                                 <th align="center">상품명</th>
+                                 <th align="center">수량</th>
+                                 <th align="center">수령 시간</th>
+                                 <th align="center">남은 시간</th>
+                                 <th align="center">접수 여부</th>
+                                 <th align="center">조리 여부</th>
+                                 <th align="center">수령 여부</th>
+                                 <th align="center">취소 여부<th>
+                                 <th align="center">금액</th>
                               </tr>
 							</thead>
                            <tbody id="interval">
