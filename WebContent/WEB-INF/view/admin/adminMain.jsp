@@ -182,19 +182,18 @@
 								<div class="table-borderd">
                           <table class="table table-advance">
 							<thead>
-							 <tr align="center" valign="middle">
-                                 <th width="5%"><center>주문번호<center></th>
-                                 <th width="10%"><center>주문자</center></th>
-                                 <th width="15%"><center>상품명</center></th>
-                                 <th width="5%"><center>수량</center></th>
-                                 <th width="10%"><center>수령 시간</center></th>
-                                 <th width="10%"><center>남은 시간</center></th>
-                                 <th width="10%"><center>접수 여부</center></th>
-                                 <th width="10%"><center>조리 여부</center></th>
-                                 <th width="10%"><center>수령 여부</center></th>
-                                 <th width="10%"><center>취소 여부</center></th>
-                                 <th width="10%"><center>금액</center></th>
-                              </tr>
+							 <tr>
+                                 <th align="center">주문번호</th>
+                                 <th align="center">주문자</th>
+                                 <th align="center">상품명</th>
+                                 <th align="center">수량</th>
+                                 <th align="center">수령 시간</th>
+                                 <th align="center">남은 시간</th>
+                                 <th align="center">접수 여부</th>
+                                 <th align="center">조리 여부</th>
+                                 <th align="center">수령 여부</th>
+                                 <th align="center">취소 여부<th>
+                                 <th align="center">금액</th>
 							</thead>
                            <tbody id="interval">
                               <%for(TotalOrderDTO tDTO : tList){
