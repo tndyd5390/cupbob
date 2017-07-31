@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/view/admin/test1.jsp=UTF-8
 encoding//WebContent/include/naviBarAndasideBar.jsp=UTF-8
 encoding//src/com/cupbob/controller/admin/AdminBoardController.java=UTF-8
 encoding//src/com/cupbob/controller/admin/AdminChartController.java=UTF-8

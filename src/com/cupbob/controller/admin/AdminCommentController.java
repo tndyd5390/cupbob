@@ -107,4 +107,12 @@ public class AdminCommentController {
 		log.info(this.getClass().getName()+ "cmtUpdateProc end");
 		return cList;
 	}
+	
+	@RequestMapping(value="test")
+	public String testHammer(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
+		
+		
+		return "admin/test1";
+	}
+	
 }
