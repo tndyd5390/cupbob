@@ -1,7 +1,7 @@
 <%@page import="com.cupbob.util.CmmUtil"%>
 <%@page import="com.cupbob.dto.Product_infoDTO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
 <%
 	List<Product_infoDTO> pList = (List<Product_infoDTO>) request.getAttribute("pList");
