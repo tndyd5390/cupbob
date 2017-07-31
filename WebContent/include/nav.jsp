@@ -32,7 +32,7 @@
 			<ul class="dropdown">
 				<li><a href="#" class="nav-font">메뉴</a>
 					<ul>
-						<li><a href="NewFile.jsp"><img src="/userBootstrap/navImage/recommend.png" class="menuIcon"></a><a href="#">추천메뉴</a></li>
+						<li><a href="NewFile.jsp"><img src="userBootstrap/navImage/recommend.png" class="menuIcon"></a><a href="#">추천메뉴</a></li>
 						<li><a href="#"><img src="userBootstrap/navImage/rice.png" class="menuIcon"></a><a href="#">컵밥</a></li>
 						<li><a href="#"><img src="userBootstrap/navImage/noodle.png" class="menuIcon"></a><a href="#">면류</a></li>
 						<li><a href="#"><img src="userBootstrap/navImage/drinks.png" class="menuIcon"></a><a href="#">음료</a></li>
