@@ -15,4 +15,5 @@ public interface IMenuService {
 	public int updateAdminMenu(Product_infoDTO pDTO, MultipartFile file, String savePath, Logger log) throws Exception;
 	public boolean deleteAdminMenuChecked(Product_infoDTO pDTO, Logger log) throws Exception;
 	public List<Product_infoDTO> menuSearch(Product_infoDTO pDTO)throws Exception;
+	public List<Product_infoDTO> getUserMenuList() throws Exception;
 }

@@ -55,5 +55,23 @@
 	<select id="menuSearch" resultType="Product_infoDTO" parameterType="Product_infoDTO">
 		SELECT * FROM PRODUCT_INFO WHERE PRDT_NAME LIKE CONCAT('%', #{prdt_name}, '%')  
 	</select>
-	
+	<select id="getUserMenuList" resultType="Product_infoDTO">
+		SELECT 
+			 PRDT_NO,
+			 PRDT_NAME,
+			 PRDT_PRICE,
+			 CONTENTS,
+			 FILE_NAME,
+			 FILE_PATH,
+			 VIEW_CNT,
+			 USER_NO,
+			 REG_USER_NO,
+			 REG_DT,
+			 CHG_USER_NO,
+			 CHG_DT,
+			 FILE_ORG_NAME,
+			 PRDT_KCAL
+		FROM
+			PRODUCT_INFO
+	</select>
 </mapper>

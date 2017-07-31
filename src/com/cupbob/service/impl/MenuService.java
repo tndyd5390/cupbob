@@ -97,4 +97,9 @@ public class MenuService implements IMenuService{
 		// TODO Auto-generated method stub
 		return menuMapper.menuSearch(pDTO);
 	}
+
+	@Override
+	public List<Product_infoDTO> getUserMenuList() throws Exception {
+		return menuMapper.getUserMenuList();
+	}
 }

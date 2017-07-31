@@ -72,4 +72,5 @@
 		SELECT * FROM USER_INFO WHERE EMAIL LIKE CONCAT('%', #{email}, '%') OR USER_NAME LIKE CONCAT('%', #{user_name}, '%')  
 	</select>
 	
+	
 </mapper> 

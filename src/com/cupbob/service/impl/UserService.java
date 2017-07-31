@@ -4,6 +4,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import com.cupbob.dto.Product_infoDTO;
 import com.cupbob.dto.User_infoDTO;
 import com.cupbob.persistance.mapper.UserMapper;
 import com.cupbob.service.IUserService;

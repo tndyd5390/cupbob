@@ -1,5 +1,11 @@
+<%@page import="com.cupbob.util.CmmUtil"%>
+<%@page import="com.cupbob.dto.Product_infoDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
+<%
+	List<Product_infoDTO> pList = (List<Product_infoDTO>)request.getAttribute("pList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,17 +36,19 @@
 				</div>
 			</div>
 			<div class="row">
+			<%for(Product_infoDTO pDTO : pList){ %>
 				<div class="col-xs-6 col-sm-3" style="text-align: center">
 					<div id="menuImg">
-						<span><a href="detail.jsp" ><img
-							src="http://cfile28.uf.tistory.com/image/2523734855749E632F7982"
+						<span><a href="userMenuDetail.do?menuNo=<%=CmmUtil.nvl(pDTO.getPrdt_no())%>" ><img
+							src="<%="menuImg/" + CmmUtil.nvl(pDTO.getFile_name()) %>"
 							class="menuImg"></a>  </span><br>
 					</div>
 					<div id="menuTxt">
-						<span class="menuName">밥</span> <br> <span class="menuPrice"><strong>2,100</strong></span><span
+						<span class="menuName"><%=CmmUtil.nvl(pDTO.getPrdt_name()) %></span> <br> <span class="menuPrice"><strong><%=CmmUtil.nvl(pDTO.getPrdt_price())%></strong></span><span
 							class="menuWon">원</span>
 					</div>
 				</div>
+			<%} %>
 			</div>
 		</div>
 	</div>

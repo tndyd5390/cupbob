@@ -13,46 +13,40 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cupbob.dto.Product_infoDTO;
+import com.cupbob.service.IMenuService;
 import com.cupbob.service.IUserService;
+import com.cupbob.util.CmmUtil;
 
 
 @Controller
 public class MenuController {
 	private Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="UserService")
-	private IUserService userService;
+	@Resource(name="MenuService")
+	private IMenuService menuService;
 
-	@RequestMapping(value="menuList")
-	public String getUserList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
-		
-		log.info("getUserList start");
-		
-		List userList = userService.getUserList();
-		if(userList == null){
-			userList = new ArrayList();
+	@RequestMapping(value="userMenuList", method=RequestMethod.GET)
+	public String userMenuList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + "userMenuList start!!!");
+		List<Product_infoDTO> pList;
+		pList = menuService.getUserMenuList();
+		if(pList == null){
+			pList = new ArrayList<>();
 		}
-		model.addAttribute("userList", userList);
-		log.info("getUserList end");
-		return "admin/adminUserJoin";
-		
+		model.addAttribute("pList", pList);
+		log.info(this.getClass() + "userMenuList end!!!");
+		return "user/menulist";
 	}
 	
 	@RequestMapping(value="userMenuDetail", method=RequestMethod.GET)
-	public String userMenuDetail(HttpServletRequest req, HttpServletResponse resp, Model model){
+	public String userMenuDetail(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		log.info(this.getClass() + "userMenuList start!!!");
+		String menuNo = CmmUtil.nvl(req.getParameter("menuNo"));
+		log.info(this.getClass() + ".menuNo = " + menuNo);
 		
 		log.info(this.getClass() + "userMenuList end!!!");
 		return "user/detail";
 	}
 	
-	@RequestMapping(value="userMenuList", method=RequestMethod.GET)
-	public String userMenuList(HttpServletRequest req, HttpServletResponse resp, Model model){
-		log.info(this.getClass() + "userMenuList start!!!");
-		
-		
-		
-		log.info(this.getClass() + "userMenuList end!!!");
-		return "user/menuList";
-	}
 }
