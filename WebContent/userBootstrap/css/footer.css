@@ -1,0 +1,88 @@
+html {
+position: relative;
+min-height: 100%;
+}
+body {
+/* Margin bottom by footer height */
+margin-bottom: 180px;
+}
+.footer {
+border-top:2px solid #E1E1E1;
+position: absolute;
+bottom: 0;
+width: 100%;
+/* Set the fixed height of the footer here */
+height: 180px;
+background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+padding: 60px 15px 0;
+}
+.container .text-muted {
+margin: 20px 0;
+}
+
+.footer > .container {
+margin-top: 21px;
+margin-left: 5px;
+margin-right: 5px;
+padding-right: 15px;
+padding-left: 15px;
+}
+
+.footerTitle {
+  font-size: 16px;
+  font-weight: bold;
+}
+.footerBody1{
+  font-size:12px;
+  color:#6F6F6F;
+}
+.footerBody2{
+  font-size:12px;
+  color:#E7080A;
+}
+.footerBody2 > a{
+  color:#E7080A
+}
+.footerBody3{
+  font-size:12px;
+}
+
+/*360px 이하*/
+@media screen and (max-width: 360px) {
+.footerTitle { font-size: 15px }
+.footerBody1{ font-size: 11px }
+.footerBody2{ font-size: 11px }
+.footerBody3{ font-size: 11px }
+}
+
+/* 360px 이상 400px 이하 */
+@media screen and (min-width:361px) and (max-width: 400px) {
+.footerTitle { font-size: 16px }
+.footerBody1{ font-size: 12px }
+\
+.footerBody2{ font-size: 12px }
+.footerBody3{ font-size: 12px }
+}
+/* 401px ~ 700px */
+@media screen and (min-width: 401px) and (max-width: 700px) {
+.footerTitle { font-size: 17px }
+.footerBody1{ font-size: 13px }
+.footerBody2{ font-size: 13px }
+.footerBody3{ font-size: 13px }
+}
+/* 701px 이상 */
+@media screen and (min-width: 701px) {
+.footer > .container{ text-align:center; }
+}
+
+code {
+font-size: 80%;
+}

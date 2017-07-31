@@ -1,0 +1,490 @@
+html {
+	font-family: sans-serif;
+	color: #4b5f65;
+	background: #f5f7fa;
+}
+
+nav {
+	width: 100%;
+}
+
+.cloudy {
+	display: none;
+	z-index: 1000;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+	overflow-x: hidden;
+}
+
+.titleImg {
+	position: absolute;
+	left: 31%;
+}
+
+.menuIcon {
+	width: 70px;
+	height: 70px;
+	background-color: #FFFFFF;
+	padding-left: 0px;
+}
+
+.nav_wrapper {
+	z-index: 9999;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	transition: top .5s ease-out;
+	background: #E90101;
+}
+
+.scroll {
+	top: -90px;
+}
+
+.no-scroll {
+	top: 0;
+	z-index: 9999;
+}
+
+.btn {
+	padding: 10px 1%;
+	margin: 5px;
+	color: #fff;
+	text-decoration: none;
+	font-family: sans-serif;
+	transition: all 0.1s ease;
+}
+
+.btn:hover {
+	transition: all 0.1s ease;
+}
+
+main {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+main p { 1.2em;
+	
+}
+
+.imgicon {
+	float: right;
+	font-size: 30px;
+	line-height: 40px;
+	width: 27px;
+	height: 27px;
+	margin-top: 14px;
+	font-weight: 700;
+	margin-right: 10px;
+}
+
+.menu-link {
+	display: none;
+}
+
+.spinner-master input[type=checkbox] {
+	display: none;
+}
+
+.menu {
+	width: 100%;
+	height: auto;
+	background: #E90101;
+	transition: all 0.3s ease;
+}
+
+.menu ul {
+	padding: 0px;
+	list-style: none;
+	position: relative;
+	display: inline-block;
+}
+
+.menu>li>ul.sub_menu {
+	min-width: 10em;
+	padding: 4px 0;
+	background-color: #f4f4f4;
+	border: 1px solid #fff;
+}
+
+.menu ul li {
+	padding: 0px;
+}
+
+.menu>ul>li {
+	display: inline-block;
+}
+
+.menu ul li a {
+	display: block;
+	text-decoration: none;
+	color: #fff;
+	font-size: 15px;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	height: 50px;
+	width: 105px
+}
+
+.menu ul li>a {
+	padding: 15px;
+	color: #ffffff;
+	background: #E90101;
+}
+
+.menu ul ul {
+	display: none;
+	position: absolute;
+	top: 100%;
+	min-width: 400%;
+	background: #39484d;
+}
+
+.menu ul li:hover>ul {
+	display: block;
+	background-color: #ffffff;
+}
+
+.menu ul ul>li {
+	position: relative;
+	background-color: #ffffff;
+	text-align: center;
+}
+
+.menu ul ul>li a {
+	border-bottom: 1px solid #ffffff;
+	width: auto;
+	height: auto;
+	color: #000000;
+	background: #FFFFFF;
+}
+
+.menu ul ul ul {
+	position: absolute;
+	left: 100%;
+	top: 0;
+}
+/*at least title hidden*/
+@media all and (min-width: 1012px) {
+	.cloudy {
+		display: none;
+		z-index: 1;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.4);
+		overflow-x: hidden;
+	}
+	.menu {
+		width: 100%;
+		height: 50px;
+		background: #E90101;
+		transition: all 0.3s ease;
+	}
+	.titleImg {
+		position: absolute;
+		left: 50%;
+	}
+	.menuIcon {
+		width: 70px;
+		height: 70px;
+		background-color: #FFFFFF;
+		padding-left: 0px;
+	}
+}
+
+/*Galaxy s5*/
+@media screen and (max-width: 360px) {
+	.cloudy {
+		display: none;
+		z-index: 1;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.4);
+		overflow-x: hidden;
+	}
+	.titleImg {
+		position: absolute;
+		left: 29%;
+	}
+	.menuIcon {
+		width: 70px;
+		height: 70px;
+		background-color: #FFFFFF;
+		padding-left: 0px;
+	}
+	.spinner-master input[type=checkbox] {
+		display: none;
+	}
+	.menu {
+		width: 100%;
+		height: auto;
+		background: #E90101;
+		transition: all 0.3s ease;
+	}
+}
+
+/*iphone 6*/
+@media screen and (max-width: 375px) and (max-height: 667px) {
+	.cloudy {
+		display: none;
+		z-index: 1;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.4);
+		overflow-x: hidden;
+	}
+	.titleImg {
+		position: absolute;
+		left: 29%;
+	}
+	.menuIcon {
+		width: 50px;
+		height: 70px;
+		background-color: #FFFFFF;
+		padding-left: 0px;
+	}
+	.menu {
+		width: 100%;
+		height: auto;
+		background: #E90101;
+		transition: all 0.3s ease;
+	}
+}
+
+/*ipad*/
+@media all and (min-width: 768px) {
+	.cloudy {
+		display: none;
+		z-index: 1;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.4);
+		overflow-x: hidden;
+	}
+	.titleImg {
+		position: absolute;
+		left: 41%;
+		top: 0px;
+	}
+	.menuIcon {
+		width: 70px;
+		height: 70px;
+		background-color: #FFFFFF;
+		border-right-color: #FFFFFF;
+	}
+	.menu ul ul {
+		display: none;
+		position: absolute;
+		top: 50px;
+		min-width: auto;
+		background: #39484d;
+	}
+	.menu {
+		width: 100%;
+		height: 50px;
+		background: #E90101;
+		transition: all 0.3s ease;
+	}
+}
+
+@media all and (max-width: 1012px) {
+	.cloudy {
+		display: none;
+		z-index: 1;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.4);
+		overflow-x: hidden;
+	}
+	.menu {
+		width: 100%;
+		height: auto;
+		background: #E90101;
+		transition: all 0.3s ease;
+	}
+	.imgicon {
+		float: right;
+		font-size: 30px;
+		line-height: 40px;
+		width: 27px;
+		height: 27px;
+		margin-top: 14px;
+		font-weight: 700;
+		margin-right: 10px;
+	}
+	.menu ul ul {
+		display: none;
+		position: absolute;
+		top: 100%;
+		min-width: 400%;
+		background: #39484d;
+	}
+	.example-header .container {
+		width: 100%;
+	}
+	.menu ul li>a {
+		color: #000000;
+		background: #EEEEEE;
+		font-size: 12px;
+		border-right: 1px solid #BDBDBD;
+		width: auto;
+	}
+	.spinner-master * {
+		transition: all 0.3s;
+		box-sizing: border-box;
+	}
+	.spinner-master {
+		position: relative;
+		margin: 15px;
+		height: 30px;
+		width: 30px;
+		float: left;
+	}
+	.spinner-master label {
+		cursor: pointer;
+		position: absolute;
+		z-index: 99;
+		height: 100%;
+		width: 100%;
+		top: 5px;
+		left: 0;
+	}
+	.spinner-master .spinner {
+		position: absolute;
+		height: 4px;
+		width: 100%;
+		padding: 0;
+		background-color: #fff;
+	}
+	.spinner-master .diagonal.part-1 {
+		position: relative;
+		float: left;
+	}
+	.spinner-master .horizontal {
+		position: relative;
+		float: left;
+		margin-top: 4px;
+	}
+	.spinner-master .diagonal.part-2 {
+		position: relative;
+		float: left;
+		margin-top: 4px;
+	}
+	.spinner-master input[type=checkbox]:checked ~ .spinner-spin>.horizontal
+		{
+		opacity: 0;
+	}
+	.spinner-master input[type=checkbox]:checked ~ .spinner-spin>.diagonal.part-1
+		{
+		transform: rotate(135deg);
+		-webkit-transform: rotate(135deg);
+		margin-top: 10px;
+	}
+	.spinner-master input[type=checkbox]:checked ~ .spinner-spin>.diagonal.part-2
+		{
+		transform: rotate(-135deg);
+		-webkit-transform: rotate(-135deg);
+		margin-top: -12px;
+	}
+	a.menu-link {
+		display: block;
+		color: #fff;
+		float: left;
+		text-decoration: none;
+		padding: 10px 16px;
+		font-size: 1.5em;
+	}
+	a.menu-link:hover {
+		color: #efa666;
+	}
+	a.menu-link:after {
+		content: "\2630";
+		font-weight: normal;
+	}
+	a.menu-link.active:after {
+		content: "\2715";
+	}
+	.menu {
+		clear: both;
+		min-width: inherit;
+		float: none;
+	}
+	.menu, .menu>ul ul {
+		overflow: hidden;
+		max-height: 0;
+		background-color: #39484d;
+	}
+	.menu>li>ul.sub-menu {
+		padding: 0px;
+		width: 100%;
+		border: none;
+	}
+	.menu.active, .menu>ul ul.active {
+		max-height: 55em;
+	}
+	.menu ul {
+		display: inline;
+		text-align: center;
+	}
+	.menu li, .menu>ul>li {
+		display: block;
+		float: left;
+		padding: 0px;
+		margin: 0px;
+		width: 25%;
+		text-align: center;
+	}
+	.menu>ul>li:last-of-type a {
+		border: none;
+	}
+	.menu>ul>li:first-of-type a:hover {
+		border: none;
+		background-color: #FFFFFF;
+	}
+	.menu li a {
+		color: #fff;
+		background: #d5d5d5;
+		display: block;
+		padding: 0.8em;
+		position: relative;
+	}
+	.menu ul ul>li a {
+		background-color: #ffffff;
+		padding-right: 1px;
+		color: #000000;
+		border-right: 1px solid #FFFFFF;
+		width: auto;
+		height: auto;
+		text-align: center;
+		margin-left: auto;
+	}
+	.menu ul ul, .menu ul ul ul {
+		display: inherit;
+		position: relative;
+		left: auto;
+		top: auto;
+		border: none;
+	}
+}
