@@ -30,7 +30,7 @@ public class AdminMenuController {
 	@Resource(name="MenuService")
 	private IMenuService menuService;
 	
-	String savePath="C:/Users/Data3811-32/git/cupbob/WebContent/menuImg/";
+	String savePath="/usr/local/apache-tomcat-8.0.44/webapps/cupbob/menuImg/";
 
 	@RequestMapping(value="adminMenuList", method = RequestMethod.GET)
 	public String getUserList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{

@@ -28,7 +28,7 @@ public class AdminBoardController {
 	private Logger log = Logger.getLogger(this.getClass());
 	@Resource(name = "BoardService")
 	private IBoardService boardService;
-	@Resource(name = "CommnetService")
+	@Resource(name = "CommentService")
 	private ICommentService commentService;
 
 

@@ -7,11 +7,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap core CSS -->
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/userBootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 <!-- Bootstrap theme -->
-<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/userBootstrap/css/tutle.min.css" />
-
+<link href="/userBootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="/userBootstrap/css/turtle.min.css" />
+<link rel="stylesheet" href="/userBootstrap/css/nav.css"/>
 <title>Insert title here</title>
 
 </head>

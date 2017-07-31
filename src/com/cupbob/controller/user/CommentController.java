@@ -4,6 +4,6 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class CommnetController {
+public class CommentController {
 	private Logger log = Logger.getLogger(this.getClass());
 }

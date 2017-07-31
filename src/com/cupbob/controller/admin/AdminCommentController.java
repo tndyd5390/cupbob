@@ -23,7 +23,7 @@ import com.cupbob.util.CmmUtil;
 public class AdminCommentController {
 	private Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="CommnetService")
+	@Resource(name="CommentService")
 	private ICommentService commentService;
 	
 	@RequestMapping(value="commTest")

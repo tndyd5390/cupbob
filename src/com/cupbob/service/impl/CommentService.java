@@ -10,7 +10,7 @@ import com.cupbob.dto.Comment_infoDTO;
 import com.cupbob.persistance.mapper.CommentMapper;
 import com.cupbob.service.ICommentService;
 
-@Service("CommnetService")
+@Service("CommentService")
 public class CommentService implements ICommentService{
 
 	@Resource(name="CommentMapper")
