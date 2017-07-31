@@ -1,6 +1,6 @@
 <%@page import="com.cupbob.util.CmmUtil"%>
 <%@page import="com.cupbob.dto.Product_infoDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
 <%
 	Product_infoDTO pDTO = (Product_infoDTO)request.getAttribute("pDTO");
