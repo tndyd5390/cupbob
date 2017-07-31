@@ -59,7 +59,7 @@
 		SELECT 
 			 PRDT_NO,
 			 PRDT_NAME,
-			 PRDT_PRICE,
+			 FORMAT(PRDT_PRICE,0),
 			 CONTENTS,
 			 FILE_NAME,
 			 FILE_PATH,
