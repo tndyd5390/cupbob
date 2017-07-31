@@ -17,7 +17,6 @@
     </p>
   </div>
 </footer>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="/userBootstrap/js/bootstrap.min.js"></script>
-	<script src="/userBootstrap/js/nav.js"></script>
+	<script src="userBootstrap/js/bootstrap.min.js"></script>
+	<script src="userBootstrap/js/jquery-barcode.min.js"></script>
+	<script src="userBootstrap/js/nav.js"></script>

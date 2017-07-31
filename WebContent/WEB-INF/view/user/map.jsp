@@ -9,7 +9,8 @@
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap theme -->
 <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-<link rel="stylesheet" href="/userBootstrap/css/tutle.min.css" />
+<link rel="stylesheet" href="userBootstrap/css/tutle.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=OtsTFLJcXGVYGVcEbrwy&submodules=geocoder"></script>
 
