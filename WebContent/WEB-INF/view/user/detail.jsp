@@ -1,20 +1,46 @@
+<%@page import="com.cupbob.util.CmmUtil"%>
+<%@page import="com.cupbob.dto.Product_infoDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="UTF-8"%>
+<%
+	Product_infoDTO pDTO = (Product_infoDTO)request.getAttribute("pDTO");
+%>
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap core CSS -->
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/userBootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 <!-- Bootstrap theme -->
-<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+<link href="/userBootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="/userBootstrap/css/turtle.min.css" />
 <link rel="stylesheet" href="/userBootstrap/css/nav.css"/>
 <title>Insert title here</title>
+<script type="text/javascript">
+
+	function addItemCnt(){
+		var qty = parseInt($('#itemQty').val());
+		if(qty < 99){
+			qty = qty +1;			
+			$('#itemQty').val(qty);
+			$('#itemPrice').text(qty * <%=CmmUtil.nvl(pDTO.getPrdt_price())%>);
+		}
+	}
+	
+	function minusItemCnt(){
+		var qty = $('#itemQty').val();
+		if(qty > 1){
+			qty = qty -1;			
+			$('#itemQty').val(qty);				
+			$('#itemPrice').text(qty * <%=CmmUtil.nvl(pDTO.getPrdt_price())%>);
+		}
+	}
+</script>
 </head>
 <body>
-		<%@include file="/include/nav.jsp"%>
+	<%@include file="/include/nav.jsp"%>
 	<br>
 	<br>
 	<br>
@@ -22,22 +48,21 @@
 		<div class="row">
 			<div class="detailTitle">
 				<div>
-					<span class="detailNameKor"> <strong>햇반 컵밥 불고기 덮밥
-							240g</strong>
+					<span class="detailNameKor"> <strong><%=CmmUtil.nvl(pDTO.getPrdt_name()) %></strong>
 					</span>
 				</div>
 				<div>
 					<span class="detailNameEng"> bulgogi cupbob 240g </span>
 				</div>
 				<div>
-					<span class="detailTxt"> 쇠고기를 얇게 저며 양념하여 재었다가 불에 구운 환상의 맛! </span>
+					<span class="detailTxt"><%=CmmUtil.nvl(pDTO.getContents()) %></span>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="d-Img">
 				<img
-					src="http://costco.co.kr/medias/sys_master/h1e/hde/9173694775326.jpg"
+					src="<%="menuImg/" + CmmUtil.nvl(pDTO.getFile_name()) %>"
 					class="detailImg">
 			</div>
 		</div>
@@ -51,7 +76,7 @@
 			</div>
 			<div class="col-xs-6">
 				<ul class="detailListUnstyle">
-					<li>0000kal / 0000g</li>
+					<li><%=CmmUtil.nvl(pDTO.getPrdt_kcal()) + "kcal" %> / 0000g</li>
 					<li>120g</li>
 					<li>300mg</li>
 				</ul>
@@ -61,13 +86,13 @@
 		<hr class="garo">
 		<div style="padding-bottom: 50px;">
 			<div class="col-xs-6">
-				<span style="display: block;"> <a class="detailPlMi">-</a> <input
-					type="text" value="2" class="detailCount" maxlength="2" readOnly> <a
-					class="detailPlMi">+</a>
+				<span style="display: block;"> <a class="detailPlMi" onclick="minusItemCnt();">-</a> <input
+					type="text" value="1" class="detailCount" maxlength="2" readOnly id="itemQty"> <a
+					class="detailPlMi" onclick="addItemCnt();">+</a>
 				</span>
 			</div>
 			<div class="col-xs-6" style="text-align: right;">
-				<span class="detailPrice">3,150</span><span class="detailWon">원</span>
+				<span class="detailPrice" id="itemPrice"><%=CmmUtil.nvl(pDTO.getPrdt_price()) %></span><span class="detailWon">원</span>
 			</div>
 		</div>
 		<div class="row">

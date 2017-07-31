@@ -41,11 +41,15 @@ public class MenuController {
 	
 	@RequestMapping(value="userMenuDetail", method=RequestMethod.GET)
 	public String userMenuDetail(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
-		log.info(this.getClass() + "userMenuList start!!!");
+		log.info(this.getClass() + "userMenuDetail start!!!");
 		String menuNo = CmmUtil.nvl(req.getParameter("menuNo"));
 		log.info(this.getClass() + ".menuNo = " + menuNo);
-		
-		log.info(this.getClass() + "userMenuList end!!!");
+		Product_infoDTO pDTO = menuService.getUserMenuDetail(menuNo);
+		if(pDTO == null){
+			pDTO = new Product_infoDTO();
+		}
+		model.addAttribute("pDTO", pDTO);
+		log.info(this.getClass() + "userMenuDetail end!!!");
 		return "user/detail";
 	}
 	
