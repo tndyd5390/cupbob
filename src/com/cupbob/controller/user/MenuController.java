@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cupbob.service.IUserService;
 
@@ -36,5 +37,22 @@ public class MenuController {
 		return "admin/adminUserJoin";
 		
 	}
-
+	
+	@RequestMapping(value="userMenuDetail", method=RequestMethod.GET)
+	public String userMenuDetail(HttpServletRequest req, HttpServletResponse resp, Model model){
+		log.info(this.getClass() + "userMenuList start!!!");
+		
+		log.info(this.getClass() + "userMenuList end!!!");
+		return "user/detail";
+	}
+	
+	@RequestMapping(value="userMenuList", method=RequestMethod.GET)
+	public String userMenuList(HttpServletRequest req, HttpServletResponse resp, Model model){
+		log.info(this.getClass() + "userMenuList start!!!");
+		
+		
+		
+		log.info(this.getClass() + "userMenuList end!!!");
+		return "user/menuList";
+	}
 }

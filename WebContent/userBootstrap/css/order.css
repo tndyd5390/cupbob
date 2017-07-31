@@ -1,0 +1,914 @@
+div.orderHead{
+  background-color: #7F7F7F;
+  height: 45px;
+  color: white;
+  text-align: center;
+  padding-top: 8px;
+  font-size: 20px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+h4.orderLabel{
+  font-weight: bold;
+  text-align: center;
+}
+div.orderGroup{
+  width:49.2%;
+  display: inline-block;
+}
+div.orderGroupArea{
+  width:100%;
+  display: inline-block;
+}
+.orderGroup > select.orderSelect{
+  width: 100%;
+  height: 40px;
+}
+.orderGroup > input.orderText{
+  height: 40px;
+}
+hr.orderHr{
+  margin-top:5px;
+  margin-bottom: 5px;
+}
+button.orderButton01{
+  background-color: #7F7F7F;
+  height: 45px;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  border: 0px;
+  width: 100%;
+}
+
+p.orderDetailLeft{
+  padding-top:5px;
+  display: inline-block;
+  width: 30%;
+  font-size: 16px;
+  text-align: right;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+p.orderDetailRight{
+  padding-top:5px;
+  display: inline-block;
+  width: 69%;
+  font-family: 留묒�怨좊뵓;
+  font-size: 16px;
+  text-align: right;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+div.orderTotalPrice{
+  background-color: #E7E6E6;
+  height: 38px;
+  margin-top : 15px;
+  margin-bottom: 10px;
+}
+p.totalPriceLeft{
+  display: inline-block;
+  width: 33%;
+  font-size: 18px;
+  font-weight: bold;
+  color: #7F7F7F;
+  text-align: center;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+p.totalPriceRight{
+  display: inline-block;
+  width: 65%;
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FF0000;
+  padding-top: 5px;
+  padding-left: 5px;
+  font-family: 留묒�怨좊뵓;
+}
+div.radio{
+  margin-left: 10px;
+}
+.radio > label{
+  font-weight: bold;
+  font-size: 16px;
+  color: #6B6B6B;
+}
+button.orderButton02{
+  background-color: #E4002B;
+  height: 45px;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  border: 0px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+/* 350px �씠�븯 (�븘�씠�룿5)*/
+@media screen and (max-width: 350px) {
+  p.orderDetailLeft{
+    padding-top:5px;
+    display: inline-block;
+    width: 32%;
+    font-size: 13px;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+  p.orderDetailRight{
+    padding-top:5px;
+    display: inline-block;
+    width: 65%;
+    font-family: 留묒�怨좊뵓;
+    font-size: 13px;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+  div.orderTotalPrice{
+    background-color: #E7E6E6;
+    height: 38px;
+    margin-top : 15px;
+    margin-bottom: 10px;
+  }
+  p.totalPriceLeft{
+    display: inline-block;
+    width: 33%;
+    font-size: 14px;
+    font-weight: bold;
+    color: #7F7F7F;
+    text-align: center;
+    padding-top: 8px;
+    padding-left: 5px;
+  }
+  p.totalPriceRight{
+    display: inline-block;
+    width: 65%;
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+    color: #FF0000;
+    padding-top: 8px;
+    padding-left: 5px;
+    font-family: 留묒�怨좊뵓;
+  }
+}
+/* 351px �씠�긽 370px �씠�븯(媛ㅻ윮�떆5) */
+@media screen and (min-width: 351px) and (max-width: 370px){
+  p.orderDetailLeft{
+    padding-top:5px;
+    display: inline-block;
+    width: 32%;
+    font-size: 13px;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+  p.orderDetailRight{
+    padding-top:5px;
+    display: inline-block;
+    width: 65%;
+    font-family: 留묒�怨좊뵓;
+    font-size: 13px;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+  div.orderTotalPrice{
+    background-color: #E7E6E6;
+    height: 38px;
+    margin-top : 15px;
+    margin-bottom: 10px;
+  }
+  p.totalPriceLeft{
+    display: inline-block;
+    width: 33%;
+    font-size: 14px;
+    font-weight: bold;
+    color: #7F7F7F;
+    text-align: center;
+    padding-top: 8px;
+    padding-left: 5px;
+  }
+  p.totalPriceRight{
+    display: inline-block;
+    width: 65%;
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+    color: #FF0000;
+    padding-top: 8px;
+    padding-left: 5px;
+    font-family: 留묒�怨좊뵓;
+  }
+}
+/* 371px �씠�긽 400px �씠�븯(�븘�씠�룿6) */
+@media screen and (min-width: 371px) and (max-width: 400px){
+  p.orderDetailLeft{
+    padding-top:5px;
+    display: inline-block;
+    width: 32%;
+    font-size: 13px;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+  p.orderDetailRight{
+    padding-top:5px;
+    display: inline-block;
+    width: 65%;
+    font-family: 留묒�怨좊뵓;
+    font-size: 13px;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+  div.orderTotalPrice{
+    background-color: #E7E6E6;
+    height: 38px;
+    margin-top : 15px;
+    margin-bottom: 10px;
+  }
+  p.totalPriceLeft{
+    display: inline-block;
+    width: 33%;
+    font-size: 14px;
+    font-weight: bold;
+    color: #7F7F7F;
+    text-align: center;
+    padding-top: 8px;
+    padding-left: 5px;
+  }
+  p.totalPriceRight{
+    display: inline-block;
+    width: 65%;
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+    color: #FF0000;
+    padding-top: 8px;
+    padding-left: 5px;
+    font-family: 留묒�怨좊뵓;
+  }
+}
+/* 401px �씠�긽 700px �씠�븯 (�븘�씠�룿6�뵆�윭�뒪,�꽖�꽌�뒪)*/
+@media screen and (min-width: 401px) and (max-width: 500px){
+
+}
+@media screen and (min-width: 501px) and (max-width: 700px){
+  p.orderDetailLeft{
+    padding-top:5px;
+    display: inline-block;
+    width: 25%;
+    font-size: 16px;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+  p.orderDetailRight{
+    padding-top:5px;
+    display: inline-block;
+    width: 72%;
+    font-family: 留묒�怨좊뵓;
+    font-size: 16px;
+    text-align: right;
+    font-weight: bold;
+    margin-bottom: 0px;
+  }
+  div.orderTotalPrice{
+    background-color: #E7E6E6;
+    height: 38px;
+    margin-top : 15px;
+    margin-bottom: 10px;
+  }
+  p.totalPriceLeft{
+    display: inline-block;
+    width: 25%;
+    font-size: 17px;
+    font-weight: bold;
+    color: #7F7F7F;
+    text-align: center;
+    padding-top: 5px;
+    padding-left: 5px;
+  }
+  p.totalPriceRight{
+    display: inline-block;
+    width: 73%;
+    text-align: right;
+    font-size: 17px;
+    font-weight: bold;
+    color: #FF0000;
+    padding-top: 5px;
+    padding-left: 5px;
+    font-family: 留묒�怨좊뵓;
+  }
+}
+@media screen and (min-width: 701px) and (max-width: 1500px){
+    p.orderDetailLeft{
+      padding-top:5px;
+      display: inline-block;
+      width: 17%;
+      font-size: 18px;
+      text-align: right;
+      font-weight: bold;
+      margin-bottom: 0px;
+    }
+    p.orderDetailRight{
+      padding-top:5px;
+      display: inline-block;
+      width: 82%;
+      font-family: 留묒�怨좊뵓;
+      font-size: 18px;
+      text-align: right;
+      font-weight: bold;
+      margin-bottom: 0px;
+    }
+    div.orderTotalPrice{
+      background-color: #E7E6E6;
+      height: 38px;
+      margin-top : 15px;
+      margin-bottom: 10px;
+    }
+    p.totalPriceLeft{
+      display: inline-block;
+      width: 20%;
+      font-size: 19px;
+      font-weight: bold;
+      color: #7F7F7F;
+      text-align: center;
+      padding-top: 5px;
+      padding-left: 5px;
+    }
+    p.totalPriceRight{
+      display: inline-block;
+      width: 79%;
+      text-align: right;
+      font-size: 19px;
+      font-weight: bold;
+      color: #FF0000;
+      padding-top: 5px;
+      padding-left: 5px;
+      font-family: 留묒�怨좊뵓;
+    }
+  }
+  
+  .radio + .radio, .checkbox + .checkbox {
+    margin-top: 6px;
+}
+
+.radio,
+.checkbox {
+    min-height: 22px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    padding-left: 0px;
+}
+
+.radio-inline,
+.checkbox-inline {
+    margin-top: 0px!important;
+}
+
+.radio > label,
+.checkbox > label {
+    padding-left: 29px;
+    min-height: 22px;
+    line-height: 22px;
+    display: inline-block;
+}
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+    position: absolute;
+}
+
+.radio > input[type="radio"]:first-child:not(:checked) + label::before,
+.checkbox > input[type="checkbox"]:first-child:not(:checked) + label::before,
+.radio > input[type="radio"]:first-child:not(:checked) + input[type="hidden"] + label::before,
+.checkbox > input[type="checkbox"]:first-child:not(:checked) + input[type="hidden"] + label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #D3CFC8;
+    border-radius: 0px;
+    margin-left: -29px;
+}
+
+.radio > input[type="radio"]:first-child:not(:checked) + label::before,
+.radio > input[type="radio"]:first-child:not(:checked) + input[type="hidden"] + label::before {
+    border-radius: 50%;
+}
+
+.radio > input[type="radio"]:first-child:checked + label::before,
+.checkbox > input[type="checkbox"]:first-child:checked + label::before,
+.radio > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.checkbox > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    content: "\e013";
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-weight: normal;
+    font-size: 10px;
+    color: #fff;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    line-height: 20px;
+    border: 1px solid #000;
+    border-radius: 0px;
+    background-color: #000;
+    text-align: center;
+    margin-left: -29px;
+    vertical-align: text-top;
+}
+
+.radio > input[type="radio"]:first-child:checked + label::before,
+.radio > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before {
+    border-radius: 50%;
+}
+
+.radio > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.checkbox > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.radio > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.checkbox > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border: 2px solid #000;
+}
+
+.radio > input[type="radio"]:first-child:disabled + label,
+.radio > input[type="radio"]:first-child:disabled + label::before,
+.checkbox > input[type="checkbox"]:first-child:disabled + label,
+.checkbox > input[type="checkbox"]:first-child:disabled + label::before,
+.radio > input[type="radio"]:first-child:disabled + input[type="hidden"] + label,
+.radio > input[type="radio"]:first-child:disabled + input[type="hidden"] + label::before,
+.checkbox > input[type="checkbox"]:first-child:disabled + input[type="hidden"] + label,
+.checkbox > input[type="checkbox"]:first-child:disabled + input[type="hidden"] + label::before {
+    pointer-events: none;
+    cursor: default;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    opacity: .65;
+}
+
+.radio > input[type="radio"]:first-child,
+.checkbox > input[type="checkbox"]:first-child {
+    opacity: 0;
+    margin-left: 0px;
+}
+
+    .radio > input[type="radio"]:first-child:disabled,
+    .checkbox > input[type="checkbox"]:first-child:disabled {
+        opacity: 0;
+        cursor: default;
+    }
+
+/* not checked hover style*/
+.icheck-default > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-default > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-default > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-default > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #adadad;
+}
+
+/*checked style*/
+.icheck-default > input[type="radio"]:first-child:checked + label::before,
+.icheck-default > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-default > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-default > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+/* not checked hover style*/
+.icheck-primary > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-primary > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-primary > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-primary > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #2e6da4;
+}
+
+/*checked style*/
+.icheck-primary > input[type="radio"]:first-child:checked + label::before,
+.icheck-primary > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-primary > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-primary > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+/* not checked hover style*/
+.icheck-success > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-success > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-success > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-success > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #4cae4c;
+}
+
+/*checked style*/
+.icheck-success > input[type="radio"]:first-child:checked + label::before,
+.icheck-success > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-success > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-success > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+/* not checked hover style*/
+.icheck-info > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-info > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-info > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-info > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #46b8da;
+}
+
+/*checked style*/
+.icheck-info > input[type="radio"]:first-child:checked + label::before,
+.icheck-info > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-info > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-info > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
+/* not checked hover style*/
+.icheck-warning > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-warning > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-warning > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-warning > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #eea236;
+}
+
+/*checked style*/
+.icheck-warning > input[type="radio"]:first-child:checked + label::before,
+.icheck-warning > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-warning > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-warning > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+
+/* not checked hover style*/
+.icheck-danger > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-danger > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-danger > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-danger > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #d43f3a;
+}
+
+/*checked style*/
+.icheck-danger > input[type="radio"]:first-child:checked + label::before,
+.icheck-danger > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-danger > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-danger > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+/* not checked hover style*/
+.icheck-turquoise > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-turquoise > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-turquoise > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-turquoise > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #1abc9c;
+}
+
+/*checked style*/
+.icheck-turquoise > input[type="radio"]:first-child:checked + label::before,
+.icheck-turquoise > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-turquoise > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-turquoise > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+}
+
+/* not checked hover style*/
+.icheck-emerland > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-emerland > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-emerland > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-emerland > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #2ecc71;
+}
+
+/*checked style*/
+.icheck-emerland > input[type="radio"]:first-child:checked + label::before,
+.icheck-emerland > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-emerland > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-emerland > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #2ecc71;
+    border-color: #2ecc71;
+}
+
+/* not checked hover style*/
+.icheck-peterriver > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-peterriver > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-peterriver > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-peterriver > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #3498db;
+}
+
+/*checked style*/
+.icheck-peterriver > input[type="radio"]:first-child:checked + label::before,
+.icheck-peterriver > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-peterriver > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-peterriver > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+/* not checked hover style*/
+.icheck-amethyst > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-amethyst > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-amethyst > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-amethyst > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #9b59b6;
+}
+
+/*checked style*/
+.icheck-amethyst > input[type="radio"]:first-child:checked + label::before,
+.icheck-amethyst > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-amethyst > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-amethyst > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #9b59b6;
+    border-color: #9b59b6;
+}
+
+/* not checked hover style*/
+.icheck-wetasphalt > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-wetasphalt > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-wetasphalt > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-wetasphalt > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #34495e;
+}
+
+/*checked style*/
+.icheck-wetasphalt > input[type="radio"]:first-child:checked + label::before,
+.icheck-wetasphalt > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-wetasphalt > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-wetasphalt > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #34495e;
+    border-color: #34495e;
+}
+
+/* not checked hover style*/
+.icheck-greensea > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-greensea > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-greensea > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-greensea > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #16a085;
+}
+
+/*checked style*/
+.icheck-greensea > input[type="radio"]:first-child:checked + label::before,
+.icheck-greensea > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-greensea > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-greensea > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #16a085;
+    border-color: #16a085;
+}
+
+/* not checked hover style*/
+.icheck-nephritis > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-nephritis > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-nephritis > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-nephritis > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #27ae60;
+}
+
+/*checked style*/
+.icheck-nephritis > input[type="radio"]:first-child:checked + label::before,
+.icheck-nephritis > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-nephritis > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-nephritis > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #27ae60;
+    border-color: #27ae60;
+}
+
+/* not checked hover style*/
+.icheck-belizehole > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-belizehole > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-belizehole > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-belizehole > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #2980b9;
+}
+
+/*checked style*/
+.icheck-belizehole > input[type="radio"]:first-child:checked + label::before,
+.icheck-belizehole > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-belizehole > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-belizehole > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+/* not checked hover style*/
+.icheck-wisteria > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-wisteria > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-wisteria > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-wisteria > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #8e44ad;
+}
+
+/*checked style*/
+.icheck-wisteria > input[type="radio"]:first-child:checked + label::before,
+.icheck-wisteria > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-wisteria > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-wisteria > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #8e44ad;
+    border-color: #8e44ad;
+}
+
+/* not checked hover style*/
+.icheck-midnightblue > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-midnightblue > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-midnightblue > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-midnightblue > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #2c3e50;
+}
+
+/*checked style*/
+.icheck-midnightblue > input[type="radio"]:first-child:checked + label::before,
+.icheck-midnightblue > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-midnightblue > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-midnightblue > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+}
+
+/* not checked hover style*/
+.icheck-sunflower > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-sunflower > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-sunflower > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-sunflower > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #f1c40f;
+}
+
+/*checked style*/
+.icheck-sunflower > input[type="radio"]:first-child:checked + label::before,
+.icheck-sunflower > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-sunflower > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-sunflower > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #f1c40f;
+    border-color: #f1c40f;
+}
+
+/* not checked hover style*/
+.icheck-carrot > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-carrot > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-carrot > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-carrot > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #e67e22;
+}
+
+/*checked style*/
+.icheck-carrot > input[type="radio"]:first-child:checked + label::before,
+.icheck-carrot > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-carrot > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-carrot > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #e67e22;
+    border-color: #e67e22;
+}
+
+/* not checked hover style*/
+.icheck-alizarin > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-alizarin > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-alizarin > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-alizarin > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #e74c3c;
+}
+
+/*checked style*/
+.icheck-alizarin > input[type="radio"]:first-child:checked + label::before,
+.icheck-alizarin > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-alizarin > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-alizarin > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+/* not checked hover style*/
+.icheck-clouds > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-clouds > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-clouds > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-clouds > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #ecf0f1;
+}
+
+/*checked style*/
+.icheck-clouds > input[type="radio"]:first-child:checked + label::before,
+.icheck-clouds > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-clouds > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-clouds > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    color: #95a5a6;
+    background-color: #ecf0f1;
+    border-color: #ecf0f1;
+}
+
+/* not checked hover style*/
+.icheck-concrete > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-concrete > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-concrete > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-concrete > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #95a5a6;
+}
+
+/*checked style*/
+.icheck-concrete > input[type="radio"]:first-child:checked + label::before,
+.icheck-concrete > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-concrete > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-concrete > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #95a5a6;
+    border-color: #95a5a6;
+}
+
+/* not checked hover style*/
+.icheck-orange > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-orange > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-orange > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-orange > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #f39c12;
+}
+
+/*checked style*/
+.icheck-orange > input[type="radio"]:first-child:checked + label::before,
+.icheck-orange > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-orange > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-orange > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #f39c12;
+    border-color: #f39c12;
+}
+
+/* not checked hover style*/
+.icheck-pumpkin > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-pumpkin > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-pumpkin > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-pumpkin > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #d35400;
+}
+
+/*checked style*/
+.icheck-pumpkin > input[type="radio"]:first-child:checked + label::before,
+.icheck-pumpkin > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-pumpkin > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-pumpkin > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #d35400;
+    border-color: #d35400;
+}
+
+/* not checked hover style*/
+.icheck-pomegranate > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-pomegranate > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-pomegranate > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-pomegranate > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #c0392b;
+}
+
+/*checked style*/
+.icheck-pomegranate > input[type="radio"]:first-child:checked + label::before,
+.icheck-pomegranate > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-pomegranate > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-pomegranate > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #c0392b;
+    border-color: #c0392b;
+}
+
+/* not checked hover style*/
+.icheck-silver > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-silver > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-silver > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-silver > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #bdc3c7;
+}
+
+/*checked style*/
+.icheck-silver > input[type="radio"]:first-child:checked + label::before,
+.icheck-silver > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-silver > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-silver > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #bdc3c7;
+    border-color: #bdc3c7;
+}
+
+/* not checked hover style*/
+.icheck-asbestos > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-asbestos > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + label::before,
+.icheck-asbestos > input[type="radio"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before,
+.icheck-asbestos > input[type="checkbox"]:first-child:not(:checked):not(:disabled):hover + input[type="hidden"] + label::before {
+    border-color: #7f8c8d;
+}
+
+/*checked style*/
+.icheck-asbestos > input[type="radio"]:first-child:checked + label::before,
+.icheck-asbestos > input[type="checkbox"]:first-child:checked + label::before,
+.icheck-asbestos > input[type="radio"]:first-child:checked + input[type="hidden"] + label::before,
+.icheck-asbestos > input[type="checkbox"]:first-child:checked + input[type="hidden"] + label::before {
+    background-color: #7f8c8d;
+    border-color: #7f8c8d;
+}
+  
+  

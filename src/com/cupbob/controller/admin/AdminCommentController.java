@@ -23,7 +23,7 @@ import com.cupbob.util.CmmUtil;
 public class AdminCommentController {
 	private Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="CommnetService")
+	@Resource(name="CommentService")
 	private ICommentService commentService;
 	
 	@RequestMapping(value="commTest")
@@ -107,4 +107,12 @@ public class AdminCommentController {
 		log.info(this.getClass().getName()+ "cmtUpdateProc end");
 		return cList;
 	}
+	
+	@RequestMapping(value="test")
+	public String testHammer(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
+		
+		
+		return "admin/test1";
+	}
+	
 }

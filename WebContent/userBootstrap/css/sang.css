@@ -1,0 +1,586 @@
+.contentsInfo>span {
+	color: #5b5b5b;
+}
+
+.title {
+	font-weight: bold;
+	padding-left: 30px;
+	padding-top: 20px;
+}
+
+.boderdetail {
+	padding-left: 30px;
+	padding-bottom: 20px;
+	color: #808080;
+}
+
+.bodercontent {
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-size: 20px;
+}
+
+.reContent {
+	padding-left: 13px;
+	color: #808080;
+}
+
+.reDate1 {
+	color: #808080;
+	padding-left: 13px;
+}
+
+.reDate {
+	color: #808080;
+}
+
+.saButton0 {
+	background: -moz-linear-gradient(center top, #ffffff 5%, #ffffff 100%);
+	background-color: #7F7F7F;
+	border: 1px solid #7F7F7F;
+	display: inline-block;
+	color: #ffffff;
+	font-weight: bold;
+	font-style: normal;
+	text-decoration: none;
+	text-align: center;
+	float: right;
+	margin-right: 10px;
+	margin-left: 1px;
+	padding: 6px 16px;
+}
+
+.saButton1 {
+	background: -moz-linear-gradient(center top, #ffffff 5%, #ffffff 100%);
+	background-color: #7F7F7F;
+	border: 1px solid #7F7F7F;
+	display: inline-block;
+	color: #ffffff;
+	font-weight: bold;
+	font-style: normal;
+	text-decoration: none;
+	text-align: center;
+	float: right;
+	padding: 6px 16px;
+}
+
+.saButton2 {
+	background: -moz-linear-gradient(center top, #ffffff 5%, #ffffff 100%);
+	background-color: #7F7F7F;
+	border: 1px solid #7F7F7F;
+	display: inline-block;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-style: normal;
+	text-decoration: none;
+	text-align: center;
+	float: right;
+	margin-right: 1px;
+	margin-left: 1px;
+	padding: 6px 16px;
+}
+
+.saButton3 {
+	background: -moz-linear-gradient(center top, #ffffff 5%, #ffffff 100%);
+	background-color: #E90101;
+	border: 0px solid #E90101;
+	display: inline-block;
+	color: #ffffff;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 19px;
+	text-decoration: none;
+	text-align: center;
+	float: left;
+	margin-top: 0px;
+	padding: 4px 32px;
+	height: 40px;
+}
+
+.saButton4 {
+	background: -moz-linear-gradient(center top, #ffffff 5%, #ffffff 100%);
+	background-color: #ffffff;
+	border: 1px solid #E90101;
+	display: inline-block;
+	color: #E90101;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 30px;
+	width: 95%;
+	text-decoration: none;
+	text-align: center;
+	margin-top: 0px;
+	padding: 15px 100px;
+}
+
+.saButton5 {
+	background: -moz-linear-gradient(center top, #ffffff 5%, #ffffff 100%);
+	background-color: #7F7F7F;
+	border: 1px solid #7F7F7F;
+	display: inline-block;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 19px;
+	text-decoration: none;
+	text-align: center;
+	float: left;
+	margin-top: 0px;
+	padding: 4px 32px;
+	height: 40px;
+}
+
+.saButton6 {
+	background: -moz-linear-gradient(center top, #ffffff 5%, #ffffff 100%);
+	background-color: #7F7F7F;
+	border: 1px solid #7F7F7F;
+	display: inline-block;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 19px;
+	text-decoration: none;
+	text-align: center;
+	margin-top: 0px;
+	padding: 4px 32px;
+	height: 40px;
+	margin-left: 0px;
+}
+
+.blackHr {
+	border: 1px solid #ddd;
+}
+
+.reName {
+	font-weight: bold;
+	display: inline-block;
+}
+
+div.reTitle {
+	padding-bottom: 0px;
+}
+
+div.reTitle1 {
+	border: none;
+	padding-bottom: 5px;
+	padding-left: 20px;
+	margin-right: 10px;
+}
+
+div>p.inline0 {
+	margin-top: 5px;
+	display: inline;
+	font-weight: bold;
+	padding-top: 20px;
+	font-size: 25px;
+}
+
+div>p.inline1 {
+	margin-top: 5px;
+	display: inline-block;
+	color: #808080;
+	font-size: 20px;
+}
+
+div>span.inline2 {
+	margin-top: 5px;
+	display: inline;
+	color: #808080;
+	font-size: 20px;
+	float: right;
+	padding-bottom: 30px;
+}
+
+a.black {
+	color: #808080;
+	display: inline-block;
+}
+
+input.nameFont {
+	font-size: 19px;
+	color: #000000;
+	width: 92%;
+	margin-bottom: 30px;
+	float: left;
+	height: 40px;
+	display: inline-block;
+	border: 1px solid #8B8B8B;
+}
+
+input.nameFont1 {
+	font-size: 19px;
+	color: #000000;
+	width: 92%;
+	height: 40px;
+	margin-bottom: 30px;
+	float: left;
+	display: inline-block;
+	border: 1px solid #8B8B8B;
+}
+
+input.nameFont2 {
+	font-size: 19px;
+	color: #000000;
+	width: 92%;
+	height: 40px;
+	margin-bottom: 30px;
+	display: inline-block;
+	border: 1px solid #8B8B8B;
+	margin-right: 0px;
+}
+
+/* 360px 이하 (아이폰5)*/
+@media screen and (max-width: 360px) {
+	input.nameFont {
+		width: 75%;
+		font-size: 11px;
+		margin-bottom: 15px;
+		height: 25px;
+	}
+	input.nameFont1 {
+		width: 75%;
+		font-size: 11px;
+		height: 25px;
+	}
+	input.nameFont2 {
+		width: 65%;
+		font-size: 15px;
+	}
+	.saButton3 {
+		width: 25%;
+		font-size: 9px;
+		padding:5px 5px;
+		height: 25px;
+	}
+	.saButton5 {
+		width: 25%;
+		font-size: 9px;
+		padding:5px 5px;
+		height: 25px;
+	}
+	.saButton6 {
+		width: 25%;
+		font-size: 15px;
+		padding: 4px;
+	}
+	.saButton2 {
+		width: 15%;
+		font-size: 9px;
+		margin-top: 10px;
+		padding:5px 5px
+	}
+	.saButton0 {
+		width: 15%;
+		font-size: 11px;
+		margin-top: 10px;
+		padding:5px 5px
+	}.saButton1 {
+		width: 15%;
+		font-size: 11px;
+		margin-top: 10px;
+		padding:5px 5px
+	}
+	div>span.inline2 {
+		font-size: 13px;
+		padding-top: 8px;
+	}
+	a.black {
+		font-size: 11px;
+	}
+	.title {
+		font-size: 17px;
+	}
+	.boderdetail {
+		font-size: 10px;
+	}
+	div>p.inline0 {
+		font-size: 17px;
+	}
+	.bodercontent {
+		font-size: 14px;
+	}
+	h4.reName {
+		font-size: 17px;
+	}
+	.saButton4 {
+		font-size: 15px;
+		height: 30px;
+		padding-top: 4px;
+	}
+}
+/* 351px 이상 370px 이하(갤럭시5) */
+@media screen and (min-width: 361px) and (max-width: 370px) {
+	input.nameFont {
+		width: 75%;
+		font-size: 15px;
+		margin-bottom: 15px;
+	}
+	input.nameFont1 {
+		width: 75%;
+		font-size: 11px;
+	}
+	input.nameFont2 {
+		width: 65%;
+		font-size: 15px;
+	}
+	.saButton3 {
+		width: 25%;
+		font-size: 15px;
+		padding: 4px;
+	}
+	.saButton5 {
+		width: 25%;
+		font-size: 15px;
+		padding: 4px;
+	}
+	.saButton6 {
+		width: 25%;
+		font-size: 15px;
+		padding: 4px;
+	}
+	.saButton2 {
+		width: 23%;
+		font-size: 15px;
+		padding: 4px;
+		margin-top: 10px;
+	}
+	div>span.inline2 {
+		font-size: 13px;
+		padding-top: 5px;
+	}
+	a.black {
+		font-size: 15px;
+	}
+	.bodercontent {
+		font-size: 14px;
+	}
+	.title {
+		font-size: 19px;
+	}
+	.boderdetail {
+		font-size: 12px;
+	}
+	div>p.inline0 {
+		font-size: 19px;
+	}
+	h4.reName {
+		font-size: 19px;
+	}
+	.saButton4 {
+		font-size: 17px;
+		height: 40px;
+		padding-top: 8px;
+	}
+}
+/* 371px 이상 400px 이하(아이폰6) */
+@media screen and (min-width: 371px) and (max-width: 400px) {
+	input.nameFont {
+		width: 75%;
+		font-size: 12px;
+		margin-bottom: 15px;
+		height: 30px;
+	}
+	input.nameFont1 {
+		width: 75%;
+		font-size: 12px;
+		height: 30px;
+	}
+	input.nameFont2 {
+		width: 65%;
+		font-size: 12px;
+	}
+	.saButton3 {
+		width: 25%;
+		font-size: 12px;
+		padding: 4px;
+		height: 30px;
+	}
+	.saButton4 {
+		font-size: 17px;
+		height: 40px;
+		padding-bottom: 35px;
+	}
+	.saButton5 {
+		width: 25%;
+		font-size: 12px;
+		padding: 4px;
+		height: 30px;
+	}
+	.saButton6 {
+		width: 25%;
+		font-size: 15px;
+		padding: 4px;
+	}
+	.saButton2 {
+		width: 13%;
+		font-size: 12px;
+		margin-top: 10px;
+		padding:5px 5px
+	}
+	.saButton0 {
+		width: 13%;
+		font-size: 12px;
+		margin-top: 10px;
+		padding:5px 5px
+	}
+	.saButton1 {
+		width: 13%;
+		font-size: 12px;
+		margin-top: 10px;
+		padding:5px 5px
+	}
+	
+		
+	div>span.inline2 {
+		font-size: 13px;
+		padding-top: 5px;
+	}
+	a.black {
+		font-size: 15px;
+	}
+	.bodercontent {
+		font-size: 14px;
+	}
+	.title {
+		font-size: 19px;
+	}
+	.boderdetail {
+		font-size: 12px;
+	}
+	div>p.inline0 {
+		font-size: 19px;
+	}
+	h4.reName {
+		font-size: 19px;
+	}
+}
+/* 401px 이상 700px 이하 (아이폰6플러스,넥서스)*/
+@media screen and (min-width: 401px) and (max-width: 700px) {
+	input.nameFont {
+		width: 78%;
+		font-size: 13px;
+		margin-bottom: 15px;
+	}
+	input.nameFont1 {
+		width: 78%;
+		font-size: 13px;
+	}
+	input.nameFont2 {
+		width: 65%;
+		font-size: 13px;
+	}
+	.saButton3 {
+		width: 22%;
+		font-size: 13px;
+		padding: 4px;
+	}
+	.saButton4 {
+		font-size: 16px;
+		height: 40px;
+		padding-bottom: 35px;
+	}
+	.saButton5 {
+		width: 22%;
+		font-size: 13px;
+		padding: 4px;
+	}
+	.saButton6 {
+		width: 25%;
+		font-size: 13px;
+		padding: 4px;
+	}
+	.saButton2 {
+		width: 18%;
+		font-size: 13px;
+		padding: 4px;
+		margin-top: 10px;
+	}
+	div>span.inline2 {
+		font-size: 13px;
+		padding-bottom: 1px;
+	}
+	a.black {
+		font-size: 17px;
+	}
+	.bodercontent {
+		font-size: 17px;
+	}
+	.title {
+		font-size: 22px;
+	}
+	.boderdetail {
+		font-size: 15px;
+	}
+	div>p.inline0 {
+		font-size: 20px;
+	}
+	h4.reName {
+		font-size: 20px;
+	}
+}
+
+@media screen and (min-width: 701px) and (max-width: 3500px) {
+	input.nameFont {
+		width: 90%;
+		font-size: 15px;
+		margin-bottom: 15px;
+	}
+	input.nameFont1 {
+		width: 90%;
+		font-size: 15px;
+	}
+	input.nameFont2 {
+		width: 75%;
+		font-size: 15px;
+	}
+	.saButton3 {
+		width: 9%;
+		font-size: 14px;
+		padding: 4px;
+	}
+
+
+.saButton4 {
+	font-size: 21px;
+	padding-bottom: 15px;
+}
+
+.saButton5 {
+	width: 9%;
+	font-size: 14px;
+	padding: 4px;
+}
+
+
+.saButton6 {
+	width: 25%;
+	font-size: 21px;
+	padding: 4px;
+}
+
+.saButton2 {
+	border: 1px solid #7F7F7F;
+	display: inline-block;
+	color: #ffffff;
+	font-weight: bold;
+	font-style: normal;
+	text-decoration: none;
+	text-align: center;
+	float: right;
+	padding: 6px 16px;
+}
+
+div>span.inline2 {
+	font-size: 13px;
+}
+
+a.black {
+	font-size: 20px;
+}
+
+div>p.inline0 {
+	font-size: 23px;
+}
+}
