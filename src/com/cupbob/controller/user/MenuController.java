@@ -81,5 +81,6 @@ public class MenuController {
 			}
 			session.setAttribute("ss_tmpBakset", tList);
 		}
+		log.info(this.getClass() + "userAddTmpBasket end!!!");
 	}
 }
