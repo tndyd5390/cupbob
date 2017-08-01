@@ -1,7 +1,7 @@
 <%@page import="com.cupbob.util.CmmUtil"%>
 <%@page import="com.cupbob.dto.Product_infoDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
 	Product_infoDTO pDTO = (Product_infoDTO)request.getAttribute("pDTO");
 %>
@@ -18,10 +18,9 @@
 <link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
 <link rel="stylesheet" href="userBootstrap/css/nav.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
 <title>Insert title here</title>
 <script type="text/javascript">
-
+//주석 달리나???
 	function addItemCnt(){
 		var qty = parseInt($('#itemQty').val());
 		if(qty < 99){
@@ -39,6 +38,40 @@
 			$('#itemPrice').text(qty * <%=CmmUtil.nvl(pDTO.getPrdt_price())%>);
 		}
 	}
+	
+	function addTmpBasket(){
+		$.ajax ({
+			url : "userAddTmpBasket.do",
+			method : "post",
+			data : {
+				'prdtNo' : <%=CmmUtil.nvl(pDTO.getPrdt_no())%>,
+				'prdtPrice' : <%=CmmUtil.nvl(pDTO.getPrdt_price())%>,
+				'prdtQty' : $('#itemQty').val()
+			},
+			success : function(data){
+				if(data == '1'){
+				alert('장바구니에 추가되었습니다.');
+				}
+			},
+			error:function(x,e){
+				if(x.status==0){
+		            alert('네트워크가 정상적으로 동작하지 않습니다.');
+		            alert('네트워크 상태를 확인 하거나 업체에게 문의해 주세요.')
+		            }else if(x.status==404){
+		            alert('페이지를 찾을수가 없습니다. 지금은 주문을 받을 수 없습니다. 업체에게 문의하세요.');
+		            }else if(x.status==500){
+		            alert('서버에서 오류가 발생했습니다. 지금은 주문을 받을 수 없습니다. 업체에게 문의하세요.');
+		            }else if(e=='parsererror'){
+		            alert('json파싱에 실패했습니다.');
+		            }else if(e=='timeout'){
+		            alert('응답 요청 시간이 지났습니다.');
+		            }else {
+		            alert('Unknow Error.n'+x.responseText);
+		            }
+		    }
+		});
+	}
+	
 </script>
 </head>
 <body>
@@ -100,10 +133,10 @@
 		<div class="row">
 			<div>
 				<div class="col-xs-6">
-					<button class="detailCart">상품담기</button>
+					<button class="detailCart" onclick="addTmpBasket();">상품담기</button>
 				</div>
 				<div class="col-xs-6">
-					<a href="order.jsp"><button class="detailSubmit">바로결제</button></a>
+					<a href="#"><button class="detailSubmit">바로결제</button></a>
 				</div>
 			</div>
 		</div>

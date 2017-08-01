@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cupbob.dto.Product_infoDTO;
+import com.cupbob.dto.TmpBasketDTO;
 import com.cupbob.service.IMenuService;
 import com.cupbob.service.IUserService;
 import com.cupbob.util.CmmUtil;
@@ -53,4 +55,32 @@ public class MenuController {
 		return "user/detail";
 	}
 	
+	@RequestMapping(value="userAddTmpBasket", method=RequestMethod.POST)
+	public void userAddTmpBasket(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
+		log.info(this.getClass() + "userAddTmpBasket start!!!");
+		String prdtNo = CmmUtil.nvl(req.getParameter("prdtNo"));
+		log.info(this.getClass() + " prdtNo : " + prdtNo);
+		String prdtPrice = CmmUtil.nvl(req.getParameter("prdtPrice"));
+		log.info(this.getClass() + " prdtPrice : " + prdtPrice);
+		String prdtQty = CmmUtil.nvl(req.getParameter("prdtQty"));
+		log.info(this.getClass() + " prdtQty : " + prdtQty);
+		Object tmpSession = session.getAttribute("ss_tmpBakset");
+		List<TmpBasketDTO> tList;
+		if(tmpSession == null){
+			tList = new ArrayList<>();
+			tList.add(new TmpBasketDTO(prdtNo, prdtQty, prdtPrice));
+			session.setAttribute("ss_tmpBakset", tList);
+		}else{
+			tList = (List<TmpBasketDTO>)tmpSession;
+			for(TmpBasketDTO tDTO : tList){
+				if(tDTO.getTmpBasketPrdtNo().equals(prdtNo)){
+					tDTO.setTmpBasketPrdtQty(Integer.parseInt(tDTO.getTmpBasketPrdtQty()) + Integer.parseInt(prdtQty) + "");
+				}else{
+					tList.add(new TmpBasketDTO(prdtNo, prdtQty, prdtPrice));
+				}
+			}
+			session.setAttribute("ss_tmpBakset", tList);
+		}
+		resp.getWriter().println("1");
+	}
 }
