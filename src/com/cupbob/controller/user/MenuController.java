@@ -65,7 +65,9 @@ public class MenuController {
 		log.info(this.getClass() + " prdtPrice : " + prdtPrice);
 		String prdtQty = CmmUtil.nvl(req.getParameter("prdtQty"));
 		log.info(this.getClass() + " prdtQty : " + prdtQty);
+		
 		Object tmpSession = session.getAttribute("ss_tmpBakset");
+		log.info(this.getClass() + tmpSession.toString());
 		List<TmpBasketDTO> tList;
 		if(tmpSession == null){
 			tList = new ArrayList<>();
