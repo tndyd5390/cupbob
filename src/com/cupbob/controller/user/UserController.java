@@ -112,7 +112,7 @@ public class UserController {
 			session.setAttribute("ss_user_email", CmmUtil.nvl(uDTO.getEmail()));
 			session.setAttribute("ss_user_name", CmmUtil.nvl(uDTO.getUser_name()));
 			session.setAttribute("ss_user_no", CmmUtil.nvl(uDTO.getUser_no()));
-			return "redirect:userLogin.do";
+			return "redirect:userMenuList.do";
 		}
 	}
 }
