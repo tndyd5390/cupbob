@@ -63,8 +63,12 @@ public class UserService implements IUserService {
 
 	@Override
 	public User_infoDTO getUserFindEmail(User_infoDTO udto) throws Exception{
-		// TODO Auto-generated method stub
-		return userMapper.getUserFindEmail(udto);
+		System.out.println(udto.getGender());
+		if(udto.getGender().equals("")){
+			return userMapper.getUserFindEmail(udto);
+		}else{
+			return userMapper.userFindEmail(udto);
+		}
 	}
 
 	@Override
@@ -72,7 +76,11 @@ public class UserService implements IUserService {
 		// TODO Auto-generated method stub
 		User_infoDTO userDTO = null;
 		
-		userDTO = userMapper.getUserFindPw(udto);
+		if(udto.getGender().equals("")){
+			userDTO = userMapper.getUserFindPw(udto);
+		}else{
+			userDTO = userMapper.userFindPw(udto);
+		}
 		
 		if(userDTO != null){
 			long temp_Pw = (long)(Math.random()*9000000000l) + 1000000000l;
@@ -91,12 +99,10 @@ public class UserService implements IUserService {
 		}else{
 			return null;
 		}
-				
 	}
 	
 	@Override
 	public List<User_infoDTO> userSearch(User_infoDTO uDTO) throws Exception{
 		return userMapper.userSearch(uDTO);
 	}
-	
 }

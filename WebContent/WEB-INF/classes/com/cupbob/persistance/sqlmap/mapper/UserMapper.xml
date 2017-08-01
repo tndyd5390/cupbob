@@ -73,6 +73,12 @@
 	<select id="userSearch" resultType="User_infoDTO" parameterType="User_InfoDTO">
 		SELECT * FROM USER_INFO WHERE EMAIL LIKE CONCAT('%', #{email}, '%') OR USER_NAME LIKE CONCAT('%', #{user_name}, '%')  
 	</select>
+	<select id="userFindEmail" resultType="User_infoDTO" parameterType="User_InfoDTO">
+		SELECT EMAIL FROM USER_INFO WHERE USER_NAME=#{user_name} AND GENDER=#{gender} AND BIRTHDAY=#{birthday} AND CONTACT_ADDR=#{contact_addr}
+	</select>
+	<select id="userFindPw" resultType="User_infoDTO" parameterType="User_InfoDTO">
+		SELECT PASSWORD FROM USER_INFO WHERE EMAIL = #{email} AND USER_NAME=#{user_name} AND GENDER=#{gender} AND BIRTHDAY=#{birthday} AND CONTACT_ADDR=#{contact_addr}
+	</select>
 	
 	
 </mapper> 
