@@ -55,6 +55,7 @@ public class MenuController {
 		return "user/detail";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="userAddTmpBasket", method=RequestMethod.POST)
 	public void userAddTmpBasket(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
 		log.info(this.getClass() + "userAddTmpBasket start!!!");
