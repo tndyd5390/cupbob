@@ -14,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cupbob.dto.Comment_infoDTO;
 import com.cupbob.dto.User_boardDTO;
 import com.cupbob.service.IBoardService;
+import com.cupbob.service.ICommentService;
 import com.cupbob.util.CmmUtil;
 
 
@@ -25,6 +27,8 @@ public class BoardController {
 	
 	@Resource(name="BoardService")
 	private IBoardService boardService;
+	@Resource(name = "CommentService")
+	private ICommentService commentService;
 	
 	@RequestMapping(value="userBoardList", method = RequestMethod.GET)
 	public String userBoardList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
@@ -80,5 +84,70 @@ public class BoardController {
 	}
 	
 	
+	@RequestMapping(value="userBoardDetail", method = RequestMethod.GET)
+	public String userBoardDetail(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + "userBoardDetail start!!!");
+		
+		String bnum = CmmUtil.nvl(req.getParameter("bnum"));
+		System.out.println(bnum);
+		
+		User_boardDTO bDTO = new User_boardDTO();
+		bDTO.setPost_no(bnum);
+		bDTO = boardService.getAdminBoardDetail(bDTO);
+		if(bDTO == null){
+			bDTO = new User_boardDTO();
+		}
+		bDTO.setContents(CmmUtil.exchangeEscape(bDTO.getContents()));
+		
+		Comment_infoDTO cDTO = new Comment_infoDTO();
+		cDTO.setPost_no(bnum);
+		
+		List<Comment_infoDTO> cList = commentService.getCommentList(cDTO);
+		
+		model.addAttribute("bDTO", bDTO);
+		model.addAttribute("cList", cList);
+		
+		cList = null;
+		bnum = null;
+		bDTO = null;
+		
+		log.info(this.getClass() + "userBoardDetail end!!!");
+		return "user/userBoardDetail";
+	}
+	
 
+	@RequestMapping(value="userBoardDelete", method = RequestMethod.GET)
+	public String userBoardDelete(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + "userBoardDelete start!!!");
+		
+		String bnum = CmmUtil.nvl(req.getParameter("bnum"));
+		System.out.println(bnum);
+		
+		User_boardDTO bDTO = new User_boardDTO();
+		bDTO.setPost_no(bnum);
+		
+		int result = boardService.deleteAdminBoardDetailDelete(bDTO);
+		
+		String msg = "";
+		String url = "";
+		
+		if(result > 0){
+			msg = "삭제되었습니다.";
+			url = "userBoardList.do";
+		}else{
+			msg = "오류";
+			url = "userBoardDetail.do?bnum="+bnum;
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		url = null;
+		msg = null;
+		bDTO = null;
+		
+		log.info(this.getClass() + "userBoardDelete end!!!");
+		return "user/userBoardAlert";
+	}
+	
 }

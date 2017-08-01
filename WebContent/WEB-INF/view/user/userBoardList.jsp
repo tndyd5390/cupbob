@@ -1,7 +1,7 @@
 <%@page import="com.cupbob.util.CmmUtil"%>
 <%@page import="com.cupbob.dto.User_boardDTO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 List<User_boardDTO> bList = (List<User_boardDTO>)request.getAttribute("userBoardList");
@@ -44,7 +44,7 @@ List<User_boardDTO> bList = (List<User_boardDTO>)request.getAttribute("userBoard
 						<span style="vaerical-align: middle;"></span>
 					</div>
 					<div class="contentsInfo">
-						<span><%=CmmUtil.nvl(bDTO.getUser_name())%></span> <span><%=CmmUtil.nvl(bDTO.getReg_dt()) %></span> <span>조회수</span> <span><%=CmmUtil.nvl(bDTO.getView_cnt()) %></span>
+						<span><%=CmmUtil.nvl(bDTO.getUser_name())%></span> | <span><%=CmmUtil.nvl(bDTO.getReg_dt()) %></span> | <span>조회수</span> | <span><%=CmmUtil.nvl(bDTO.getView_cnt()) %></span>
 					</div>
 				</li>
 				<%
