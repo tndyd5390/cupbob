@@ -36,6 +36,7 @@ public class MenuController {
 		if(pList == null){
 			pList = new ArrayList<>();
 		}
+		System.out.println("Sds");
 		model.addAttribute("pList", pList);
 		log.info(this.getClass() + "userMenuList end!!!");
 		return "user/menulist";
