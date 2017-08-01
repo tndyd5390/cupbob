@@ -96,7 +96,7 @@
 		<div class="row">
 			<div class="d-Img">
 				<img
-					src="<%="menuImg/" + CmmUtil.nvl(pDTO.getFile_name()) %>"
+					src="<%=CmmUtil.nvl(pDTO.getFile_path()) + CmmUtil.nvl(pDTO.getFile_name()) %>"
 					class="detailImg">
 			</div>
 		</div>
