@@ -3202,3 +3202,135 @@ hr.tmpBasketHr{
 @media screen and (max-width: 1024px){
 	
 }
+
+	.myPageFont{
+	 font-weight:bold;
+	}
+	button.myPageButton01 {
+	    background-color: #E4002B;
+	    height: 45px;
+	    color: #fff;
+	    text-align: center;
+	    font-size: 20px;
+	    font-weight: 700;
+	    margin-top: 20px;
+	    border: 0;
+	    width: 100%;
+	    margin-bottom: 10px;
+	}
+	hr.myPageHr{
+		margin-bottom: 10px;
+		margin-top : 10px;
+	}
+	div.myPagePoint{
+		border-bottom: 1px solid;
+	}
+	li.myPageLeft{
+		width:20%;
+		text-align: center;
+	}
+	li.myPageCenter{
+		width:40%;
+		text-align: center;
+		font-size:12px;
+	}
+	li.myPageRight{
+		width:38%;
+		text-align: center;
+	}
+	li.myPageCenterHead{
+		width:40%;
+		text-align: center;
+	}
+	ul.pointHead{
+		font-size: 14px;
+		font-weight: bold;
+		border-top : 1px solid;
+		border-bottom : 1px solid;
+	}
+	img.profileImg{
+		float:left;
+		width:120px;
+		height:150px;
+		border:solid 1px silver;
+		margin-right:10px;
+	}
+/* 350px �씠�븯 (�븘�씠�룿5)*/
+@media screen and (max-width: 350px) {
+	h3.myPageName{
+		margin-top:10px;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	p.myPageFont{
+	 font-weight:bold;
+	 margin-bottom:0px;
+	}
+	button.myPageButton01{
+		margin-top:5px;
+	}
+		li.myPageLeft{
+		width:18%;
+		text-align: center;
+	}
+	li.myPageCenter{
+		width:40%;
+		text-align: center;
+		font-size:12px;
+	}
+	li.myPageRight{
+		width:38%;
+		text-align: center;
+	}
+	li.myPageCenterHead{
+		width:40%;
+		text-align: center;
+	}
+	
+}
+/* 351px �씠�긽 370px �씠�븯(媛ㅻ윮�떆5) */
+@media screen and (min-width: 351px) and (max-width: 370px) {
+	li.myPageLeft{
+		width:22%;
+		text-align: center;
+	}
+	li.myPageCenter{
+		width:37%;
+		text-align: center;
+		font-size:12px;
+	}
+	li.myPageRight{
+		width:38%;
+		text-align: center;
+	}
+	li.myPageCenterHead{
+		width:37%;
+		text-align: center;
+	}
+	button.myPageButton01{
+		margin-top:5px;
+	}
+}
+/* 371px �씠�긽 400px �씠�븯(�븘�씠�룿6) */
+@media screen and (min-width: 371px) and (max-width: 400px) {
+		li.myPageLeft{
+		width:22%;
+		text-align: center;
+	}
+	li.myPageCenter{
+		width:37%;
+		text-align: center;
+		font-size:12px;
+	}
+	li.myPageRight{
+		width:38%;
+		text-align: center;
+	}
+	li.myPageCenterHead{
+		width:37%;
+		text-align: center;
+	}
+	button.myPageButton01{
+		margin-top:5px;
+	}
+}
