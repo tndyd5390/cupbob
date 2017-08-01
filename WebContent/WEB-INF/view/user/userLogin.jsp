@@ -1,19 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap core CSS -->
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="userBootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap theme -->
-<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-<link rel="stylesheet" href="userBootstrap/css/tutle.min.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-<title>Insert title here</title>
+<link href="userBootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+<link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
+<title>거북목 로그인</title>
 </head>
 <body>
 	<div>
@@ -41,16 +39,16 @@
 				<div class="panel-body loginSpan2">회원 로그인</div>
 			</div>
 		</div>
-		<form class="form-horizontal">
+		<form class="form-horizontal" action="userLoginProc.do" method="post">
 			<div class="form-group">
 				<div class="col-xs-12">
-					<input type="email" class="form-control" id=""
+					<input type="email" class="form-control" name="email" id=""
 						placeholder="이메일을 입력하세요">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-xs-12">
-					<input type="password" class="form-control" id="" placeholder="암호">
+					<input type="password" class="form-control" id="" placeholder="암호" name="password">
 				</div>
 			</div>
 			<button class="detailSubmit">로그인</button>
