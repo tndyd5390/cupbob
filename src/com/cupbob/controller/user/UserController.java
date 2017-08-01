@@ -98,7 +98,7 @@ public class UserController {
 		uDTO.setPassword(password);
 		
 		uDTO = userService.login(uDTO);
-		
+
 		if(uDTO == null){
 			log.info("userLoginProc Fail!!");
 			log.info(this.getClass().getName() + "userLoginProc End!!");

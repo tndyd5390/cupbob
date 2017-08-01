@@ -55,6 +55,7 @@ public class MenuController {
 		return "user/detail";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="userAddTmpBasket", method=RequestMethod.POST)
 	public void userAddTmpBasket(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
 		log.info(this.getClass() + "userAddTmpBasket start!!!");
@@ -70,6 +71,7 @@ public class MenuController {
 			tList = new ArrayList<>();
 			tList.add(new TmpBasketDTO(prdtNo, prdtQty, prdtPrice));
 			session.setAttribute("ss_tmpBakset", tList);
+			log.info(this.getClass() + "if in");
 		}else{
 			tList = (List<TmpBasketDTO>)tmpSession;
 			for(TmpBasketDTO tDTO : tList){
@@ -81,5 +83,6 @@ public class MenuController {
 			}
 			session.setAttribute("ss_tmpBakset", tList);
 		}
+		log.info(this.getClass() + "userAddTmpBasket end!!!");
 	}
 }

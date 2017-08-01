@@ -91,10 +91,12 @@ public class AdminCommentController {
 		log.info(this.getClass().getName()+ "cmtUpdateProc start");
 		
 		String user_no = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
+		
+		System.out.println(user_no);
 		Comment_infoDTO ctDTO = new Comment_infoDTO();
 		ctDTO.setPost_no(pNo);
 		ctDTO.setCmt_no(cmtNo);
-		ctDTO.setContents(contents);;
+		ctDTO.setContents(contents);
 		ctDTO.setChg_user_no(user_no);
 		commentService.updateComment(ctDTO);
 		
