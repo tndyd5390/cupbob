@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@page import="com.cupbob.dto.User_boardDTO"%>
+<%@page import="com.cupbob.dto.Comment_infoDTO"%>
+<%@ page import="java.util.List"%>
+<%@ page import="com.cupbob.util.CmmUtil"%>
+
+<%
+	User_boardDTO bDTO = (User_boardDTO) request.getAttribute("bDTO");
+	List<Comment_infoDTO> cList = (List<Comment_infoDTO>) request.getAttribute("cList");
+	String contents = bDTO.getContents();
+	bDTO.setContents(contents);
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,19 +41,18 @@
 		<div class="container-fluid">
 			<div class="row">
 				<!--글 제목-->
-				<h2 class="title">게시글 제목이 들어가는 자리입니다.</h2>
+				<h2 class="title"><%=CmmUtil.nvl(bDTO.getTitle()) %></h2>
 				<!--글쓴이 및 글정보-->
-				<h7 class="boderdetail">소라네컵밥 | 2017-04-14 | 댓글10 | 조회16</h7>
+				<h7 class="boderdetail"><%=CmmUtil.nvl(bDTO.getUser_name()) %> | <%=CmmUtil.nvl(bDTO.getReg_dt()) %> | 조회수 <%=CmmUtil.nvl(bDTO.getView_cnt()) %></h7>
 			</div>
 			<hr>
 			<div class="row">
 				<div class="bodercontent">
 					<!--글 내용-->
-					게시물 내용이 들어가는 자리입니다.<br /> 여기에 내용을 넣어주세요 .<br /> 아싸라비야 콜롬비야 호잇호잇<br />
-					이렇게 내용을 넣어주면 됩니다.<br />
+					<%=CmmUtil.nvl(bDTO.getContents()) %>
 				</div>
-				<button class="saButton0">수정</button>
-				<button class="saButton1">삭제</button>
+				<button class="saButton0" onclick="location.href='userBoardDelete.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>'">삭제</button>
+				<button class="saButton1">수정</button>
 				<br />
 			</div>
 			<hr class="blackHr">
@@ -61,7 +73,7 @@
 					<!--글 작성 input-->
 					<div class="reTitle">
 						<input type="text" class="nameFont" placeholder=" 댓글을 입력해주세요.">
-						<button class="saButton3">등록</button>
+						<button class="saButton3" >등록</button>
 						<br> <br><br>
 					</div>
 					<!-------------->
@@ -164,7 +176,7 @@
 			<!----------------------------------------------------------->
       </ul>
       <div align=center>
-         <button class="saButton4">목 록</button>
+         <button class="saButton4" onclick="location.href='userBoardList.do'">목 록</button>
       </div>
    </div>
 

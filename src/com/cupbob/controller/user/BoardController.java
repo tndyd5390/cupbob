@@ -1,8 +1,12 @@
 package com.cupbob.controller.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -10,7 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cupbob.dto.Comment_infoDTO;
+import com.cupbob.dto.User_boardDTO;
 import com.cupbob.service.IBoardService;
+import com.cupbob.service.ICommentService;
+import com.cupbob.util.CmmUtil;
 
 
 @Controller
@@ -19,13 +27,127 @@ public class BoardController {
 	
 	@Resource(name="BoardService")
 	private IBoardService boardService;
+	@Resource(name = "CommentService")
+	private ICommentService commentService;
 	
-	@RequestMapping(value="userBoard", method = RequestMethod.GET)
-	public String userBoard(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
-		log.info(this.getClass() + "userBoard start!!!");
+	@RequestMapping(value="userBoardList", method = RequestMethod.GET)
+	public String userBoardList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + "userBoardList start!!!");
 		
+		List<User_boardDTO> userBoardList = boardService.getAdminBoardList();
 		
-		log.info(this.getClass() + "userBoard end!!!");
-		return "user/boardDetail";
+		if(userBoardList == null){
+			userBoardList = new ArrayList<User_boardDTO>();
+		}
+		
+		System.out.println(userBoardList.size());
+		
+		model.addAttribute("userBoardList", userBoardList);
+		userBoardList = null;
+		
+		log.info(this.getClass() + "userBoardList end!!!");
+		return "user/userBoardList";
 	}
+	
+	@RequestMapping(value="userBoardReg", method = RequestMethod.GET)
+	public String userBoardReg(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + "userBoardReg start!!!");
+		
+		log.info(this.getClass() + "userBoardReg end!!!");
+		return "user/userBoardReg";
+	}
+	
+	@RequestMapping(value="userBoardProc", method = RequestMethod.POST)
+	public String userBoardProc(HttpServletRequest req, HttpServletResponse resp, Model model,  HttpSession session) throws Exception{
+		log.info(this.getClass() + "userBoardProc start!!!");
+		
+		String boardTitle = CmmUtil.nvl(req.getParameter("title"));
+		String boardContent = CmmUtil.nvl(req.getParameter("detail"));
+		String user_no = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
+		
+		log.info("boardTitle  :  " + boardTitle);
+		log.info("boardContent  :  " + boardContent);
+		log.info("ss_user_no : " + user_no);
+		
+		User_boardDTO bDTO = new User_boardDTO();
+		
+		bDTO.setTitle(boardTitle);
+		bDTO.setContents(boardContent);
+		bDTO.setUser_no(user_no);
+		
+		boardService.insertAdminBoard(bDTO);
+		
+		bDTO = null;
+		
+		log.info(this.getClass() + "userBoardProc end!!!");
+		return "redirect:userBoardList.do";
+	}
+	
+	
+	@RequestMapping(value="userBoardDetail", method = RequestMethod.GET)
+	public String userBoardDetail(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + "userBoardDetail start!!!");
+		
+		String bnum = CmmUtil.nvl(req.getParameter("bnum"));
+		System.out.println(bnum);
+		
+		User_boardDTO bDTO = new User_boardDTO();
+		bDTO.setPost_no(bnum);
+		bDTO = boardService.getAdminBoardDetail(bDTO);
+		if(bDTO == null){
+			bDTO = new User_boardDTO();
+		}
+		bDTO.setContents(CmmUtil.exchangeEscape(bDTO.getContents()));
+		
+		Comment_infoDTO cDTO = new Comment_infoDTO();
+		cDTO.setPost_no(bnum);
+		
+		List<Comment_infoDTO> cList = commentService.getCommentList(cDTO);
+		
+		model.addAttribute("bDTO", bDTO);
+		model.addAttribute("cList", cList);
+		
+		cList = null;
+		bnum = null;
+		bDTO = null;
+		
+		log.info(this.getClass() + "userBoardDetail end!!!");
+		return "user/userBoardDetail";
+	}
+	
+
+	@RequestMapping(value="userBoardDelete", method = RequestMethod.GET)
+	public String userBoardDelete(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + "userBoardDelete start!!!");
+		
+		String bnum = CmmUtil.nvl(req.getParameter("bnum"));
+		System.out.println(bnum);
+		
+		User_boardDTO bDTO = new User_boardDTO();
+		bDTO.setPost_no(bnum);
+		
+		int result = boardService.deleteAdminBoardDetailDelete(bDTO);
+		
+		String msg = "";
+		String url = "";
+		
+		if(result > 0){
+			msg = "삭제되었습니다.";
+			url = "userBoardList.do";
+		}else{
+			msg = "오류";
+			url = "userBoardDetail.do?bnum="+bnum;
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		url = null;
+		msg = null;
+		bDTO = null;
+		
+		log.info(this.getClass() + "userBoardDelete end!!!");
+		return "user/userBoardAlert";
+	}
+	
 }
