@@ -36,7 +36,6 @@ public class MenuController {
 		if(pList == null){
 			pList = new ArrayList<>();
 		}
-		System.out.println("Sds");
 		model.addAttribute("pList", pList);
 		log.info(this.getClass() + "userMenuList end!!!");
 		return "user/menulist";
@@ -82,5 +81,6 @@ public class MenuController {
 			}
 			session.setAttribute("ss_tmpBakset", tList);
 		}
+		log.info(this.getClass() + "userAddTTmpBasket end!!!");
 	}
 }
