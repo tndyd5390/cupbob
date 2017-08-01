@@ -25,7 +25,7 @@
 		<div class="orderHead">마이페이지</div>
 		<div class="profileImg">
 		<img
-						src="http://meiz.me/wp-content/uploads/2015/07/sta01-1024x682.jpg"
+						src="http://via.placeholder.com/120x150"
 						class="profileImg">
 		</div>
 		<h3 class="myPageName">최한용 님</h3>

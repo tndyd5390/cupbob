@@ -48,7 +48,7 @@ public class UserController {
 	
 	@RequestMapping(value="userMyPage")
 	public String userMyPage() throws Exception{
-		return "userMyPage";
+		return "user/userMyPage";
 	}
 	
 	@RequestMapping(value="userSignInProc")
