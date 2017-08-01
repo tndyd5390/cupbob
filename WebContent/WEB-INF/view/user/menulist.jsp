@@ -2,7 +2,7 @@
 <%@page import="com.cupbob.dto.Product_infoDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
 	List<Product_infoDTO> pList = (List<Product_infoDTO>) request.getAttribute("pList");
 %>
@@ -18,7 +18,8 @@
 <link href="userBootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
 <link rel="stylesheet" href="userBootstrap/css/nav.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <title>Insert title here</title>
 
 </head>
@@ -40,7 +41,7 @@
 				<%
 					for (Product_infoDTO pDTO : pList) {
 				%>
-				<div class="col-xs-6 col-sm-3" style="text-align: center">
+				<div class="col-xs-6 col-sm-3" id="menuHover" style="text-align: center">
 					<div id="menuImg">
 						<span><a
 							href="userMenuDetail.do?menuNo=<%=CmmUtil.nvl(pDTO.getPrdt_no())%>"><img
@@ -53,6 +54,22 @@
 							class="menuWon">원</span>
 					</div>
 				</div>
+				<script>
+						$('#menuHover').hover(function() {
+							var contents = '';
+							contents += "<button class='detailCart'>장바구니</button>";
+							contents += "<button class='detailSubmit'>바로구매</button>";
+							$('#menuTxt').html(contents);
+						},function() {
+							var contents = '';
+							contents += "<span class='menuName'>";
+							contents += "<%=CmmUtil.nvl(pDTO.getPrdt_name())%>";
+							contents += "</span> <br> <span class='menuPrice'><strong>";
+							contents += "<%=CmmUtil.nvl(pDTO.getPrdt_price())%>";
+							contents += "</strong></span><span class='menuWon'>원</span>";
+							$('#menuTxt').html(contents);
+						});
+				</script>
 				<%
 					}
 				%>
