@@ -21,7 +21,8 @@
 			BIRTHDAY,
 			GENDER,
 			PASSWORD,
-			USER_NAME
+			USER_NAME,
+			MILEAGE
 		) VALUES (
 			#{email},
 			now(),
@@ -30,7 +31,8 @@
 			#{birthday},
 			#{gender},
 			#{password},
-			#{user_name}
+			#{user_name},
+			0
 		)
 	</insert>
 	
