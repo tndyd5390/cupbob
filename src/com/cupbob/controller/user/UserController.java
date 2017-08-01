@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cupbob.dto.User_infoDTO;
@@ -43,6 +44,11 @@ public class UserController {
 		log.info(this.getClass().getName() + " userLogin Start!! ");
 		log.info(this.getClass().getName() + " userLogin End!! ");
 		return "user/userLogin";
+	}
+	
+	@RequestMapping(value="userMyPage")
+	public String userMyPage() throws Exception{
+		return "userMyPage";
 	}
 	
 	@RequestMapping(value="userSignInProc")
