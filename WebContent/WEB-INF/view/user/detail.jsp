@@ -49,9 +49,7 @@
 				'prdtQty' : $('#itemQty').val()
 			},
 			success : function(data){
-				if(data == '1'){
 				alert('장바구니에 추가되었습니다.');
-				}
 			},
 			error:function(x,e){
 				if(x.status==0){
