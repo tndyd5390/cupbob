@@ -65,11 +65,10 @@ public class MenuController {
 		log.info(this.getClass() + " prdtPrice : " + prdtPrice);
 		String prdtQty = CmmUtil.nvl(req.getParameter("prdtQty"));
 		log.info(this.getClass() + " prdtQty : " + prdtQty);
-		
 		Object tmpSession = session.getAttribute("ss_tmpBakset");
-		log.info(this.getClass() + tmpSession.toString());
 		List<TmpBasketDTO> tList;
 		if(tmpSession == null){
+			log.info(this.getClass() + "if in");
 			tList = new ArrayList<>();
 			tList.add(new TmpBasketDTO(prdtNo, prdtQty, prdtPrice));
 			session.setAttribute("ss_tmpBakset", tList);
