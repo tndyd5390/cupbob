@@ -81,5 +81,6 @@ public class MenuController {
 			}
 			session.setAttribute("ss_tmpBakset", tList);
 		}
+		resp.getWriter().println("1");
 	}
 }
