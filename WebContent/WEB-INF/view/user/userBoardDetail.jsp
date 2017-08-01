@@ -338,8 +338,7 @@ function cmtUpdateCancle(){
 				<%
 					for (Comment_infoDTO cDTO : cList) {
 				%>
-				<li class="list-group-item list-none-line"
-					id="<%=CmmUtil.nvl(cDTO.getCmt_no())%>">
+				<li class="list-group-item list-none-line" id="<%=CmmUtil.nvl(cDTO.getCmt_no())%>">
 					<div class="contentsArea">
 						<h4 class="reName"><%=CmmUtil.nvl(cDTO.getUser_name())%></h4>
 						<div class="contentsInfo"
