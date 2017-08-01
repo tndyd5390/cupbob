@@ -68,10 +68,10 @@ public class MenuController {
 		Object tmpSession = session.getAttribute("ss_tmpBakset");
 		List<TmpBasketDTO> tList;
 		if(tmpSession == null){
-			log.info(this.getClass() + "if in");
 			tList = new ArrayList<>();
 			tList.add(new TmpBasketDTO(prdtNo, prdtQty, prdtPrice));
 			session.setAttribute("ss_tmpBakset", tList);
+			log.info(this.getClass() + "if in");
 		}else{
 			tList = (List<TmpBasketDTO>)tmpSession;
 			for(TmpBasketDTO tDTO : tList){
