@@ -21,7 +21,7 @@
 
 <title>Insert title here</title>
 <script type="text/javascript">
-
+//주석 달리나???
 	function addItemCnt(){
 		var qty = parseInt($('#itemQty').val());
 		if(qty < 99){
