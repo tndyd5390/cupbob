@@ -1,3 +1,5 @@
+<%@page import="com.cupbob.dto.TmpBasketDTO"%>
+<%@page import="java.util.Map"%>
 <%@page import="com.cupbob.util.CmmUtil"%>
 <%@page import="com.cupbob.dto.Product_infoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -47,7 +49,8 @@
 			data : {
 				'prdtNo' : <%=CmmUtil.nvl(pDTO.getPrdt_no())%>,
 				'prdtPrice' : <%=CmmUtil.nvl(pDTO.getPrdt_price())%>,
-				'prdtQty' : $('#itemQty').val()
+				'prdtQty' : $('#itemQty').val(),
+				'prdtName' : "<%=CmmUtil.nvl(pDTO.getPrdt_name())%>"
 			},
 			success : function(data){
 				alert('장바구니에 추가되었습니다.');
@@ -126,7 +129,7 @@
 				</span>
 			</div>
 			<div class="col-xs-6" style="text-align: right;">
-				<span class="detailPrice" id="itemPrice"><%=CmmUtil.nvl(pDTO.getPrdt_price()) %></span><span class="detailWon">원</span>
+				<span class="detailPrice" id="itemPrice"><%=CmmUtil.nvl(CmmUtil.addComma(pDTO.getPrdt_price())) %></span><span class="detailWon">원</span>
 			</div>
 		</div>
 		<div class="row">
