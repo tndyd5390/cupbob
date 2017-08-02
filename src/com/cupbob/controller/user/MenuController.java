@@ -62,7 +62,6 @@ public class MenuController {
 		return "user/detail";
 	}
 	
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value="userAddTmpBasket", method=RequestMethod.POST)
 	public void userAddTmpBasket(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
 		log.info(this.getClass() + "userAddTmpBasket start!!!");
@@ -77,16 +76,9 @@ public class MenuController {
 		Object tmpSession = session.getAttribute("ss_tmpBasket");
 		Map<String, TmpBasketDTO> tMap;
 		if(tmpSession == null){
-<<<<<<< HEAD
-			tList = new ArrayList<>();
-			tList.add(new TmpBasketDTO(prdtNo, prdtQty, prdtPrice));
-			session.setAttribute("ss_tmpBakset", tList);
-			log.info(this.getClass() + "if in");
-=======
 			tMap = new HashMap<>();
 			tMap.put(prdtNo, new TmpBasketDTO(prdtNo, prdtQty, prdtPrice, prdtName));
 			session.setAttribute("ss_tmpBasket", tMap);
->>>>>>> refs/remotes/origin/psytestbranch
 		}else{
 			tMap = (Map<String, TmpBasketDTO>)tmpSession;
 			if(tMap.containsKey(prdtNo)){
@@ -100,8 +92,6 @@ public class MenuController {
 			}
 		}
 		log.info(this.getClass() + "userAddTmpBasket end!!!");
-<<<<<<< HEAD
-=======
 	}
 	
 	@RequestMapping(value="userTmpBasket", method=RequestMethod.GET)
@@ -201,6 +191,5 @@ public class MenuController {
 		session.setAttribute("ss_tmpBasket", tMap);
 		log.info(this.getClass() + " userTmpItemSelectedDelete end!!!"); 
 		return tMap;
->>>>>>> refs/remotes/origin/psytestbranch
 	}
 }
