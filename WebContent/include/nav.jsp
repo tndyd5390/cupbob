@@ -27,7 +27,7 @@
 			</label>
 		</div>
 		<a href="userMenuList.do"><img src="userBootstrap/navImage/title.png" style="width: 150px; height:75px;" class="titleImg"></a>
-		<a href="tmpBasket.jsp"><img src="userBootstrap/navImage/basket.png" class="imgicon"></a><a href="/cupbob/userLogin.do"><img src="userBootstrap/navImage/mypage.png" class="imgicon"></a>
+		<a href="userTmpBasket.do"><img src="userBootstrap/navImage/basket.png" class="imgicon"></a><a href="login.jsp"><img src="userBootstrap/navImage/mypage.png" class="imgicon"></a>
 		<nav id="menu" class="menu">
 			<ul class="dropdown">
 				<li><a href="#" class="nav-font"><strong>메뉴</strong></a>

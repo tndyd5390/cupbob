@@ -32,7 +32,6 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-
 		<!-- Email -->
 		<dependency>
 			<groupId>javax.mail</groupId>

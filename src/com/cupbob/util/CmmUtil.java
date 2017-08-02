@@ -1,5 +1,7 @@
 package com.cupbob.util;
 
+import java.text.DecimalFormat;
+
 public class CmmUtil {
 	public static String nvl(String str, String chg_str) {
 		String res;
@@ -56,5 +58,14 @@ public class CmmUtil {
 		value = CmmUtil.nvl(value);
 		value = exchangeEscape(value);
 		return value;
+	}
+	
+	public static String addComma(int value){
+		DecimalFormat df = new DecimalFormat("#,##0");
+		return df.format(value);
+	}
+	
+	public static String addComma(String value){
+		return addComma(Integer.parseInt(value));
 	}
 }

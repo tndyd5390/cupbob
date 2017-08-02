@@ -152,13 +152,13 @@ function cmtUpdate(cmt_no,user_name){
 		var cmtNo = cmt_no;
 		var userName = user_name;
 		var contents = $('#cmt_'+cmtNo+' > span').html();
-		var updateForm = "<li class='list-group-item list-none-line' id="+cmtNo+">" +
+		var updateForm = "<div  id="+cmtNo+">" +
 		                 "<div class=contentsArea>" + 
-		                 "<h4 class='reName'>"+userName+"</h4> <br>" +
-		                 "<input type='text' id='cmtUpdateArea' class='nameFont1' value="+contents+">" +
-		                 "<button class='saButton5' id='cmtUpdateBtn' onclick='cmtUpdateProc("+cmtNo+")'>수정</button> "+
-		                 "<button class='saButton5' id='cmtUpdateCancle' onclick='cmtUpdateCancle()'>취소</button>"+
-		                 "</div> <br> <br> <br> <li>";
+		                 "<h4 class='reName'>"+userName+"</h4> </div> <br>" +
+		                 "<div class=col-xs-12><input type='text' id='cmtUpdateArea' class='nameFont1' value="+contents+">" +
+		                 "<button class='saButton2' id='cmtUpdateBtn' onclick='cmtUpdateProc("+cmtNo+")'>수정</button> "+
+		                 "<button class='saButton2' id='cmtUpdateCancle' onclick='cmtUpdateCancle()'>취소</button>"+
+		                 "</div> <br> <br> <br>";
 		$('#'+cmtNo).html(updateForm);
 	}else{
 		alert("하나의 댓글만 수정가능합니다");
@@ -279,7 +279,7 @@ function cmtUpdateCancle(){
 	})
 }
 </script>
-<title>Insert title here</title>
+<title> asdfasdasdffasdf here</title>
 
 </head>
 <body>
