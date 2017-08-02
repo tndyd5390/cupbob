@@ -1,8 +1,5 @@
 package com.cupbob.controller.user;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -90,7 +87,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="userLoginProc")
-	String userLoginProc(HttpSession session, HttpServletRequest request, HttpServletResponse response)throws Exception{
+	String userLoginProc(HttpSession session, HttpServletRequest request, HttpServletResponse response,Model model)throws Exception{
 		log.info(this.getClass().getName() + "userLoginProc Start!!");
 		String email = CmmUtil.nvl(request.getParameter("email"));
 		String password = CmmUtil.nvl(request.getParameter("password"));
@@ -105,16 +102,17 @@ public class UserController {
 		
 		uDTO = userService.login(uDTO);
 
-		if(uDTO == null){
-			log.info("userLoginProc Fail!!");
-			log.info(this.getClass().getName() + "userLoginProc End!!");
-			return "redirect:userLogin.do";
+		if(uDTO==null){
+			log.info("Login Fail!!");
+			model.addAttribute("msg", "아이디와 비밀번호를 다시 확인해 주세요");
+			model.addAttribute("url", "userLogin.do");
 		}else{
 			session.setAttribute("ss_user_email", CmmUtil.nvl(uDTO.getEmail()));
 			session.setAttribute("ss_user_name", CmmUtil.nvl(uDTO.getUser_name()));
 			session.setAttribute("ss_user_no", CmmUtil.nvl(uDTO.getUser_no()));
-			return "redirect:userMenuList.do";
+			model.addAttribute("url", "userMenuList.do");
 		}
+		return "user/userLoginAlert";
 	}
 	
 	@RequestMapping(value="userFind")

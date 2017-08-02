@@ -24,6 +24,7 @@ public class UserService implements IUserService {
 	public User_infoDTO login(User_infoDTO uDTO) throws Exception{
 		return userMapper.login(uDTO);
 	}
+	
 	@Override
 	public void join(User_infoDTO uDTO) throws Exception{
 		userMapper.join(uDTO);
