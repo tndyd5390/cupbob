@@ -2,7 +2,7 @@
 <%@page import="com.cupbob.dto.Product_infoDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
 	List<Product_infoDTO> pList = (List<Product_infoDTO>) request.getAttribute("pList");
 %>
@@ -18,7 +18,8 @@
 <link href="userBootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
 <link rel="stylesheet" href="userBootstrap/css/nav.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <title>Insert title here</title>
 
 </head>

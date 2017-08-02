@@ -1,4 +1,4 @@
-/* 네비바 */
+/* �꽕鍮꾨컮 */
 
 html {
 	font-family: sans-serif;
@@ -491,7 +491,7 @@ main p { 1.2em;
 	}
 }
 
-/* 푸터 */
+/* �뫖�꽣 */
 
 html {
 position: relative;
@@ -550,7 +550,7 @@ padding-left: 15px;
   font-size:12px;
 }
 
-/*360px �씠�븯*/
+/*360px 占쎌뵠占쎈릭*/
 @media screen and (max-width: 360px) {
 .footerTitle { font-size: 15px }
 .footerBody1{ font-size: 11px }
@@ -558,7 +558,7 @@ padding-left: 15px;
 .footerBody3{ font-size: 11px }
 }
 
-/* 360px �씠�긽 400px �씠�븯 */
+/* 360px 占쎌뵠占쎄맒 400px 占쎌뵠占쎈릭 */
 @media screen and (min-width:361px) and (max-width: 400px) {
 .footerTitle { font-size: 16px }
 .footerBody1{ font-size: 12px }
@@ -573,7 +573,7 @@ padding-left: 15px;
 .footerBody2{ font-size: 13px }
 .footerBody3{ font-size: 13px }
 }
-/* 701px �씠�긽 */
+/* 701px 占쎌뵠占쎄맒 */
 @media screen and (min-width: 701px) {
 .footer > .container{ text-align:center; }
 }
@@ -582,7 +582,7 @@ code {
 font-size: 80%;
 }
 
-/* 메뉴 */
+/* 硫붾돱 */
 
 .recommTitle {
 	padding-left: 30px;
@@ -967,7 +967,7 @@ font-size: 80%;
 	top: 1px;
 }
 
-/* 로그인 css */
+/* 濡쒓렇�씤 css */
 .bottom-padding-30 {
 	padding-bottom: 30px;
 }
@@ -1028,7 +1028,7 @@ font-size: 80%;
 	}
 }
 
-/* 주문완료 페이지 */
+/* 二쇰Ц�셿猷� �럹�씠吏� */
 .goMainP{
 	background-color: #3C3C3C;
 	text-indent: 0;
@@ -1074,7 +1074,7 @@ font-size: 80%;
 	}
 }
 
-/* 맵 */
+/* 留� */
 .mapPanel{
 	width:80%;
 	border-width:3px;
@@ -1087,7 +1087,7 @@ font-size: 80%;
 	color:#292929;
 }
 
-/* 오더 */
+/* �삤�뜑 */
 
 div.orderHead{
   background-color: #7F7F7F;
@@ -1147,7 +1147,7 @@ p.orderDetailRight{
   padding-top:5px;
   display: inline-block;
   width: 69%;
-  font-family: 留묒�怨좊뵓;
+  font-family: 筌띾쵐占썸�⑥쥓逾�;
   font-size: 16px;
   text-align: right;
   font-weight: bold;
@@ -1178,7 +1178,7 @@ p.totalPriceRight{
   color: #FF0000;
   padding-top: 5px;
   padding-left: 5px;
-  font-family: 留묒�怨좊뵓;
+  font-family: 筌띾쵐占썸�⑥쥓逾�;
 }
 div.radio{
   margin-left: 10px;
@@ -1200,7 +1200,7 @@ button.orderButton02{
   width: 100%;
   margin-bottom: 30px;
 }
-/* 350px �씠�븯 (�븘�씠�룿5)*/
+/* 350px 占쎌뵠占쎈릭 (占쎈툡占쎌뵠占쎈？5)*/
 @media screen and (max-width: 350px) {
   p.orderDetailLeft{
     padding-top:5px;
@@ -1215,7 +1215,7 @@ button.orderButton02{
     padding-top:5px;
     display: inline-block;
     width: 65%;
-    font-family: 留묒�怨좊뵓;
+    font-family: 筌띾쵐占썸�⑥쥓逾�;
     font-size: 13px;
     text-align: right;
     font-weight: bold;
@@ -1246,10 +1246,10 @@ button.orderButton02{
     color: #FF0000;
     padding-top: 8px;
     padding-left: 5px;
-    font-family: 留묒�怨좊뵓;
+    font-family: 筌띾쵐占썸�⑥쥓逾�;
   }
 }
-/* 351px �씠�긽 370px �씠�븯(媛ㅻ윮�떆5) */
+/* 351px 占쎌뵠占쎄맒 370px 占쎌뵠占쎈릭(揶쎼끇�쑏占쎈뻻5) */
 @media screen and (min-width: 351px) and (max-width: 370px){
   p.orderDetailLeft{
     padding-top:5px;
@@ -1264,7 +1264,7 @@ button.orderButton02{
     padding-top:5px;
     display: inline-block;
     width: 65%;
-    font-family: 留묒�怨좊뵓;
+    font-family: 筌띾쵐占썸�⑥쥓逾�;
     font-size: 13px;
     text-align: right;
     font-weight: bold;
@@ -1295,10 +1295,10 @@ button.orderButton02{
     color: #FF0000;
     padding-top: 8px;
     padding-left: 5px;
-    font-family: 留묒�怨좊뵓;
+    font-family: 筌띾쵐占썸�⑥쥓逾�;
   }
 }
-/* 371px �씠�긽 400px �씠�븯(�븘�씠�룿6) */
+/* 371px 占쎌뵠占쎄맒 400px 占쎌뵠占쎈릭(占쎈툡占쎌뵠占쎈？6) */
 @media screen and (min-width: 371px) and (max-width: 400px){
   p.orderDetailLeft{
     padding-top:5px;
@@ -1313,7 +1313,7 @@ button.orderButton02{
     padding-top:5px;
     display: inline-block;
     width: 65%;
-    font-family: 留묒�怨좊뵓;
+    font-family: 筌띾쵐占썸�⑥쥓逾�;
     font-size: 13px;
     text-align: right;
     font-weight: bold;
@@ -1344,10 +1344,10 @@ button.orderButton02{
     color: #FF0000;
     padding-top: 8px;
     padding-left: 5px;
-    font-family: 留묒�怨좊뵓;
+    font-family: 筌띾쵐占썸�⑥쥓逾�;
   }
 }
-/* 401px �씠�긽 700px �씠�븯 (�븘�씠�룿6�뵆�윭�뒪,�꽖�꽌�뒪)*/
+/* 401px 占쎌뵠占쎄맒 700px 占쎌뵠占쎈릭 (占쎈툡占쎌뵠占쎈？6占쎈탣占쎌쑎占쎈뮞,占쎄퐭占쎄퐣占쎈뮞)*/
 @media screen and (min-width: 401px) and (max-width: 500px){
 
 }
@@ -1365,7 +1365,7 @@ button.orderButton02{
     padding-top:5px;
     display: inline-block;
     width: 72%;
-    font-family: 留묒�怨좊뵓;
+    font-family: 筌띾쵐占썸�⑥쥓逾�;
     font-size: 16px;
     text-align: right;
     font-weight: bold;
@@ -1396,7 +1396,7 @@ button.orderButton02{
     color: #FF0000;
     padding-top: 5px;
     padding-left: 5px;
-    font-family: 留묒�怨좊뵓;
+    font-family: 筌띾쵐占썸�⑥쥓逾�;
   }
 }
 @media screen and (min-width: 701px) and (max-width: 1500px){
@@ -1413,7 +1413,7 @@ button.orderButton02{
       padding-top:5px;
       display: inline-block;
       width: 82%;
-      font-family: 留묒�怨좊뵓;
+      font-family: 筌띾쵐占썸�⑥쥓逾�;
       font-size: 18px;
       text-align: right;
       font-weight: bold;
@@ -1444,7 +1444,7 @@ button.orderButton02{
       color: #FF0000;
       padding-top: 5px;
       padding-left: 5px;
-      font-family: 留묒�怨좊뵓;
+      font-family: 筌띾쵐占썸�⑥쥓逾�;
     }
   }
   
@@ -2003,7 +2003,7 @@ button.orderButton02{
 }
   
   
-/* 게시판 */
+/* 寃뚯떆�뙋 */
 
 .contentsInfo>span {
 	color: #5b5b5b;
@@ -2086,7 +2086,7 @@ button.orderButton02{
 	float: right;
 	margin-right: 1px;
 	margin-left: 1px;
-	padding: 6px 16px;
+	height: 30px;
 }
 
 .saButton3 {
@@ -2138,7 +2138,46 @@ button.orderButton02{
 	padding: 4px 32px;
 	height: 40px;
 }
+.saBox {
+	border: 0px solid;
+	padding: 10px;
+	background-color: #7F7F7F;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 150%;
+}
 
+input.title2 {
+	width: 100%;
+	border-radius: 5px;
+	font-size: 130%;
+	padding: 6px 16px 6px 3px;
+}
+
+textarea.detail2 {
+	width: 100%;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	height: 150px;
+	font-size: 130%;
+	padding: 6px 16px 3px 3px;
+}
+.boButton{
+	background: -moz-linear-gradient(center top, #ffffff 5%, #ffffff 100%);
+	background-color: #7F7F7F;
+	border: 1px solid #7F7F7F;
+	display: inline-block;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-style: normal;
+	text-decoration: none;
+	text-align: center;
+	float: right;
+	margin-right: 1px;
+	margin-left: 1px;
+	padding: 6px 16px;
+	border-radius: 5px;
+}
 .saButton6 {
 	background: -moz-linear-gradient(center top, #ffffff 5%, #ffffff 100%);
 	background-color: #7F7F7F;
@@ -2220,8 +2259,7 @@ input.nameFont1 {
 	font-size: 19px;
 	color: #000000;
 	width: 92%;
-	height: 40px;
-	margin-bottom: 30px;
+	height: 30px;
 	float: left;
 	display: inline-block;
 	border: 1px solid #8B8B8B;
@@ -2238,7 +2276,7 @@ input.nameFont2 {
 	margin-right: 0px;
 }
 
-/* 360px �씠�븯 (�븘�씠�룿5)*/
+/* 360px 占쎌뵠占쎈릭 (占쎈툡占쎌뵠占쎈？5)*/
 @media screen and (max-width: 360px) {
 	input.nameFont {
 		width: 75%;
@@ -2247,9 +2285,8 @@ input.nameFont2 {
 		height: 25px;
 	}
 	input.nameFont1 {
-		width: 75%;
+		width: 68%;
 		font-size: 11px;
-		height: 25px;
 	}
 	input.nameFont2 {
 		width: 65%;
@@ -2275,8 +2312,7 @@ input.nameFont2 {
 	.saButton2 {
 		width: 15%;
 		font-size: 9px;
-		margin-top: 10px;
-		padding:5px 5px
+		padding:5px;
 	}
 	.saButton0 {
 		width: 15%;
@@ -2317,7 +2353,7 @@ input.nameFont2 {
 		padding-top: 4px;
 	}
 }
-/* 351px �씠�긽 370px �씠�븯(媛ㅻ윮�떆5) */
+/* 351px 占쎌뵠占쎄맒 370px 占쎌뵠占쎈릭(揶쎼끇�쑏占쎈뻻5) */
 @media screen and (min-width: 361px) and (max-width: 370px) {
 	input.nameFont {
 		width: 75%;
@@ -2381,7 +2417,7 @@ input.nameFont2 {
 		padding-top: 8px;
 	}
 }
-/* 371px �씠�긽 400px �씠�븯(�븘�씠�룿6) */
+/* 371px 占쎌뵠占쎄맒 400px 占쎌뵠占쎈릭(占쎈툡占쎌뵠占쎈？6) */
 @media screen and (min-width: 371px) and (max-width: 400px) {
 	input.nameFont {
 		width: 75%;
@@ -2463,7 +2499,7 @@ input.nameFont2 {
 		font-size: 19px;
 	}
 }
-/* 401px �씠�긽 700px �씠�븯 (�븘�씠�룿6�뵆�윭�뒪,�꽖�꽌�뒪)*/
+/* 401px 占쎌뵠占쎄맒 700px 占쎌뵠占쎈릭 (占쎈툡占쎌뵠占쎈？6占쎈탣占쎌쑎占쎈뮞,占쎄퐭占쎄퐣占쎈뮞)*/
 @media screen and (min-width: 401px) and (max-width: 700px) {
 	input.nameFont {
 		width: 78%;
@@ -2471,7 +2507,7 @@ input.nameFont2 {
 		margin-bottom: 15px;
 	}
 	input.nameFont1 {
-		width: 78%;
+		width: 60%;
 		font-size: 13px;
 	}
 	input.nameFont2 {
@@ -2499,10 +2535,9 @@ input.nameFont2 {
 		padding: 4px;
 	}
 	.saButton2 {
-		width: 18%;
 		font-size: 13px;
-		padding: 4px;
-		margin-top: 10px;
+		padding: 6px 16px;
+		height: 30px; 
 	}
 	div>span.inline2 {
 		font-size: 13px;
@@ -2535,8 +2570,9 @@ input.nameFont2 {
 		margin-bottom: 15px;
 	}
 	input.nameFont1 {
-		width: 90%;
+		width: 86.5%;
 		font-size: 15px;
+		height: 34px;
 	}
 	input.nameFont2 {
 		width: 75%;
@@ -2592,7 +2628,7 @@ div>p.inline0 {
 }
 }
 
-/* 회원가입, 수정, 찾기 */
+/* �쉶�썝媛��엯, �닔�젙, 李얘린 */
 
 form {
 	padding-left: 10px;
@@ -2635,21 +2671,21 @@ input.phone {
 
 p.emailFont {
 	font-size: 13px;
-	font-family: �굹�닎怨좊뵓, NanumGothic;
+	font-family: 占쎄돌占쎈땸�⑥쥓逾�, NanumGothic;
 	margin-top: 5px;
 	color: #575757;
 }
 
 p.passwordFont {
 	font-size: 13px;
-	font-family: �굹�닎怨좊뵓, NanumGothic;
+	font-family: 占쎄돌占쎈땸�⑥쥓逾�, NanumGothic;
 	margin-top: 5px;
 	color: #EA0001;
 }
 
 p.nameFont {
 	font-size: 13px;
-	font-family: �굹�닎怨좊뵓, NanumGothic;
+	font-family: 占쎄돌占쎈땸�⑥쥓逾�, NanumGothic;
 	color: #575757;
 	margin-top: 5px;
 }
@@ -2683,11 +2719,11 @@ input[type="checkbox"] {
 
 p.checkboxFont {
 	font-size: 13px;
-	font-family: �굹�닎怨좊뵓, NanumGothic;
+	font-family: 占쎄돌占쎈땸�⑥쥓逾�, NanumGothic;
 	color: #575757;
 	margin-left: 7px;
 }
-/* 350px �씠�븯 (�븘�씠�룿5)*/
+/* 350px 占쎌뵠占쎈릭 (占쎈툡占쎌뵠占쎈？5)*/
 @media screen and (max-width: 350px) {
 	input.email {
 		width: 46.4%;
@@ -2708,7 +2744,7 @@ p.checkboxFont {
 		font-size: 12px;
 	}
 }
-/* 351px �씠�긽 370px �씠�븯(媛ㅻ윮�떆5) */
+/* 351px 占쎌뵠占쎄맒 370px 占쎌뵠占쎈릭(揶쎼끇�쑏占쎈뻻5) */
 @media screen and (min-width: 351px) and (max-width: 370px) {
 	input.email {
 		width: 46.7%;
@@ -2726,7 +2762,7 @@ p.checkboxFont {
 		font-size: 15px;
 	}
 }
-/* 371px �씠�긽 400px �씠�븯(�븘�씠�룿6) */
+/* 371px 占쎌뵠占쎄맒 400px 占쎌뵠占쎈릭(占쎈툡占쎌뵠占쎈？6) */
 @media screen and (min-width: 371px) and (max-width: 400px) {
 	input.email {
 		width: 46.9%;
@@ -2746,7 +2782,7 @@ p.checkboxFont {
 		display: inline;
 	}
 }
-/* 401px �씠�긽 700px �씠�븯 (�븘�씠�룿6�뵆�윭�뒪,�꽖�꽌�뒪)*/
+/* 401px 占쎌뵠占쎄맒 700px 占쎌뵠占쎈릭 (占쎈툡占쎌뵠占쎈？6占쎈탣占쎌쑎占쎈뮞,占쎄퐭占쎄퐣占쎈뮞)*/
 @media screen and (min-width: 401px) and (max-width: 740px) {
 	input.email {
 		width: 47.2%;
@@ -2806,7 +2842,7 @@ input.updatePW {
 	margin-left: 20px;
 }
 
-/* 장바구니 */
+/* �옣諛붽뎄�땲 */
 
 html{
 	background-color: #ffffff;
@@ -3162,4 +3198,136 @@ hr.tmpBasketHr{
 /*ipad pro*/
 @media screen and (max-width: 1024px){
 	
+}
+
+	.myPageFont{
+	 font-weight:bold;
+	}
+	button.myPageButton01 {
+	    background-color: #E4002B;
+	    height: 45px;
+	    color: #fff;
+	    text-align: center;
+	    font-size: 20px;
+	    font-weight: 700;
+	    margin-top: 20px;
+	    border: 0;
+	    width: 100%;
+	    margin-bottom: 10px;
+	}
+	hr.myPageHr{
+		margin-bottom: 10px;
+		margin-top : 10px;
+	}
+	div.myPagePoint{
+		border-bottom: 1px solid;
+	}
+	li.myPageLeft{
+		width:20%;
+		text-align: center;
+	}
+	li.myPageCenter{
+		width:40%;
+		text-align: center;
+		font-size:12px;
+	}
+	li.myPageRight{
+		width:38%;
+		text-align: center;
+	}
+	li.myPageCenterHead{
+		width:40%;
+		text-align: center;
+	}
+	ul.pointHead{
+		font-size: 14px;
+		font-weight: bold;
+		border-top : 1px solid;
+		border-bottom : 1px solid;
+	}
+	img.profileImg{
+		float:left;
+		width:120px;
+		height:150px;
+		border:solid 1px silver;
+		margin-right:10px;
+	}
+/* 350px �씠�븯 (�븘�씠�룿5)*/
+@media screen and (max-width: 350px) {
+	h3.myPageName{
+		margin-top:10px;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	p.myPageFont{
+	 font-weight:bold;
+	 margin-bottom:0px;
+	}
+	button.myPageButton01{
+		margin-top:5px;
+	}
+		li.myPageLeft{
+		width:18%;
+		text-align: center;
+	}
+	li.myPageCenter{
+		width:40%;
+		text-align: center;
+		font-size:12px;
+	}
+	li.myPageRight{
+		width:38%;
+		text-align: center;
+	}
+	li.myPageCenterHead{
+		width:40%;
+		text-align: center;
+	}
+	
+}
+/* 351px �씠�긽 370px �씠�븯(媛ㅻ윮�떆5) */
+@media screen and (min-width: 351px) and (max-width: 370px) {
+	li.myPageLeft{
+		width:22%;
+		text-align: center;
+	}
+	li.myPageCenter{
+		width:37%;
+		text-align: center;
+		font-size:12px;
+	}
+	li.myPageRight{
+		width:38%;
+		text-align: center;
+	}
+	li.myPageCenterHead{
+		width:37%;
+		text-align: center;
+	}
+	button.myPageButton01{
+		margin-top:5px;
+	}
+}
+/* 371px �씠�긽 400px �씠�븯(�븘�씠�룿6) */
+@media screen and (min-width: 371px) and (max-width: 400px) {
+		li.myPageLeft{
+		width:22%;
+		text-align: center;
+	}
+	li.myPageCenter{
+		width:37%;
+		text-align: center;
+		font-size:12px;
+	}
+	li.myPageRight{
+		width:38%;
+		text-align: center;
+	}
+	li.myPageCenterHead{
+		width:37%;
+		text-align: center;
+	}
+	button.myPageButton01{
+		margin-top:5px;
+	}
 }

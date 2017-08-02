@@ -55,12 +55,11 @@
 		</form>
 		<br>
 		<div class="col-xs-6 text-center">
-			<a href="userFind.jsp" class="loginA">아이디/비밀번호 찾기</a>
+			<a href="userFind.do" class="loginA">아이디/비밀번호 찾기</a>
 		</div>
 		<div class="col-xs-6 text-center">
-			<a href="userReg.jsp" class="loginA">회원가입</a>
+			<a href="userSignIn.do" class="loginA">회원가입</a>
 		</div>
-
 	</div>
 	<br>
 	<%@include file="/include/footer.jsp"%>
