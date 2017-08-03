@@ -51,8 +51,8 @@ public class AdminOrderController {
 		return tList;
 	}
 	
-	@RequestMapping(value="adminOrderProc", method = RequestMethod.GET)
-	public String adminTakeOrder(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+	@RequestMapping(value="adminOrderProc", method = RequestMethod.POST)
+	public @ResponseBody List<TotalOrderDTO> adminTakeOrder(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		log.info(this.getClass() + ".adminOrderProc start!!");
 		String ordNo = req.getParameter("ordNo");
 		log.info(this.getClass() + ".adminTakeOrder.ordNo : " + ordNo);
@@ -62,16 +62,12 @@ public class AdminOrderController {
 		if(tList == null){
 			tList = new ArrayList<TotalOrderDTO>();
 		}
-		model.addAttribute("TotalOrderList", tList);
-		ordNo = null;
-		statNo = null;
-		tList = null;
 		log.info(this.getClass() + ".adminOrderProc end");
-		return "admin/adminMain";
+		return tList;
 	}
 	
-	@RequestMapping(value="adminOrderCancel", method=RequestMethod.GET)
-	public String adminOrderCancel(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+	@RequestMapping(value="adminOrderCancel", method=RequestMethod.POST)
+	public @ResponseBody List<TotalOrderDTO> adminOrderCancel(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		log.info(this.getClass() +  ".adminOrderCancel start!!");
 		String ordNo = req.getParameter("ordNo");
 		log.info(this.getClass() + ".adminOrderCancel  ordNo : " + ordNo);
@@ -79,14 +75,10 @@ public class AdminOrderController {
 		log.info(this.getClass() + ".adminOrderCancel statNo : " + statNo);
 		List<TotalOrderDTO> tList = orderService.updateAdminOrdNo(ordNo, statNo);
 		if(tList == null){
-			tList = new ArrayList<TotalOrderDTO>();
+			tList = new ArrayList<>();
 		}
-		model.addAttribute("TotalOrderList", tList);
-		ordNo = null;
-		statNo = null;
-		tList = null;
 		log.info(this.getClass() +  ".adminOrderCancel end!!");
-		return "admin/adminMain";
+		return tList;
 	}
 	
 	@RequestMapping(value="adminOrderRemainTime.do")

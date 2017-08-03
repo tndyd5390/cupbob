@@ -14,90 +14,86 @@
 <script type="text/javascript">
 	 $(function(){
 		timer = setInterval( function () {
-			var contents = "";
 			$.ajax ({
 				url : "adminOrderInterval.do",  
 				success : function (data) {
-					$.each(data, function(key, value){
-						var checkTimeOver = value.ord_remainTime.split(':');
-						var remainMin = Number(checkTimeOver[1]);
-						if(value.ord_stat == 1){
-							if(remainMin <= 0){
-								contents += "<tr align=center bgcolor=\"#F5A9A9\">";
+					var count = Object.keys(data).length;
+					if(count != 0){
+					var contents = "";
+						$.each(data, function(key, value){
+							var checkTimeOver = value.ord_remainTime.split(':');
+							var remainMin = Number(checkTimeOver[1]);
+							if(value.ord_stat == 1){
+								if(remainMin <= 0){
+									contents += "<tr align=center bgcolor=\"#F5A9A9\">";
+								}else{
+									contents += "<tr align=center>"
+								}
+								contents += "<td>" + value.ord_no + "</td>";
+								contents += "<td>" + value.user_name + "</td>";
+								contents += "<td>" + value.prdt_name + "</td>";
+								contents += "<td>" + value.ord_amnt + "</td>";
+								contents += "<td>" + value.usr_rcv_time + "</td>";
+								if(remainMin <= 0){
+									contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
+								}else{
+									contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
+								}
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary btn-sm\" onclick=\"orderProc("+ value.ord_no + ",2);\">접수하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"takeFirst();\">조리 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst();\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td>" + value.prdt_price + "</td>";
+								contents += "</tr>"
+								$('#interval').html(contents);
+								
+							}else if(value.ord_stat == 2){
+								if(remainMin <= 0){
+									contents += "<tr align=center bgcolor=\"#F5A9A9\">";
+								}else{
+									contents += "<tr align=center>"
+								}
+								contents += "<td>" + value.ord_no + "</td>";
+								contents += "<td>" + value.user_name + "</td>";
+								contents += "<td>" + value.prdt_name + "</td>";
+								contents += "<td>" + value.ord_amnt + "</td>";
+								contents += "<td>" + value.usr_rcv_time + "</td>";
+								if(remainMin <= 0){
+									contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
+								}else{
+									contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
+								}
+								contents += "<td>접수 완료</td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td>" + value.prdt_price + "</td>";
+								contents += "</tr>"
+								$('#interval').html(contents);
 							}else{
-								contents += "<tr align=center>"
+								contents += "<tr align=center bgcolor=\"#9FF781\">";
+								contents += "<td>" + value.ord_no + "</td>";
+								contents += "<td>" + value.user_name + "</td>";
+								contents += "<td>" + value.prdt_name + "</td>";
+								contents += "<td>" + value.ord_amnt + "</td>";
+								contents += "<td>" + value.usr_rcv_time + "</td>";
+								if(remainMin <= 0){
+									contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
+								}else{
+									contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
+								}
+								contents += "<td>접수 완료</td>";
+								contents += "<td>조리 완료</td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td>" + value.prdt_price + "</td>";
+								contents += "</tr>"
+								$('#interval').html(contents);
 							}
-							contents += "<td>" + value.ord_no + "</td>";
-							contents += "<td>" + value.user_name + "</td>";
-							contents += "<td>" + value.prdt_name + "</td>";
-							contents += "<td>" + value.ord_amnt + "</td>";
-							contents += "<td>" + value.usr_rcv_time + "</td>";
-							if(remainMin <= 0){
-								contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
-							}else{
-								contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
-							}
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary btn-sm\" onclick=\"orderProc("+ value.ord_no + ",2);\">접수하기</button></div></td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"takeFirst();\">조리 완료</button></div></td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst();\">수령 완료</button></div></td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
-							contents += "<td>" + value.prdt_price + "</td>";
-							contents += "</tr>"
-							$('#interval').html(contents);
-							
-						}else if(value.ord_stat == 2){
-							if(remainMin <= 0){
-								contents += "<tr align=center bgcolor=\"#F5A9A9\">";
-							}else{
-								contents += "<tr align=center>"
-							}
-							contents += "<td>" + value.ord_no + "</td>";
-							contents += "<td>" + value.user_name + "</td>";
-							contents += "<td>" + value.prdt_name + "</td>";
-							contents += "<td>" + value.ord_amnt + "</td>";
-							contents += "<td>" + value.usr_rcv_time + "</td>";
-							if(remainMin <= 0){
-								contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
-							}else{
-								contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
-							}
-							contents += "<td>접수 완료</td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
-							contents += "<td>" + value.prdt_price + "</td>";
-							contents += "</tr>"
-							$('#interval').html(contents);
-						}else{
-							contents += "<tr align=center bgcolor=\"#9FF781\">";
-							contents += "<td>" + value.ord_no + "</td>";
-							contents += "<td>" + value.user_name + "</td>";
-							contents += "<td>" + value.prdt_name + "</td>";
-							contents += "<td>" + value.ord_amnt + "</td>";
-							contents += "<td>" + value.usr_rcv_time + "</td>";
-							if(remainMin <= 0){
-								contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
-							}else{
-								contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
-							}
-							contents += "<td>접수 완료</td>";
-							contents += "<td>조리 완료</td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
-							contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
-							contents += "<td>" + value.prdt_price + "</td>";
-							contents += "</tr>"
-							$('#interval').html(contents);
-						}
-						/* if(remainMin > 0){
-							value.ord_no = setInterval(function(){
-								var arr = value.usr_rcv_time.split(':');
-								countRemainTime(arr[0], arr[1], value.ord_no, remainMin);
-							},1000);
-						}else{
-							clearInterval(value.ord_no);
-						} */
-						
-					})
+						})
+					}else{
+						$('#interval').html('');
+					}
 				},
 				error:function(x,e){
 					if(x.status==0){
@@ -120,46 +116,231 @@
 	})
 	
 	function orderProc(ordNo, statNo){
-		 location.replace("adminOrderProc.do?" + "ordNo=" + ordNo + "&statNo=" + statNo);
-		 var url = 'orderList.do';
-		console.log("url" + url);
-		history.pushState(null, null, url);
+			$.ajax ({
+				url : "adminOrderProc.do",
+				type : "post",
+				data : {
+					'ordNo' : ordNo,
+					'statNo' : statNo
+				},
+				success : function (data) {
+					var count = Object.keys(data).length;
+					if(count != 0){
+						var contents = "";
+						$.each(data, function(key, value){
+							var checkTimeOver = value.ord_remainTime.split(':');
+							var remainMin = Number(checkTimeOver[1]);
+							if(value.ord_stat == 1){
+								if(remainMin <= 0){
+									contents += "<tr align=center bgcolor=\"#F5A9A9\">";
+								}else{
+									contents += "<tr align=center>"
+								}
+								contents += "<td>" + value.ord_no + "</td>";
+								contents += "<td>" + value.user_name + "</td>";
+								contents += "<td>" + value.prdt_name + "</td>";
+								contents += "<td>" + value.ord_amnt + "</td>";
+								contents += "<td>" + value.usr_rcv_time + "</td>";
+								if(remainMin <= 0){
+									contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
+								}else{
+									contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
+								}
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary btn-sm\" onclick=\"orderProc("+ value.ord_no + ",2);\">접수하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"takeFirst();\">조리 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst();\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td>" + value.prdt_price + "</td>";
+								contents += "</tr>"
+								$('#interval').html(contents);
+								
+							}else if(value.ord_stat == 2){
+								if(remainMin <= 0){
+									contents += "<tr align=center bgcolor=\"#F5A9A9\">";
+								}else{
+									contents += "<tr align=center>"
+								}
+								contents += "<td>" + value.ord_no + "</td>";
+								contents += "<td>" + value.user_name + "</td>";
+								contents += "<td>" + value.prdt_name + "</td>";
+								contents += "<td>" + value.ord_amnt + "</td>";
+								contents += "<td>" + value.usr_rcv_time + "</td>";
+								if(remainMin <= 0){
+									contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
+								}else{
+									contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
+								}
+								contents += "<td>접수 완료</td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td>" + value.prdt_price + "</td>";
+								contents += "</tr>"
+								$('#interval').html(contents);
+							}else{
+								contents += "<tr align=center bgcolor=\"#9FF781\">";
+								contents += "<td>" + value.ord_no + "</td>";
+								contents += "<td>" + value.user_name + "</td>";
+								contents += "<td>" + value.prdt_name + "</td>";
+								contents += "<td>" + value.ord_amnt + "</td>";
+								contents += "<td>" + value.usr_rcv_time + "</td>";
+								if(remainMin <= 0){
+									contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
+								}else{
+									contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
+								}
+								contents += "<td>접수 완료</td>";
+								contents += "<td>조리 완료</td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td>" + value.prdt_price + "</td>";
+								contents += "</tr>"
+								$('#interval').html(contents);
+							}
+							
+							
+						})
+					}else{
+						$('#interval').html('');
+					}
+				},
+				error:function(x,e){
+					if(x.status==0){
+			            alert('네트워크가 정상적으로 동작하지 않습니다.');
+			            alert('네트워크 상태를 확인 하거나 업체에게 문의해 주세요.')
+			            }else if(x.status==404){
+			            alert('페이지를 찾을수가 없습니다. 지금은 주문을 받을 수 없습니다. 업체에게 문의하세요.');
+			            }else if(x.status==500){
+			            alert('서버에서 오류가 발생했습니다. 지금은 주문을 받을 수 없습니다. 업체에게 문의하세요.');
+			            }else if(e=='parsererror'){
+			            alert('json파싱에 실패했습니다.');
+			            }else if(e=='timeout'){
+			            alert('응답 요청 시간이 지났습니다.');
+			            }else {
+			            alert('Unknow Error.n'+x.responseText);
+			            }
+			    }
+			});
 	}
+	 
 	function takeFirst(){
 		 alert("접수를 먼저 해야 가능합니다.");
+		 return;
 	}
 	function cookFirst(){
 		alert("조리완료를 먼저 해야 가능합니다.");
+		return;
 	} 
+	
 	function orderCancel(ordNo, statNo){
 		if(confirm("주문을 취소하시겠습니까?")){
-			location.href="adminOrderCancel.do?" + "ordNo=" + ordNo + "&statNo=" + statNo;
+			$.ajax ({
+				url : "adminOrderCancel.do",
+				type : "post",
+				data : {
+					'ordNo' : ordNo,
+					'statNo' : statNo
+				},
+				success : function (data) {
+					var count = Object.keys(data).length;
+					if(count != 0){
+						var contents = "";
+						$.each(data, function(key, value){
+							var checkTimeOver = value.ord_remainTime.split(':');
+							var remainMin = Number(checkTimeOver[1]);
+							if(value.ord_stat == 1){
+								if(remainMin <= 0){
+									contents += "<tr align=center bgcolor=\"#F5A9A9\">";
+								}else{
+									contents += "<tr align=center>"
+								}
+								contents += "<td>" + value.ord_no + "</td>";
+								contents += "<td>" + value.user_name + "</td>";
+								contents += "<td>" + value.prdt_name + "</td>";
+								contents += "<td>" + value.ord_amnt + "</td>";
+								contents += "<td>" + value.usr_rcv_time + "</td>";
+								if(remainMin <= 0){
+									contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
+								}else{
+									contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
+								}
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary btn-sm\" onclick=\"orderProc("+ value.ord_no + ",2);\">접수하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"takeFirst();\">조리 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst();\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td>" + value.prdt_price + "</td>";
+								contents += "</tr>"
+								$('#interval').html(contents);
+								
+							}else if(value.ord_stat == 2){
+								if(remainMin <= 0){
+									contents += "<tr align=center bgcolor=\"#F5A9A9\">";
+								}else{
+									contents += "<tr align=center>"
+								}
+								contents += "<td>" + value.ord_no + "</td>";
+								contents += "<td>" + value.user_name + "</td>";
+								contents += "<td>" + value.prdt_name + "</td>";
+								contents += "<td>" + value.ord_amnt + "</td>";
+								contents += "<td>" + value.usr_rcv_time + "</td>";
+								if(remainMin <= 0){
+									contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
+								}else{
+									contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
+								}
+								contents += "<td>접수 완료</td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td>" + value.prdt_price + "</td>";
+								contents += "</tr>"
+								$('#interval').html(contents);
+							}else{
+								contents += "<tr align=center bgcolor=\"#9FF781\">";
+								contents += "<td>" + value.ord_no + "</td>";
+								contents += "<td>" + value.user_name + "</td>";
+								contents += "<td>" + value.prdt_name + "</td>";
+								contents += "<td>" + value.ord_amnt + "</td>";
+								contents += "<td>" + value.usr_rcv_time + "</td>";
+								if(remainMin <= 0){
+									contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
+								}else{
+									contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
+								}
+								contents += "<td>접수 완료</td>";
+								contents += "<td>조리 완료</td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td>" + value.prdt_price + "</td>";
+								contents += "</tr>"
+								$('#interval').html(contents);
+							}
+							
+							
+						})
+					}else{
+						$('#interval').html('');
+					}
+				},
+				error:function(x,e){
+					if(x.status==0){
+			            alert('네트워크가 정상적으로 동작하지 않습니다.');
+			            alert('네트워크 상태를 확인 하거나 업체에게 문의해 주세요.')
+			            }else if(x.status==404){
+			            alert('페이지를 찾을수가 없습니다. 지금은 주문을 받을 수 없습니다. 업체에게 문의하세요.');
+			            }else if(x.status==500){
+			            alert('서버에서 오류가 발생했습니다. 지금은 주문을 받을 수 없습니다. 업체에게 문의하세요.');
+			            }else if(e=='parsererror'){
+			            alert('json파싱에 실패했습니다.');
+			            }else if(e=='timeout'){
+			            alert('응답 요청 시간이 지났습니다.');
+			            }else {
+			            alert('Unknow Error.n'+x.responseText);
+			            }
+			    }
+			});
 		}
 	}
-	
-	//setInterval 안에서 setInterval 돌리면 좆댐 스레드 존나 돌아감
-	/*  var cnt = 0;
-	function countRemainTime(h, m, ordNo, remain){
-		console.log(ordNo + " : " + remain);
-		if(remain < 0){
-			document.getElementById(ordNo).innerHTML = "<b>TimeOver</b>";
-		}else{
-			now = new Date();
-			dday = new Date(now.getFullYear(),(now.getMonth() + 1),now.getDate(),h,m,00);
-			days = (dday-now)/1000/60/60/24;
-			daysRound = Math.floor(days);
-			var test = dday - now;
-			hours = (dday - now)/1000/60/60-(24 * daysRound);
-			hoursRound = Math.floor(hours);
-			minutes = (dday - now)/1000/60-(24 * 60 * daysRound)-(60 * hoursRound);
-			minutesRound = Math.floor(minutes);
-			seconds = (dday - now) / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound);
-			secondsRound = Math.round(seconds);
-			document.getElementById(ordNo).innerHTML = hoursRound + ":" + minutesRound + ":" + secondsRound;
-			cnt++;
-		}
-		console.log(cnt);
-	}  */
 </script>
 <style type="text/css">
 	.tableFont{
@@ -245,7 +426,7 @@
 		                                </td>
 		                                <td align=center>
 		                                	<div class="btn-group">
-		                                    	<button class="btn btn-success btn-sm" onclick="takeFirst();">조리 완료</button>
+		                                    	<a href="#"><button class="btn btn-success btn-sm" onclick="takeFirst();">조리 완료</button></a>
 		                                	</div>
 		                                </td>
 		                                <td align=center>
