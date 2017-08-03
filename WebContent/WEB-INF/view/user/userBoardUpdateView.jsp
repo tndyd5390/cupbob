@@ -79,7 +79,7 @@
 					<div class="saBox" align="center">커 뮤 니 티</div>
 					<br /> <input type="text" class="title2" id="title2" name="title" value="<%=CmmUtil.nvl(bDTO.getTitle())%>"> <br />
 					<hr class="blackHr">
-					<textarea class="detail2" id="detail2" name="detail"><%=CmmUtil.nvl(bDTO.getContents())%></textarea>
+					<textarea class="detail2" id="detail2" name="detail"><%=CmmUtil.exchangeEscape(CmmUtil.nvl(bDTO.getContents()))%></textarea>
 					<br /> <button class="boButton">취소</button><input type="submit" class="boButton" value="수정">
 				</form>
 			</div>

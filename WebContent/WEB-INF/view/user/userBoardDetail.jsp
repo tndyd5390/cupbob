@@ -7,7 +7,7 @@
 <%@ page import="com.cupbob.util.CmmUtil"%>
 
 <%
-	String ss_user_no = (String) session.getAttribute("ss_user_no");
+	String ss_user_no = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 	User_boardDTO bDTO = (User_boardDTO) request.getAttribute("bDTO");
 	List<Comment_infoDTO> cList = (List<Comment_infoDTO>) request.getAttribute("cList");
 	String contents = bDTO.getContents();
@@ -31,7 +31,6 @@
 <script>
 var updateCheck = false;
 var pNo = <%=CmmUtil.nvl(bDTO.getPost_no())%>;
-var userNo = parseInt('<%=CmmUtil.nvl((String)session.getAttribute("ss_user_no"))%>');
 $(function(){
 	$('#cmtCreate').bind('click',function() {
 		
@@ -278,17 +277,6 @@ function cmtUpdateCancle(){
 		}
 	})
 }
-function checkUserForUpdate(postUserNo, postNo){
-	var postUserNoInt = parseInt(postUserNo);
-	console.log('userNo' + userNo);
-	console.log("postUserNo" + postUserNo);
-	if(postUserNoInt == userNo){
-		location.href="userBoardUpdateView.do?bnum=" + postNo;
-	}else{
-		alert("본인의 글만 수정 할 수 있습니다.");
-		return;
-	}
-}
 </script>
 <title> 소라네 컵밥 커뮤니티</title>
 
@@ -315,9 +303,10 @@ function checkUserForUpdate(postUserNo, postNo){
 					<!--글 내용-->
 					<%=CmmUtil.nvl(bDTO.getContents())%>
 				</div>
-				<button class="saButton0"
-					onclick="location.href='userBoardDelete.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>'">삭제</button>
-				<button class="saButton1" onclick="checkUserForUpdate('<%=CmmUtil.nvl(bDTO.getUser_no())%>', '<%=CmmUtil.nvl(bDTO.getPost_no())%>')";>수정</button>
+				<%if(bDTO.getReg_user_no().equals(ss_user_no)){ %>
+				<button class="saButton0" onclick="location.href='userBoardDelete.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>'">삭제</button>
+				<button class="saButton1" onclick="location.href='userBoardUpdateView.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>';">수정</button>
+				<%} %>
 				<br />
 			</div>
 			<hr class="blackHr">
