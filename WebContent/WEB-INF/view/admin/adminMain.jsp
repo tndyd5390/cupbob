@@ -44,6 +44,7 @@
 							contents += "<td>" + value.prdt_price + "</td>";
 							contents += "</tr>"
 							$('#interval').html(contents);
+							
 						}else if(value.ord_stat == 2){
 							if(remainMin <= 0){
 								contents += "<tr align=center bgcolor=\"#F5A9A9\">";
@@ -67,7 +68,7 @@
 							contents += "<td>" + value.prdt_price + "</td>";
 							contents += "</tr>"
 							$('#interval').html(contents);
-						}else if(value.ord_stat ==3){
+						}else{
 							contents += "<tr align=center bgcolor=\"#9FF781\">";
 							contents += "<td>" + value.ord_no + "</td>";
 							contents += "<td>" + value.user_name + "</td>";
@@ -87,7 +88,6 @@
 							contents += "</tr>"
 							$('#interval').html(contents);
 						}
-						
 						/* if(remainMin > 0){
 							value.ord_no = setInterval(function(){
 								var arr = value.usr_rcv_time.split(':');
@@ -120,7 +120,10 @@
 	})
 	
 	function orderProc(ordNo, statNo){
-		 location.href="adminOrderProc.do?" + "ordNo=" + ordNo + "&statNo=" + statNo;
+		 location.replace("adminOrderProc.do?" + "ordNo=" + ordNo + "&statNo=" + statNo);
+		 var url = 'orderList.do';
+		console.log("url" + url);
+		history.pushState(null, null, url);
 	}
 	function takeFirst(){
 		 alert("접수를 먼저 해야 가능합니다.");
@@ -158,6 +161,11 @@
 		console.log(cnt);
 	}  */
 </script>
+<style type="text/css">
+	.tableFont{
+		font-size: 11px;
+	}
+</style>
 </head>
 <body>
 <%@include file="/include/naviBarAndasideBar.jsp"%>
@@ -181,21 +189,21 @@
                           <div class="panel-body">
 								<div class="table-borderd">
                           <table class="table table-advance">
-							<thead>
-							 <tr>
-                                 <th align="center">주문번호</th>
-                                 <th align="center">주문자</th>
-                                 <th align="center">상품명</th>
-                                 <th align="center">수량</th>
-                                 <th align="center">수령 시간</th>
-                                 <th align="center">남은 시간</th>
-                                 <th align="center">접수 여부</th>
-                                 <th align="center">조리 여부</th>
-                                 <th align="center">수령 여부</th>
-                                 <th align="center">취소 여부<th>
-                                 <th align="center">금액</th>
+							<thead class="tableFont">
+							 <tr align="center">
+                                 <th align="center" style="text-align: center;" >주문번호</th>
+                                 <th align="center" style="text-align: center;">주문자</th>
+                                 <th align="center" style="text-align: center;">상품명</th>
+                                 <th align="center" style="text-align: center;">수량</th>
+                                 <th align="center" style="text-align: center;">수령 시간</th>
+                                 <th align="center" style="text-align: center;">남은 시간</th>
+                                 <th align="center" style="text-align: center;">접수 여부</th>
+                                 <th align="center" style="text-align: center;">조리 여부</th>
+                                 <th align="center" style="text-align: center;">수령 여부</th>
+                                 <th align="center" style="text-align: center;">취소 여부</th>
+                                 <th align="center" style="text-align: center;">금액</th>
 							</thead>
-                           <tbody id="interval">
+                           <tbody id="interval" class="tableFont">
                               <%for(TotalOrderDTO tDTO : tList){
                             	  String ordStat = CmmUtil.nvl(tDTO.getOrd_stat());
                             	  String[] arr = CmmUtil.nvl(tDTO.getOrd_remainTime()).split(":");
