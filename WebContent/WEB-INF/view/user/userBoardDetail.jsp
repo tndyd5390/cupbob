@@ -316,7 +316,7 @@ function cmtUpdateCancle(){
 		<ul class="list-group list-group-none-line">
 			<li class="list-group-item list-none-line">
 				<div class="contentsArea">
-					<p class="inline0">댓글 5</p>
+					<p class="inline0">댓글</p>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<p class="inline1">
 						<a href="#" class="black">&#8635;새로고침</a>
@@ -324,7 +324,8 @@ function cmtUpdateCancle(){
 					<span class="inline2"> <a href="#" class="black">전체댓글보기&#x2771;</a>
 					</span> <br> <br>
 					<!--글 작성 input-->
-					<div class="reTitle">
+					
+					<div class="reTitle">	
 						<input type="text" class="nameFont" placeholder=" 댓글을 입력해주세요."
 							id="cnts">
 						<button class="saButton3" id="cmtCreate">등록</button>
