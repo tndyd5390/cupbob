@@ -62,7 +62,9 @@ public class BoardController {
 		log.info(this.getClass() + "userBoardProc start!!!");
 		
 		String boardTitle = CmmUtil.nvl(req.getParameter("title"));
+		boardTitle = CmmUtil.exchangeEscape(boardTitle);
 		String boardContent = CmmUtil.nvl(req.getParameter("detail"));
+		boardTitle = CmmUtil.exchangeEscape(boardTitle);
 		String user_no = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
 		
 		log.info("boardTitle  :  " + boardTitle);
@@ -174,7 +176,9 @@ public class BoardController {
 		log.info(this.getClass() + " bnum : " + bnum);
 		String title = CmmUtil.nvl(req.getParameter("title"));
 		log.info(this.getClass() + " title : " + title);
+		title = CmmUtil.exchangeEscape(title);
 		String detail = CmmUtil.nvl(req.getParameter("detail"));
+		detail = CmmUtil.exchangeEscape(detail);
 		log.info(this.getClass() + " detail : " + detail);
 		String userNo = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
 		User_boardDTO bDTO = new User_boardDTO();
