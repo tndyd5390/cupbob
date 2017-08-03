@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+    	<!-- 사용할 DTO 등록  -->
+		<typeAlias type="com.cupbob.dto.Comment_infoDTO" alias="Comment_infoDTO"/>
+		<typeAlias type="com.cupbob.dto.Order_infoDTO" alias="Order_infoDTO"/>
+		<typeAlias type="com.cupbob.dto.Order_itemDTO" alias="Order_itemDTO"/>
+		<typeAlias type="com.cupbob.dto.Product_infoDTO" alias="Product_infoDTO"/>
+		<typeAlias type="com.cupbob.dto.Tmp_boardDTO" alias="Tmp_boardDTO"/>
+		<typeAlias type="com.cupbob.dto.User_boardDTO" alias="User_boardDTO"/>
+		<typeAlias type="com.cupbob.dto.User_infoDTO" alias="User_infoDTO"/>
+		<typeAlias type="com.cupbob.dto.TotalOrderInfoDTO" alias="TotalOrderInfoDTO"/>
+		<typeAlias type="com.cupbob.dto.TotalOrderItemDTO" alias="TotalOrderItemDTO"/>
+		<typeAlias type="com.cupbob.dto.Chart_DTO" alias="Chart_DTO"/>
+    </typeAliases>
+</configuration>
