@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cupbob.persistance.mapper.ChartMapper">
+	<select id = "getMonthChart" resultType="Chart_DTO" parameterType="Chart_DTO">
+		SELECT P.PRDT_NAME, SUM(O.ORD_AMNT) AS COUNT, DATE_FORMAT(O.REG_DT, '%Y-%m') AS REG_DT
+		FROM PRODUCT_INFO P, ORDER_ITEM O
+		WHERE P.PRDT_NO = O.PRDT_NO AND
+		O.REG_DT LIKE '2017%'
+		GROUP BY O.PRDT_NO
+	</select>
+</mapper>
