@@ -32,7 +32,7 @@
 						class="loginImg">
 				</div>
 				<div class="col-xs-12">
-					<br> <span class="loginSpan1">정성을 다하는 스타벅스밥집</span>
+					<br> <span class="loginSpan1">정성을 다하는 소라네 밥집</span>
 				</div>
 			</div>
 		</div>
