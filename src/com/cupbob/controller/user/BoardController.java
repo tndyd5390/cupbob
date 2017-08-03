@@ -150,4 +150,51 @@ public class BoardController {
 		return "user/userBoardAlert";
 	}
 	
+	@RequestMapping(value="userBoardUpdateView", method=RequestMethod.GET)
+	public String userBoardUpdateView(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
+		log.info(this.getClass() + ".userBoardUpdateView start!!!");
+		String bnum = CmmUtil.nvl(req.getParameter("bnum"));
+		log.info(this.getClass() + " bnum : " + bnum);
+		User_boardDTO bDTO = new User_boardDTO();
+		bDTO.setPost_no(bnum);
+		bDTO = boardService.getAdminBoardDetail(bDTO);
+		if(bDTO == null){
+			bDTO = new User_boardDTO();
+		}
+		model.addAttribute("bDTO", bDTO);
+		bnum = null;
+		bDTO = null;
+		log.info(this.getClass() + ".userBoardUpdateView end!!!");
+		return "user/userBoardUpdateView";
+	}
+	@RequestMapping(value="userBoardUpdateProc", method=RequestMethod.POST)
+	public String userBoardUpdateProc(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
+		log.info(this.getClass() + ".userBoardUpdateProc start!!!");
+		String bnum = CmmUtil.nvl(req.getParameter("bnum"));
+		log.info(this.getClass() + " bnum : " + bnum);
+		String title = CmmUtil.nvl(req.getParameter("title"));
+		log.info(this.getClass() + " title : " + title);
+		String detail = CmmUtil.nvl(req.getParameter("detail"));
+		log.info(this.getClass() + " detail : " + detail);
+		String userNo = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
+		User_boardDTO bDTO = new User_boardDTO();
+		bDTO.setPost_no(bnum);
+		bDTO.setTitle(title);
+		bDTO.setContents(detail);
+		bDTO.setUser_no(userNo);
+		boolean result = false;
+		result = boardService.updateUserBoard(bDTO);
+		String msg, url;
+		if(result){
+			msg = "수정 되었습니다.";
+			url = "userBoardList.do";
+		}else{
+			msg = "오류";
+			url = "userBoardDetail.do?bnum="+bnum;
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		log.info(this.getClass() + ".userBoardUpdateProc end!!!");
+		return "user/userBoardAlert";
+	}
 }

@@ -31,7 +31,7 @@
 <script>
 var updateCheck = false;
 var pNo = <%=CmmUtil.nvl(bDTO.getPost_no())%>;
-
+var userNo = parseInt('<%=CmmUtil.nvl((String)session.getAttribute("ss_user_no"))%>');
 $(function(){
 	$('#cmtCreate').bind('click',function() {
 		
@@ -278,6 +278,17 @@ function cmtUpdateCancle(){
 		}
 	})
 }
+function checkUserForUpdate(postUserNo, postNo){
+	var postUserNoInt = parseInt(postUserNo);
+	console.log('userNo' + userNo);
+	console.log("postUserNo" + postUserNo);
+	if(postUserNoInt == userNo){
+		location.href="userBoardUpdateView.do?bnum=" + postNo;
+	}else{
+		alert("본인의 글만 수정 할 수 있습니다.");
+		return;
+	}
+}
 </script>
 <title> asdfasdasdffasdf here</title>
 
@@ -296,7 +307,7 @@ function cmtUpdateCancle(){
 				<h2 class="title"><%=CmmUtil.nvl(bDTO.getTitle())%></h2>
 				<!--글쓴이 및 글정보-->
 				<h7 class="boderdetail"><%=CmmUtil.nvl(bDTO.getUser_name())%>
-				| <%=CmmUtil.nvl(bDTO.getReg_dt())%> | 조회수 <%=CmmUtil.nvl(bDTO.getView_cnt())%></h7>
+				| <%=CmmUtil.nvl(bDTO.getReg_dt())%> | 조회수<%=CmmUtil.nvl(bDTO.getView_cnt())%></h7>
 			</div>
 			<hr>
 			<div class="row">
@@ -306,7 +317,7 @@ function cmtUpdateCancle(){
 				</div>
 				<button class="saButton0"
 					onclick="location.href='userBoardDelete.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>'">삭제</button>
-				<button class="saButton1">수정</button>
+				<button class="saButton1" onclick="checkUserForUpdate('<%=CmmUtil.nvl(bDTO.getUser_no())%>', '<%=CmmUtil.nvl(bDTO.getPost_no())%>')";>수정</button>
 				<br />
 			</div>
 			<hr class="blackHr">
