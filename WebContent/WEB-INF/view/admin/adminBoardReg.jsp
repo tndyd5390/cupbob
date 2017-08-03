@@ -22,7 +22,7 @@
 <head>
 <%@include file="/include/head.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시글 등록</title>
+<title>소라네 컵밥 커뮤니티</title>
 </head>
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>

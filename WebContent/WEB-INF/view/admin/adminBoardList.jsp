@@ -110,7 +110,7 @@
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시판 관리</title>
+<title>소라네 컵밥 커뮤니티</title>
 <style>
 .btn_more {float:left;width:100%;height:50px;border:0 none;border-top:2px solid transparent;background-color:#dddddd;border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;}

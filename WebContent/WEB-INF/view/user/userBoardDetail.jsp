@@ -279,7 +279,7 @@ function cmtUpdateCancle(){
 	})
 }
 </script>
-<title> asdfasdasdffasdf here</title>
+<title> 소라네 컵밥 커뮤니티</title>
 
 </head>
 <body>

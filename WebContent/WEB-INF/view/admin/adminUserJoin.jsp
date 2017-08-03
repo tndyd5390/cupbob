@@ -120,7 +120,7 @@ $(function(){
 	}
 
 </script>
-<title>회원가입</title>
+<title>소라네 컵밥 회원가입</title>
 </head>
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="userBootstrap/css/nav.css" />
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<title>매장위치</title>
+<title>소라네 컵밥 매장위치</title>
 </head>
 <body>
 	<%@include file="/include/nav.jsp"%>

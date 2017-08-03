@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="userBootstrap/css/tutle.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<title>Insert title here</title>
+<title>소라네 컵밥에 오신걸 환영합니다 !!</title>
 </head>
 <body>
 	<div>

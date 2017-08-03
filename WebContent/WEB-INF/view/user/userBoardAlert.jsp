@@ -11,7 +11,7 @@
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>소라네 컵밥</title>
 </head>
 <body>
 
