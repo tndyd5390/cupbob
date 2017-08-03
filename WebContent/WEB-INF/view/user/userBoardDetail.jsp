@@ -7,7 +7,7 @@
 <%@ page import="com.cupbob.util.CmmUtil"%>
 
 <%
-	String ss_user_no = (String) session.getAttribute("ss_user_no");
+	String ss_user_no = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 	User_boardDTO bDTO = (User_boardDTO) request.getAttribute("bDTO");
 	List<Comment_infoDTO> cList = (List<Comment_infoDTO>) request.getAttribute("cList");
 	String contents = bDTO.getContents();
@@ -31,7 +31,6 @@
 <script>
 var updateCheck = false;
 var pNo = <%=CmmUtil.nvl(bDTO.getPost_no())%>;
-
 $(function(){
 	$('#cmtCreate').bind('click',function() {
 		
@@ -296,7 +295,7 @@ function cmtUpdateCancle(){
 				<h2 class="title"><%=CmmUtil.nvl(bDTO.getTitle())%></h2>
 				<!--글쓴이 및 글정보-->
 				<h7 class="boderdetail"><%=CmmUtil.nvl(bDTO.getUser_name())%>
-				| <%=CmmUtil.nvl(bDTO.getReg_dt())%> | 조회수 <%=CmmUtil.nvl(bDTO.getView_cnt())%></h7>
+				| <%=CmmUtil.nvl(bDTO.getReg_dt())%> | 조회수<%=CmmUtil.nvl(bDTO.getView_cnt())%></h7>
 			</div>
 			<hr>
 			<div class="row">
@@ -304,9 +303,10 @@ function cmtUpdateCancle(){
 					<!--글 내용-->
 					<%=CmmUtil.nvl(bDTO.getContents())%>
 				</div>
-				<button class="saButton0"
-					onclick="location.href='userBoardDelete.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>'">삭제</button>
-				<button class="saButton1">수정</button>
+				<%if(bDTO.getReg_user_no().equals(ss_user_no)){ %>
+				<button class="saButton0" onclick="location.href='userBoardDelete.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>'">삭제</button>
+				<button class="saButton1" onclick="location.href='userBoardUpdateView.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>';">수정</button>
+				<%} %>
 				<br />
 			</div>
 			<hr class="blackHr">

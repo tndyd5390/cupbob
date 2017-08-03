@@ -65,5 +65,15 @@ public class BoardService implements IBoardService {
 		System.out.println(bDTO.getReadmore());
 		return boardMapper.getReadMoreList(bDTO);
 	}
+	@Override
+	public boolean updateUserBoard(User_boardDTO uDTO) throws Exception {
+		boolean result = false;
+		int resultInt = 0;
+		resultInt = boardMapper.updateUserBoard(uDTO);
+		if(resultInt != 0){
+			result = true;
+		}
+		return result;
+	}
 	
 }
