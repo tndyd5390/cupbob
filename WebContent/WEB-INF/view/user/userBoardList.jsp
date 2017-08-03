@@ -9,6 +9,44 @@ List<User_boardDTO> bList = (List<User_boardDTO>)request.getAttribute("userBoard
 	
 <!DOCTYPE html>
 <html>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+
+$(function (){
+	$('#boardSearch').keyup(function() {
+		var word = $('#boardSearch').val();
+		var selected = $('#searchSelect').val();
+			$.ajax({
+				url : "boardSearch.do",
+				method : "post",
+				data : {
+					'word' : word,
+					'selected' : selected			
+				},
+				dataType : "json",
+				success : function(data){
+					console.log(data);
+					var contents = "";
+					$.each(data, function(key,value){
+						contents += "<li class='list-group-item list-none-line'>";
+						contents += "<div class='contentsArea'>";
+						contents += "<h4>";
+						contents += "<a href='userBoardDerail.do?bnum"+value.post_no+"'class='contentsLink'>"+value.title+"</a>";
+						contents += "</h4>";
+						contents += "<span style='vaerical-align: middle;'></span>";
+						contents += "</div>";
+						contents += "<div class='contentsInfo'>";
+						contents += "<span>" + value.user_name + "</span> | <span>" + value.reg_dt + "</span> | <span>조회수</span> | <span>" + value.view_cnt + "</span>";
+						contents += "</div>";
+						contents += "</li>";
+					})
+					$('#boardList').html(contents);
+				}
+			})
+	})
+})
+
+</script>
 <head>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +60,28 @@ List<User_boardDTO> bList = (List<User_boardDTO>)request.getAttribute("userBoard
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<title>Insert title here</title>
+<title>Inset  </title>
+
+ <style type="text/css">
+ <!--
+  .searchTitle {
+  border: 1px solid #8B8B8B;
+  display: inline-block;
+  padding: 10px 10px;
+  width: 61%;
+  
+  }
+  .searchSelect{
+  border: 1px solid #8B8B8B;
+  display: inline-block;
+  margin-left: 20px;
+  padding: 10px 10px;
+  height: 42px;
+  
+  }
+ //-->
+ </style>
+
 
 </head>
 <body>
@@ -30,9 +89,23 @@ List<User_boardDTO> bList = (List<User_boardDTO>)request.getAttribute("userBoard
 		<br>
 	<br>
 	<br>
+	<br>
+	<br>
 	<div class="container-fluid">
-		<div class="row">
-			<ul class="list-group list-group-none-line">
+		<div class="searchDiv" align="left">
+			<div class="orderHead" style="width:100%;">커 뮤 니 티</div>
+			<br />
+			<div class="row" >
+					<select id="searchSelect" class="searchSelect" >
+					<option>제목</option>
+					<option>작성자</option>
+					<option>내용</option>
+				</select>
+				
+				 <input class= "searchTitle" placeholder="검색 제목을 입력해주세요." type="text" id="boardSearch" ></div>
+			
+			</div>
+			<ul class="list-group list-group-none-line" id="boardList">
 				<%
 					for (User_boardDTO bDTO : bList) {
 				%>

@@ -23,7 +23,7 @@
 	<br>
 	<br>
 	<div align=center>
-		<div class="orderHead" style="width: 80%;">매장위치</div>
+		<div class="orderHead" style="width: 80%;">매 장 위 치</div>
 		<br>
 		
 		<div id="daumRoughmapContainer1501584120057" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 80%"></div>
