@@ -63,7 +63,6 @@ $(function(){
 							contents += "<h7>"+value.reg_dt+ " </h7> ";
 							contents += "<button class='saButton2' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+")>"+"수정"+"</button> ";
 							contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
-							contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"답글"+"</button>";
 							contents +=	" </div>";
 							contents += " </div>";
 							contents += " <br>";
@@ -75,7 +74,6 @@ $(function(){
 							contents += "<div class='contentsInfo' id='cmt_"+value.cmt_no+"'>";
 							contents += "<span>"+ value.contents.replace(/\n/g,'<br>')+ "</span> <br>";	
 							contents += "<h7>"+value.reg_dt+ " </h7> ";
-							contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"답글"+"</button>";
 							contents +=	" </div>";
 							contents += " </div>";
 							contents += " <br>";
@@ -114,7 +112,6 @@ function cmtDelete(cmt_no){
 									contents += "<h7>"+value.reg_dt+ " </h7> ";
 									contents += "<button class='saButton2' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+")>"+"수정"+"</button> ";
 									contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
-									contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"답글"+"</button>";
 									contents +=	" </div>";
 									contents += " </div>";
 									contents += " <br>";
@@ -126,7 +123,6 @@ function cmtDelete(cmt_no){
 									contents += "<div class='contentsInfo' id='cmt_"+value.cmt_no+"'>";
 									contents += "<span>"+ value.contents.replace(/\n/g,'<br>')+ "</span> <br>";	
 									contents += "<h7>"+value.reg_dt+ " </h7> ";
-									contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"답글"+"</button>";
 									contents +=	" </div>";
 									contents += " </div>";
 									contents += " <br>";
@@ -154,7 +150,7 @@ function cmtUpdate(cmt_no,user_name){
 		var updateForm = "<div  id="+cmtNo+">" +
 		                 "<div class=contentsArea>" + 
 		                 "<h4 class='reName'>"+userName+"</h4> </div> <br>" +
-		                 "<div class=col-xs-12><input type='text' id='cmtUpdateArea' class='nameFont1' value="+contents+">" +
+		                 "<div class=col-xs-12><textarea class='upComText' id='cmtUpdateArea'>"+contents+"</textarea>" +
 		                 "<button class='saButton2' id='cmtUpdateBtn' onclick='cmtUpdateProc("+cmtNo+")'>수정</button> "+
 		                 "<button class='saButton2' id='cmtUpdateCancle' onclick='cmtUpdateCancle()'>취소</button>"+
 		                 "</div> <br> <br> <br>";
@@ -212,7 +208,6 @@ function cmtUpdateCancle(){
 					contents += "<h7>"+value.reg_dt+ " </h7> ";
 					contents += "<button class='saButton2' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+")>"+"수정"+"</button> ";
 					contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
-					contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"답글"+"</button>";
 					contents +=	" </div>";
 					contents += " </div>";
 					contents += " <br>";
@@ -224,7 +219,6 @@ function cmtUpdateCancle(){
 					contents += "<div class='contentsInfo' id='cmt_"+value.cmt_no+"'>";
 					contents += "<span>"+ value.contents.replace(/\n/g,'<br>')+ "</span> <br>";	
 					contents += "<h7>"+value.reg_dt+ " </h7> ";
-					contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"답글"+"</button>";
 					contents +=	" </div>";
 					contents += " </div>";
 					contents += " <br>";
@@ -254,7 +248,6 @@ function cmtUpdateCancle(){
 					contents += "<h7>"+value.reg_dt+ " </h7> ";
 					contents += "<button class='saButton2' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+")>"+"수정"+"</button> ";
 					contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
-					contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"답글"+"</button>";
 					contents +=	" </div>";
 					contents += " </div>";
 					contents += " <br>";
@@ -266,7 +259,6 @@ function cmtUpdateCancle(){
 					contents += "<div class='contentsInfo' id='cmt_"+value.cmt_no+"'>";
 					contents += "<span>"+ value.contents.replace(/\n/g,'<br>')+ "</span> <br>";	
 					contents += "<h7>"+value.reg_dt+ " </h7> ";
-					contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"답글"+"</button>";
 					contents +=	" </div>";
 					contents += " </div>";
 					contents += " <br>";
@@ -278,7 +270,8 @@ function cmtUpdateCancle(){
 	})
 }
 </script>
-<title> 소라네 컵밥 커뮤니티</title>
+<title> 소라네 컵d밥  커뮤니티</title>
+
 
 </head>
 <body>
@@ -295,7 +288,7 @@ function cmtUpdateCancle(){
 				<h2 class="title"><%=CmmUtil.nvl(bDTO.getTitle())%></h2>
 				<!--글쓴이 및 글정보-->
 				<h7 class="boderdetail"><%=CmmUtil.nvl(bDTO.getUser_name())%>
-				| <%=CmmUtil.nvl(bDTO.getReg_dt())%> | 조회수<%=CmmUtil.nvl(bDTO.getView_cnt())%></h7>
+				| <%=CmmUtil.nvl(bDTO.getReg_dt())%> | 조회수 <%=CmmUtil.nvl(bDTO.getView_cnt())%></h7>
 			</div>
 			<hr>
 			<div class="row">
@@ -319,18 +312,17 @@ function cmtUpdateCancle(){
 					<p class="inline0">댓글</p>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<p class="inline1">
-						<a href="#" class="black">&#8635;새로고침</a>
+						<a href="javascript:location.reload();" class="black">&#8635;새로고침</a>
 					</p>
-					<span class="inline2"> <a href="#" class="black">전체댓글보기&#x2771;</a>
-					</span> <br> <br>
+					
+					<br> <br>
 					<!--글 작성 input-->
 					
 					<div class="reTitle">	
-						<input type="text" class="nameFont" placeholder=" 댓글을 입력해주세요."
-							id="cnts">
+						<textarea class="comText" id="cnts"></textarea>
 						<button class="saButton3" id="cmtCreate">등록</button>
 						<br> <br>
-						<br>
+						<br><br><br>
 					</div>
 					<!-------------->
 				</div>
@@ -356,7 +348,6 @@ function cmtUpdateCancle(){
 							<%
 								}
 							%>
-							<button class="saButton2">답글</button>
 						</div>
 					</div> <br />
 				</li>
@@ -372,6 +363,8 @@ function cmtUpdateCancle(){
 	</div>
 
 	<br>
+	<div align=center>
 	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 </html>

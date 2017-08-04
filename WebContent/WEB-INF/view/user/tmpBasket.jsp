@@ -237,6 +237,9 @@ function addComma(x) {
 	function keepShopping(){
 		location.href="userMenuList.do";
 	}
+	function doOrder(){
+		location.href="userDoOrder.do";
+	}
 </script>
 </head>
 <body>
@@ -284,7 +287,7 @@ function addComma(x) {
 				</div>
 			</div>
 			<div class="col-xs-12">
-				<button class="tmpBasketOrder">주문 하기</button>
+				<button class="tmpBasketOrder" onclick="doOrder();">주문 하기</button>
 			</div>
 		<br>
 	</div>
