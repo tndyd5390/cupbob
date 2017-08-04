@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -63,6 +64,8 @@ public class AdminOrderController {
 			tList = new ArrayList<TotalOrderDTO>();
 		}
 		log.info(this.getClass() + ".adminOrderProc end");
+		
+		
 		return tList;
 	}
 	
@@ -98,4 +101,50 @@ public class AdminOrderController {
 		log.info("order test");
 		return "admin/adminMain";
 	}
+	
+	@RequestMapping(value="barcodePage" ,method = RequestMethod.GET)
+		public String barcodePage(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass().getName()+" barcodePage Start");	
+		String ordNo = req.getParameter("ordNo");
+		String statNo = req.getParameter("statNo");
+		log.info(this.getClass().getName()+ "ordNo = "+ordNo);
+		log.info(this.getClass().getName()+ "statNo = "+statNo);
+		
+		model.addAttribute("ordNo", ordNo);
+		model.addAttribute("statNo", statNo);
+		
+		log.info(this.getClass().getName()+" barcodePage End");	
+		return "admin/barcodePage";
+	}
+	@RequestMapping(value="barcodeSuccess")
+		public String barcodeSuccess(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass().getName()+ " barcodeSuccess start");
+		String ordNo = req.getParameter("ordNo");
+		
+		model.addAttribute("ordNo", ordNo);
+		ordNo = null;
+		log.info(this.getClass().getName()+ " barcodeSuccess end");
+		return "admin/barcodeSuccess";
+	}
+	
+	@RequestMapping(value="barcodeProc", method = RequestMethod.POST)
+	public String bardoeProc(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + ".adminOrderProc start!!");
+		String ordNo = req.getParameter("ordNo");
+		log.info(this.getClass() + ".adminTakeOrder.ordNo : " + ordNo);
+		String statNo = req.getParameter("statNo");
+		log.info(this.getClass() + ".adminTakeOrder.statNo : " + statNo);
+		List<TotalOrderDTO> tList = orderService.updateAdminOrdNo(ordNo, statNo);
+		if(tList == null){
+			tList = new ArrayList<TotalOrderDTO>();
+		}
+		log.info(this.getClass() + ".adminOrderProc end");
+		
+		model.addAttribute("ordNo", ordNo);
+		
+		tList=null;
+		
+		return "redirect:barcodeSuccess.do";
+	}
+
 }
