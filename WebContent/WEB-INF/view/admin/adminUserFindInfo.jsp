@@ -5,7 +5,7 @@
 <head>
 <%@include file="/include/head.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>ID PW Find</title>
+<title>소라네 컵밥 회원 정보 찾기</title>
 </head>
 
 <body>

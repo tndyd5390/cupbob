@@ -15,7 +15,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<title>Insert title here</title>
+<title>소라네 컵밥 커뮤니티</title>
 
 </head>
 <body>

@@ -4,7 +4,7 @@
 <html lang="en">
   <head>
 <%@include file="/include/head.jsp" %>
- 	<title>분석 차트</title>
+ 	<title>소라네 컵밥</title>
   </head>
   <body>
 <%@include file="/include/naviBarAndasideBar.jsp"%> 

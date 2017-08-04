@@ -11,7 +11,7 @@
 <!-- Bootstrap theme -->
 <link href="userBootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 <link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
-<title>거북목 로그인</title>
+<title>소라네 컵밥 로그인</title>
 </head>
 <body>
 	<div>

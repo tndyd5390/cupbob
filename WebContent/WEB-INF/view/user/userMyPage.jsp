@@ -11,7 +11,7 @@
 <link href="userBootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 <link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<title>유저 마이페이지</title>
+<title>소라네 컵밥 마이페이지</title>
 </head>
 <body>
 	<div>

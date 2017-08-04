@@ -69,7 +69,7 @@ function doJoin(){
 
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>소라네 컵밥 로그인</title>
 </head>
 <body class="">
 	<div class="container">

@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<title>유저 아이디 / 비밀번호 찾기</title>
+<title>소라네 컵밥 아이디/비밀번호 찾기</title>
 <script>
 function doFind(){
 	var user_name = $('#name');

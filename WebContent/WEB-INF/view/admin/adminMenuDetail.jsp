@@ -10,7 +10,7 @@
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>메뉴 상세 보기</title>
+<title>소라네 컵밥 메뉴 상세 보기</title>
 </head>
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>

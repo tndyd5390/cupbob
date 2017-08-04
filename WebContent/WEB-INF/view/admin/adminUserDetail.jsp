@@ -21,7 +21,7 @@
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원 상세 보기</title>
+<title>소라네 컵밥 회원 상세보기</title>
 </head>
 <body>
 <%@include file="/include/naviBarAndasideBar.jsp"%>

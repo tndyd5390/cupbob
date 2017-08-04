@@ -30,6 +30,7 @@
 		UB.VIEW_CNT,
 		UI.EMAIL,
 		UI.USER_NAME,
+		UB.REG_USER_NO,
 		DATE_FORMAT(UB.REG_DT, '%Y-%m-%d') AS REG_DT
 		FROM USER_INFO UI,
 		USER_BOARD UB
@@ -90,4 +91,13 @@
 		ORDER BY UB.POST_NO DESC
 		LIMIT 10 OFFSET ${readmore}
 	</select>
+	<update id="updateUserBoard" parameterType="User_boardDTO">
+		UPDATE USER_BOARD
+		SET
+		TITLE = #{title} -- varchar(300)
+		,CONTENTS = #{contents} -- varchar(4000)
+		,CHG_USER_NO = #{user_no}
+		,CHG_DT = NOW()
+		WHERE POST_NO = #{post_no} -- int(11)
+	</update>
 </mapper>
