@@ -6,13 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap core CSS -->
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="userBootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 <!-- Bootstrap theme -->
-<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-<link rel="stylesheet" href="userBootstrap/css/tutle.min.css" />
+<link href="userBootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
+<link rel="stylesheet" href="userBootstrap/css/nav.css"/>
+<link rel="stylesheet" href="userBootstrap/css/tmpBasket.css?ver=1"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-<title>소라네 컵밥을 이용해주셔서 감사합니다 !!</title>
+<title>소라네 컵밥 장바구니</title>
 </head>
 <body>
 	<%@include file="/include/nav.jsp"%>
