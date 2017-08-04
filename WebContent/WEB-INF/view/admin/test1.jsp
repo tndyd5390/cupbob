@@ -4,7 +4,7 @@
 <script src="//code.jquery.com/jquery.min.js"></script>
 	<script src="https://hammerjs.github.io/dist/hammer.js"></script>
 <meta name="viewport" content="width=device-width, user-scalable=no">
-<title></title>
+<title>소라네 컵밥</title>
 <style>
 #areaPadd {
 	background: blue;

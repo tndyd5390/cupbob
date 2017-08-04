@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="userBootstrap/css/nav.css"/>
 <link rel="stylesheet" href="userBootstrap/css/tmpBasket.css?ver=1"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<title>장바구니</title>
+<title>소라네 컵밥 장바구니</title>
 <script type="text/javascript">
 function addComma(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

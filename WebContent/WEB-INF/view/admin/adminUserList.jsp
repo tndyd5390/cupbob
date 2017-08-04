@@ -97,7 +97,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>회원 관리</title>
+	<title>소라네 컵밥 회원정보</title>
 </head>
 
 <body>

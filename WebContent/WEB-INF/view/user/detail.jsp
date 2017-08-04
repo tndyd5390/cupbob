@@ -20,15 +20,18 @@
 <link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
 <link rel="stylesheet" href="userBootstrap/css/nav.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>소라네 컵밥 메뉴 상세보기</title>
 <script type="text/javascript">
 //주석 달리나???
+	function addComma(x) {
+    	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 	function addItemCnt(){
 		var qty = parseInt($('#itemQty').val());
 		if(qty < 99){
 			qty = qty +1;			
 			$('#itemQty').val(qty);
-			$('#itemPrice').text(qty * <%=CmmUtil.nvl(pDTO.getPrdt_price())%>);
+			$('#itemPrice').text(addComma(qty * <%=CmmUtil.nvl(pDTO.getPrdt_price())%>));
 		}
 	}
 	
@@ -37,7 +40,7 @@
 		if(qty > 1){
 			qty = qty -1;			
 			$('#itemQty').val(qty);				
-			$('#itemPrice').text(qty * <%=CmmUtil.nvl(pDTO.getPrdt_price())%>);
+			$('#itemPrice').text(addComma(qty * <%=CmmUtil.nvl(pDTO.getPrdt_price())%>));
 		}
 	}
 	

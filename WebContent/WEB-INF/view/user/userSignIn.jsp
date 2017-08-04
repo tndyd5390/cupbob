@@ -15,7 +15,7 @@
 <!-- Bootstrap theme -->
 <link href="userBootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 <link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
-<title>유저 회원 가입</title>
+<title>소라네 컵밥 회원가입</title>
 <script>
 var regExp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 var ovlapE = false;
