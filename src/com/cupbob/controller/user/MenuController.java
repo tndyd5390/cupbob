@@ -192,4 +192,12 @@ public class MenuController {
 		log.info(this.getClass() + " userTmpItemSelectedDelete end!!!"); 
 		return tMap;
 	}
+	
+	@RequestMapping(value="userDoOrder", method=RequestMethod.GET)
+	public String userDoOrder(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
+		log.info(this.getClass() + ".userDoOrder start!!!");
+		
+		log.info(this.getClass() + ".userDoOrder end!!!");
+		return "user/order";
+	}
 }

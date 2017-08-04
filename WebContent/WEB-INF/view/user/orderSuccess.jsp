@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Bootstrap core CSS -->
-<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="userBootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 <!-- Bootstrap theme -->
 <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 <link href="bootstrap/css/footer.css" rel="stylesheet">
@@ -19,7 +19,7 @@ $(function(){
 	$("#bcTarget").barcode("123456", "int25", {barWidth:1, barHeight:50});     
 })
 </script>
-<title>Insert title here</title>
+<title>결제 완료 화면</title>
 </head>
 <body>
 	<%@include file="/include/nav.jsp"%>
