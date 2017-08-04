@@ -84,7 +84,7 @@
 								}
 								contents += "<td>접수 완료</td>";
 								contents += "<td>조리 완료</td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"barcodeProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
@@ -115,7 +115,12 @@
 		}, 5000);
 	})
 	
-	function orderProc(ordNo, statNo){
+	function barcodeProc(ordNo, statNo){
+		 var barcodePage = "barcodePage.do?ordNo="+ordNo+"&statNo="+statNo;
+		 var popOption = "width=370, height=360,resizable=no, scrollbars=no, status=no;";
+		 	window.open(barcodePage,"",popOption);
+	}
+		function orderProc(ordNo, statNo){
 			$.ajax ({
 				url : "adminOrderProc.do",
 				type : "post",
@@ -191,7 +196,7 @@
 								}
 								contents += "<td>접수 완료</td>";
 								contents += "<td>조리 완료</td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"barcodeProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
@@ -222,6 +227,7 @@
 			    }
 			});
 	}
+
 	 
 	function takeFirst(){
 		 alert("접수를 먼저 해야 가능합니다.");
@@ -309,7 +315,7 @@
 								}
 								contents += "<td>접수 완료</td>";
 								contents += "<td>조리 완료</td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"barcodeProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
@@ -467,7 +473,7 @@
 		                                </td>
 		                                <td align=center>
 			                                <div class="btn-group">
-			                                    <button class="btn btn-warning btn-sm" onclick="orderProc(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 4);">수령 완료</button>
+			                                    <button class="btn btn-warning btn-sm" onclick="barcodeProc(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 4);">수령 완료</button>
 			                                </div>
 		                                </td>
 		                                <td align=center>
