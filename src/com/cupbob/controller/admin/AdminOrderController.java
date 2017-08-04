@@ -102,7 +102,7 @@ public class AdminOrderController {
 		return "admin/adminMain";
 	}
 	
-	@RequestMapping(value="barcodePage")
+	@RequestMapping(value="barcodePage" ,method = RequestMethod.GET)
 		public String barcodePage(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		log.info(this.getClass().getName()+" barcodePage Start");	
 		String ordNo = req.getParameter("ordNo");
