@@ -150,7 +150,7 @@ function cmtUpdate(cmt_no,user_name){
 		var updateForm = "<div  id="+cmtNo+">" +
 		                 "<div class=contentsArea>" + 
 		                 "<h4 class='reName'>"+userName+"</h4> </div> <br>" +
-		                 "<div class=col-xs-12><input type='text' id='cmtUpdateArea' class='nameFont1' value="+contents+">" +
+		                 "<div class=col-xs-12><textarea class='upComText' id='cmtUpdateArea'>"+contents+"</textarea>" +
 		                 "<button class='saButton2' id='cmtUpdateBtn' onclick='cmtUpdateProc("+cmtNo+")'>수정</button> "+
 		                 "<button class='saButton2' id='cmtUpdateCancle' onclick='cmtUpdateCancle()'>취소</button>"+
 		                 "</div> <br> <br> <br>";
@@ -270,7 +270,8 @@ function cmtUpdateCancle(){
 	})
 }
 </script>
-<title> 소라네 컵밥  커dddd뮤니티</title>
+<title> 소라네 컵d밥  커뮤니티</title>
+
 
 </head>
 <body>
@@ -362,6 +363,8 @@ function cmtUpdateCancle(){
 	</div>
 
 	<br>
+	<div align=center>
 	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 </html>

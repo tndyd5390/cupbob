@@ -1714,7 +1714,7 @@ button.orderButton02 {
 	 (:checked ):not (:disabled ):hover+label::before, .icheck-danger>input[type="radio"]:first-child:not
 	 (:checked ):not (:disabled ):hover+input[type="hidden"]+label::before,
 	.icheck-danger>input[type="checkbox"]:first-child:not (:checked ):not 
-	(:disabled
+	 (:disabled
 	 ):hover+input[type="hidden"]+label::before {
 	border-color: #d43f3a;
 }
@@ -1771,7 +1771,7 @@ button.orderButton02 {
 
 /* not checked hover style*/
 .icheck-peterriver>input[type="radio"]:first-child:not (:checked ):not 
-	(:disabled
+	 (:disabled
 	 ):hover+label::before, .icheck-peterriver>input[type="checkbox"]:first-child:not
 	 (:checked ):not (:disabled ):hover+label::before, .icheck-peterriver>input[type="radio"]:first-child:not
 	 (:checked ):not (:disabled ):hover+input[type="hidden"]+label::before,
@@ -1812,7 +1812,7 @@ button.orderButton02 {
 
 /* not checked hover style*/
 .icheck-wetasphalt>input[type="radio"]:first-child:not (:checked ):not 
-	(:disabled
+	 (:disabled
 	 ):hover+label::before, .icheck-wetasphalt>input[type="checkbox"]:first-child:not
 	 (:checked ):not (:disabled ):hover+label::before, .icheck-wetasphalt>input[type="radio"]:first-child:not
 	 (:checked ):not (:disabled ):hover+input[type="hidden"]+label::before,
@@ -1873,7 +1873,7 @@ button.orderButton02 {
 
 /* not checked hover style*/
 .icheck-belizehole>input[type="radio"]:first-child:not (:checked ):not 
-	(:disabled
+	 (:disabled
 	 ):hover+label::before, .icheck-belizehole>input[type="checkbox"]:first-child:not
 	 (:checked ):not (:disabled ):hover+label::before, .icheck-belizehole>input[type="radio"]:first-child:not
 	 (:checked ):not (:disabled ):hover+input[type="hidden"]+label::before,
@@ -1918,7 +1918,7 @@ button.orderButton02 {
 	 (:checked ):not (:disabled ):hover+label::before, .icheck-midnightblue>input[type="radio"]:first-child:not
 	 (:checked ):not (:disabled ):hover+input[type="hidden"]+label::before,
 	.icheck-midnightblue>input[type="checkbox"]:first-child:not (:checked 
-	):not
+	 ):not
 	 (:disabled ):hover+input[type="hidden"]+label::before {
 	border-color: #2c3e50;
 }
@@ -1959,7 +1959,7 @@ button.orderButton02 {
 	 (:checked ):not (:disabled ):hover+label::before, .icheck-carrot>input[type="radio"]:first-child:not
 	 (:checked ):not (:disabled ):hover+input[type="hidden"]+label::before,
 	.icheck-carrot>input[type="checkbox"]:first-child:not (:checked ):not 
-	(:disabled
+	 (:disabled
 	 ):hover+input[type="hidden"]+label::before {
 	border-color: #e67e22;
 }
@@ -2000,7 +2000,7 @@ button.orderButton02 {
 	 (:checked ):not (:disabled ):hover+label::before, .icheck-clouds>input[type="radio"]:first-child:not
 	 (:checked ):not (:disabled ):hover+input[type="hidden"]+label::before,
 	.icheck-clouds>input[type="checkbox"]:first-child:not (:checked ):not 
-	(:disabled
+	 (:disabled
 	 ):hover+input[type="hidden"]+label::before {
 	border-color: #ecf0f1;
 }
@@ -2042,7 +2042,7 @@ button.orderButton02 {
 	 (:checked ):not (:disabled ):hover+label::before, .icheck-orange>input[type="radio"]:first-child:not
 	 (:checked ):not (:disabled ):hover+input[type="hidden"]+label::before,
 	.icheck-orange>input[type="checkbox"]:first-child:not (:checked ):not 
-	(:disabled
+	 (:disabled
 	 ):hover+input[type="hidden"]+label::before {
 	border-color: #f39c12;
 }
@@ -2103,7 +2103,7 @@ button.orderButton02 {
 	 (:checked ):not (:disabled ):hover+label::before, .icheck-silver>input[type="radio"]:first-child:not
 	 (:checked ):not (:disabled ):hover+input[type="hidden"]+label::before,
 	.icheck-silver>input[type="checkbox"]:first-child:not (:checked ):not 
-	(:disabled
+	 (:disabled
 	 ):hover+input[type="hidden"]+label::before {
 	border-color: #bdc3c7;
 }
@@ -2401,6 +2401,7 @@ textarea.comText {
 	height: 40px;
 	display: inline-block;
 	border: 1px solid #8B8B8B;
+	resize: none;
 }
 
 input.nameFont1 {
@@ -2424,8 +2425,24 @@ input.nameFont2 {
 	margin-right: 0px;
 }
 
+textarea.upComText {
+	font-size: 19px;
+	color: #000;
+	width: 92%;
+	margin-bottom: 30px;
+	float: left;
+	height: 40px;
+	display: inline-block;
+	border: 1px solid #8B8B8B;
+	resize: none;
+	height: 30px;
+}
+
 /* 360px 占쎌뵠占쎈릭 (占쎈툡占쎌뵠占쎈？5)*/
 @media screen and (max-width: 360px) {
+	textarea.upComText {
+		width: 68%;
+	}
 	input.nameFont {
 		width: 75%;
 		font-size: 11px;
@@ -2508,6 +2525,9 @@ input.nameFont2 {
 }
 /* 351px 占쎌뵠占쎄맒 370px 占쎌뵠占쎈릭(揶쎼끇�쑏占쎈뻻5) */
 @media screen and (min-width: 361px) and (max-width: 370px) {
+	textarea.upComText {
+		width: 75%;
+	}
 	input.nameFont {
 		width: 75%;
 		font-size: 15px;
@@ -2575,6 +2595,11 @@ input.nameFont2 {
 }
 /* 371px 占쎌뵠占쎄맒 400px 占쎌뵠占쎈릭(占쎈툡占쎌뵠占쎈？6) */
 @media screen and (min-width: 371px) and (max-width: 400px) {
+	textarea.upComText {
+		width: 72%;
+		height: 30px;
+		margin-top: 10px;
+	}
 	input.nameFont {
 		width: 75%;
 		font-size: 12px;
@@ -2659,6 +2684,9 @@ input.nameFont2 {
 }
 /* 401px 占쎌뵠占쎄맒 700px 占쎌뵠占쎈릭 (占쎈툡占쎌뵠占쎈？6占쎈탣占쎌쑎占쎈뮞,占쎄퐭占쎄퐣占쎈뮞)*/
 @media screen and (min-width: 401px) and (max-width: 700px) {
+	textarea.upComText {
+		width: 60%;
+	}
 	input.nameFont {
 		width: 78%;
 		font-size: 13px;
@@ -2725,6 +2753,16 @@ input.nameFont2 {
 }
 
 @media screen and (min-width: 701px) and (max-width: 3500px) {
+	textarea.upComText {
+		width: 79%;
+		font-size: 15px;
+		margin-bottom: 15px;
+		float: left;
+		height: 30px;
+		display: inline-block;
+		border: 1px solid #8B8B8B;
+		color: #000;
+	}
 	textarea.comText {
 		width: 90%;
 		font-size: 15px;
