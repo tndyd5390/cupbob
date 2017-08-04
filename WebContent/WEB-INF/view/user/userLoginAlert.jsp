@@ -4,6 +4,7 @@
 <%
 	String msg = CmmUtil.nvl((String)request.getAttribute("msg"));
 	String url = CmmUtil.nvl((String)request.getAttribute("url"));
+	String uNum = (String)session.getAttribute("ss_user_no");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

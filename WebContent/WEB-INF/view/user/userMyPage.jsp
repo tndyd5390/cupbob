@@ -1,5 +1,10 @@
+<%@page import="com.cupbob.util.CmmUtil"%>
+<%@page import="com.cupbob.dto.User_infoDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	User_infoDTO uDTO = (User_infoDTO)request.getAttribute("uDTO");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,17 +26,17 @@
 	<br>
 	<br>
 	<br>
-	<form class="form">
+	<form class="form" action="userUpdate.do?unum=<%=CmmUtil.nvl(uDTO.getUser_no())%>" method="post">
 		<div class="orderHead">마이페이지</div>
 		<div class="profileImg">
 		<img
 						src="http://via.placeholder.com/120x150"
 						class="profileImg">
 		</div>
-		<h3 class="myPageName">최한용 님</h3>
-		<p class="myPageFont">이메일 : rambo0228@naver.com</p> 
-		<p class="myPageFont">핸드폰 번호 : 01051776537</p> 
-		<p class="myPageFont">생 년 월 일 : 1993 년 12월 10일</p>
+		<h3 class="myPageName"><%=CmmUtil.nvl(uDTO.getUser_name()) %></h3>
+		<p class="myPageFont">이메일 : <%=CmmUtil.nvl(uDTO.getEmail()) %></p> 
+		<p class="myPageFont">핸드폰 번호 : <%=CmmUtil.nvl(uDTO.getContact_addr()) %></p> 
+		<p class="myPageFont">생 년 월 일 : <%=CmmUtil.nvl(uDTO.getBirthday()) %></p>
 		<button class="myPageButton01">회원 정보 수정</button>
 		<hr class="myPageHr">
 		<p class="myPageFont">현재 적립금 : 12000원</p>

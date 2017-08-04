@@ -49,7 +49,7 @@
 	</delete>
 	
 	<update id="updateUserDetail" parameterType="user_infoDTO">
-		UPDATE USER_INFO SET EMAIL=#{email}, USER_NAME=#{user_name}, GENDER=#{gender}, BIRTHDAY=#{birthday},
+		UPDATE USER_INFO SET USER_NAME=#{user_name}, GENDER=#{gender}, BIRTHDAY=#{birthday}, PASSWORD=#{password} ,
 		CONTACT_ADDR = #{contact_addr}, CHG_USER_NO=#{chg_user_no}, CHG_DT = SYSDATE() WHERE USER_NO = #{user_no}
 	</update>
 	

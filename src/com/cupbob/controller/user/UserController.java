@@ -1,5 +1,6 @@
 package com.cupbob.controller.user;
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,8 +44,129 @@ public class UserController {
 		return "user/userLogin";
 	}
 	
+	@RequestMapping(value="userUpdate")
+	public String userUpdate(HttpSession session, HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
+		log.info(this.getClass().getName() + "userUpdate Start!!");
+		String uNum = CmmUtil.nvl(request.getParameter("unum"));
+		log.info(uNum);
+		User_infoDTO uDTO = new User_infoDTO();
+		
+		uDTO.setUser_no(uNum);
+		
+		uDTO = userService.getUserDetail(uDTO);
+		
+		if(uDTO == null){
+			uDTO = new User_infoDTO();
+		}
+		log.info(uDTO.getGender());
+		
+		model.addAttribute("uDTO", uDTO);
+		
+		uDTO = null;
+		
+		log.info(this.getClass().getName() + "userUpdate End!!");
+		return "user/userUpdate";
+	}
+	
+	@RequestMapping(value="userUpdateProc")
+	public String userUpdateProc(HttpSession session, HttpServletRequest request, HttpServletResponse response,Model model)throws Exception{
+		log.info(this.getClass().getName() + "userUpdatePRoc Start!!");
+		
+		String uNo = CmmUtil.nvl(request.getParameter("unum"));
+		String password = CmmUtil.nvl(request.getParameter("password"));
+		String name = CmmUtil.nvl(request.getParameter("name"));
+		String gender = CmmUtil.nvl(request.getParameter("gender"));
+		String birthday = CmmUtil.nvl(request.getParameter("year"))+"."+CmmUtil.nvl(request.getParameter("month"))+"."+CmmUtil.nvl(request.getParameter("day"));
+		String contact_addr = CmmUtil.nvl(request.getParameter("contact_addr"));
+		
+		log.info(uNo);
+		log.info(password);
+		log.info(name);
+		log.info(gender);
+		log.info(birthday);
+		log.info(contact_addr);
+		
+		User_infoDTO uDTO = new User_infoDTO();
+		
+		uDTO.setUser_no(uNo);
+		uDTO.setChg_user_no(uNo);
+		uDTO.setPassword(password);
+		uDTO.setUser_name(name);
+		uDTO.setGender(gender);
+		uDTO.setBirthday(birthday);
+		uDTO.setContact_addr(contact_addr);
+		
+		int rs = userService.updateUserDetail(uDTO);
+		log.info(rs);
+		
+		String msg;
+		String url;
+		
+		if(rs > 0 ){
+			msg = "수정되었습니다";
+			url = "userMyPage.do";
+		}else{
+			msg = "수정실패되었습니다";
+			url = "userUpdate.do";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		log.info(this.getClass().getName() + "userUpdatePRoc End!!");
+		
+		return "user/userLoginAlert";
+	}
+	
+	@RequestMapping(value="userDelete")
+	public String userDelete(HttpSession session,HttpServletRequest request,HttpServletResponse response,Model model)throws Exception{
+		log.info(this.getClass().getName() + "userDelete Start!!");
+		String uNum = CmmUtil.nvl(request.getParameter("unum"));
+		log.info(uNum);
+		
+		User_infoDTO uDTO = new User_infoDTO();
+		
+		uDTO.setUser_no(uNum);
+		
+		int rs = userService.userDelete(uDTO);
+		
+		String msg;
+		String url;
+			
+		if(rs > 0){
+			msg = "삭제되었습니다";
+			url = "userLogin.do";
+		}else{
+			msg = "삭제실패되었습니다";
+			url = "userUpdate.do";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url", url);
+		
+		log.info(this.getClass().getName() + "userDelete End!!");
+		return "user/userLoginAlert";
+	}
+	
 	@RequestMapping(value="userMyPage")
-	public String userMyPage() throws Exception{
+	public String userMyPage(HttpSession session,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
+		String uNum = (String)session.getAttribute("ss_user_no");
+		log.info(uNum);
+		
+		User_infoDTO uDTO = new User_infoDTO();
+		
+		uDTO.setUser_no(uNum);
+		
+		uDTO = userService.getUserDetail(uDTO);
+		
+		if(uDTO == null){
+			uDTO = new User_infoDTO();
+		}
+		
+		log.info(uDTO.getUser_no());
+		log.info(uDTO.getUser_name());
+		log.info(uDTO.getEmail());
+		
+		model.addAttribute("uDTO", uDTO);
+		
 		return "user/userMyPage";
 	}
 	
@@ -55,7 +177,7 @@ public class UserController {
 		String password = CmmUtil.nvl(request.getParameter("password"));
 		String name = CmmUtil.nvl(request.getParameter("name"));
 		String gender = CmmUtil.nvl(request.getParameter("gender"));
-		String birthday = CmmUtil.nvl(request.getParameter("year"))+CmmUtil.nvl(request.getParameter("month"))+CmmUtil.nvl(request.getParameter("day"));
+		String birthday = CmmUtil.nvl(request.getParameter("year"))+"."+CmmUtil.nvl(request.getParameter("month"))+"."+CmmUtil.nvl(request.getParameter("day"));
 		String contact_addr = CmmUtil.nvl(request.getParameter("contact_addr"));
 		String checkBox1 = request.getParameter("checkBox1");
 		String checkBox2 = request.getParameter("checkBox2");
@@ -83,7 +205,7 @@ public class UserController {
 		userService.join(uDTO);
 		
 		log.info("userSignInProc End !!!");
-		return "redirect:userSignIn.do";
+		return "redirect:userLogin.do";
 	}
 	
 	@RequestMapping(value="userLoginProc")
@@ -110,6 +232,7 @@ public class UserController {
 			session.setAttribute("ss_user_email", CmmUtil.nvl(uDTO.getEmail()));
 			session.setAttribute("ss_user_name", CmmUtil.nvl(uDTO.getUser_name()));
 			session.setAttribute("ss_user_no", CmmUtil.nvl(uDTO.getUser_no()));
+			session.setAttribute("ss_user_ca", CmmUtil.nvl(uDTO.getContact_addr()));
 			model.addAttribute("url", "userMenuList.do");
 		}
 		return "user/userLoginAlert";
