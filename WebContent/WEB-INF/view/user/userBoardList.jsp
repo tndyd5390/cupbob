@@ -11,7 +11,7 @@ List<User_boardDTO> bList = (List<User_boardDTO>)request.getAttribute("userBoard
 <html>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
-
+var count = 10;
 $(function (){
 	$('#boardSearch').keyup(function() {
 		var word = $('#boardSearch').val();
@@ -44,6 +44,38 @@ $(function (){
 				}
 			})
 	})
+			$(".moreContents").click(function(){
+			$.ajax({
+				url : "readMore.do",
+				method : "post",
+				data : {
+					'count' : count
+				},
+				dataType : "json",
+				success : function(data){
+					var contents = "";
+					console.log(data)
+					$.each(data,function (key,value){
+						contents += "<li class='list-group-item list-none-line'>";
+						contents += "<div class='contentsArea'>";
+						contents += "<h4>";
+						contents += "<a href='userBoardDetail.do?bnum="+value.post_no+"'class='contentsLink'>"+value.title+"</a>";
+						contents += "</h4>";
+						contents += "<span style='vaerical-align: middle;'></span>";
+						contents += "</div>";
+						contents += "<div class='contentsInfo'>";
+						contents += "<span>" + value.user_name + "</span> | <span>" + value.reg_dt + "</span> | <span>조회수</span> | <span>" + value.view_cnt + "</span>";
+						contents += "</div>";
+						contents += "</li>";
+					})
+					$('#boardList').append(contents)
+					if ((data).length==0) {
+						$('.btn_more').remove();
+					}
+				}
+			})
+			count += 10;
+		})
 })
 
 </script>
@@ -61,25 +93,6 @@ $(function (){
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <title>소라네 컵밥 커뮤니티</title>
-
- <style type="text/css">
-  .searchTitle {
-  border: 1px solid #8B8B8B;
-  display: inline-block;
-  padding: 10px 10px;
-  width: 61%;
-  
-  }
-  .searchSelect{
-  border: 1px solid #8B8B8B;
-  display: inline-block;
-  margin-left: 20px;
-  padding: 10px 10px;
-  height: 42px;
-  
-  }
- </style>
-
 
 </head>
 <body>

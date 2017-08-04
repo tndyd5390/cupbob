@@ -2143,6 +2143,21 @@ button.orderButton02 {
 	color: #5b5b5b;
 }
 
+  .searchTitle {
+  border: 1px solid #8B8B8B;
+  display: inline-block;
+  padding: 10px 10px;
+  width: 61%;
+  }
+  .searchSelect{
+  border: 1px solid #8B8B8B;
+  display: inline-block;
+  margin-left: 20px;
+  padding: 10px 10px;
+  height: 42px;
+  }
+
+
 .title {
 	font-weight: bold;
 	padding-left: 30px;
