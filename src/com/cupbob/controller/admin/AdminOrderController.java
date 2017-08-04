@@ -52,7 +52,7 @@ public class AdminOrderController {
 	}
 	
 	@RequestMapping(value="adminOrderProc", method = RequestMethod.POST)
-	public @ResponseBody List<TotalOrderDTO> adminTakeOrder(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+	public String adminTakeOrder(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		log.info(this.getClass() + ".adminOrderProc start!!");
 		String ordNo = req.getParameter("ordNo");
 		log.info(this.getClass() + ".adminTakeOrder.ordNo : " + ordNo);
@@ -63,7 +63,12 @@ public class AdminOrderController {
 			tList = new ArrayList<TotalOrderDTO>();
 		}
 		log.info(this.getClass() + ".adminOrderProc end");
-		return tList;
+		
+		model.addAttribute("ordNo", ordNo);
+		
+		tList=null;
+		
+		return "redirect:barcodeSuccess.do";
 	}
 	
 	@RequestMapping(value="adminOrderCancel", method=RequestMethod.POST)
@@ -97,5 +102,30 @@ public class AdminOrderController {
 		
 		log.info("order test");
 		return "admin/adminMain";
+	}
+	
+	@RequestMapping(value="barcodePage")
+		public String barcodePage(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass().getName()+" barcodePage Start");	
+		String ordNo = req.getParameter("ordNo");
+		String statNo = req.getParameter("statNo");
+		log.info(this.getClass().getName()+ "ordNo = "+ordNo);
+		log.info(this.getClass().getName()+ "statNo = "+statNo);
+		
+		model.addAttribute("ordNo", ordNo);
+		model.addAttribute("statNo", statNo);
+		
+		log.info(this.getClass().getName()+" barcodePage End");	
+		return "admin/barcodePage";
+	}
+	@RequestMapping(value="barcodeSuccess")
+		public String barcodeSuccess(HttpServletRequest req, Model model) throws Exception{
+		log.info(this.getClass().getName()+ " barcodeSuccess start");
+		String ordNo = req.getParameter("ordNo");
+		
+		model.addAttribute("ordNo", ordNo);
+		ordNo = null;
+		log.info(this.getClass().getName()+ " barcodeSuccess end");
+		return "admin/barcodeSuccess";
 	}
 }

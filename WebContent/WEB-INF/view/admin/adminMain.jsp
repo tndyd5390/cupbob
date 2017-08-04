@@ -115,113 +115,12 @@
 		}, 5000);
 	})
 	
-	function orderProc(ordNo, statNo){
-			$.ajax ({
-				url : "adminOrderProc.do",
-				type : "post",
-				data : {
-					'ordNo' : ordNo,
-					'statNo' : statNo
-				},
-				success : function (data) {
-					var count = Object.keys(data).length;
-					if(count != 0){
-						var contents = "";
-						$.each(data, function(key, value){
-							var checkTimeOver = value.ord_remainTime.split(':');
-							var remainMin = Number(checkTimeOver[1]);
-							if(value.ord_stat == 1){
-								if(remainMin <= 0){
-									contents += "<tr align=center bgcolor=\"#F5A9A9\">";
-								}else{
-									contents += "<tr align=center>"
-								}
-								contents += "<td>" + value.ord_no + "</td>";
-								contents += "<td>" + value.user_name + "</td>";
-								contents += "<td>" + value.prdt_name + "</td>";
-								contents += "<td>" + value.ord_amnt + "</td>";
-								contents += "<td>" + value.usr_rcv_time + "</td>";
-								if(remainMin <= 0){
-									contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
-								}else{
-									contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
-								}
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary btn-sm\" onclick=\"orderProc("+ value.ord_no + ",2);\">접수하기</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"takeFirst();\">조리 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst();\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
-								contents += "<td>" + value.prdt_price + "</td>";
-								contents += "</tr>"
-								$('#interval').html(contents);
-								
-							}else if(value.ord_stat == 2){
-								if(remainMin <= 0){
-									contents += "<tr align=center bgcolor=\"#F5A9A9\">";
-								}else{
-									contents += "<tr align=center>"
-								}
-								contents += "<td>" + value.ord_no + "</td>";
-								contents += "<td>" + value.user_name + "</td>";
-								contents += "<td>" + value.prdt_name + "</td>";
-								contents += "<td>" + value.ord_amnt + "</td>";
-								contents += "<td>" + value.usr_rcv_time + "</td>";
-								if(remainMin <= 0){
-									contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
-								}else{
-									contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
-								}
-								contents += "<td>접수 완료</td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
-								contents += "<td>" + value.prdt_price + "</td>";
-								contents += "</tr>"
-								$('#interval').html(contents);
-							}else{
-								contents += "<tr align=center bgcolor=\"#9FF781\">";
-								contents += "<td>" + value.ord_no + "</td>";
-								contents += "<td>" + value.user_name + "</td>";
-								contents += "<td>" + value.prdt_name + "</td>";
-								contents += "<td>" + value.ord_amnt + "</td>";
-								contents += "<td>" + value.usr_rcv_time + "</td>";
-								if(remainMin <= 0){
-									contents += "<td id=\"" + value.ord_no + "\"><b>TimeOver</b></td>";
-								}else{
-									contents += "<td id=\"" + value.ord_no + "\">" + value.ord_remainTime + "</td>";
-								}
-								contents += "<td>접수 완료</td>";
-								contents += "<td>조리 완료</td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
-								contents += "<td>" + value.prdt_price + "</td>";
-								contents += "</tr>"
-								$('#interval').html(contents);
-							}
-							
-							
-						})
-					}else{
-						$('#interval').html('');
-					}
-				},
-				error:function(x,e){
-					if(x.status==0){
-			            alert('네트워크가 정상적으로 동작하지 않습니다.');
-			            alert('네트워크 상태를 확인 하거나 업체에게 문의해 주세요.')
-			            }else if(x.status==404){
-			            alert('페이지를 찾을수가 없습니다. 지금은 주문을 받을 수 없습니다. 업체에게 문의하세요.');
-			            }else if(x.status==500){
-			            alert('서버에서 오류가 발생했습니다. 지금은 주문을 받을 수 없습니다. 업체에게 문의하세요.');
-			            }else if(e=='parsererror'){
-			            alert('json파싱에 실패했습니다.');
-			            }else if(e=='timeout'){
-			            alert('응답 요청 시간이 지났습니다.');
-			            }else {
-			            alert('Unknow Error.n'+x.responseText);
-			            }
-			    }
-			});
+	function barcodeProc(ordNo, statNo){
+		 var barcodePage = "barcodePage.do?ordNo="+ordNo+"&statNo="+statNo;
+		 var popOption = "width=370, height=360,resizable=no, scrollbars=no, status=no;";
+		 	window.open(barcodePage,"",popOption);
 	}
+	 
 	 
 	function takeFirst(){
 		 alert("접수를 먼저 해야 가능합니다.");
@@ -309,7 +208,7 @@
 								}
 								contents += "<td>접수 완료</td>";
 								contents += "<td>조리 완료</td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"orderProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"barcodeProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
@@ -467,7 +366,7 @@
 		                                </td>
 		                                <td align=center>
 			                                <div class="btn-group">
-			                                    <button class="btn btn-warning btn-sm" onclick="orderProc(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 4);">수령 완료</button>
+			                                    <button class="btn btn-warning btn-sm" onclick="barcodeProc(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 4);">수령 완료</button>
 			                                </div>
 		                                </td>
 		                                <td align=center>
