@@ -31,7 +31,7 @@ $(function(){
 </script>
 </head>
 <body style="text-align:center;">
-	<form name="f" onsubmit="return submitBarcode();" action="adminOrderProc.do" method="post">
+	<form name="f" onsubmit="return submitBarcode();" action="barcodeProc.do" method="post">
 		<input type="text" name="ordNo" id="ordNoId">
 		<input type="hidden" name="statNo" value=<%=statNo%>>
 	</form>

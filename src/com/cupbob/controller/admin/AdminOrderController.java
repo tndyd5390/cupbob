@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,7 +53,7 @@ public class AdminOrderController {
 	}
 	
 	@RequestMapping(value="adminOrderProc", method = RequestMethod.POST)
-	public String adminTakeOrder(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+	public @ResponseBody List<TotalOrderDTO> adminTakeOrder(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		log.info(this.getClass() + ".adminOrderProc start!!");
 		String ordNo = req.getParameter("ordNo");
 		log.info(this.getClass() + ".adminTakeOrder.ordNo : " + ordNo);
@@ -64,11 +65,8 @@ public class AdminOrderController {
 		}
 		log.info(this.getClass() + ".adminOrderProc end");
 		
-		model.addAttribute("ordNo", ordNo);
 		
-		tList=null;
-		
-		return "redirect:barcodeSuccess.do";
+		return tList;
 	}
 	
 	@RequestMapping(value="adminOrderCancel", method=RequestMethod.POST)
@@ -128,4 +126,25 @@ public class AdminOrderController {
 		log.info(this.getClass().getName()+ " barcodeSuccess end");
 		return "admin/barcodeSuccess";
 	}
+	
+	@RequestMapping(value="barcodeProc", method = RequestMethod.POST)
+	public String bardoeProc(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+		log.info(this.getClass() + ".adminOrderProc start!!");
+		String ordNo = req.getParameter("ordNo");
+		log.info(this.getClass() + ".adminTakeOrder.ordNo : " + ordNo);
+		String statNo = req.getParameter("statNo");
+		log.info(this.getClass() + ".adminTakeOrder.statNo : " + statNo);
+		List<TotalOrderDTO> tList = orderService.updateAdminOrdNo(ordNo, statNo);
+		if(tList == null){
+			tList = new ArrayList<TotalOrderDTO>();
+		}
+		log.info(this.getClass() + ".adminOrderProc end");
+		
+		model.addAttribute("ordNo", ordNo);
+		
+		tList=null;
+		
+		return "redirect:barcodeSuccess.do";
+	}
+
 }
