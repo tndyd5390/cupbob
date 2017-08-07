@@ -77,17 +77,18 @@ public class UserController {
 		String gender = CmmUtil.nvl(request.getParameter("gender"));
 		String birthday = CmmUtil.nvl(request.getParameter("year"))+"."+CmmUtil.nvl(request.getParameter("month"))+"."+CmmUtil.nvl(request.getParameter("day"));
 		String contact_addr = CmmUtil.nvl(request.getParameter("contact_addr"));
-		
+		String ss_user_no = (String) session.getAttribute("ss_user_no");
+	
 		log.info(uNo);
 		log.info(password);
 		log.info(name);
 		log.info(gender);
 		log.info(birthday);
 		log.info(contact_addr);
+		log.info(ss_user_no);
 		
 		User_infoDTO uDTO = new User_infoDTO();
 		
-
 		uDTO.setUser_no(uNo);
 		uDTO.setChg_user_no(uNo);
 		uDTO.setPassword(password);
@@ -96,7 +97,6 @@ public class UserController {
 		uDTO.setBirthday(birthday);
 		uDTO.setContact_addr(contact_addr);
 		
-		
 		int rs = userService.updateUserDetail(uDTO);
 		
 		String msg;
@@ -104,7 +104,7 @@ public class UserController {
 		
 		if(rs > 0){
 			msg = "수정되었습니다";
-			url = "userMyPage.do?uNum="+CmmUtil.nvl(uDTO.getUser_no());
+			url = "userMyPage.do?uNum=" + CmmUtil.nvl(ss_user_no);
 		}else{
 			msg = "�닔�젙�떎�뙣�릺�뿀�뒿�땲�떎";
 			url = "userUpdate.do";
