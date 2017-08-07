@@ -70,6 +70,7 @@
 <body>
 	<%@include file="/include/nav.jsp"%>
 	<form class="form" method="post" name="frmPayment" id="frmPayment" action="https://pg.paynuri.com/paymentgateway/mobile/reqPay.do" accept-charset="euc-kr" target="_self">
+	<!-- <input type="hidden" id="REP_CODE" name="REP_CODE" value="0000"> -->
 	<!-- 가맹점 번호 -->
 	<input type="hidden" id="STOREID" name="STOREID" value="1500000088" readonly="readonly" />
 	<!-- 가맹점 key -->
