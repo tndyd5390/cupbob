@@ -27,5 +27,7 @@ public interface IUserService {
 	public User_infoDTO getUserFindPw(User_infoDTO udto) throws Exception;
 	
 	public List<User_infoDTO> userSearch(User_infoDTO uDTO)throws Exception;
+
+	User_infoDTO userUpdateCheck(User_infoDTO uDTO) throws Exception;
 	
 }

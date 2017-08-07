@@ -39,19 +39,19 @@
 				<div class="panel-body loginSpan2">회원 로그인</div>
 			</div>
 		</div>
-		<form class="form-horizontal" action="userLoginProc.do" method="post">
+		<form class="form-horizontal" action="userLoginProc.do" method="post" id="form">
 			<div class="form-group">
 				<div class="col-xs-12">
-					<input type="email" class="form-control" name="email" id=""
+					<input type="email" class="form-control" name="email" id="email"
 						placeholder="이메일을 입력하세요">
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-xs-12">
-					<input type="password" class="form-control" id="" placeholder="암호" name="password">
+					<input type="password" class="form-control" id="password" placeholder="암호" name="password">
 				</div>
 			</div>
-			<button class="detailSubmit">로그인</button>
+			<button class="detailSubmit" id="userLoginButton">로그인</button>
 		</form>
 		<br>
 		<div class="col-xs-6 text-center">
@@ -63,5 +63,19 @@
 	</div>
 	<br>
 	<%@include file="/include/footer.jsp"%>
+	<script>
+$( "#userLoginButton" ).click(function() {
+	  if($('#email').val() == ""){
+		  alert("이메일을 입력하세요")
+		  email.focus();
+		  return false;
+	  }else if($('#password').val() == ""){
+		  alert("비밀번호를 입력하세요")
+		  password.focus();
+		  return false;
+	  }
+});
+
+</script>
 </body>
 </html>

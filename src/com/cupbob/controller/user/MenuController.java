@@ -33,9 +33,10 @@ public class MenuController {
 	private IMenuService menuService;
 
 	@RequestMapping(value="userMenuList", method=RequestMethod.GET)
-	public String userMenuList(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+	public String userMenuList(HttpSession session,HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		log.info(this.getClass() + "userMenuList start!!!");
 		List<Product_infoDTO> pList;
+		
 		pList = menuService.getUserMenuList();
 		if(pList == null){
 			pList = new ArrayList<>();

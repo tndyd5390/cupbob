@@ -14,7 +14,14 @@ public class User_infoDTO {
 	private String chg_dt;
 	private String[] allCheck;
 	private String temp_pw;
+	private String mileage;
 	
+	public String getMileage() {
+		return mileage;
+	}
+	public void setMileage(String mileage) {
+		this.mileage = mileage;
+	}
 	public String getTemp_pw() {
 		return temp_pw;
 	}
