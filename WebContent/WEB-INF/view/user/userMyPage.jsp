@@ -16,6 +16,13 @@
 <link href="userBootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 <link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+function addComma(x) {
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+</script>
 <title>소라네 컵밥 마이페이지</title>
 </head>
 <body>
@@ -39,7 +46,7 @@
 		<p class="myPageFont">생 년 월 일 : <%=CmmUtil.nvl(uDTO.getBirthday()) %></p>
 		<button class="myPageButton01">회원 정보 수정</button>
 		<hr class="myPageHr">
-		<p class="myPageFont">현재 적립금 : 12000원</p>
+		<p class="myPageFont">현재 적립금 : <%=CmmUtil.nvl(CmmUtil.addComma(uDTO.getMileage()))%> 원</p>
 		<ul class="list-inline pointHead">
 		  <li class="myPageLeft">적립 금액</li>
 		  <li class="myPageCenterHead">구분</li>

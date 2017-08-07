@@ -40,7 +40,7 @@
 		SELECT COUNT(*) FROM USER_INFO WHERE EMAIL = #{email}
 	</select>
 	<select id="getUserDetail" resultType="User_infoDTO" parameterType="User_infoDTO">
-		SELECT USER_NO, USER_NAME, EMAIL, GENDER, BIRTHDAY, CONTACT_ADDR FROM USER_INFO WHERE USER_NO =
+		SELECT USER_NO, USER_NAME, EMAIL, GENDER, BIRTHDAY, CONTACT_ADDR, MILEAGE FROM USER_INFO WHERE USER_NO =
 		#{user_no}
 	</select>
 	
