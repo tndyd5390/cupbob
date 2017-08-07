@@ -197,8 +197,17 @@ public class MenuController {
 	@RequestMapping(value="userDoOrder", method=RequestMethod.GET)
 	public String userDoOrder(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
 		log.info(this.getClass() + ".userDoOrder start!!!");
-		
+		Map<String, TmpBasketDTO> tMap = (Map<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
+		if(tMap == null){
+			tMap = new HashMap<>();
+		}
+		String returnURL = "user/order";
+		if(tMap.size()<1){
+			returnURL = "admin/userAlert";
+			model.addAttribute("msg", "주문하실 제품이 없습니다.");
+			model.addAttribute("url", "userMenuList.do");
+		}
 		log.info(this.getClass() + ".userDoOrder end!!!");
-		return "user/order";
+		return returnURL;
 	}
 }

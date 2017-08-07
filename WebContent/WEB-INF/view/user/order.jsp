@@ -35,6 +35,7 @@
 	function checkBoxControll(){
 		var checked = document.getElementById('userInfoCheck');
 		if(checked.checked == false){
+			console.log("false");
 			document.getElementById('CUSTOMER_NAME').value='<%=CmmUtil.nvl((String)session.getAttribute("ss_user_name"))%>';
 			document.getElementById('CUSTOMER_TEL').value='<%=CmmUtil.nvl((String)session.getAttribute("ss_user_ca"))%>';
 			checked.checked = true;
@@ -47,7 +48,21 @@
 	
 	function doSubmitOrder(){
 		var f = document.getElementById('frmPayment');
+		if(document.getElementById('CUSTOMER_NAME').value==""){
+			alert("이름을 입력해주세요");
+			document.getElementById('CUSTOMER_NAME').focus();
+			return;
+		}
 		f.submit();
+	}
+	function radioPhonCheck(){
+		var phonCheckBox = document.getElementsByName('TRAN_TYPE');
+		phonCheckBox[0].checked = true;
+	}
+	
+	function radioCardCheck(){
+		var cardCheckBox = document.getElementsByName('TRAN_TYPE');
+		cardCheckBox[1].checked = true;
 	}
 </script>
 <title>소라네 컵밥 주문하기</title>
@@ -55,6 +70,7 @@
 <body>
 	<%@include file="/include/nav.jsp"%>
 	<form class="form" method="post" name="frmPayment" id="frmPayment" action="https://pg.paynuri.com/paymentgateway/mobile/reqPay.do" accept-charset="euc-kr" target="_self">
+	<!-- <input type="hidden" id="REP_CODE" name="REP_CODE" value="0000"> -->
 	<!-- 가맹점 번호 -->
 	<input type="hidden" id="STOREID" name="STOREID" value="1500000088" readonly="readonly" />
 	<!-- 가맹점 key -->
@@ -71,24 +87,51 @@
 	<input type="hidden" id="PRODUCTTYPE_1" name="PRODUCTTYPE" value="1" checked="checked"/>
 	<input type="hidden" id="PRODUCTTYPE_2" name="PRODUCTTYPE" value="2" />
 	<!-- 상품명   !!!!!!!!!!!!!!!!!!!!!!!!이거는 바꿔줘야하는 파라미터!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-	<input type="hidden" type="text" id="GOODS_NAME" name="GOODS_NAME" value="테스트상품" size=15 maxlength=20 />
-	<input type="hidden" type="text" id="GOODS_NAME" name="GOODS_NAME" value="테스트상품1" size=15 maxlength=20 />	
+	<%
+		String prdtNames = "";
+		int prdtCnt = 0;
+		if(tMap.size()>1){
+			prdtCnt = tMap.size() - 1;
+			Iterator<String> keys = tMap.keySet().iterator();
+			String key = keys.next();
+			TmpBasketDTO tDTO = tMap.get(key);
+			prdtNames += tDTO.getTmpBasketPrdtName() + " 외 " + prdtCnt;
+		}else{
+			Iterator<String> keys = tMap.keySet().iterator();
+			String key = keys.next();
+			TmpBasketDTO tDTO = tMap.get(key);
+			prdtNames += tDTO.getTmpBasketPrdtName();
+		}
+	%>
+	<input type="hidden" type="text" id="GOODS_NAME" name="GOODS_NAME" value="<%=prdtNames %>" size=15 maxlength=20 />
 	<!-- 결제 금액  !!!!!!!!!!!!!!!!!!!!!!!!이거는 바꿔줘야하는 파라미터!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 	<input type="hidden" type="text" id="AMT" name="AMT" value="1004" size=8 />
 	<!-- 상품 갯수 !!!!!!!!!!!!!!!!!!!!!!!!이거는 바꿔줘야하는 파라미터!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-	<input type="hidden" type="text" id="QUANTITY" name="QUANTITY" value="1" size=3 maxlength=3/>
-	<input type="hidden" type="text" id="QUANTITY" name="QUANTITY" value="2" size=3 maxlength=3/>
+	<input type="hidden" type="text" id="QUANTITY" name="QUANTITY" value="<%=tMap.size() %>" size=3 maxlength=3/>
 	<!-- 거래 일자  오늘 날짜로 바꿔주기-->
 	<input type="hidden" id="SALE_DATE" name="SALE_DATE" value="150923" size=8 maxlength=6 />
 	<!-- 고객명  !!!!!!!!!!!!!!!!!!!!!!!!이거는 바꿔줘야하는 파라미터!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-	<input type="hidden" id="CUSTOMER_NAME" name="CUSTOMER_NAME" value="홍길동" size=30 maxlength=100 />
+	<!-- <input type="hidden" id="CUSTOMER_NAME" name="CUSTOMER_NAME" value="홍길동" size=30 maxlength=100 /> -->
 	<!-- 리턴 URL  !!!!!!!!!!!!!!!!!!!!!!!!이거는 바꿔줘야하는 파라미터!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 	<input type="hidden" id="RETURN_URL" name="RETURN_URL" value="https://demo.paynuri.com/demo_mobile/paynuri_payment_return.jsp" size=30 maxlength=100 />
 	<!-- 결제 성공  URL !!!!!!!!!!!!!!!!!!!!!!!!이거는 바꿔줘야하는 파라미터!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 	<input type="hidden" id="COMPLETE_URL" name="COMPLETE_URL" value="https://demo.paynuri.com/demo_mobile/paynuri_payment_complete.jsp" size=30 maxlength=100 />
 	<!-- 결제 취소  URL !!!!!!!!!!!!!!!!!!!!!!!!이거는 바꿔줘야하는 파라미터!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 	<input type="hidden" id="FAIL_URL" name="FAIL_URL" value="https://demo.paynuri.com/demo_mobile/paynuri_payment_cancel.jsp" size=30 maxlength=100 />
-	
+	<!-- 여분의 데이터 1 -->
+	<input type="hidden" id="ETC_DATA1" name="ETC_DATA1" value="<%=CmmUtil.nvl((String)session.getAttribute("ss_user_no"))%>" />
+	<!-- 여분의 데이터 2 -->
+	<!-- 여분의 데이터 3 -->
+	<%
+	String orderItems = "";
+	Iterator<String> keyss = tMap.keySet().iterator();
+	while(keyss.hasNext()){
+		String key = keyss.next();
+		TmpBasketDTO tDTO = tMap.get(key);
+		orderItems += tDTO.getTmpBasketPrdtNo() + ":" + tDTO.getTmpBasketPrdtQty()  + "-";
+	}
+	%>
+	<input type="hidden" id="ETC_DATA3" name="ETC_DATA3" value="<%=orderItems %>" />
 		<br> <br> <br><br>
 		<div class="orderHead">주문 정보 입력</div>
 		<div class="orderGroup">
@@ -97,8 +140,8 @@
 				</h4>
 		</div>
 		<div class="orderGroup">
-			<select class="orderSelect form-control">
-				<%for(int i = Integer.parseInt(hour); i<= 22; i++){
+			<select class="orderSelect form-control" id="ETC_DATA2" name="ETC_DATA2">
+				<%for(int i = Integer.parseInt(hour); i< 22; i++){
 					for(int j = tmpMinute; j<=50; j+=10){
 						String min = "";
 						if(j<10){
@@ -107,7 +150,7 @@
 							min = j + "";
 						}
 						%>
-				<option value="<%=i %> : <%=min %>"><%=i %> : <%=min %></option>
+				<option value="<%=i %>:<%=min %>"><%=i %> : <%=min %></option>
 					<%}
 					  tmpMinute = 0;
 					}%>
@@ -120,7 +163,7 @@
 				</h4>
 		</div>
 		<div class="orderGroup">
-			<input class="form-control orderText" type="text"id="CUSTOMER_NAME" value="<%=CmmUtil.nvl((String)session.getAttribute("ss_user_name")) %>">
+			<input class="form-control orderText" type="text" name="CUSTOMER_NAME" id="CUSTOMER_NAME" value="<%=CmmUtil.nvl((String)session.getAttribute("ss_user_name")) %>">
 		</div>
 		<hr class="orderHr">
 		<div class="orderGroup">
@@ -129,7 +172,7 @@
 				</h4>
 		</div>
 		<div class="orderGroup">
-			<input class="form-control orderText" type="text"  id="CUSTOMER_TEL" value="<%=CmmUtil.nvl((String)session.getAttribute("ss_user_ca"))%>">
+			<input class="form-control orderText" type="text" name="CUSTOMER_TEL" id="CUSTOMER_TEL" value="<%=CmmUtil.nvl((String)session.getAttribute("ss_user_ca"))%>">
 		</div>
 		<hr class="orderHr">
 		<div class="orderGroupArea">
@@ -174,11 +217,11 @@
 		  <%}%>
 		<div class="radio icheck-asbestos">
 			<input type="radio" id="TRAN_TYPE" name="TRAN_TYPE" value="PHON" checked="checked"/> <label
-				for="asbestos1">휴대폰 소액 결제</label>
+				for="asbestos1" onclick="radioPhonCheck();">휴대폰 소액 결제</label>
 		</div>
 		<div class="radio icheck-asbestos">
 			<input type="radio" id="TRAN_TYPE" name="TRAN_TYPE" value="CARD"/> <label
-				for="asbestos2">신용카드(온라인 결제)</label>
+				for="asbestos2" onclick="radioCardCheck();">신용카드(온라인 결제)</label>
 		</div>
 	</form>
 		<button class="orderButton02" onclick="doSubmitOrder();">결제하기</button>

@@ -75,7 +75,14 @@
 		    }
 		});
 	}
-	
+	function orderDirect(){
+		var prdtNo = '<%=CmmUtil.nvl(pDTO.getPrdt_no())%>';
+		var price = '<%=CmmUtil.nvl(pDTO.getPrdt_price())%>';
+		var qty = document.getElementById('itemQty').value;
+		var prdtName = '<%=CmmUtil.nvl(pDTO.getPrdt_name())%>';
+		location.href="userOrderDirect.do?prdtNo=" + prdtNo + "&qty=" + qty + "&price=" + price + "&prdtName=" + prdtName;
+		
+	}
 </script>
 </head>
 <body>
@@ -140,7 +147,7 @@
 					<button class="detailCart" onclick="addTmpBasket();">상품담기</button>
 				</div>
 				<div class="col-xs-6">
-					<a href="#"><button class="detailSubmit">바로결제</button></a>
+					<a href="#"><button class="detailSubmit" onclick="orderDirect();">바로결제</button></a>
 				</div>
 			</div>
 		</div>
