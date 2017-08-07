@@ -150,7 +150,7 @@ public class UserController {
 	
 	@RequestMapping(value="userMyPage")
 	public String userMyPage(HttpSession session,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
-		String uNum = CmmUtil.nvl(request.getParameter("uNum"));
+		String uNum = CmmUtil.nvl(request.getParameter("unum"));
 		log.info(uNum);
 		
 		User_infoDTO uDTO = new User_infoDTO();
