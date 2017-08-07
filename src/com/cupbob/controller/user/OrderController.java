@@ -199,6 +199,11 @@ public class OrderController {
 		return "user/order";
 	}
 	
+	@RequestMapping(value = "userOrderList")
+	public String userOrderList(HttpSession session,HttpServletRequest request,HttpServletResponse response,Model model)throws Exception{
+		return "user/userOrderList";
+	}
+	
 	@RequestMapping(value="testSQL")
 	public String test(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
 		log.info(this.getClass() + ".test start!!!");
