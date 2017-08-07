@@ -19,6 +19,14 @@
 			}
 		});
 	});
+	function loginPlz(){
+		if(confirm("로그인이 필요한 서비스입니다.")){
+			return true;
+		}else{
+			return false;
+		}
+	};
+
 </script>
 <div class="nav_wrapper" style="z-index: 2;">
 		<!--<a class="menu-link" href="#menu"></a>-->
@@ -31,7 +39,16 @@
 			</label>
 		</div>
 		<a href="userMenuList.do"><img src="userBootstrap/navImage/title.png" style="width: 150px; height:75px;" class="titleImg"></a>
+<<<<<<< HEAD
 		<a href="userTmpBasket.do"><img src="userBootstrap/navImage/basket.png" class="imgicon"></a><a href="userMyPage.do?uNum=<%=uNum%>"><img src="userBootstrap/navImage/mypage.png" class="imgicon"></a>
+=======
+		<a href="userTmpBasket.do"><img src="userBootstrap/navImage/basket.png" class="imgicon"></a>
+		<%if(uNum==null||uNum==""){%>
+		<a onclick="return loginPlz();" href="userLogin.do"><img src="userBootstrap/navImage/mypage.png" class="imgicon"></a>
+		<%}else{%>
+		<a href="userMyPage.do?unum=<%=uNum%>"><img src="userBootstrap/navImage/mypage.png" class="imgicon"></a>
+		<%} %>
+>>>>>>> refs/remotes/origin/test
 		<nav id="menu" class="menu">
 			<ul class="dropdown">
 				<li><a href="#" class="nav-font"><strong>메뉴</strong></a>
