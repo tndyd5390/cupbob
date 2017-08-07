@@ -132,6 +132,7 @@ function doJoin() {
 		return false;
 	}  else {
 		if (confirm("가입하시겠습니까?")) {
+			alert("가입 되었습니다")
 			return true;
 		} else {
 			return false;
