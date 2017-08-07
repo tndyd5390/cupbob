@@ -28,15 +28,16 @@ function doUpdate() {
 			return false;
 		}
 }
-
 function pwCheck() {
-	if($('#password').val() != $('#confirm_password').val()){
+	if($('#password').val()==""||$('#confirm_password').val()==""){
+		$('#passwordFonts').html('* 비밀번호를 입력해주세요.');
+	}else if($('#password').val() != $('#confirm_password').val()){
 		$('#passwordFonts').html('* 비밀번호가 일치하지 않습니다. 다시 입력해 주세요.').css("color","red");
 	}else{
 		$('#passwordFonts').html('* 비밀번호가 일치합니다.').css("color", "skyblue");
+
 	}
 }
-
 function doKeyOnlyNumberPhone(event) {
 	event = event || window.event;
 	var keyID = (event.which) ? event.which : event.keyCode;
@@ -80,7 +81,7 @@ function doDelete(){
 			<input type="password" class="form-control password" id="password" name="password"
 				placeholder="비밀번호" onkeyup="pwCheck()"> <input type="password"
 				class="form-control password" id="confirm_password" placeholder="비밀번호 재확인"  onkeyup="pwCheck()">
-			<p class="passwordFont" id="passwordFonts">* 비밀번호가 일치하지 않습니다. 다시 입력해 주세요.</p>
+			<p class="passwordFont" id="passwordFonts">* 비밀번호를 입력해주세요.</p>
 		</div>
 		<div class="form-group">
 			<input type="text" class="form-control name" id="name" placeholder="이름" name="name" value="<%=CmmUtil.nvl(uDTO.getUser_name())%>">
