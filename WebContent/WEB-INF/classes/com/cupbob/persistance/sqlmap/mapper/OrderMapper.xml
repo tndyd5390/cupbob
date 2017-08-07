@@ -33,4 +33,43 @@
 	<update id="updateAdminOrderProc" parameterType="hashMap">
 		UPDATE ORDER_INFO SET ORD_STAT = #{statNo} WHERE ORD_NO = #{ordNo}
 	</update>
+	
+	<insert id="insertOrderInfo" parameterType="Order_infoDTO">
+		INSERT INTO ORDER_INFO
+			(
+ 			TOTAL_ORD_PRICE, 
+ 			PAYMENT_TP, 
+ 			ORD_DT, 
+ 			ORD_STAT,
+			USR_RCV_TIME, 
+			RCV_YN, 
+			USER_NO,
+ 			REG_USER_NO, 
+ 			REG_DT
+			)
+		VALUES
+			(
+			 #{total_ord_price}, 
+			 #{payment_tp}, 
+			 NOW(), 
+			 '1',
+			 #{usr_rcv_time}, 
+			 #{rcv_yn}, 
+			 #{user_no},
+			 #{user_no}, 
+			 NOW()
+			);
+	</insert>
+	<insert id="insertOrderItem" parameterType="list">
+		INSERT INTO ORDER_ITEM
+			(
+ 			ORD_NO, PRDT_NO, ORD_AMNT, REG_USER_NO, REG_DT
+			)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+ 			((SELECT MAX(ORD_NO) FROM ORDER_INFO WHERE USER_NO = #{item.reg_user_no}), #{item.prdt_no}, #{item.ord_amnt}, #{item.reg_user_no}, NOW())
+		</foreach>
+	</insert>
+		
+	
 </mapper>

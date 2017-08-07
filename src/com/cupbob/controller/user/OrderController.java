@@ -1,5 +1,11 @@
 package com.cupbob.controller.user;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,8 +15,13 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cupbob.dto.Order_infoDTO;
+import com.cupbob.dto.Order_itemDTO;
+import com.cupbob.dto.TmpBasketDTO;
 import com.cupbob.service.IOrderService;
+import com.cupbob.util.CmmUtil;
 
 
 @Controller
@@ -31,85 +42,104 @@ public class OrderController {
 	public void orerComplete(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
 		log.info(this.getClass() + "orderComplete start!!!");
 		//결과코드
-		String rep_code =req.getParameter("REP_CODE");
+		String rep_code =CmmUtil.nvl(req.getParameter("REP_CODE"));
 		log.info(this.getClass() + " rep_code : " + rep_code);
 		//승인 번호, 계좌 번호
-		String rep_auth_no =req.getParameter("REP_AUTH_NO");
+		String rep_auth_no =CmmUtil.nvl(req.getParameter("REP_AUTH_NO"));
 		log.info(this.getClass() + " rep_auth_no : " + rep_auth_no);
 		//거래 고유번호(페이누리측)
-		String tid =req.getParameter("TID");
+		String tid =CmmUtil.nvl(req.getParameter("TID"));
 		log.info(this.getClass() + " tid : " + tid);
 		//은행 코드
-		String rep_bank =req.getParameter("REP_BANK");
+		String rep_bank =CmmUtil.nvl(req.getParameter("REP_BANK"));
 		log.info(this.getClass() + " rep_bank : " + rep_bank);
 		//가맹점 번호
-		String storeId	=req.getParameter("STOREID");
+		String storeId	=CmmUtil.nvl(req.getParameter("STOREID"));
 		log.info(this.getClass() + " storeId : " + storeId);
 		//가맹점 이름
-		String store_name =req.getParameter("STORE_NAME");
+		String store_name =CmmUtil.nvl(req.getParameter("STORE_NAME"));
 		log.info(this.getClass() + " store_name : " + store_name);
 		//가맹점 URL
-		String store_url =req.getParameter("STORE_URL");
+		String store_url =CmmUtil.nvl(req.getParameter("STORE_URL"));
 		log.info(this.getClass() + " store_url : " + store_url);
 		//사업자 번호
-		String business_no =req.getParameter("BUSINESS_NO");
+		String business_no =CmmUtil.nvl(req.getParameter("BUSINESS_NO"));
 		log.info(this.getClass() + " business_no : " + business_no);
 		//가맹점 주문번호
-		String tran_no =req.getParameter("TRAN_NO");
+		String tran_no =CmmUtil.nvl(req.getParameter("TRAN_NO"));
 		log.info(this.getClass() + " tran_no : " + tran_no);
 		//카드종류
-		String cardCompany = req.getParameter("CARDCOMPANY");
+		String cardCompany = CmmUtil.nvl(req.getParameter("CARDCOMPANY"));
 		log.info(this.getClass() + " cardCompany : " + cardCompany);
 		//상품명
-		String goods_name =req.getParameter("GOODS_NAME");
+		String goods_name =CmmUtil.nvl(req.getParameter("GOODS_NAME"));
 		log.info(this.getClass() + " goods_name : " + goods_name);
 		//결제금액
-		String amt =req.getParameter("AMT");
+		String amt =CmmUtil.nvl(req.getParameter("AMT"));
 		log.info(this.getClass() + " amt : " + amt);
 		//상품수
-		String quantity	=req.getParameter("QUANTITY");
+		String quantity	=CmmUtil.nvl(req.getParameter("QUANTITY"));
 		log.info(this.getClass() + " quantity : " + quantity);
 		//결제일자
-		String sale_date =req.getParameter("SALE_DATE");
+		String sale_date =CmmUtil.nvl(req.getParameter("SALE_DATE"));
 		log.info(this.getClass() + " sale_date : " + sale_date);
 		//고객이름
-		String customer_name =req.getParameter("CUSTOMER_NAME");
+		String customer_name =CmmUtil.nvl(req.getParameter("CUSTOMER_NAME"));
 		log.info(this.getClass() + " customer_name : " + customer_name);
 		//고객 이메일
-		String customer_email =req.getParameter("CUSTOMER_EMAIL");
+		String customer_email =CmmUtil.nvl(req.getParameter("CUSTOMER_EMAIL"));
 		log.info(this.getClass() + " customer_email : " + customer_email);
 		//고객 전화번호
-		String customer_tel	=req.getParameter("CUSTOMER_TEL");
+		String customer_tel	=CmmUtil.nvl(req.getParameter("CUSTOMER_TEL"));
 		log.info(this.getClass() + " customer_tel : " + customer_tel);
 		//고객 아이피
-		String customer_ip =req.getParameter("CUSTOMER_IP");
+		String customer_ip =CmmUtil.nvl(req.getParameter("CUSTOMER_IP"));
 		log.info(this.getClass() + " customer_ip : " + customer_ip);
 		//입금통보URL
-		String notice_url =req.getParameter("NOTICE_URL");
+		String notice_url =CmmUtil.nvl(req.getParameter("NOTICE_URL"));
 		log.info(this.getClass() + " notice_url : " + notice_url);
 		//거래 유형
-		String tran_type =req.getParameter("TRAN_TYPE");
+		String tran_type =CmmUtil.nvl(req.getParameter("TRAN_TYPE"));
 		log.info(this.getClass() + " tran_type : " + tran_type);
 		//결과 메세지
-		String rep_msg =req.getParameter("REP_MSG");
+		String rep_msg =CmmUtil.nvl(req.getParameter("REP_MSG"));
 		log.info(this.getClass() + " rep_msg : " + rep_msg);
 		//여분의 데이터
-		String etc_data1 =req.getParameter("ETC_DATA1");
+		String etc_data1 =CmmUtil.nvl(req.getParameter("ETC_DATA1"));//사용자 번호 넘어올것
 		log.info(this.getClass() + " etc_data1 : " + etc_data1);
-		String etc_data2 =req.getParameter("ETC_DATA2");
-		log.info(this.getClass() + " etc_data2 : " + etc_data2);
-		String etc_data3 =req.getParameter("ETC_DATA3");		
+		String etc_data2 =CmmUtil.nvl(req.getParameter("ETC_DATA2"));
+		log.info(this.getClass() + " etc_data2 : " + etc_data2);//수령시간 넘어 올것
+		String etc_data3 =CmmUtil.nvl(req.getParameter("ETC_DATA3"));		
 		log.info(this.getClass() + " etc_data3 : " + etc_data3);
 		
 		if(rep_code.equals("0000")){
 			/**
-			 * 
-			 * 
-			 * 
 			 * 결제 성공
-			 * 
-			 * 
 			 */
+			Order_infoDTO oDTO = new Order_infoDTO();
+			oDTO.setTotal_ord_price(amt);
+			if(tran_type.equals("PHON")){
+				oDTO.setPayment_tp("p");
+			}else{
+				oDTO.setPayment_tp("c");
+			}
+			oDTO.setOrd_stat("1");
+			oDTO.setUsr_rcv_time(etc_data2);
+			oDTO.setRcv_yn("n");
+			oDTO.setUser_no(etc_data1);
+			oDTO.setReg_user_no(etc_data1);
+			String[] orderItems = etc_data3.split("-");
+			List<Order_itemDTO> oList = new ArrayList<>();
+			for(int i = 0; i< orderItems.length; i++){
+				String[] orderItem = orderItems[i].split(":");
+				Order_itemDTO oIDTO = new Order_itemDTO();
+				oIDTO.setPrdt_no(orderItem[0]);
+				oIDTO.setOrd_amnt(orderItem[1]);
+				oIDTO.setReg_user_no(etc_data1);
+				oList.add(oIDTO);
+			}
+			
+			orderService.insertOrderSuccess(oDTO, oList);
 		}else{
 			/**
 			 * 
@@ -138,6 +168,43 @@ public class OrderController {
 		log.info(this.getClass() + ".orderCancle start!!!!");
 		
 		log.info(this.getClass() + ".orderCancle end!!!");
+		return null;
+	}
+	
+	@RequestMapping(value="userOrderDirect", method=RequestMethod.GET)
+	public String userOrderDirect(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
+		log.info(this.getClass() + ".userOrderDirect start!!!");
+		String prdtNo = CmmUtil.nvl(req.getParameter("prdtNo"));
+		log.info(this.getClass() + " prdtNo : " + prdtNo);
+		String qty = CmmUtil.nvl(req.getParameter("qty"));
+		log.info(this.getClass() + " qty : " + qty);
+		String price = CmmUtil.nvl(req.getParameter("price"));
+		log.info(this.getClass() + " price : " + price);
+		String prdtName = CmmUtil.nvl(req.getParameter("prdtName"));
+		log.info(this.getClass() + " prdtName : "  + prdtName);
+		Map<String, TmpBasketDTO> tMap = new HashMap<>();
+		TmpBasketDTO tDTO = new TmpBasketDTO(prdtNo, qty, price, prdtName);
+		tMap.put(prdtNo, tDTO);
+		Iterator<String> keyss = tMap.keySet().iterator();
+		while(keyss.hasNext()){
+			String key = keyss.next();
+			log.info(this.getClass() + " session--------------------------------------");
+			log.info(this.getClass() + "   prdtNo : " + tMap.get(key).getTmpBasketPrdtNo());
+			log.info(this.getClass() + "   prdtNo : " + tMap.get(key).getTmpBasketPrdtQty());
+			log.info(this.getClass() + "   prdtNo : " + tMap.get(key).getTmpBasketPrdtPrice());
+			log.info(this.getClass() + " session--------------------------------------");
+		}
+		session.setAttribute("ss_tmpBasket", tMap);
+		log.info(this.getClass() + ".userOrderDirect end!!!");
+		return "user/order";
+	}
+	
+	@RequestMapping(value="testSQL")
+	public String test(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
+		log.info(this.getClass() + ".test start!!!");
+		
+		orderService.test();
+		log.info(this.getClass() + ".test end!!!");
 		return null;
 	}
 }

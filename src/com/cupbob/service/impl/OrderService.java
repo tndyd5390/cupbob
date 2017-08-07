@@ -12,6 +12,9 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
+
+import com.cupbob.dto.Order_infoDTO;
+import com.cupbob.dto.Order_itemDTO;
 import com.cupbob.dto.TotalOrderDTO;
 import com.cupbob.dto.TotalOrderInfoDTO;
 import com.cupbob.dto.TotalOrderItemDTO;
@@ -97,6 +100,23 @@ public class OrderService implements IOrderService {
 		min = min-(hour*60);
 		System.out.println("duration: " + duration + ", min : " + (duration/60000));
 		return hour + ":" + min;
+	}
+
+	@Override
+	public int test() throws Exception {
+		
+		return orderMapper.test();
+	}
+
+	@Override
+	public boolean insertOrderSuccess(Order_infoDTO oDTO, List<Order_itemDTO> oList) throws Exception {
+		boolean result = false;
+		int insertOrderInfo = orderMapper.insertOrderInfo(oDTO);
+		int insertOrderItem = orderMapper.insertOrderItem(oList);
+		if(insertOrderInfo > 0 && insertOrderItem > 0){
+			result = true;
+		}
+		return result;
 	}
 
 }
