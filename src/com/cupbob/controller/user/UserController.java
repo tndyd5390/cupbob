@@ -103,10 +103,10 @@ public class UserController {
 		String url;
 		
 		if(rs > 0 ){
-			msg = "수정되었습니다";
+			msg = "�닔�젙�릺�뿀�뒿�땲�떎";
 			url = "userMyPage.do";
 		}else{
-			msg = "수정실패되었습니다";
+			msg = "�닔�젙�떎�뙣�릺�뿀�뒿�땲�떎";
 			url = "userUpdate.do";
 		}
 		model.addAttribute("msg", msg);
@@ -133,10 +133,10 @@ public class UserController {
 		String url;
 			
 		if(rs > 0){
-			msg = "삭제되었습니다";
+			msg = "�궘�젣�릺�뿀�뒿�땲�떎";
 			url = "userLogin.do";
 		}else{
-			msg = "삭제실패되었습니다";
+			msg = "�궘�젣�떎�뙣�릺�뿀�뒿�땲�떎";
 			url = "userUpdate.do";
 		}
 		model.addAttribute("msg",msg);
@@ -226,7 +226,7 @@ public class UserController {
 
 		if(uDTO==null){
 			log.info("Login Fail!!");
-			model.addAttribute("msg", "아이디와 비밀번호를 다시 확인해 주세요");
+			model.addAttribute("msg", "�븘�씠�뵒�� 鍮꾨�踰덊샇瑜� �떎�떆 �솗�씤�빐 二쇱꽭�슂");
 			model.addAttribute("url", "userLogin.do");
 		}else{
 			session.setAttribute("ss_user_email", CmmUtil.nvl(uDTO.getEmail()));
@@ -269,10 +269,10 @@ public class UserController {
 		
 		if(uDTO == null){
 			log.info("userEmailFind Fail!!");
-			model.addAttribute("msg","해당하는 아이디가 없습니다.");
+			model.addAttribute("msg","�빐�떦�븯�뒗 �븘�씠�뵒媛� �뾾�뒿�땲�떎.");
 			model.addAttribute("url","userFind.do");
 		}else{
-			model.addAttribute("msg", "회원님의 아이디는 "+uDTO.getEmail()+" 입니다.");
+			model.addAttribute("msg", "�쉶�썝�떂�쓽 �븘�씠�뵒�뒗 "+uDTO.getEmail()+" �엯�땲�떎.");
 			model.addAttribute("url", "userLogin.do");
 		}
 		
@@ -313,22 +313,37 @@ public class UserController {
 		
 		if(uDTO == null){
 			log.info("userFindPw FAIL!!");
-			model.addAttribute("msg", "찾는 정보가 없습니다");
+			model.addAttribute("msg", "李얜뒗 �젙蹂닿� �뾾�뒿�땲�떎");
 			model.addAttribute("url", "userFind.do");
 		}else{
 			log.info("Send EMAIL!!!");
 			
 			sendEmail.setReciver(email);
-			sendEmail.setSubject("거북목 컵밥");
-			sendEmail.setContent("회원님의 임시 비밀번호는 " + uDTO.getPassword() + " 입니다.");
+			sendEmail.setSubject("嫄곕턿紐� 而듬갈");
+			sendEmail.setContent("�쉶�썝�떂�쓽 �엫�떆 鍮꾨�踰덊샇�뒗 " + uDTO.getPassword() + " �엯�땲�떎.");
 			log.info(sendEmail.getReciver());
 			log.info(sendEmail.getSubject());
 			log.info(sendEmail.getContent());
 			
 			emailSender.SendEmail(sendEmail);
-			model.addAttribute("msg", "회원님의 임시 비밀번호가 이메일로 발송되었습니다");
+			model.addAttribute("msg", "�쉶�썝�떂�쓽 �엫�떆 鍮꾨�踰덊샇媛� �씠硫붿씪濡� 諛쒖넚�릺�뿀�뒿�땲�떎");
 			model.addAttribute("url", "userLogin.do");
 		}
 		return "user/userFindAlert";
+	}
+	@RequestMapping(value="logout")
+	public String logout(HttpServletRequest req,HttpSession session, Model model)throws Exception{
+
+		log.info(this.getClass().getName() + " adminLogout start");
+
+		session.setAttribute("ss_user_email", "");
+		session.setAttribute("ss_user_name", "");
+		session.setAttribute("ss_user_no", "");
+		session.setAttribute("ss_user_ca", "");
+
+		log.info(this.getClass().getName() + " adminLogout end");
+
+		
+		return "redirect:userLogin.do";
 	}
 }
