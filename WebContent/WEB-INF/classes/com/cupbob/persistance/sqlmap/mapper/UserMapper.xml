@@ -39,9 +39,14 @@
 	<select id="overlapEmail" parameterType="User_infoDTO" resultType="int">
 		SELECT COUNT(*) FROM USER_INFO WHERE EMAIL = #{email}
 	</select>
+	
 	<select id="getUserDetail" resultType="User_infoDTO" parameterType="User_infoDTO">
 		SELECT USER_NO, USER_NAME, EMAIL, GENDER, BIRTHDAY, CONTACT_ADDR, MILEAGE FROM USER_INFO WHERE USER_NO =
 		#{user_no}
+	</select>
+	
+	<select id="userUpdateCheck" resultType="User_infoDTO" parameterType="User_infoDTO">
+		SELECT USER_NO FROM USER_INFO WHERE USER_NO = #{user_no} AND PASSWORD = #{password}
 	</select>
 	
 	<delete id="userDelete" parameterType="user_infoDTO">
@@ -49,8 +54,12 @@
 	</delete>
 	
 	<update id="updateUserDetail" parameterType="user_infoDTO">
-		UPDATE USER_INFO SET USER_NAME=#{user_name}, GENDER=#{gender}, BIRTHDAY=#{birthday}, PASSWORD=#{password} ,
+		UPDATE USER_INFO SET USER_NAME=#{user_name}, GENDER=#{gender}, BIRTHDAY=#{birthday},
 		CONTACT_ADDR = #{contact_addr}, CHG_USER_NO=#{chg_user_no}, CHG_DT = SYSDATE() WHERE USER_NO = #{user_no}
+	</update>
+	
+	<update id="updatePassword" parameterType="user_infoDTO">
+		UPDATE USER_INFO SET PASSWORD=#{password} WHERE USER_NO = #{user_no}
 	</update>
 	
 	<delete id="deleteUserAllChecked" parameterType="User_infoDTO">
@@ -70,12 +79,15 @@
 	<update id="updateTempPw" parameterType="User_infoDTO">
 		UPDATE USER_INFO SET PASSWORD=#{temp_pw} WHERE USER_NAME=#{user_name} AND EMAIL=#{email} AND BIRTHDAY=#{birthday}
 	</update>
+	
 	<select id="userSearch" resultType="User_infoDTO" parameterType="User_InfoDTO">
 		SELECT * FROM USER_INFO WHERE EMAIL LIKE CONCAT('%', #{email}, '%') OR USER_NAME LIKE CONCAT('%', #{user_name}, '%')  
 	</select>
+	
 	<select id="userFindEmail" resultType="User_infoDTO" parameterType="User_InfoDTO">
 		SELECT EMAIL FROM USER_INFO WHERE USER_NAME=#{user_name} AND GENDER=#{gender} AND BIRTHDAY=#{birthday} AND CONTACT_ADDR=#{contact_addr}
 	</select>
+	
 	<select id="userFindPw" resultType="User_infoDTO" parameterType="User_InfoDTO">
 		SELECT PASSWORD FROM USER_INFO WHERE EMAIL = #{email} AND USER_NAME=#{user_name} AND GENDER=#{gender} AND BIRTHDAY=#{birthday} AND CONTACT_ADDR=#{contact_addr}
 	</select>

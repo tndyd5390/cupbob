@@ -33,7 +33,7 @@ function addComma(x) {
 	<br>
 	<br>
 	<br>
-	<form class="form" action="userUpdate.do?unum=<%=CmmUtil.nvl(uDTO.getUser_no())%>" method="post">
+	<form class="form" action="userUpdateCheck.do?uNum=<%=CmmUtil.nvl(uDTO.getUser_no())%>" method="post">
 		<div class="orderHead">마이페이지</div>
 		<div class="profileImg">
 		<img

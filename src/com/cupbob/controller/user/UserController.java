@@ -47,7 +47,7 @@ public class UserController {
 	@RequestMapping(value="userUpdate")
 	public String userUpdate(HttpSession session, HttpServletRequest request, HttpServletResponse response,Model model) throws Exception{
 		log.info(this.getClass().getName() + "userUpdate Start!!");
-		String uNum = CmmUtil.nvl(request.getParameter("unum"));
+		String uNum = CmmUtil.nvl(request.getParameter("uNum"));
 		log.info(uNum);
 		User_infoDTO uDTO = new User_infoDTO();
 		
@@ -58,7 +58,6 @@ public class UserController {
 		if(uDTO == null){
 			uDTO = new User_infoDTO();
 		}
-		log.info(uDTO.getGender());
 		
 		model.addAttribute("uDTO", uDTO);
 		
@@ -88,6 +87,7 @@ public class UserController {
 		
 		User_infoDTO uDTO = new User_infoDTO();
 		
+
 		uDTO.setUser_no(uNo);
 		uDTO.setChg_user_no(uNo);
 		uDTO.setPassword(password);
@@ -96,21 +96,23 @@ public class UserController {
 		uDTO.setBirthday(birthday);
 		uDTO.setContact_addr(contact_addr);
 		
+		
 		int rs = userService.updateUserDetail(uDTO);
-		log.info(rs);
 		
 		String msg;
 		String url;
 		
-		if(rs > 0 ){
+		if(rs > 0){
 			msg = "수정되었습니다";
-			url = "userMyPage.do";
+			url = "userMyPage.do?uNum="+CmmUtil.nvl(uDTO.getUser_no());
 		}else{
 			msg = "수정실패되었습니다";
 			url = "userUpdate.do";
 		}
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
+		
+		uDTO = null;
 		
 		log.info(this.getClass().getName() + "userUpdatePRoc End!!");
 		
@@ -148,7 +150,7 @@ public class UserController {
 	
 	@RequestMapping(value="userMyPage")
 	public String userMyPage(HttpSession session,HttpServletRequest request,HttpServletResponse response,Model model) throws Exception{
-		String uNum = (String)session.getAttribute("ss_user_no");
+		String uNum = CmmUtil.nvl(request.getParameter("uNum"));
 		log.info(uNum);
 		
 		User_infoDTO uDTO = new User_infoDTO();
@@ -168,6 +170,65 @@ public class UserController {
 		model.addAttribute("uDTO", uDTO);
 		
 		return "user/userMyPage";
+	}
+	
+	@RequestMapping(value = "userUpdateCheck")
+	String userUpdateCheck(HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model)throws Exception{
+		log.info(this.getClass().getName() + "userUpdateCheck Start!!");
+		String uNum = CmmUtil.nvl(request.getParameter("uNum"));
+		
+		log.info(uNum);
+		
+		User_infoDTO uDTO = new User_infoDTO();
+		
+		uDTO.setUser_no(uNum);
+		
+		uDTO = userService.getUserDetail(uDTO);
+		
+		if(uDTO == null){
+			uDTO = new User_infoDTO();
+		}
+		
+		model.addAttribute("uDTO", uDTO);
+		
+		log.info(this.getClass().getName() + "userUpdateCheck END!!");
+		
+		return "user/userUpdateCheck";
+	}
+	
+	@RequestMapping(value = "userUpdateCheckProc")
+	String userUpdateCheckProc(HttpSession session,HttpServletRequest request, HttpServletResponse response, Model model)throws Exception{
+		log.info(this.getClass().getName() + "userUpdateCheckProc Start!!");
+		
+		String uNum = CmmUtil.nvl(request.getParameter("uNum"));
+		String password = CmmUtil.nvl(request.getParameter("password"));
+		
+		log.info("uNum : " + uNum );
+		log.info("password : " + password);
+		
+		User_infoDTO uDTO = new User_infoDTO();
+		
+		uDTO.setUser_no(uNum);
+		uDTO.setPassword(password);
+		
+		uDTO = userService.userUpdateCheck(uDTO);
+		
+		String msg;
+		String url;
+		
+		if(uDTO == null){
+			msg = "비밀번호를 다시 확인해 주세요";
+			url = "userUpdateCheck.do?uNum="+uNum;
+		}else{
+			msg = "";
+			url = "userUpdate.do?uNum=" + CmmUtil.nvl(uDTO.getUser_no());
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		log.info(this.getClass().getName() + "userUpdateCheckProc END!!");
+		
+		return "user/userUpdateAlert";
 	}
 	
 	@RequestMapping(value="userSignInProc")

@@ -34,6 +34,11 @@ public class UserService implements IUserService {
 	public User_infoDTO getUserDetail(User_infoDTO udto) throws Exception {
 		return userMapper.getUserDetail(udto);
 	}
+	
+	@Override
+	public User_infoDTO userUpdateCheck(User_infoDTO uDTO) throws Exception{
+		return userMapper.userUpdateCheck(uDTO);
+	}
 
 	@Override
 	public int userDelete(User_infoDTO udto) throws Exception {
@@ -46,9 +51,14 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public int updateUserDetail(User_infoDTO uDTO) {
+	public int updateUserDetail(User_infoDTO uDTO){
+		if(!uDTO.getPassword().equals("")){
+			userMapper.updatePassword(uDTO);
+		}
 		return userMapper.updateUserDetail(uDTO);
 	}
+	
+	
 	
 	@Override
 	public boolean deleteUserAllChecked(User_infoDTO uDTO) throws Exception{
