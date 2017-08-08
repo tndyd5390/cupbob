@@ -11,7 +11,7 @@
 <%
 	Map<String, TmpBasketDTO> tMap = (Map<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
 	if(tMap == null){
-		tMap = new HashMap<>();
+		tMap = new HashMap();
 	}
 	int resultPrice = 0;
 	String addedComma = "";

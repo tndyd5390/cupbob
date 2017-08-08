@@ -129,7 +129,7 @@ public class OrderController {
 			oDTO.setUser_no(etc_data1);
 			oDTO.setReg_user_no(etc_data1);
 			String[] orderItems = etc_data3.split("-");
-			List<Order_itemDTO> oList = new ArrayList<>();
+			List<Order_itemDTO> oList = new ArrayList<Order_itemDTO>();
 			for(int i = 0; i< orderItems.length; i++){
 				String[] orderItem = orderItems[i].split(":");
 				Order_itemDTO oIDTO = new Order_itemDTO();
@@ -182,7 +182,7 @@ public class OrderController {
 		log.info(this.getClass() + " price : " + price);
 		String prdtName = CmmUtil.nvl(req.getParameter("prdtName"));
 		log.info(this.getClass() + " prdtName : "  + prdtName);
-		Map<String, TmpBasketDTO> tMap = new HashMap<>();
+		Map<String, TmpBasketDTO> tMap = new HashMap();
 		TmpBasketDTO tDTO = new TmpBasketDTO(prdtNo, qty, price, prdtName);
 		tMap.put(prdtNo, tDTO);
 		Iterator<String> keyss = tMap.keySet().iterator();
