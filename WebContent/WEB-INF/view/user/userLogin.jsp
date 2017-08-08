@@ -62,7 +62,9 @@
 		</div>
 	</div>
 	<br>
+		<div align="center">
 	<%@include file="/include/footer.jsp"%>
+	</div>
 	<script>
 $( "#userLoginButton" ).click(function() {
 	  if($('#email').val() == ""){

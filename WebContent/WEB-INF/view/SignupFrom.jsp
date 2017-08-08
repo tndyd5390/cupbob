@@ -104,6 +104,8 @@
 				</section>
 				<!-- 회원가입 폼 끝 -->
 				
-	<!-- page end--> </section> </section> <%@include file="/include/bottomJavaScript.jsp"%>
+	<!-- page end--> </section> </section> 	<div align="center">
+	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 </html>

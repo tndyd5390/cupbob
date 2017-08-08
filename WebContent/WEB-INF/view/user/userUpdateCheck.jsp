@@ -51,6 +51,8 @@ function doSubmit(){
 		<button class="orderButton02">확인</button>
 	</form>
 	<br>
+		<div align="center">
 	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 </html>

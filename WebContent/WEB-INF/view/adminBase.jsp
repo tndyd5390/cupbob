@@ -260,6 +260,8 @@
 		<!-- sidebar menu end-->
 	</div>
 	</aside> 
-	<%@include file="/include/bottomJavaScript.jsp"%>
+		<div align="center">
+	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 </html>
