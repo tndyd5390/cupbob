@@ -39,7 +39,7 @@ public class MenuController {
 		
 		pList = menuService.getUserMenuList();
 		if(pList == null){
-			pList = new ArrayList<>();
+			pList = new ArrayList<Product_infoDTO>();
 		}
 		model.addAttribute("pList", pList);
 		pList = null;
@@ -77,7 +77,7 @@ public class MenuController {
 		Object tmpSession = session.getAttribute("ss_tmpBasket");
 		Map<String, TmpBasketDTO> tMap;
 		if(tmpSession == null){
-			tMap = new HashMap<>();
+			tMap = new HashMap();
 			tMap.put(prdtNo, new TmpBasketDTO(prdtNo, prdtQty, prdtPrice, prdtName));
 			session.setAttribute("ss_tmpBasket", tMap);
 		}else{
@@ -110,9 +110,9 @@ public class MenuController {
 		String prdtQty = CmmUtil.nvl(req.getParameter("prdtQty"));
 		log.info(this.getClass() + " prdtQty : " + prdtQty);
 		Map<String, TmpBasketDTO> tMap = (HashMap<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
-		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap();
 		if(tMap == null){
-			tMap = new HashMap<>();
+			tMap = new HashMap();
 		}
 		if(tMap.containsKey(prdtNo)){
 			TmpBasketDTO tDTO = tMap.get(prdtNo);
@@ -148,7 +148,7 @@ public class MenuController {
 		log.info(this.getClass() + " prdtNo : " + prdtNo);
 		Map<String, TmpBasketDTO> tMap = (Map<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
 		if(tMap == null){
-			tMap = new HashMap<>();
+			tMap = new HashMap();
 		}
 		if(tMap.containsKey(prdtNo)){
 			tMap.remove(prdtNo);
@@ -173,7 +173,7 @@ public class MenuController {
 		String[] prdtNoArr	= req.getParameterValues("prdtNo");
 		Map<String, TmpBasketDTO> tMap = (Map<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
 		if(tMap == null){
-			tMap = new HashMap<>();
+			tMap = new HashMap();
 		}
 		for(String prdtNo : prdtNoArr){
 			if(tMap.containsKey(prdtNo)){
@@ -199,7 +199,7 @@ public class MenuController {
 		log.info(this.getClass() + ".userDoOrder start!!!");
 		Map<String, TmpBasketDTO> tMap = (Map<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
 		if(tMap == null){
-			tMap = new HashMap<>();
+			tMap = new HashMap();
 		}
 		String returnURL = "user/order";
 		if(tMap.size()<1){
