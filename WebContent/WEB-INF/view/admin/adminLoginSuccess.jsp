@@ -15,6 +15,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>소라네 컵밥</title>
 </head>
+
+<%
+	if (ss_user_no==""||!(ss_user_no.equals("kangseokopo@gmail.com"))) {
+		response.sendRedirect("adminLogin.do");
+}else{%>
+
+
 <body>
 
 <%= ss_user_email %>
@@ -24,4 +31,7 @@
 <input type="submit" value="로그아웃">
 </form>
 </body>
+<%
+}
+%>
 </html>

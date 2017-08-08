@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.cupbob.util.CmmUtil" %>
+
+<%
+String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
+
+%>
 <!DOCTYPE html>
 <html>
 <script type="text/javascript">
@@ -24,6 +30,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>소라네 컵밥 커뮤니티</title>
 </head>
+
+<%
+	if (ss_userNo==""||!(ss_userNo.equals("kangseokopo@gmail.com"))) {
+		response.sendRedirect("adminLogin.do");
+}else{%>
+
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>
 	<section id="main-content"> <section class="wrapper">
@@ -65,4 +77,7 @@
 	<!-- page end-->
 	<%@include file="/include/bottomJavaScript.jsp"%>
 </body>
+<%
+}
+%>
 </html>

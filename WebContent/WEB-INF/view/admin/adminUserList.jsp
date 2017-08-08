@@ -5,6 +5,8 @@
 	pageEncoding="UTF-8"%>
 <%
 	List<User_infoDTO> uList = (List<User_infoDTO>) request.getAttribute("userList");
+	String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -99,7 +101,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>소라네 컵밥 회원정보</title>
 </head>
-
+<%
+	if (ss_userNo==""||!(ss_userNo.equals("kangseokopo@gmail.com"))) {
+		response.sendRedirect("adminLogin.do");
+}else{%>
 <body>
 	<form action="adminUserCheckedDelete.do" method="post" id="f">
 		<%@include file="/include/naviBarAndasideBar.jsp"%>
@@ -164,4 +169,7 @@
 			</section> <%@ include file="/include/bottomJavaScript.jsp"%>
 		</form>
 	</body>
+	<%
+}
+	%>
 </html>
