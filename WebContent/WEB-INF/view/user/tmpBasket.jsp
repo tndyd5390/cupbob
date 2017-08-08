@@ -67,7 +67,7 @@ function addComma(x) {
 							contents += "<input type=\"text\" value=\"" + value.tmpBasketPrdtQty + "\"class=\"tmpBasketCount\" maxlength=\"2\" readonly id=\"" + value.tmpBasketPrdtNo + "Cnt\">";
 							contents += "<a href=\"#\" class=\"tmpBasketPlMi\" onclick=\"tmpPlMi(" + value.tmpBasketPrdtNo + ", 'p')\">+</a>\n";
 							contents += "<div class=\"tmpBasketPrice\" name=\"price\">" + (addComma((parseInt(value.tmpBasketPrdtQty) * parseInt(value.tmpBasketPrdtPrice)))) + "원</div>";
-							contents += "<a href=\"#\" onclick=\"tmpBasketDeleteOne(" + value.tmpBasketPrdtNo + ")\"><img src=\"userBootstrap/navImage/recommend.png\" class=\"tmpBasketDeleteImg\"></a>\n";
+							contents += "<a href=\"#\" onclick=\"tmpBasketDeleteOne(" + value.tmpBasketPrdtNo + ")\"><img src=\"userBootstrap/navImage/trash.png\" class=\"tmpBasketDeleteImg\"></a>\n";
 							contents += "<hr class=\"tmpBasketHr\">\n";
 							contents += "</div>\n";
 							$('#tmpList').html(contents);
@@ -127,7 +127,7 @@ function addComma(x) {
 						contents += "<input type=\"text\" value=\"" + value.tmpBasketPrdtQty + "\"class=\"tmpBasketCount\" maxlength=\"2\" readonly id=\"" + value.tmpBasketPrdtNo + "Cnt\">";
 						contents += "<a href=\"#\" class=\"tmpBasketPlMi\" onclick=\"tmpPlMi(" + value.tmpBasketPrdtNo + ", 'p')\">+</a>\n";
 						contents += "<div class=\"tmpBasketPrice\" name=\"price\">" + (addComma((parseInt(value.tmpBasketPrdtQty) * parseInt(value.tmpBasketPrdtPrice)))) + "원</div>";
-						contents += "<a href=\"#\" onclick=\"tmpBasketDeleteOne(" + value.tmpBasketPrdtNo + ");\"><img src=\"userBootstrap/navImage/recommend.png\" class=\"tmpBasketDeleteImg\"></a>\n";
+						contents += "<a href=\"#\" onclick=\"tmpBasketDeleteOne(" + value.tmpBasketPrdtNo + ");\"><img src=\"userBootstrap/navImage/trash.png\" class=\"tmpBasketDeleteImg\"></a>\n";
 						contents += "<hr class=\"tmpBasketHr\">\n";
 						contents += "</div>\n";
 						$('#tmpList').html(contents);
@@ -199,7 +199,7 @@ function addComma(x) {
 						contents += "<input type=\"text\" value=\"" + value.tmpBasketPrdtQty + "\"class=\"tmpBasketCount\" maxlength=\"2\" readonly id=\"" + value.tmpBasketPrdtNo + "Cnt\">";
 						contents += "<a href=\"#\" class=\"tmpBasketPlMi\" onclick=\"tmpPlMi(" + value.tmpBasketPrdtNo + ", 'p')\">+</a>\n";
 						contents += "<div class=\"tmpBasketPrice\" name=\"price\">" + (addComma((parseInt(value.tmpBasketPrdtQty) * parseInt(value.tmpBasketPrdtPrice)))) + "원</div>";
-						contents += "<a href=\"#\" onclick=\"tmpBasketDeleteOne(" + value.tmpBasketPrdtNo + ");\"><img src=\"userBootstrap/navImage/recommend.png\" class=\"tmpBasketDeleteImg\"></a>\n";
+						contents += "<a href=\"#\" onclick=\"tmpBasketDeleteOne(" + value.tmpBasketPrdtNo + ");\"><img src=\"userBootstrap/navImage/trash.png\" class=\"tmpBasketDeleteImg\"></a>\n";
 						contents += "<hr class=\"tmpBasketHr\">\n";
 						contents += "</div>\n";
 						$('#tmpList').html(contents);
@@ -265,7 +265,7 @@ function addComma(x) {
 					class="tmpBasketCount" maxlength="2" readonly id="<%=CmmUtil.nvl(tMap.get(key).getTmpBasketPrdtNo() + "Cnt")%>"><a href="#"
 					class="tmpBasketPlMi" onclick="tmpPlMi('<%=CmmUtil.nvl(tMap.get(key).getTmpBasketPrdtNo())%>', 'p')">+</a>
 				<div class="tmpBasketPrice" name="price"><%=CmmUtil.addComma(Integer.parseInt(tMap.get(key).getTmpBasketPrdtPrice()) * Integer.parseInt(tMap.get(key).getTmpBasketPrdtQty())) + "원" %></div>
-				<a href="#" onclick="tmpBasketDeleteOne('<%=CmmUtil.nvl(tMap.get(key).getTmpBasketPrdtNo())%>');"><img src="userBootstrap/navImage/recommend.png"
+				<a href="#" onclick="tmpBasketDeleteOne('<%=CmmUtil.nvl(tMap.get(key).getTmpBasketPrdtNo())%>');"><img src="userBootstrap/navImage/trash.png"
 					class="tmpBasketDeleteImg"></a>
 				<hr class="tmpBasketHr">
 			</div>
