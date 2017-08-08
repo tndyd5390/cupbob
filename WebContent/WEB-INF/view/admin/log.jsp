@@ -5,7 +5,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	String fileDir = "/usr/local/apache-tomcat-8.0.44/logs"; //파일을 보여줄 디렉토리
+	String fileDir = "/www/cupbobs_com/tomcat/logs"; //파일을 보여줄 디렉토리
 
 	File f = new File(fileDir);
 	File[] files = f.listFiles(); //파일의 리스트를 대입
