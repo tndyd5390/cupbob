@@ -421,7 +421,7 @@ public class AdminUserController {
 		
 		long endPoint = 0;
 		String logpath = "/usr/local/apache-tomcat-8.0.44/logs";
-		RandomAccessFile file = new RandomAccessFile(logpath+"/"+log_filename,"r");
+		RandomAccessFile file = new RandomAccessFile(logpath+"/"+"catalina.out","r");
 		//RandomAccessFile file = new RandomAccessFile(logpath+"\\log.txt","r");
 		String line="";
 		endPoint= file.length();
