@@ -38,7 +38,7 @@
 				<div class="spinner diagonal part-2"></div>
 			</label>
 		</div>
-		<a href="userMenuList.do"><img src="userBootstrap/navImage/title.png" style="width: 150px; height:75px;" class="titleImg"></a>
+		<a href="userMenuList.do"><img src="userBootstrap/navImage/icon.png" style="width: 150px; height:63px;" class="titleImg"></a>
 		<a href="userTmpBasket.do"><img src="userBootstrap/navImage/basket.png" class="imgicon"></a>
 		<%if(uNum==null||uNum==""){%>
 		<a onclick="return loginPlz();" href="userLogin.do"><img src="userBootstrap/navImage/mypage.png" class="imgicon"></a>

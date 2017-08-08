@@ -1,6 +1,7 @@
 package com.cupbob.controller.user;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -111,12 +112,13 @@ public class OrderController {
 		log.info(this.getClass() + " etc_data2 : " + etc_data2);//수령시간 넘어 올것
 		String etc_data3 =CmmUtil.nvl(req.getParameter("ETC_DATA3"));		
 		log.info(this.getClass() + " etc_data3 : " + etc_data3);
-		
+		String now = System.currentTimeMillis() + "";
 		if(rep_code.equals("0000")){
 			/**
 			 * 결제 성공
 			 */
 			Order_infoDTO oDTO = new Order_infoDTO();
+			oDTO.setOrd_no(now);
 			oDTO.setTotal_ord_price(amt);
 			if(tran_type.equals("PHON")){
 				oDTO.setPayment_tp("p");
@@ -129,7 +131,7 @@ public class OrderController {
 			oDTO.setUser_no(etc_data1);
 			oDTO.setReg_user_no(etc_data1);
 			String[] orderItems = etc_data3.split("-");
-			List<Order_itemDTO> oList = new ArrayList<>();
+			List<Order_itemDTO> oList = new ArrayList<Order_itemDTO>();
 			for(int i = 0; i< orderItems.length; i++){
 				String[] orderItem = orderItems[i].split(":");
 				Order_itemDTO oIDTO = new Order_itemDTO();
@@ -158,6 +160,14 @@ public class OrderController {
 	@RequestMapping(value="orderSuccess")
 	public String orderSuccess(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
 		log.info(this.getClass() + "orderSuccess start!!!");
+		String userNo = (String)session.getAttribute("ss_user_no");
+		Order_infoDTO oDTO = orderService.getOrderNo(userNo);
+		if(oDTO == null){
+			oDTO = new Order_infoDTO();
+		}
+		model.addAttribute("ordNo", CmmUtil.nvl(oDTO.getOrd_no()));
+		userNo = null;
+		oDTO = null;
 		log.info(this.getClass() + "orderSuccess end!!!");
 		return "user/orderSuccess";
 	}
@@ -182,7 +192,7 @@ public class OrderController {
 		log.info(this.getClass() + " price : " + price);
 		String prdtName = CmmUtil.nvl(req.getParameter("prdtName"));
 		log.info(this.getClass() + " prdtName : "  + prdtName);
-		Map<String, TmpBasketDTO> tMap = new HashMap<>();
+		Map<String, TmpBasketDTO> tMap = new HashMap();
 		TmpBasketDTO tDTO = new TmpBasketDTO(prdtNo, qty, price, prdtName);
 		tMap.put(prdtNo, tDTO);
 		Iterator<String> keyss = tMap.keySet().iterator();

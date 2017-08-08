@@ -78,7 +78,7 @@ public class AdminOrderController {
 		log.info(this.getClass() + ".adminOrderCancel statNo : " + statNo);
 		List<TotalOrderDTO> tList = orderService.updateAdminOrdNo(ordNo, statNo);
 		if(tList == null){
-			tList = new ArrayList<>();
+			tList = new ArrayList<TotalOrderDTO>();
 		}
 		log.info(this.getClass() +  ".adminOrderCancel end!!");
 		return tList;

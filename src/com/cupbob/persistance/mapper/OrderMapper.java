@@ -15,5 +15,6 @@ public interface OrderMapper {
 	public int updateAdminOrderProc(Map<String, String> map) throws Exception;
 	public int insertOrderInfo(Order_infoDTO oDTO) throws Exception;
 	public int insertOrderItem(List<Order_itemDTO> oList) throws Exception;
+	public Order_infoDTO getOrderNo(String userNo) throws Exception;
 	public int test() throws Exception;
 }

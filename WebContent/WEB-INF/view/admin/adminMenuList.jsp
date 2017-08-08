@@ -6,7 +6,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	List<Product_infoDTO> pList = (List<Product_infoDTO>) request.getAttribute("pList");
-
+	String imgPath = "/www/cupbobs_com/www/menuImg/";
 String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 %>
