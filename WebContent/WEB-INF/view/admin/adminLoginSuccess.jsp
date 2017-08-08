@@ -17,8 +17,12 @@
 </head>
 
 <%
-if (ss_user_no==""||!(ss_user_no.equals("81"))) {
-		response.sendRedirect("adminLogin.do");
+if (ss_user_email==""||!(ss_user_email.equals("kangseokopo@gmail.com"))) {
+	response.sendRedirect("adminLogin.do");
+	ss_user_email = "";
+	ss_user_name = "";
+	ss_user_no = "";
+	
 }else{%>
 
 

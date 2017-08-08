@@ -7,8 +7,8 @@
 <%@include file="/include/head.jsp"%>
 <%
 	Product_infoDTO pDTO = (Product_infoDTO)request.getAttribute("pDTO");
-	
-	String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
+String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
+String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,7 +16,7 @@
 </head>
 
 <%
-if (ss_userNo==""||!(ss_userNo.equals("81"))) {
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		response.sendRedirect("adminLogin.do");
 }else{%>
 

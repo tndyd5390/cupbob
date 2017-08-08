@@ -6,6 +6,7 @@
 <%
 	List<TotalOrderDTO> tList = (List<TotalOrderDTO>)request.getAttribute("TotalOrderList");
 	String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
+	String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 %>
 <!DOCTYPE html>
 <html>
@@ -13,8 +14,8 @@
 <head>
 
 <%
-	if (ss_userNo==""||!(ss_userNo.equals("81"))) {
-		response.sendRedirect("adminLogin.do");
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
+	response.sendRedirect("adminLogin.do");
 }else{%>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

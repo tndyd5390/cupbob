@@ -4,7 +4,7 @@
 <%@page import="com.cupbob.util.CmmUtil" %>
 <%
 	User_infoDTO udto = (User_infoDTO)request.getAttribute("udto");
-
+String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 %>
 	
@@ -28,7 +28,7 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 
 
 <%
-if (ss_userNo==""||!(ss_userNo.equals("81"))) {
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		response.sendRedirect("adminLogin.do");
 }else{%>
 

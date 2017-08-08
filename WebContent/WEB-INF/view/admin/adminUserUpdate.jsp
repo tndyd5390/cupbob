@@ -3,6 +3,7 @@
 <%@ page import="com.cupbob.util.CmmUtil" %>
 <%
 String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
+String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 %>
 <html>
 <%@include file="/include/head.jsp"%>
@@ -11,7 +12,7 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 <title>소라네 컵밥 회원정보 수정</title>
 </head>
 <%
-if (ss_userNo==""||!(ss_userNo.equals("81"))) {
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		response.sendRedirect("adminLogin.do");
 }else{%>
 
