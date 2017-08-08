@@ -119,4 +119,9 @@ public class OrderService implements IOrderService {
 		return result;
 	}
 
+	@Override
+	public Order_infoDTO getOrderNo(String userNo) throws Exception {
+		return orderMapper.getOrderNo(userNo);
+	}
+
 }
