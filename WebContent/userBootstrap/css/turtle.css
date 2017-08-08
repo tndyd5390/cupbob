@@ -628,10 +628,17 @@ code {
 	max-width: 100%;
 	width: auto;
 	height: auto;
-	border-color: silver;
+	border-color: #FFFFFF;
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 50%
+}
+
+ .photo {
+	max-width: 100%;
+	object-fit:cover;
+	border-color: #FFFFFF;
+	border-radius: 50%;
 }
 
 .menuName {

@@ -417,7 +417,7 @@ public class AdminUserController {
 	}
 	
 	@RequestMapping(value="logAjax")
-	public @ResponseBody List<Object> logAjax(@RequestParam String log_filename) throws Exception{
+	public @ResponseBody List<Object> logAjax(@RequestParam(value = "log_filename") String log_filename) throws Exception{
 		
 		long endPoint = 0;
 		String logpath = "/usr/local/apache-tomcat-8.0.44/logs";
@@ -426,7 +426,7 @@ public class AdminUserController {
 		String line="";
 		endPoint= file.length();
 		file.seek(endPoint-5000);
-		ArrayList<Object> jsonList = new ArrayList<>();
+		ArrayList<Object> jsonList = new ArrayList<Object>();
 			
 		for(long i = endPoint - 5000;i<endPoint;i++){
 			if((line=file.readLine())!=null){
