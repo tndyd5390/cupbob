@@ -1,6 +1,8 @@
 package com.cupbob.controller.admin;
 
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -173,12 +175,12 @@ public class AdminUserController {
 		if (udto == null) {
 			udto = new User_infoDTO();
 		}
-		log.info("유저번호 = " + udto.getUser_no());
-		log.info("이름 = " + udto.getUser_name());
-		log.info("이메일 = " + udto.getEmail());
-		log.info("성별 = " + udto.getGender());
-		log.info("생년월일 = " + udto.getBirthday());
-		log.info("전화번호 = " + udto.getContact_addr());
+		log.info("�쑀��踰덊샇 = " + udto.getUser_no());
+		log.info("�씠由� = " + udto.getUser_name());
+		log.info("�씠硫붿씪 = " + udto.getEmail());
+		log.info("�꽦蹂� = " + udto.getGender());
+		log.info("�깮�뀈�썡�씪 = " + udto.getBirthday());
+		log.info("�쟾�솕踰덊샇 = " + udto.getContact_addr());
 
 		model.addAttribute("udto", udto);
 		udto = null;
@@ -204,10 +206,10 @@ public class AdminUserController {
 		String url = " ";
 
 		if (result > 0) {
-			msg = "삭제완료되었습니다.";
+			msg = "�궘�젣�셿猷뚮릺�뿀�뒿�땲�떎.";
 			url = "adminUserList.do";
 		} else {
-			msg = "삭제실패했습니다.";
+			msg = "�궘�젣�떎�뙣�뻽�뒿�땲�떎.";
 			url = "adminUserDetail.do?unum=" + unum;
 		}
 		model.addAttribute("msg", msg);
@@ -244,10 +246,10 @@ public class AdminUserController {
 		
 		uDTO=null;
 		if(result!=0){
-			model.addAttribute("msg","수정되었습니다.");
+			model.addAttribute("msg","�닔�젙�릺�뿀�뒿�땲�떎.");
 			model.addAttribute("url","adminUserDetail.do?unum="+uNum);
 		}else{
-			model.addAttribute("msg","실패하였습니다.");
+			model.addAttribute("msg","�떎�뙣�븯���뒿�땲�떎.");
 			model.addAttribute("url","adminUserDetail.do?unum="+uNum);
 		}
 		
@@ -264,10 +266,10 @@ public class AdminUserController {
 		User_infoDTO uDTO = new User_infoDTO();
 		uDTO.setAllCheck(del_check);
 		if(userService.deleteUserAllChecked(uDTO)){
-			model.addAttribute("msg","삭제되었습니다.");
+			model.addAttribute("msg","�궘�젣�릺�뿀�뒿�땲�떎.");
 			
 		}else {
-			model.addAttribute("msg","삭제 실패하였습니다.");
+			model.addAttribute("msg","�궘�젣 �떎�뙣�븯���뒿�땲�떎.");
 		}
 		model.addAttribute("url","adminUserList.do");
 		uDTO = null;
@@ -361,10 +363,10 @@ public class AdminUserController {
 			sandEmail.setReciver(email);
 			System.out.println(sandEmail.getReciver());
 			
-			sandEmail.setSubject("소라 밥집 입니다.");
+			sandEmail.setSubject("�냼�씪 諛μ쭛 �엯�땲�떎.");
 			System.out.println(sandEmail.getSubject());
 			
-			sandEmail.setContent("회원님의 임시 비밀번호는" + udto.getPassword() + "입니다.");
+			sandEmail.setContent("�쉶�썝�떂�쓽 �엫�떆 鍮꾨�踰덊샇�뒗" + udto.getPassword() + "�엯�땲�떎.");
 			System.out.println(sandEmail.getContent());
 			
 			emailSender.SendEmail(sandEmail);
@@ -403,5 +405,37 @@ public class AdminUserController {
 			
 			return userList;
 		}
+	}
+	
+	@RequestMapping(value="adminLog")
+	public String adminLog() throws Exception{
+		log.info(this.getClass().getName() + " logPage Start");
+		
+		
+		log.info(this.getClass().getName() + " logPage End");
+		return "admin/log";
+	}
+	
+	@RequestMapping(value="logAjax")
+	public @ResponseBody List<Object> logAjax(@RequestParam String log_filename) throws Exception{
+		
+		long endPoint = 0;
+		String logpath = "/usr/local/apache-tomcat-8.0.44/logs";
+		RandomAccessFile file = new RandomAccessFile(logpath+"/"+log_filename,"r");
+		//RandomAccessFile file = new RandomAccessFile(logpath+"\\log.txt","r");
+		String line="";
+		endPoint= file.length();
+		file.seek(endPoint-5000);
+		ArrayList<Object> jsonList = new ArrayList<>();
+			
+		for(long i = endPoint - 5000;i<endPoint;i++){
+			if((line=file.readLine())!=null){
+				HashMap<String, String> jsonMap = new HashMap<String, String>();
+				jsonMap.put("log", line);
+				jsonList.add(jsonMap);
+			}
+		}
+		
+		return jsonList;
 	}
 }
