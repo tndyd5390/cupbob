@@ -42,7 +42,7 @@
 					for (Product_infoDTO pDTO : pList) {
 				%>
 				<div class="col-xs-6 col-sm-3" style="text-align: center">
-					<div id="menuImg">
+					<div id="photo">
 						<span><a
 							href="userMenuDetail.do?menuNo=<%=CmmUtil.nvl(pDTO.getPrdt_no())%>"><img
 								src="<%="menuImg/" + CmmUtil.nvl(pDTO.getFile_name())%>"

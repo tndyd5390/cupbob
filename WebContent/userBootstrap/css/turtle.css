@@ -634,6 +634,13 @@ code {
 	border-radius: 50%
 }
 
+ .photo {
+	max-width: 100%;
+	object-fit:cover;
+	border-color: #FFFFFF;
+	border-radius: 50%;
+}
+
 .menuName {
 	color: #565656;
 	font-family: Malgun Gothic;
