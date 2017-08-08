@@ -5,6 +5,7 @@
 <%
 	User_boardDTO bdto = (User_boardDTO)request.getAttribute("bdto");
 	String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
+	String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,8 +21,8 @@
 </head>
 
 <%
-	if (ss_userNo==""||!(ss_userNo.equals("kangseokopo@gmail.com"))) {
-		response.sendRedirect("adminLogin.do");
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
+	response.sendRedirect("adminLogin.do");
 }else{%>
 
 

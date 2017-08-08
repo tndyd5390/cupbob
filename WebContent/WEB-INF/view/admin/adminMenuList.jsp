@@ -8,7 +8,7 @@
 	List<Product_infoDTO> pList = (List<Product_infoDTO>) request.getAttribute("pList");
 	String imgPath = "/www/cupbobs_com/www/menuImg/";
 String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
-
+String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 %>
 <!DOCTYPE html>
 <html>
@@ -103,7 +103,7 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 </head>
 
 <%
-	if (ss_userNo==""||!(ss_userNo.equals("kangseokopo@gmail.com"))) {
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		response.sendRedirect("adminLogin.do");
 }else{%>
 

@@ -6,7 +6,7 @@
 
 <%
 
-
+String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 %>
 <html lang="en">
@@ -17,7 +17,7 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
   <body>
   
 <%
-	if (ss_userNo==""||!(ss_userNo.equals("kangseokopo@gmail.com"))) {
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		response.sendRedirect("adminLogin.do");
 }else{%>
 <%@include file="/include/naviBarAndasideBar.jsp"%> 

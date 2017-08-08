@@ -9,7 +9,7 @@
 	
 	<select id="login" resultType="User_infoDTO" parameterType="User_infoDTO">
 		SELECT EMAIL, USER_NAME, USER_NO FROM USER_INFO WHERE EMAIL = 
-		#{email} AND PASSWORD = #{password}
+		#{email} AND PASSWORD = PASSWORD(#{password})
 	</select>
 	
 	<insert id="join" parameterType="User_infoDTO">
@@ -30,7 +30,7 @@
 			#{contact_addr},
 			#{birthday},
 			#{gender},
-			#{password},
+			PASSWORD(#{password}),
 			#{user_name},
 			0
 		)
@@ -46,7 +46,7 @@
 	</select>
 	
 	<select id="userUpdateCheck" resultType="User_infoDTO" parameterType="User_infoDTO">
-		SELECT USER_NO FROM USER_INFO WHERE USER_NO = #{user_no} AND PASSWORD = #{password}
+		SELECT USER_NO FROM USER_INFO WHERE USER_NO = #{user_no} AND PASSWORD = PASSWORD(#{password})
 	</select>
 	
 	<delete id="userDelete" parameterType="user_infoDTO">
@@ -55,11 +55,11 @@
 	
 	<update id="updateUserDetail" parameterType="user_infoDTO">
 		UPDATE USER_INFO SET USER_NAME=#{user_name}, GENDER=#{gender}, BIRTHDAY=#{birthday},
-		CONTACT_ADDR = #{contact_addr}, CHG_USER_NO=#{chg_user_no}, CHG_DT = SYSDATE() WHERE USER_NO = #{user_no}
+		CONTACT_ADDR = #{contact_addr}, CHG_USER_NO=#{chg_user_no}, CHG_DT = NOW() WHERE USER_NO = #{user_no}
 	</update>
 	
 	<update id="updatePassword" parameterType="user_infoDTO">
-		UPDATE USER_INFO SET PASSWORD=#{password} WHERE USER_NO = #{user_no}
+		UPDATE USER_INFO SET PASSWORD=PASSWORD(#{password}) WHERE USER_NO = #{user_no}
 	</update>
 	
 	<delete id="deleteUserAllChecked" parameterType="User_infoDTO">
@@ -77,7 +77,7 @@
 	</select>
 	
 	<update id="updateTempPw" parameterType="User_infoDTO">
-		UPDATE USER_INFO SET PASSWORD=#{temp_pw} WHERE USER_NAME=#{user_name} AND EMAIL=#{email} AND BIRTHDAY=#{birthday}
+		UPDATE USER_INFO SET PASSWORD=PASSWORD(#{temp_pw}) WHERE USER_NAME=#{user_name} AND EMAIL=#{email} AND BIRTHDAY=#{birthday}
 	</update>
 	
 	<select id="userSearch" resultType="User_infoDTO" parameterType="User_InfoDTO">
@@ -91,6 +91,5 @@
 	<select id="userFindPw" resultType="User_infoDTO" parameterType="User_InfoDTO">
 		SELECT PASSWORD FROM USER_INFO WHERE EMAIL = #{email} AND USER_NAME=#{user_name} AND GENDER=#{gender} AND BIRTHDAY=#{birthday} AND CONTACT_ADDR=#{contact_addr}
 	</select>
-	
 	
 </mapper> 

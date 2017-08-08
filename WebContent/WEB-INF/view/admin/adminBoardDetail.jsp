@@ -12,8 +12,9 @@
 	bDTO.setContents(contents);
 	
 	String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
+	String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 	String ss_userName = CmmUtil.nvl((String) session.getAttribute("ss_user_name"));
-%>
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@include file="/include/head.jsp"%>
@@ -263,8 +264,9 @@ function cmtUpdateCancle(){
 <title>소라네 컵밥 커뮤니티</title>
 </head>
 <%
-	if (ss_userNo==""||!(ss_userNo.equals("kangseokopo@gmail.com"))) {
-		response.sendRedirect("adminLogin.do");
+
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
+	response.sendRedirect("adminLogin.do");
 }else{%>
 
 <body>
