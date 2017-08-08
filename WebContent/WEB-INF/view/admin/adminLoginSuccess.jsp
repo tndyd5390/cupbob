@@ -17,7 +17,7 @@
 </head>
 
 <%
-	if (ss_user_no==""||!(ss_user_no.equals("kangseokopo@gmail.com"))) {
+if (ss_userNo==""||!(ss_userNo.equals("81"))) {
 		response.sendRedirect("adminLogin.do");
 }else{%>
 

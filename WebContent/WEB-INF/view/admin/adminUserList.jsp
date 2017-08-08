@@ -102,7 +102,7 @@
 	<title>소라네 컵밥 회원정보</title>
 </head>
 <%
-	if (ss_userNo==""||!(ss_userNo.equals("kangseokopo@gmail.com"))) {
+if (ss_userNo==""||!(ss_userNo.equals("81"))) {
 		response.sendRedirect("adminLogin.do");
 }else{%>
 <body>

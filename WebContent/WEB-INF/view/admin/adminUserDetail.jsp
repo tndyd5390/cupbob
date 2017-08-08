@@ -28,7 +28,7 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 
 
 <%
-	if (ss_userNo==""||!(ss_userNo.equals("kangseokopo@gmail.com"))) {
+if (ss_userNo==""||!(ss_userNo.equals("81"))) {
 		response.sendRedirect("adminLogin.do");
 }else{%>
 
