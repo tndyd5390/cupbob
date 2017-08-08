@@ -1,12 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    	
+<%@ page import="com.cupbob.util.CmmUtil" %>
 <!DOCTYPE html>
+
+<%
+
+
+String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
+%>
 <html lang="en">
   <head>
 <%@include file="/include/head.jsp" %>
  	<title>소라네 컵밥</title>
   </head>
   <body>
+  
+<%
+	if (ss_userNo==""||!(ss_userNo.equals("kangseokopo@gmail.com"))) {
+		response.sendRedirect("adminLogin.do");
+}else{%>
 <%@include file="/include/naviBarAndasideBar.jsp"%> 
       <!--main content start-->
       <section id="main-content">
@@ -206,4 +219,7 @@
     });
 </script>
   </body>
+  <%
+}
+  %>
 </html>

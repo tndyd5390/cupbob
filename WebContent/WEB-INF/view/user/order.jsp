@@ -227,6 +227,8 @@
 		<button class="orderButton02" onclick="doSubmitOrder();">결제하기</button>
 
 	<br>
+		<div align="center">
 	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 </html>

@@ -31,6 +31,12 @@
 <script>
 var updateCheck = false;
 var pNo = <%=CmmUtil.nvl(bDTO.getPost_no())%>;
+
+function convertContent(str){
+	
+	return str.replace(/& lt;/g,"<").replace(/& gt;/g,">").replace(/& #40;/g,"(").replace(/& #41;/g,")").replace(/& #39;/g,"'");
+};
+
 $(function(){
 	$('#cmtCreate').bind('click',function() {
 		
@@ -59,7 +65,7 @@ $(function(){
 							contents += "<div class="+"contentsArea"+">";
 							contents += "<h4 class='reName'>"+value.user_name+"</h4>";
 							contents += "<div class='contentsInfo' id='cmt_"+value.cmt_no+"'>";
-							contents += "<span>"+ value.contents.replace(/\n/g,'<br>')+ "</span> <br>";	
+							contents += "<span>"+ convertContent(value.contents.replace(/\n/g,'<br>'))+ "</span> <br>";	
 							contents += "<h7>"+value.reg_dt+ " </h7> ";
 							contents += "<button class='saButton2' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+")>"+"수정"+"</button> ";
 							contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
@@ -72,7 +78,7 @@ $(function(){
 							contents += "<div class="+"contentsArea"+">";
 							contents += "<h4 class='reName'>"+value.user_name+"</h4>";
 							contents += "<div class='contentsInfo' id='cmt_"+value.cmt_no+"'>";
-							contents += "<span>"+ value.contents.replace(/\n/g,'<br>')+ "</span> <br>";	
+							contents += "<span>"+ convertContent(value.contents.replace(/\n/g,'<br>'))+ "</span> <br>";	
 							contents += "<h7>"+value.reg_dt+ " </h7> ";
 							contents +=	" </div>";
 							contents += " </div>";
@@ -108,7 +114,7 @@ function cmtDelete(cmt_no){
 									contents += "<div class="+"contentsArea"+">";
 									contents += "<h4 class='reName'>"+value.user_name+"</h4>";
 									contents += "<div class='contentsInfo' id='cmt_"+value.cmt_no+"'>";
-									contents += "<span>"+ value.contents.replace(/\n/g,'<br>')+ "</span> <br>";	
+									contents += "<span>"+ convertContent(value.contents.replace(/\n/g,'<br>'))+ "</span> <br>";	
 									contents += "<h7>"+value.reg_dt+ " </h7> ";
 									contents += "<button class='saButton2' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+")>"+"수정"+"</button> ";
 									contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
@@ -121,7 +127,7 @@ function cmtDelete(cmt_no){
 									contents += "<div class="+"contentsArea"+">";
 									contents += "<h4 class='reName'>"+value.user_name+"</h4>";
 									contents += "<div class='contentsInfo' id='cmt_"+value.cmt_no+"'>";
-									contents += "<span>"+ value.contents.replace(/\n/g,'<br>')+ "</span> <br>";	
+									contents += "<span>"+ convertContent(value.contents.replace(/\n/g,'<br>'))+ "</span> <br>";	
 									contents += "<h7>"+value.reg_dt+ " </h7> ";
 									contents +=	" </div>";
 									contents += " </div>";
@@ -204,7 +210,7 @@ function cmtUpdateCancle(){
 					contents += "<div class="+"contentsArea"+">";
 					contents += "<h4 class='reName'>"+value.user_name+"</h4>";
 					contents += "<div class='contentsInfo' id='cmt_"+value.cmt_no+"'>";
-					contents += "<span>"+ value.contents.replace(/\n/g,'<br>')+ "</span> <br>";	
+					contents += "<span>"+ convertContent(value.contents.replace(/\n/g,'<br>'))+ "</span> <br>";	
 					contents += "<h7>"+value.reg_dt+ " </h7> ";
 					contents += "<button class='saButton2' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+")>"+"수정"+"</button> ";
 					contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
@@ -217,7 +223,7 @@ function cmtUpdateCancle(){
 					contents += "<div class="+"contentsArea"+">";
 					contents += "<h4 class='reName'>"+value.user_name+"</h4>";
 					contents += "<div class='contentsInfo' id='cmt_"+value.cmt_no+"'>";
-					contents += "<span>"+ value.contents.replace(/\n/g,'<br>')+ "</span> <br>";	
+					contents += "<span>"+ convertContent(value.contents.replace(/\n/g,'<br>'))+ "</span> <br>";	
 					contents += "<h7>"+value.reg_dt+ " </h7> ";
 					contents +=	" </div>";
 					contents += " </div>";
@@ -244,7 +250,7 @@ function cmtUpdateCancle(){
 					contents += "<div class="+"contentsArea"+">";
 					contents += "<h4 class='reName'>"+value.user_name+"</h4>";
 					contents += "<div class='contentsInfo' id='cmt_"+value.cmt_no+"'>";
-					contents += "<span>"+ value.contents.replace(/\n/g,'<br>')+ "</span> <br>";	
+					contents += "<span>"+ convertContent(value.contents.replace(/\n/g,'<br>'))+ "</span> <br>";	
 					contents += "<h7>"+value.reg_dt+ " </h7> ";
 					contents += "<button class='saButton2' onclick=cmtUpdate("+value.cmt_no+","+"'"+value.user_name+"'"+")>"+"수정"+"</button> ";
 					contents += " <button class='saButton2' onclick=cmtDelete("+value.cmt_no+")>"+"삭제"+"</button>";
@@ -257,7 +263,7 @@ function cmtUpdateCancle(){
 					contents += "<div class="+"contentsArea"+">";
 					contents += "<h4 class='reName'>"+value.user_name+"</h4>";
 					contents += "<div class='contentsInfo' id='cmt_"+value.cmt_no+"'>";
-					contents += "<span>"+ value.contents.replace(/\n/g,'<br>')+ "</span> <br>";	
+					contents += "<span>"+ convertContent(value.contents.replace(/\n/g,'<br>'))+ "</span> <br>";	
 					contents += "<h7>"+value.reg_dt+ " </h7> ";
 					contents +=	" </div>";
 					contents += " </div>";
@@ -299,7 +305,7 @@ function cmtUpdateCancle(){
 				<%if(bDTO.getReg_user_no().equals(ss_user_no)){ %>
 				<button class="saButton0" onclick="location.href='userBoardDelete.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>'">삭제</button>
 				<button class="saButton1" onclick="location.href='userBoardUpdateView.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>';">수정</button>
-				<%} %>
+				<%}; %>
 				<br />
 			</div>
 			<hr class="blackHr">
@@ -336,7 +342,7 @@ function cmtUpdateCancle(){
 						<h4 class="reName"><%=CmmUtil.nvl(cDTO.getUser_name())%></h4>
 						<div class="contentsInfo"
 							id="cmt_<%=CmmUtil.nvl(cDTO.getCmt_no())%>">
-							<span><%=CmmUtil.replaceBr(CmmUtil.nvl(cDTO.getContents()))%></span><br />
+							<span><%=CmmUtil.replaceBr(CmmUtil.exchangeEscapeNvl(cDTO.getContents()))%></span><br />
 							<h7 class="reDate"><%=CmmUtil.nvl(cDTO.getReg_dt())%></h7>
 							<%
 								if (cDTO.getUser_no().equals(ss_user_no)) {
@@ -346,13 +352,13 @@ function cmtUpdateCancle(){
 							<button class='saButton2'
 								onclick='cmtDelete(<%=CmmUtil.nvl(cDTO.getCmt_no())%>)'>삭제</button>
 							<%
-								}
+								};
 							%>
 						</div>
 					</div> <br />
 				</li>
 				<%
-					}
+					};
 				%>
 			</div>
 		</ul>

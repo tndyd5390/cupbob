@@ -153,6 +153,8 @@
 		</div>
 	</div>
 	<br>
+		<div align="center">
 	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 </html>

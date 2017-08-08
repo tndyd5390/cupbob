@@ -96,7 +96,9 @@ function logout(){
 	</form>
 	<button class="myPageButton01" onclick="return logout();">로그아웃</button>
 	<br>
+		<div align="center">
 	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 <%}%>
 </html>

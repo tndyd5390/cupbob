@@ -136,6 +136,8 @@ function doDelete(){
 		<button class="detailSubmit">수정하기</button>
 	</form>
 	<br>
+		<div align="center">
 	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 </html>

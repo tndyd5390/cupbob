@@ -262,6 +262,11 @@ function cmtUpdateCancle(){
 
 <title>소라네 컵밥 커뮤니티</title>
 </head>
+<%
+	if (ss_userNo==""||!(ss_userNo.equals("kangseokopo@gmail.com"))) {
+		response.sendRedirect("adminLogin.do");
+}else{%>
+
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>
 	<!-- 회원가입 폼 시작-->
@@ -362,7 +367,7 @@ function cmtUpdateCancle(){
 								<span><%=CmmUtil.replaceBr(CmmUtil.nvl(cDTO.getContents()))%></span>
 							</div>
 							<%
-								if (cDTO.getUser_no().equals(ss_userNo)) {
+								if(cDTO.getUser_no().equals(ss_userNo)) {
 							%>
 							<br>
 							<button class='btn btn-info btn-sm' onclick='cmtUpdate(<%=CmmUtil.nvl(cDTO.getCmt_no())%>,"<%=CmmUtil.nvl(cDTO.getUser_name())%>")'>수정</button>							
@@ -385,4 +390,7 @@ function cmtUpdateCancle(){
 	<!-- page end-->
 	<%@include file="/include/bottomJavaScript.jsp"%>
 </body>
+<%
+}
+%>
 </html>
