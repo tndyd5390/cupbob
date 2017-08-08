@@ -108,7 +108,7 @@
 			<div class="d-Img">
 				<img
 					src="<%="menuImg/" + CmmUtil.nvl(pDTO.getFile_name()) %>"
-					class="photo">
+					class="menuImg">
 			</div>
 		</div>
 		<div>
