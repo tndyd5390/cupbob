@@ -1,10 +1,12 @@
 <%@ page import="java.io.*"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.cupbob.util.CmmUtil"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"
 	pageEncoding="UTF-8"%>
 
 <%
+	String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 	String fileDir = "/www/cupbobs_com/tomcat/logs"; //파일을 보여줄 디렉토리
 
 	File f = new File(fileDir);
@@ -105,6 +107,11 @@
     
 
 </head>
+<%
+
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
+	response.sendRedirect("adminLogin.do");
+}else{%>
 <body>
 	<div id="header">
 		<h2>Log Tail</h2>
@@ -122,4 +129,7 @@
 	
 	<textarea id="console"></textarea>
 </body>
+<%
+}
+%>
 </html>
