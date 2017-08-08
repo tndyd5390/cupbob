@@ -327,7 +327,6 @@ public class UserController {
 		
 		uDTO = userService.getUserFindEmail(uDTO);
 		
-		
 		if(uDTO == null){
 			log.info("userEmailFind Fail!!");
 			model.addAttribute("msg","입력하신 정보가 일치하지 않습니다");
@@ -403,7 +402,6 @@ public class UserController {
 		session.setAttribute("ss_user_ca", "");
 
 		log.info(this.getClass().getName() + " adminLogout end");
-
 		
 		return "redirect:userLogin.do";
 	}
