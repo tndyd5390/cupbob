@@ -22,7 +22,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <title>소라네 컵밥 메뉴 상세보기</title>
 <script type="text/javascript">
-//주석 달리나???
 	function addComma(x) {
     	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
@@ -109,7 +108,7 @@
 			<div class="d-Img">
 				<img
 					src="<%="menuImg/" + CmmUtil.nvl(pDTO.getFile_name()) %>"
-					class="detailImg">
+					class="photo">
 			</div>
 		</div>
 		<div>
