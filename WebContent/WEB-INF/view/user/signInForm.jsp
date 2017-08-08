@@ -28,8 +28,7 @@
 			<p class="emailFont">회원님의 이메일은 추후 아이디로 사용됩니다.</p>
 		</div>
 		<div class="form-group">
-			<input type="password" class="form-control password" id=""
-				placeholder="비밀번호"> <input type="password"
+			<input type="password" class="form-control password" id="" placeholder="비밀번호"> <input type="password"
 				class="form-control password" id="" placeholder="비밀번호 재확인">
 			<p class="passwordFont">* 비밀번호가 일치하지 않습니다. 다시 입력해 주세요.</p>
 		</div>
