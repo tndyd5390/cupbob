@@ -417,11 +417,11 @@ public class AdminUserController {
 	}
 	
 	@RequestMapping(value="logAjax")
-	public @ResponseBody List<Object> logAjax(@RequestParam String log_filename) throws Exception{
+	public @ResponseBody List<Object> logAjax(@RequestParam(value = "log_filename") String log_filename) throws Exception{
 		
 		long endPoint = 0;
 		String logpath = "/usr/local/apache-tomcat-8.0.44/logs";
-		RandomAccessFile file = new RandomAccessFile(logpath+"/"+"catalina.out","r");
+		RandomAccessFile file = new RandomAccessFile(logpath+"/"+log_filename,"r");
 		//RandomAccessFile file = new RandomAccessFile(logpath+"\\log.txt","r");
 		String line="";
 		endPoint= file.length();
