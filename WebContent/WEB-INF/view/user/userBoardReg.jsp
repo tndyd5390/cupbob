@@ -1,5 +1,12 @@
+<%@page import="com.cupbob.util.CmmUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String userNo = (String)session.getAttribute("ss_user_no");
+	if(CmmUtil.nvl(userNo).equals("")){
+		response.sendRedirect("userLogin.do");
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>

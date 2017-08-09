@@ -3,6 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	String userNo = (String)session.getAttribute("ss_user_no");
+	if(CmmUtil.nvl(userNo).equals("")){
+		response.sendRedirect("userLogin.do");
+	}
 	User_boardDTO bDTO = (User_boardDTO)request.getAttribute("bDTO");
 	if(bDTO == null){
 		bDTO = new User_boardDTO();

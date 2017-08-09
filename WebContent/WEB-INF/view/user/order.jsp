@@ -8,6 +8,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	String userNo = (String)session.getAttribute("ss_user_no");
+	if(CmmUtil.nvl(userNo).equals("")){
+		response.sendRedirect("userLogin.do");
+	}
 	String hour = new SimpleDateFormat("HH").format(new Date());
 	hour = CmmUtil.nvl(hour, "0");
 	String minute = new SimpleDateFormat("mm").format(new Date());
