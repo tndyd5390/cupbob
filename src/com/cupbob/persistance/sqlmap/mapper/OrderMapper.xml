@@ -38,8 +38,7 @@
 		INSERT INTO ORDER_INFO
 			(
 			ORD_NO,
- 			TOTAL_ORD_PRICE,
- 			REAL_ORD_PRICE, 
+ 			TOTAL_ORD_PRICE, 
  			PAYMENT_TP, 
  			ORD_DT, 
  			ORD_STAT,
@@ -53,7 +52,6 @@
 			(
 			 #{ord_no},
 			 #{total_ord_price}, 
-			 #{real_ord_price},
 			 #{payment_tp}, 
 			 NOW(), 
 			 '1',
@@ -71,7 +69,7 @@
 			)
 		VALUES
 		<foreach collection="list" item="item" index="index" separator=",">
- 			(#{item.ord_no}, #{item.prdt_no}, #{item.ord_amnt}, #{item.reg_user_no}, NOW())
+ 			((SELECT ORD_NO FROM ORDER_INFO WHERE USER_NO = #{item.reg_user_no} ORDER BY REG_DT DESC LIMIT 1), #{item.prdt_no}, #{item.ord_amnt}, #{item.reg_user_no}, NOW())
 		</foreach>
 	</insert>
 	<select id="getOrderNo" resultType="Order_infoDTO" parameterType="string">
@@ -85,40 +83,5 @@
 			REG_DT
 		DESC LIMIT 1;
 	</select>
-	<select id="getUserMil" resultType="User_infoDTO" parameterType="string">
-		SELECT
-			MILEAGE
-		FROM
-			USER_INFO
-		WHERE
-			USER_NO = #{userNo}
-	</select>
-	<update id="updateUserMilDec" parameterType="user_infoDTO">
-		UPDATE USER_INFO SET MILEAGE = MILEAGE - #{mileage} WHERE USER_NO = #{user_no}
-	</update>
-	<insert id="insertMilHistory" parameterType="MilHistoryDTO">
-		INSERT INTO MIL_HISTORY
-		(
-			USER_NO,
-			ORD_NO,
-			SAVE,
-			SPEND,
-			HISTORY,
-			REG_DT,
-			REG_USER_NO
-		)
-		VALUES
-		(
-			#{user_no},
-			#{ord_no},
-			#{save},
-			#{spend},
-			#{history},
-			NOW(),
-			#{user_no}
-		)
-	</insert>
-	<update id="updateUserMilInc" parameterType="user_infoDTO">
-		UPDATE USER_INFO SET MILEAGE = MILEAGE + #{mileage} WHERE USER_NO = #{user_no}
-	</update>
+	
 </mapper>
