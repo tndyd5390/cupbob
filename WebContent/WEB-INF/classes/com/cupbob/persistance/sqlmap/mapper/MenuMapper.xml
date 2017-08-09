@@ -103,4 +103,15 @@
 		WHERE
 			USER_NO = #{userNo}
 	</select>
+	<select id="getUserRiceMenuList" resultType="Product_infoDTO">
+		SELECT * FROM PRODUCT_INFO WHERE PRDT_NAME LIKE '%컵밥'
+	</select>
+	
+	<select id="getUserNoodleMenuList" resultType="Product_infoDTO">
+ 		SELECT * FROM PRODUCT_INFO WHERE PRDT_NO = 7 OR PRDT_NO = 6;
+	</select>
+	
+	<select id="getUserCokeMenuList" resultType="Product_infoDTO">
+		SELECT * FROM PRODUCT_INFO WHERE PRDT_NO = 4
+	</select>
 </mapper>
