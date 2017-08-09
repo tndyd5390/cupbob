@@ -53,7 +53,11 @@
 						<li><a href="userCokeMenu.do"><img src="userBootstrap/navImage/drinks.png" class="menuIcon"></a><a href="#">음료</a></li>
 					</ul></li>
 				<li><a href="userBoardList.do" title="Link" class="nav-font"><strong>커뮤니티</strong></a></li>
+				<%if(uNum==null||uNum==""){%>
+				<li><a onclick="return loginPlz();" href="userLogin.do" title="Link" class="nav-font"><strong>주문내역</strong></a></li>
+				<% }else{ %>
 				<li><a href="userOrderList.do?uNum=<%=uNum%>" title="Link" class="nav-font"><strong>주문내역</strong></a></li>
+				<%} %>
 				<li><a href="map.do" title="Link" class="nav-font"><strong>매장위치</strong></a></li>
 			</ul>
 		</nav>

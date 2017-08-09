@@ -192,7 +192,11 @@ div.barCode{
 				<th>주문상태</th>
 			</thead>
 			<tbody id="orderList">
-			<%
+			<%if(totalList.size()==0){%>
+				<tr><td colspan=5>
+					<h4 align="center">주문내역이 없습니다.</h4>
+				</td></tr>
+			<% }else{
 				for(TotalOrderDTO tDTO : totalList){
 					String[] prdtName = tDTO.getPrdt_name().split(";");
 					String[] prdtPrice = tDTO.getPrdt_price().split(";");
@@ -281,7 +285,9 @@ div.barCode{
 			<%
 					}
 				}
+			}
 			%>
+			
 			</tbody>
 		</table>
 <script>

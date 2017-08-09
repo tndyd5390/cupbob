@@ -33,7 +33,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <title>소라네 컵밥 장바구니</title>
 <script type="text/javascript">
-var ss_userNo = <%=userNo%>;
+var ss_userNo = "<%=userNo%>";
 function addComma(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
