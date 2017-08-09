@@ -33,11 +33,37 @@ public class AdminChartController {
 	public @ResponseBody List<Chart_DTO> monthChart() throws Exception{
 		log.info(this.getClass().getName()+ " monthChart start");
 		
-		Chart_DTO cDTO = new Chart_DTO();
-		
-		List<Chart_DTO> chList = chartService.getMonthChart(cDTO);
+		List<Chart_DTO> chList = chartService.getMonthChart();
  		
 		log.info(this.getClass().getName()+ " monthChart end");
+		return chList;
+	}
+	
+	@RequestMapping(value="weekChart")
+	public @ResponseBody List<Chart_DTO> weekChart() throws Exception{
+		log.info(this.getClass().getName() + " weekChart Start!");
+
+		List<Chart_DTO> chList = chartService.getWeekChart();
+		
+		log.info(this.getClass().getName() + " weekChart End!");
+		return chList;
+	}
+	@RequestMapping(value="weekOrdPriceChart")
+	public @ResponseBody List<Chart_DTO> weekOrdPrice() throws Exception{
+		log.info(this.getClass().getName() + " weekOrdPrice start !");
+		
+		List<Chart_DTO> chList = chartService.getWeekOrdPrice();
+		
+		log.info(this.getClass().getName() + " weekOrdPrice end !");
+		return chList;
+	}
+	@RequestMapping(value="weekGenderChart")
+	public @ResponseBody List<Chart_DTO> weekGender() throws Exception{
+		log.info(this.getClass().getName() + " weekGender start !");
+		
+		List<Chart_DTO> chList = chartService.getWeekGender();
+		
+		log.info(this.getClass().getName() + " weekGender end !");
 		return chList;
 	}
 }

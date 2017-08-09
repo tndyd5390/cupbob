@@ -12,6 +12,98 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 <html lang="en">
   <head>
 <%@include file="/include/head.jsp" %>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script>
+    $(function() {
+			$.ajax({
+				url : "monthChart.do",
+				method : "post",
+				dataType : "json",
+				success : function(data){
+					var dt = "";
+					var arr = new Array();
+					$.each(data, function(key,value){
+						dt = {'label' : value.prdt_name, 'value' : value.count}
+						arr.push(dt)
+					});
+					Morris.Donut({
+						element : 'morris-donut-chart',
+						data : arr
+					});				
+				}
+			});
+			
+			$.ajax({
+				url : "weekChart.do",
+				method : "post",
+				dataType : "json",
+				success : function(data){
+					var dt = "";
+					var arr = new Array();
+					$.each(data, function(key, value){
+						dt = { 'year' : value.reg_dt, 'count' : value.count}
+						arr.push(dt)
+					});
+			        Morris.Area({
+			        	  element: 'morris-area-chart',
+			        	  data: arr,
+			        	  xkey: 'year',
+			        	  ykeys: ['count'],
+			        	  labels: ['총 판매량']
+			        	});
+				}
+			})
+			
+			$.ajax({
+				url : "weekOrdPriceChart.do",
+				method : "post",
+				dataType : "json",
+				success : function(data){
+					var dt = "";
+					var arr = new Array();
+					$.each(data, function(key, value){
+						dt = { 'year' : value.reg_dt, 'count' : value.count, 'totalPrice' : value.price}
+						arr.push(dt)
+					});
+			        Morris.Line({
+			        	  element: 'morris-line-chart',
+			        	  data: arr,
+			        	  xkey: 'year',
+			        	  ykeys: ['count', 'totalPrice'],
+			        	  labels: ['총 주문갯수(개)', '총 매출(천원)']
+			        	});
+				}
+			})
+				
+			$.ajax({
+				url : "weekGenderChart.do",
+				method : "post",
+				dataType : "json",
+				success : function(data){
+					var dt = "";
+					var arr = new Array();
+					$.each(data, function(key, value){
+						dt = { 'year' : value.reg_dt, 'male_count' : value.male_count, 'female_count' : value.female_count}
+						arr.push(dt)
+					});
+					Morris.Bar({
+		            element: 'morris-bar-chart',
+		            data: arr.sort(),
+		            xkey: 'year',
+		            ykeys: ['male_count', 'female_count'],
+		            labels: ['남성', '여성'],
+		            hideHover: 'auto',
+		            resize: true
+		        });
+				}
+			})
+			
+			
+
+    });
+</script>
+
  	<title>소라네 컵밥</title>
   </head>
   <body>
@@ -34,7 +126,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            	월간 컵밥 판매 
+                            	주간 총 판매량 
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -48,7 +140,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                                           포장, 방문 고객 그래프
+                                           성별 판매량
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -76,7 +168,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            월간 컵밥 판매
+                            월간 메뉴 판매량
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -114,110 +206,6 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
     <!--custome script for all page-->
     <script src="adminBootstrap/js/scripts.js"></script>
     <script src="adminBootstrap/vendor/raphael/raphael.min.js"></script>
-    <script src="adminBootstrap/vendor/morrisjs/morris.min.js"></script>
-    <script>
-    $(function() {
-			$.ajax({
-				url : "monthChart.do",
-				method : "post",
-				dataType : "json",
-				success : function(data){
-					var dt = "";
-					var arr = new Array();
-					$.each(data, function(key,value){
-						dt = {'label' : value.prdt_name, 'value' : value.count}
-						arr.push(dt)
-					});
-					Morris.Donut({
-						element : 'morris-donut-chart',
-						data : arr
-					});				
-				}
-			})
-			
-			$.ajax({
-				url : "monthChart.do",
-				method : "post",
-				dataType : "json",
-				success : function(data){
-					var dt = "";
-					var arr = new Array();
-					$.each(data, function(key, value){
-						dt = { y : value.reg_dt, a : value.count}
-						arr.push(dt)
-					});
-					console.log(arr)
-					Morris.Line({
-						element : 'morris-area-chart',
-						data : [{y:'2017-6', a:10, b:10}, {y:'2017-07', a:20, b:20}],
-						xkey: 'y',
-						ykey: ['a', 'b'],
-						labels:['a','b']
-					});
-				}
-				
-			})
-			
-			Morris.Bar({
-            element: 'morris-bar-chart',
-            data: [{
-                y: '2017.06.01',
-                a: 100,
-                b: 90
-            }, {
-                y: '2017.06.02',
-                a: 75,
-                b: 65
-            }, {
-                y: '2017.06.03',
-                a: 50,
-                b: 40
-            }, {
-                y: '2017.06.04',
-                a: 75,
-                b: 65
-            }, {
-                y: '2017.06.05',
-                a: 50,
-                b: 40
-            }, {
-                y: '2017.06.06',
-                a: 75,
-                b: 65
-            }, {
-                y: '2017.06.07',
-                a: 100,
-                b: 90
-            }],
-            xkey: 'y',
-            ykeys: ['a', 'b'],
-            labels: ['포장고객', '방문고객'],
-            hideHover: 'auto',
-            resize: true
-        });
-        Morris.Line({
-        	  // ID of the element in which to draw the chart.
-        	  element: 'morris-line-chart',
-        	  // Chart data records -- each entry in this array corresponds to a point on
-        	  // the chart.
-        	  data: [
-        	    { year: '170601', value: 450000 },
-        	    { year: '170602', value: 387500 },
-        	    { year: '170603', value: 423600 },
-        	    { year: '170604', value: 432650 },
-        	    { year: '170605', value: 765200 }
-        	  ],
-        	  // The name of the data record attribute that contains x-values.
-        	  xkey: 'year',
-        	  // A list of names of data record attributes that contain y-values.
-        	  ykeys: ['value'],
-        	  // Labels for the ykeys -- will be displayed when you hover over the
-        	  // chart.
-        	  labels: ['Value']
-        	});
-
-    });
-</script>
   </body>
   <%
 }
