@@ -149,14 +149,14 @@ function cmtUpdate(cmt_no,user_name){
 	if(updateCheck==false){
 		var cmtNo = cmt_no;
 		var userName = user_name;
-		var contents = $('#cmt_'+cmtNo+' > span').html();
+		var contents = $('#cmt_'+cmtNo+' > span').html().replace(/<br>/gi,'\n');
 		var updateForm = "<div  id="+cmtNo+">" +
 		                 "<div class=contentsArea>" + 
 		                 "<h4 class='reName'>"+userName+"</h4> </div> <br>" +
 		                 "<div class=col-xs-12><textarea class='upComText' id='cmtUpdateArea'>"+contents+"</textarea>" +
 		                 "<button class='saButton2' id='cmtUpdateBtn' onclick='cmtUpdateProc("+cmtNo+")'>수정</button> "+
 		                 "<button class='saButton2' id='cmtUpdateCancle' onclick='cmtUpdateCancle()'>취소</button>"+
-		                 "</div> <br> <br> <br>";
+		                 "</div> <br> <br> <br> <br>";
 		$('#'+cmtNo).html(updateForm);
 	}else{
 		alert("하나의 댓글만 수정가능합니다");
