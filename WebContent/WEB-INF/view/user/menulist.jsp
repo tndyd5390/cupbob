@@ -5,6 +5,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	List<Product_infoDTO> pList = (List<Product_infoDTO>) request.getAttribute("pList");
+	String menuTxt = (String) request.getAttribute("menu");
 %>
 <!DOCTYPE html>
 <html>
@@ -31,7 +32,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="recommTitle">
-					<img src="userBootstrap/navImage/best.png" width="30px;"> <span><strong>추천메뉴</strong></span>
+					<img src="userBootstrap/navImage/best.png" width="30px;"> <span><strong><%=menuTxt %></strong></span>
 				</div>
 			</div>
 			<div class="row">

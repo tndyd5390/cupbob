@@ -43,8 +43,56 @@ public class MenuController {
 			pList = new ArrayList<Product_infoDTO>();
 		}
 		model.addAttribute("pList", pList);
+		model.addAttribute("menu", "추천 메뉴");
 		pList = null;
 		log.info(this.getClass() + "userMenuList end!!!");
+		return "user/menulist";
+	}
+	@RequestMapping(value="userRiceMenu")
+	public String userMenuRice(Model model) throws Exception{
+		log.info(this.getClass() + "userRiceMenuList start!!!");
+		List<Product_infoDTO> pList;
+		
+		pList = menuService.getUserRiceMenuList();
+		if(pList == null){
+			pList = new ArrayList<Product_infoDTO>();
+		}
+		model.addAttribute("pList", pList);
+		model.addAttribute("menu", "컵밥");
+		pList = null;
+		log.info(this.getClass() + "userRiceMenuList end!!!");
+		
+		return "user/menulist";
+	}
+	@RequestMapping(value="userNoodleMenu")
+	public String userNoodleRice(Model model) throws Exception{
+		log.info(this.getClass() + "userNoodleMenuList start!!!");
+		List<Product_infoDTO> pList;
+		
+		pList = menuService.getUserNoodleMenuList();
+		if(pList == null){
+			pList = new ArrayList<Product_infoDTO>();
+		}
+		model.addAttribute("pList", pList);
+		model.addAttribute("menu", "면류");
+		pList = null;
+		log.info(this.getClass() + "userNoodleMenuList end!!!");
+		
+		return "user/menulist";
+	}
+	@RequestMapping(value="userCokeMenu")
+	public String userCokeRice(Model model) throws Exception{
+		log.info(this.getClass() + "userCokeMenuList start!!!");
+		List<Product_infoDTO> pList;
+		
+		pList = menuService.getUserCokeMenuList();
+		if(pList == null){
+			pList = new ArrayList<Product_infoDTO>();
+		}
+		model.addAttribute("pList", pList);
+		model.addAttribute("menu", "음료");
+		pList = null;
+		log.info(this.getClass() + "userCokeMenuList end!!!");
 		return "user/menulist";
 	}
 	

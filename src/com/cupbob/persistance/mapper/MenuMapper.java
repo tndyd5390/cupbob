@@ -19,4 +19,8 @@ public interface MenuMapper {
 	public List<Product_infoDTO> getUserMenuList() throws Exception;
 	public Product_infoDTO getUserMenuDetail(String menuNo) throws Exception;
 	public User_infoDTO getUserMil(String userNo) throws Exception;
+	public List<Product_infoDTO> getUserRiceMenuList() throws Exception;
+	public List<Product_infoDTO> getUserNoodleMenuList() throws Exception;
+	public List<Product_infoDTO> getUserCokeMenuList() throws Exception;
+
 }

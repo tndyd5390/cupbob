@@ -113,4 +113,19 @@ public class MenuService implements IMenuService{
 	public User_infoDTO getUserMil(String userNo) throws Exception {
 		return menuMapper.getUserMil(userNo);
 	}
+
+	@Override
+	public List<Product_infoDTO> getUserRiceMenuList() throws Exception {
+		return menuMapper.getUserRiceMenuList();
+	}
+
+	@Override
+	public List<Product_infoDTO> getUserNoodleMenuList() throws Exception {
+		return menuMapper.getUserNoodleMenuList();
+	}
+
+	@Override
+	public List<Product_infoDTO> getUserCokeMenuList() throws Exception {
+		return menuMapper.getUserCokeMenuList();
+	}
 }
