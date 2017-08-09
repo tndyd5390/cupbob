@@ -48,7 +48,7 @@
 					</div>
 					<div id="menuTxt">
 						<span class="menuName"><%=CmmUtil.nvl(pDTO.getPrdt_name())%></span>
-						<br> <span class="menuPrice"><strong><%=CmmUtil.nvl(pDTO.getPrdt_price())%></strong></span><span
+						<br> <span class="menuPrice"><strong><%=CmmUtil.nvl(CmmUtil.addComma(pDTO.getPrdt_price()))%></strong></span><span
 							class="menuWon">원</span>
 					</div>
 				</div>
