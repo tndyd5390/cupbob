@@ -2,6 +2,7 @@ package com.cupbob.service;
 
 import java.util.List;
 
+import com.cupbob.dto.MilHistoryDTO;
 import com.cupbob.dto.Product_infoDTO;
 import com.cupbob.dto.User_infoDTO;
 
@@ -29,5 +30,7 @@ public interface IUserService {
 	public List<User_infoDTO> userSearch(User_infoDTO uDTO)throws Exception;
 
 	User_infoDTO userUpdateCheck(User_infoDTO uDTO) throws Exception;
+
+	public List<MilHistoryDTO> getUserMileage(User_infoDTO uDTO) throws Exception;
 	
 }

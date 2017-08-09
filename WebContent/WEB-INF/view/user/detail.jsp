@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	String userNo = (String) session.getAttribute("ss_user_no");
 	Product_infoDTO pDTO = (Product_infoDTO)request.getAttribute("pDTO");
 %>
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <title>소라네 컵밥 메뉴 상세보기</title>
 <script type="text/javascript">
-//주석 달리나???
+var ss_userNo = <%=userNo%>;
 	function addComma(x) {
     	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
@@ -76,12 +77,17 @@
 		});
 	}
 	function orderDirect(){
-		var prdtNo = '<%=CmmUtil.nvl(pDTO.getPrdt_no())%>';
-		var price = '<%=CmmUtil.nvl(pDTO.getPrdt_price())%>';
-		var qty = document.getElementById('itemQty').value;
-		var prdtName = '<%=CmmUtil.nvl(pDTO.getPrdt_name())%>';
-		location.href="userOrderDirect.do?prdtNo=" + prdtNo + "&qty=" + qty + "&price=" + price + "&prdtName=" + prdtName;
-		
+		console.log(ss_userNo);
+	if(ss_userNo==null){
+		alert("로그인이 필요합니다");
+		location.href="userLogin.do";
+		return false;
+	}else{
+		var f = document.getElementById('f');
+		f.qty.value = document.getElementById('itemQty').value;
+		f.submit();		
+		return true
+	}
 	}
 </script>
 </head>
@@ -98,7 +104,7 @@
 					</span>
 				</div>
 				<div>
-					<span class="detailNameEng"> bulgogi cupbob 240g </span>
+					<span class="detailNameEng"> <%=CmmUtil.nvl(pDTO.getPrdt_name()) %> </span>
 				</div>
 				<div>
 					<span class="detailTxt"><%=CmmUtil.nvl(pDTO.getContents()) %></span>
@@ -109,7 +115,7 @@
 			<div class="d-Img">
 				<img
 					src="<%="menuImg/" + CmmUtil.nvl(pDTO.getFile_name()) %>"
-					class="detailImg">
+					class="menuIconImg">
 			</div>
 		</div>
 		<div>
@@ -147,12 +153,20 @@
 					<button class="detailCart" onclick="addTmpBasket();">상품담기</button>
 				</div>
 				<div class="col-xs-6">
-					<a href="#"><button class="detailSubmit" onclick="orderDirect();">바로결제</button></a>
+				<form action="userOrderDirect.do" method="post" id="f">
+					<input type="hidden" name="prdtNo" value="<%=CmmUtil.nvl(pDTO.getPrdt_no()) %>">
+					<input type="hidden" name="qty" id="qty">
+					<input type="hidden" name="price" value="<%=CmmUtil.nvl(pDTO.getPrdt_price()) %>">
+					<input type="hidden" name="prdtName" value="<%=CmmUtil.nvl(pDTO.getPrdt_name())%>">
+					<a href="#"><button class="detailSubmit" onclick="return orderDirect();">바로결제</button></a>
+				</form>
 				</div>
 			</div>
 		</div>
 	</div>
 	<br>
+		<div align="center">
 	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 </html>

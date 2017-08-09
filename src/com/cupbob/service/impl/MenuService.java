@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cupbob.dto.Product_infoDTO;
+import com.cupbob.dto.User_infoDTO;
 import com.cupbob.persistance.mapper.MenuMapper;
 import com.cupbob.service.IMenuService;
 import com.cupbob.util.CmmUtil;
@@ -106,5 +107,25 @@ public class MenuService implements IMenuService{
 	@Override
 	public Product_infoDTO getUserMenuDetail(String menuNo) throws Exception {
 		return menuMapper.getUserMenuDetail(menuNo);
+	}
+
+	@Override
+	public User_infoDTO getUserMil(String userNo) throws Exception {
+		return menuMapper.getUserMil(userNo);
+	}
+
+	@Override
+	public List<Product_infoDTO> getUserRiceMenuList() throws Exception {
+		return menuMapper.getUserRiceMenuList();
+	}
+
+	@Override
+	public List<Product_infoDTO> getUserNoodleMenuList() throws Exception {
+		return menuMapper.getUserNoodleMenuList();
+	}
+
+	@Override
+	public List<Product_infoDTO> getUserCokeMenuList() throws Exception {
+		return menuMapper.getUserCokeMenuList();
 	}
 }

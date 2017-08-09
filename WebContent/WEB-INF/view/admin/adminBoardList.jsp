@@ -6,7 +6,8 @@
 <%
 
 	List<User_boardDTO> bList = (List<User_boardDTO>)request.getAttribute("boardList");
-
+	String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
+	String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 %>
 <!DOCTYPE html>
 <html>
@@ -117,6 +118,11 @@
 .btn_more .ico_sample {padding-right:15px;font-size:20px;color:#777;background-position:100% -22px}
 </style>
 </head>
+<%
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
+		response.sendRedirect("adminLogin.do");
+}else{%>
+
 <body>
 				<form action="adminBoardCheckedDelete.do" method="post" id="f">
 	<%@include file="/include/naviBarAndasideBar.jsp"%>
@@ -193,4 +199,7 @@
 	<%@include file="/include/bottomJavaScript.jsp"%>
 	</form>
 </body>
+<%
+}
+%>
 </html>

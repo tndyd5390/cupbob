@@ -1,8 +1,11 @@
 <%@page import="com.cupbob.dto.Product_infoDTO"%>
+<%@ page import="com.cupbob.util.CmmUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	Product_infoDTO pDTO = (Product_infoDTO)request.getAttribute("pDTO");
+String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
+String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 %>
 <html>
 <%@include file="/include/head.jsp"%>
@@ -63,6 +66,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>소라네 컵밥 메뉴 수정</title>
 </head>
+
+<%
+
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
+		response.sendRedirect("adminLogin.do");
+}else{%>
+
+
 <body>
 <%@include file="/include/naviBarAndasideBar.jsp"%>
  <section id="main-content"> <section class="wrapper">
@@ -146,4 +157,7 @@
 	</section> </section> </section>
 	<%@include file="/include/bottomJavaScript.jsp"%>
 </body>
+<%
+}
+%>
 </html>

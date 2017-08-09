@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cupbob.dto.Product_infoDTO;
 import com.cupbob.dto.TmpBasketDTO;
+import com.cupbob.dto.User_infoDTO;
 import com.cupbob.service.IMenuService;
 import com.cupbob.service.IUserService;
 import com.cupbob.util.CmmUtil;
@@ -39,11 +40,59 @@ public class MenuController {
 		
 		pList = menuService.getUserMenuList();
 		if(pList == null){
-			pList = new ArrayList<>();
+			pList = new ArrayList<Product_infoDTO>();
 		}
 		model.addAttribute("pList", pList);
+		model.addAttribute("menu", "추천 메뉴");
 		pList = null;
 		log.info(this.getClass() + "userMenuList end!!!");
+		return "user/menulist";
+	}
+	@RequestMapping(value="userRiceMenu")
+	public String userMenuRice(Model model) throws Exception{
+		log.info(this.getClass() + "userRiceMenuList start!!!");
+		List<Product_infoDTO> pList;
+		
+		pList = menuService.getUserRiceMenuList();
+		if(pList == null){
+			pList = new ArrayList<Product_infoDTO>();
+		}
+		model.addAttribute("pList", pList);
+		model.addAttribute("menu", "컵밥");
+		pList = null;
+		log.info(this.getClass() + "userRiceMenuList end!!!");
+		
+		return "user/menulist";
+	}
+	@RequestMapping(value="userNoodleMenu")
+	public String userNoodleRice(Model model) throws Exception{
+		log.info(this.getClass() + "userNoodleMenuList start!!!");
+		List<Product_infoDTO> pList;
+		
+		pList = menuService.getUserNoodleMenuList();
+		if(pList == null){
+			pList = new ArrayList<Product_infoDTO>();
+		}
+		model.addAttribute("pList", pList);
+		model.addAttribute("menu", "면류");
+		pList = null;
+		log.info(this.getClass() + "userNoodleMenuList end!!!");
+		
+		return "user/menulist";
+	}
+	@RequestMapping(value="userCokeMenu")
+	public String userCokeRice(Model model) throws Exception{
+		log.info(this.getClass() + "userCokeMenuList start!!!");
+		List<Product_infoDTO> pList;
+		
+		pList = menuService.getUserCokeMenuList();
+		if(pList == null){
+			pList = new ArrayList<Product_infoDTO>();
+		}
+		model.addAttribute("pList", pList);
+		model.addAttribute("menu", "음료");
+		pList = null;
+		log.info(this.getClass() + "userCokeMenuList end!!!");
 		return "user/menulist";
 	}
 	
@@ -77,7 +126,7 @@ public class MenuController {
 		Object tmpSession = session.getAttribute("ss_tmpBasket");
 		Map<String, TmpBasketDTO> tMap;
 		if(tmpSession == null){
-			tMap = new HashMap<>();
+			tMap = new HashMap();
 			tMap.put(prdtNo, new TmpBasketDTO(prdtNo, prdtQty, prdtPrice, prdtName));
 			session.setAttribute("ss_tmpBasket", tMap);
 		}else{
@@ -110,9 +159,9 @@ public class MenuController {
 		String prdtQty = CmmUtil.nvl(req.getParameter("prdtQty"));
 		log.info(this.getClass() + " prdtQty : " + prdtQty);
 		Map<String, TmpBasketDTO> tMap = (HashMap<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
-		Map<String, Object> returnMap = new HashMap<>();
+		Map<String, Object> returnMap = new HashMap();
 		if(tMap == null){
-			tMap = new HashMap<>();
+			tMap = new HashMap();
 		}
 		if(tMap.containsKey(prdtNo)){
 			TmpBasketDTO tDTO = tMap.get(prdtNo);
@@ -148,7 +197,7 @@ public class MenuController {
 		log.info(this.getClass() + " prdtNo : " + prdtNo);
 		Map<String, TmpBasketDTO> tMap = (Map<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
 		if(tMap == null){
-			tMap = new HashMap<>();
+			tMap = new HashMap();
 		}
 		if(tMap.containsKey(prdtNo)){
 			tMap.remove(prdtNo);
@@ -173,7 +222,7 @@ public class MenuController {
 		String[] prdtNoArr	= req.getParameterValues("prdtNo");
 		Map<String, TmpBasketDTO> tMap = (Map<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
 		if(tMap == null){
-			tMap = new HashMap<>();
+			tMap = new HashMap();
 		}
 		for(String prdtNo : prdtNoArr){
 			if(tMap.containsKey(prdtNo)){
@@ -197,9 +246,14 @@ public class MenuController {
 	@RequestMapping(value="userDoOrder", method=RequestMethod.GET)
 	public String userDoOrder(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
 		log.info(this.getClass() + ".userDoOrder start!!!");
+		String userNo = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
+		User_infoDTO uDTO = menuService.getUserMil(userNo);
+		if(uDTO == null){
+			uDTO = new User_infoDTO();
+		}
 		Map<String, TmpBasketDTO> tMap = (Map<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
 		if(tMap == null){
-			tMap = new HashMap<>();
+			tMap = new HashMap();
 		}
 		String returnURL = "user/order";
 		if(tMap.size()<1){
@@ -207,6 +261,7 @@ public class MenuController {
 			model.addAttribute("msg", "주문하실 제품이 없습니다.");
 			model.addAttribute("url", "userMenuList.do");
 		}
+		model.addAttribute("userMil", uDTO.getMileage());
 		log.info(this.getClass() + ".userDoOrder end!!!");
 		return returnURL;
 	}

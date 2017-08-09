@@ -9,9 +9,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	String userNo = (String) session.getAttribute("ss_user_no");
 	Map<String, TmpBasketDTO> tMap = (Map<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
 	if(tMap == null){
-		tMap = new HashMap<>();
+		tMap = new HashMap();
 	}
 	int resultPrice = 0;
 	String addedComma = "";
@@ -32,6 +33,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <title>소라네 컵밥 장바구니</title>
 <script type="text/javascript">
+var ss_userNo = <%=userNo%>;
 function addComma(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -67,7 +69,7 @@ function addComma(x) {
 							contents += "<input type=\"text\" value=\"" + value.tmpBasketPrdtQty + "\"class=\"tmpBasketCount\" maxlength=\"2\" readonly id=\"" + value.tmpBasketPrdtNo + "Cnt\">";
 							contents += "<a href=\"#\" class=\"tmpBasketPlMi\" onclick=\"tmpPlMi(" + value.tmpBasketPrdtNo + ", 'p')\">+</a>\n";
 							contents += "<div class=\"tmpBasketPrice\" name=\"price\">" + (addComma((parseInt(value.tmpBasketPrdtQty) * parseInt(value.tmpBasketPrdtPrice)))) + "원</div>";
-							contents += "<a href=\"#\" onclick=\"tmpBasketDeleteOne(" + value.tmpBasketPrdtNo + ")\"><img src=\"userBootstrap/navImage/recommend.png\" class=\"tmpBasketDeleteImg\"></a>\n";
+							contents += "<a href=\"#\" onclick=\"tmpBasketDeleteOne(" + value.tmpBasketPrdtNo + ")\"><img src=\"userBootstrap/navImage/trash.png\" class=\"tmpBasketDeleteImg\"></a>\n";
 							contents += "<hr class=\"tmpBasketHr\">\n";
 							contents += "</div>\n";
 							$('#tmpList').html(contents);
@@ -127,7 +129,7 @@ function addComma(x) {
 						contents += "<input type=\"text\" value=\"" + value.tmpBasketPrdtQty + "\"class=\"tmpBasketCount\" maxlength=\"2\" readonly id=\"" + value.tmpBasketPrdtNo + "Cnt\">";
 						contents += "<a href=\"#\" class=\"tmpBasketPlMi\" onclick=\"tmpPlMi(" + value.tmpBasketPrdtNo + ", 'p')\">+</a>\n";
 						contents += "<div class=\"tmpBasketPrice\" name=\"price\">" + (addComma((parseInt(value.tmpBasketPrdtQty) * parseInt(value.tmpBasketPrdtPrice)))) + "원</div>";
-						contents += "<a href=\"#\" onclick=\"tmpBasketDeleteOne(" + value.tmpBasketPrdtNo + ");\"><img src=\"userBootstrap/navImage/recommend.png\" class=\"tmpBasketDeleteImg\"></a>\n";
+						contents += "<a href=\"#\" onclick=\"tmpBasketDeleteOne(" + value.tmpBasketPrdtNo + ");\"><img src=\"userBootstrap/navImage/trash.png\" class=\"tmpBasketDeleteImg\"></a>\n";
 						contents += "<hr class=\"tmpBasketHr\">\n";
 						contents += "</div>\n";
 						$('#tmpList').html(contents);
@@ -199,7 +201,7 @@ function addComma(x) {
 						contents += "<input type=\"text\" value=\"" + value.tmpBasketPrdtQty + "\"class=\"tmpBasketCount\" maxlength=\"2\" readonly id=\"" + value.tmpBasketPrdtNo + "Cnt\">";
 						contents += "<a href=\"#\" class=\"tmpBasketPlMi\" onclick=\"tmpPlMi(" + value.tmpBasketPrdtNo + ", 'p')\">+</a>\n";
 						contents += "<div class=\"tmpBasketPrice\" name=\"price\">" + (addComma((parseInt(value.tmpBasketPrdtQty) * parseInt(value.tmpBasketPrdtPrice)))) + "원</div>";
-						contents += "<a href=\"#\" onclick=\"tmpBasketDeleteOne(" + value.tmpBasketPrdtNo + ");\"><img src=\"userBootstrap/navImage/recommend.png\" class=\"tmpBasketDeleteImg\"></a>\n";
+						contents += "<a href=\"#\" onclick=\"tmpBasketDeleteOne(" + value.tmpBasketPrdtNo + ");\"><img src=\"userBootstrap/navImage/trash.png\" class=\"tmpBasketDeleteImg\"></a>\n";
 						contents += "<hr class=\"tmpBasketHr\">\n";
 						contents += "</div>\n";
 						$('#tmpList').html(contents);
@@ -238,7 +240,14 @@ function addComma(x) {
 		location.href="userMenuList.do";
 	}
 	function doOrder(){
-		location.href="userDoOrder.do";
+		if(ss_userNo==null){
+			alert("로그인이 필요합니다");
+			location.href="userLogin.do";
+			return false;
+		}else{
+			location.href="userDoOrder.do";
+			return true
+		}
 	}
 </script>
 </head>
@@ -265,7 +274,7 @@ function addComma(x) {
 					class="tmpBasketCount" maxlength="2" readonly id="<%=CmmUtil.nvl(tMap.get(key).getTmpBasketPrdtNo() + "Cnt")%>"><a href="#"
 					class="tmpBasketPlMi" onclick="tmpPlMi('<%=CmmUtil.nvl(tMap.get(key).getTmpBasketPrdtNo())%>', 'p')">+</a>
 				<div class="tmpBasketPrice" name="price"><%=CmmUtil.addComma(Integer.parseInt(tMap.get(key).getTmpBasketPrdtPrice()) * Integer.parseInt(tMap.get(key).getTmpBasketPrdtQty())) + "원" %></div>
-				<a href="#" onclick="tmpBasketDeleteOne('<%=CmmUtil.nvl(tMap.get(key).getTmpBasketPrdtNo())%>');"><img src="userBootstrap/navImage/recommend.png"
+				<a href="#" onclick="tmpBasketDeleteOne('<%=CmmUtil.nvl(tMap.get(key).getTmpBasketPrdtNo())%>');"><img src="userBootstrap/navImage/trash.png"
 					class="tmpBasketDeleteImg"></a>
 				<hr class="tmpBasketHr">
 			</div>
@@ -287,11 +296,13 @@ function addComma(x) {
 				</div>
 			</div>
 			<div class="col-xs-12">
-				<button class="tmpBasketOrder" onclick="doOrder();">주문 하기</button>
+				<button class="tmpBasketOrder" onclick="return doOrder();">주문 하기</button>
 			</div>
 		<br>
 	</div>
 	</div>
+		<div align="center">
 	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 </html>

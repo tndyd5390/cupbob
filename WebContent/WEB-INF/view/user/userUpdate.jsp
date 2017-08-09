@@ -3,6 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	String userNo = (String)session.getAttribute("ss_user_no");
+	if(CmmUtil.nvl(userNo).equals("")){
+		response.sendRedirect("userLogin.do");
+	}
 	User_infoDTO uDTO = (User_infoDTO)request.getAttribute("uDTO");
 	String[] email = uDTO.getEmail().split("@");
 	String[] birthday = uDTO.getBirthday().split("\\W+");
@@ -136,6 +140,8 @@ function doDelete(){
 		<button class="detailSubmit">수정하기</button>
 	</form>
 	<br>
+		<div align="center">
 	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 </html>

@@ -1,9 +1,14 @@
 <%@page import="com.cupbob.dto.Product_infoDTO"%>
 <%@page import="java.util.List"%>
+
+<%@ page import="com.cupbob.util.CmmUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	List<Product_infoDTO> pList = (List<Product_infoDTO>) request.getAttribute("pList");
+	String imgPath = "/www/cupbobs_com/www/menuImg/";
+String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
+String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 %>
 <!DOCTYPE html>
 <html>
@@ -97,6 +102,11 @@
 	<title>소라네 컵밥 메뉴 관리</title>
 </head>
 
+<%
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
+		response.sendRedirect("adminLogin.do");
+}else{%>
+
 <body>
 	<form action="adminMenuCheckedDelete.do" method="post" id="f" onsubmit="return false;">
 		<%@include file="/include/naviBarAndasideBar.jsp"%>
@@ -161,4 +171,7 @@
 			</section> <%@include file="/include/bottomJavaScript.jsp"%>
 		</form>
 	</body>
+	<%
+}
+	%>
 </html>

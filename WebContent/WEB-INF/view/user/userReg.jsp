@@ -104,7 +104,9 @@
 				</div>
 			</div>
 		</form>
-		<%@include file="/include/footer.jsp"%>
+			<div align="center">
+	<%@include file="/include/footer.jsp"%>
+	</div>
 
 </body>
 </html>

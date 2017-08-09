@@ -7,11 +7,20 @@
 <%@include file="/include/head.jsp"%>
 <%
 	Product_infoDTO pDTO = (Product_infoDTO)request.getAttribute("pDTO");
+String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
+String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>소라네 컵밥 메뉴 상세 보기</title>
 </head>
+
+<%
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
+		response.sendRedirect("adminLogin.do");
+}else{%>
+
+
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>
 	 <section id="main-content"> <section class="wrapper">
@@ -93,4 +102,8 @@
 
 	<%@include file="/include/bottomJavaScript.jsp"%>
 </body>
+
+<%
+}
+%>
 </html>

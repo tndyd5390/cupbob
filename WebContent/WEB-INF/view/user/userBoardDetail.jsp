@@ -31,12 +31,9 @@
 <script>
 var updateCheck = false;
 var pNo = <%=CmmUtil.nvl(bDTO.getPost_no())%>;
-
 function convertContent(str){
-	
 	return str.replace(/& lt;/g,"<").replace(/& gt;/g,">").replace(/& #40;/g,"(").replace(/& #41;/g,")").replace(/& #39;/g,"'");
 };
-
 $(function(){
 	$('#cmtCreate').bind('click',function() {
 		
@@ -278,7 +275,6 @@ function cmtUpdateCancle(){
 </script>
 <title> 소라네 컵밥  커뮤니티</title>
 
-
 </head>
 <body>
 	<%@include file="/include/nav.jsp"%>
@@ -287,14 +283,12 @@ function cmtUpdateCancle(){
 	<br>
 	<br>
 	<div id="recommMenu">
-
 		<div class="container-fluid">
 			<div class="row">
 				<!--글 제목-->
 				<h2 class="title"><%=CmmUtil.nvl(bDTO.getTitle())%></h2>
 				<!--글쓴이 및 글정보-->
-				<h7 class="boderdetail"><%=CmmUtil.nvl(bDTO.getUser_name())%>
-				| <%=CmmUtil.nvl(bDTO.getReg_dt())%> | 조회수 <%=CmmUtil.nvl(bDTO.getView_cnt())%></h7>
+				<h7 class="boderdetail"><%=CmmUtil.nvl(bDTO.getUser_name())%> &#124; <%=CmmUtil.nvl(bDTO.getReg_dt())%> &#124; 조회수 <%=CmmUtil.nvl(bDTO.getView_cnt())%></h7>
 			</div>
 			<hr>
 			<div class="row">
@@ -309,28 +303,34 @@ function cmtUpdateCancle(){
 				<br />
 			</div>
 			<hr class="blackHr">
-
 		</div>
-
 		<ul class="list-group list-group-none-line">
 			<li class="list-group-item list-none-line">
 				<div class="contentsArea">
-					<p class="inline0">댓글</p>
-					&nbsp;&nbsp;&nbsp;&nbsp;
+					<p class="inline0">댓글</p>&nbsp;&nbsp;&nbsp;&nbsp;
 					<p class="inline1">
 						<a href="javascript:location.reload();" class="black">&#8635;새로고침</a>
-					</p>
-					
-					<br> <br>
+					</p><br />
+					<%
+						if (ss_user_no == null || ss_user_no == "") {
+					%>
+					<a href="userLogin.do" class="black"  >댓글입력은 로그인상태에서 가능합니다.</a>
+					<%
+						} else {
+					%>
 					<!--글 작성 input-->
-					
-					<div class="reTitle">	
+					<div class="reTitle">
 						<textarea class="comText" id="cnts"></textarea>
+
 						<button class="saButton3" id="cmtCreate">등록</button>
 						<br> <br>
-						<br><br><br>
+						<br>
+						<br>
 					</div>
 					<!-------------->
+					<%
+						}
+					%>
 				</div>
 			</li>
 			<div id="cmtList">
@@ -363,11 +363,9 @@ function cmtUpdateCancle(){
 			</div>
 		</ul>
 		<div align=center>
-			<button class="saButton4" onclick="location.href='userBoardList.do'">목
-				록</button>
+			<button class="saButton4" onclick="location.href='userBoardList.do'">목록</button>
 		</div>
 	</div>
-
 	<br>
 	<div align=center>
 	<%@include file="/include/footer.jsp"%>

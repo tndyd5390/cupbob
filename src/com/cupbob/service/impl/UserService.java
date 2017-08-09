@@ -4,6 +4,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import com.cupbob.dto.MilHistoryDTO;
 import com.cupbob.dto.Product_infoDTO;
 import com.cupbob.dto.User_infoDTO;
 import com.cupbob.persistance.mapper.UserMapper;
@@ -115,5 +116,10 @@ public class UserService implements IUserService {
 	@Override
 	public List<User_infoDTO> userSearch(User_infoDTO uDTO) throws Exception{
 		return userMapper.userSearch(uDTO);
+	}
+
+	@Override
+	public List<MilHistoryDTO> getUserMileage(User_infoDTO uDTO) throws Exception {
+		return userMapper.getUserMileage(uDTO);
 	}
 }

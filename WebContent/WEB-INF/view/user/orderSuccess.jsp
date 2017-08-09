@@ -1,5 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.cupbob.util.CmmUtil"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	String userNo = (String)session.getAttribute("ss_user_no");
+	if(CmmUtil.nvl(userNo).equals("")){
+		response.sendRedirect("userLogin.do");
+	}
+	String ordNo = CmmUtil.nvl((String)request.getAttribute("ordNo"));
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,15 +18,13 @@
 <!-- Bootstrap core CSS -->
 <link href="userBootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 <!-- Bootstrap theme -->
-<link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
-<link href="bootstrap/css/footer.css" rel="stylesheet">
-<link href="bootstrap/css/menu.css?ver=1" rel="stylesheet">
-<link rel="stylesheet" href="bootstrap/css/nav.css?ver=1" />
-<link rel="stylesheet" href="bootstrap/css/order.css" />
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link href="userBootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
+<link rel="stylesheet" href="userBootstrap/css/nav.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
 $(function(){
-	$("#bcTarget").barcode("123456", "int25", {barWidth:1, barHeight:50});     
+	$("#bcTarget").barcode('<%=ordNo%>', "code128", {barWidth:2, barHeight:60});     
 })
 </script>
 <title>결제 완료 화면</title>
@@ -51,6 +59,8 @@ $(function(){
 		</div>
 	</div>
 	<br>
+		<div align="center">
 	<%@include file="/include/footer.jsp"%>
+	</div>
 </body>
 </html>

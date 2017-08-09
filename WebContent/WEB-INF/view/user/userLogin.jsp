@@ -26,11 +26,11 @@
 			<div class="text-center">
 				<div class="col-xs-12">
 					<img
-						src="http://meiz.me/wp-content/uploads/2015/07/sta01-1024x682.jpg"
+						src="menuImg/front.png"
 						class="loginImg">
 				</div>
 				<div class="col-xs-12">
-					<br> <span class="loginSpan1">정성을 다하는 스타벅스밥집</span>
+					<br> <span class="loginSpan1">정성을 다하는 소라네 밥집</span>
 				</div>
 			</div>
 		</div>
@@ -62,7 +62,9 @@
 		</div>
 	</div>
 	<br>
+		<div align="center">
 	<%@include file="/include/footer.jsp"%>
+	</div>
 	<script>
 $( "#userLoginButton" ).click(function() {
 	  if($('#email').val() == ""){

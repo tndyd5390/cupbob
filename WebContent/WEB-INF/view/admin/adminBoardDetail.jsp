@@ -12,8 +12,9 @@
 	bDTO.setContents(contents);
 	
 	String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
+	String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 	String ss_userName = CmmUtil.nvl((String) session.getAttribute("ss_user_name"));
-%>
+	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%@include file="/include/head.jsp"%>
@@ -262,6 +263,12 @@ function cmtUpdateCancle(){
 
 <title>소라네 컵밥 커뮤니티</title>
 </head>
+<%
+
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
+	response.sendRedirect("adminLogin.do");
+}else{%>
+
 <body>
 	<%@include file="/include/naviBarAndasideBar.jsp"%>
 	<!-- 회원가입 폼 시작-->
@@ -362,7 +369,7 @@ function cmtUpdateCancle(){
 								<span><%=CmmUtil.replaceBr(CmmUtil.nvl(cDTO.getContents()))%></span>
 							</div>
 							<%
-								if (cDTO.getUser_no().equals(ss_userNo)) {
+								if(cDTO.getUser_no().equals(ss_userNo)) {
 							%>
 							<br>
 							<button class='btn btn-info btn-sm' onclick='cmtUpdate(<%=CmmUtil.nvl(cDTO.getCmt_no())%>,"<%=CmmUtil.nvl(cDTO.getUser_name())%>")'>수정</button>							
@@ -385,4 +392,7 @@ function cmtUpdateCancle(){
 	<!-- page end-->
 	<%@include file="/include/bottomJavaScript.jsp"%>
 </body>
+<%
+}
+%>
 </html>

@@ -1,6 +1,9 @@
 package com.cupbob.controller.user;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,9 +13,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cupbob.dto.MilHistoryDTO;
 import com.cupbob.dto.User_infoDTO;
 import com.cupbob.service.IUserService;
 import com.cupbob.util.CmmUtil;
@@ -158,7 +161,11 @@ public class UserController {
 		uDTO.setUser_no(uNum);
 		
 		uDTO = userService.getUserDetail(uDTO);
+		List<MilHistoryDTO> mList = userService.getUserMileage(uDTO);
 		
+		if(mList == null){
+			mList = new ArrayList<MilHistoryDTO>();
+		}
 		if(uDTO == null){
 			uDTO = new User_infoDTO();
 		}
@@ -168,7 +175,7 @@ public class UserController {
 		log.info(uDTO.getEmail());
 		
 		model.addAttribute("uDTO", uDTO);
-		
+		model.addAttribute("mList", mList);
 		return "user/userMyPage";
 	}
 	

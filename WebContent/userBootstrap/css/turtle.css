@@ -628,10 +628,17 @@ code {
 	max-width: 100%;
 	width: auto;
 	height: auto;
-	border-color: silver;
+	border-color: #FFFFFF;
 	border-style: solid;
 	border-width: 1px;
 	border-radius: 50%
+}
+
+.photo {
+	max-width: 100%;
+	object-fit: cover;
+	border-color: #FFFFFF;
+	border-radius: 50%;
 }
 
 .menuName {
@@ -984,6 +991,7 @@ code {
 	width: 100%;
 	text-decoration: none;
 	text-align: center;
+	border-radius: 5px;
 }
 
 .moreContents:hover {
@@ -2143,20 +2151,24 @@ button.orderButton02 {
 	color: #5b5b5b;
 }
 
-  .searchTitle {
-  border: 1px solid #8B8B8B;
-  display: inline-block;
-  padding: 10px 10px;
-  width: 61%;
-  }
-  .searchSelect{
-  border: 1px solid #8B8B8B;
-  display: inline-block;
-  margin-left: 20px;
-  padding: 10px 10px;
-  height: 42px;
-  }
+.searchTitle {
+	border: 1px solid #8B8B8B;
+	display: inline-block;
+	padding: 10px 10px;
+	width: 61%;
+	height: 42px;
+	border-radius: 5px;
+}
 
+.searchSelect {
+	border: 1px solid #8B8B8B;
+	display: inline-block;
+	margin-left: 20px;
+	padding: 10px 10px;
+	height: 42px;
+	border-radius: 5px;
+	text-align-last: center;
+}
 
 .title {
 	font-weight: bold;
@@ -2206,6 +2218,7 @@ button.orderButton02 {
 	margin-right: 10px;
 	margin-left: 1px;
 	padding: 6px 16px;
+	border-radius: 5px;
 }
 
 .saButton1 {
@@ -2220,6 +2233,7 @@ button.orderButton02 {
 	text-align: center;
 	float: right;
 	padding: 6px 16px;
+	border-radius: 5px;
 }
 
 .saButton2 {
@@ -2235,7 +2249,9 @@ button.orderButton02 {
 	float: right;
 	margin-right: 1px;
 	margin-left: 1px;
+	margin-bottom: 5px;
 	height: 30px;
+	border-radius: 5px;
 }
 
 .saButton3 {
@@ -2253,6 +2269,7 @@ button.orderButton02 {
 	margin-top: 0px;
 	padding: 4px 32px;
 	height: 40px;
+	border-radius: 5px;
 }
 
 .saButton4 {
@@ -2269,6 +2286,7 @@ button.orderButton02 {
 	text-align: center;
 	margin-top: 0px;
 	padding: 15px 100px;
+	border-radius: 5px;
 }
 
 .saButton5 {
@@ -2286,6 +2304,7 @@ button.orderButton02 {
 	margin-top: 0px;
 	padding: 4px 32px;
 	height: 40px;
+	border-radius: 5px;
 }
 
 .saBox {
@@ -2345,6 +2364,7 @@ textarea.detail2 {
 	padding: 4px 32px;
 	height: 40px;
 	margin-left: 0px;
+	border-radius: 5px;
 }
 
 .blackHr {
@@ -2394,6 +2414,7 @@ div>span.inline2 {
 a.black {
 	color: #808080;
 	display: inline-block;
+	font-weight: bold;
 }
 
 input.nameFont {
@@ -2417,6 +2438,7 @@ textarea.comText {
 	display: inline-block;
 	border: 1px solid #8B8B8B;
 	resize: none;
+	border-radius: 5px;
 }
 
 input.nameFont1 {
@@ -2451,6 +2473,7 @@ textarea.upComText {
 	border: 1px solid #8B8B8B;
 	resize: none;
 	height: 30px;
+	border-radius: 5px;
 }
 
 /* 360px 占쎌뵠占쎈릭 (占쎈툡占쎌뵠占쎈？5)*/
@@ -2494,7 +2517,7 @@ textarea.upComText {
 		padding: 4px;
 	}
 	.saButton2 {
-		width: 15%;
+		width: 20%;
 		font-size: 9px;
 		padding: 5px;
 	}
@@ -2579,6 +2602,7 @@ textarea.upComText {
 		font-size: 15px;
 		padding: 4px;
 		margin-top: 10px;
+		margin-bottom: 5px;
 	}
 	div>span.inline2 {
 		font-size: 13px;
@@ -2657,10 +2681,11 @@ textarea.upComText {
 		padding: 4px;
 	}
 	.saButton2 {
-		width: 13%;
+		width: 20%;
 		font-size: 12px;
 		margin-top: 10px;
-		padding: 5px 5px
+		padding: 5px;
+		margin-bottom: 5px;
 	}
 	.saButton0 {
 		width: 13%;
@@ -2826,6 +2851,7 @@ textarea.upComText {
 		text-align: center;
 		float: right;
 		padding: 6px 16px;
+		padding-bottom: 26px;
 	}
 	div>span.inline2 {
 		font-size: 13px;
@@ -3543,5 +3569,37 @@ img.profileImg {
 	}
 	button.myPageButton01 {
 		margin-top: 5px;
+	}
+}
+
+.menuIconImg {
+	width: 400px;
+	height: 400px;
+	max-width: 100%;
+	border-color: #FFFFFF;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 50%;
+}
+
+@media screen and (max-width:412px) {
+	.menuIconImg {
+		width: 150px;
+		height: 150px;
+	}
+}
+
+@media screen and (min-width:413px) and (max-width:768px) {
+	.menuIconImg {
+		width: 170px;
+		height: 170px;
+	}
+}
+
+@media screen and (min-width:769px) {
+	.menuIconImg {
+		width: 400px;
+		height: 400px;
+		padding-bottom: 50px;
 	}
 }

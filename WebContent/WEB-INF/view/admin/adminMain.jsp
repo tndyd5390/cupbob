@@ -1,14 +1,23 @@
 <%@page import="com.cupbob.dto.TotalOrderDTO"%>
 <%@page import="java.util.List"%>
+<%@ page import="com.cupbob.util.CmmUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	List<TotalOrderDTO> tList = (List<TotalOrderDTO>)request.getAttribute("TotalOrderList");
+	String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
+	String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
 %>
 <!DOCTYPE html>
 <html>
 <%@include file="/include/head.jsp"%>
 <head>
+
+<%
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
+	response.sendRedirect("adminLogin.do");
+}else{%>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>실시간 주문 목록</title>
 <script type="text/javascript">
@@ -354,6 +363,8 @@
 	}
 </style>
 </head>
+
+
 <body>
 <%@include file="/include/naviBarAndasideBar.jsp"%>
 	 <!--main content start-->
@@ -498,4 +509,7 @@
       
 	 <%@include file="/include/bottomJavaScript.jsp"%>
 </body>
+<%
+}
+%>
 </html>

@@ -4,6 +4,8 @@
 <%@page import="com.cupbob.util.CmmUtil" %>
 <%
 	User_infoDTO udto = (User_infoDTO)request.getAttribute("udto");
+String ss_userEmail = CmmUtil.nvl((String) session.getAttribute("ss_user_email"));
+String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 %>
 	
 <!DOCTYPE html>
@@ -23,6 +25,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>소라네 컵밥 회원 상세보기</title>
 </head>
+
+
+<%
+if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
+		response.sendRedirect("adminLogin.do");
+}else{%>
+
+
 <body>
 <%@include file="/include/naviBarAndasideBar.jsp"%>
 	<section id="main-content">
@@ -94,4 +104,7 @@
 		</div>
 	<%@include file="/include/bottomJavaScript.jsp"%>
 </body>
+<%
+}
+%>
 </html>

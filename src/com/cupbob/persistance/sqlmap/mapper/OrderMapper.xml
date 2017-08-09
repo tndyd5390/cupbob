@@ -38,6 +38,7 @@
 	<insert id="insertOrderInfo" parameterType="Order_infoDTO">
 		INSERT INTO ORDER_INFO
 			(
+			ORD_NO,
  			TOTAL_ORD_PRICE, 
  			PAYMENT_TP, 
  			ORD_DT, 
@@ -50,6 +51,7 @@
 			)
 		VALUES
 			(
+			 #{ord_no},
 			 #{total_ord_price}, 
 			 #{payment_tp}, 
 			 NOW(), 
@@ -68,7 +70,7 @@
 			)
 		VALUES
 		<foreach collection="list" item="item" index="index" separator=",">
- 			((SELECT MAX(ORD_NO) FROM ORDER_INFO WHERE USER_NO = #{item.reg_user_no}), #{item.prdt_no}, #{item.ord_amnt}, #{item.reg_user_no}, NOW())
+ 			((SELECT ORD_NO FROM ORDER_INFO WHERE USER_NO = #{item.reg_user_no} ORDER BY REG_DT DESC LIMIT 1), #{item.prdt_no}, #{item.ord_amnt}, #{item.reg_user_no}, NOW())
 		</foreach>
 	</insert>
 	
@@ -106,6 +108,17 @@
         WHERE USER_NO = #{user_no}
         ORDER BY ORD_NO DESC
         LIMIT 5 OFFSET ${count}
+    </select>
+	<select id="getOrderNo" resultType="Order_infoDTO" parameterType="string">
+		SELECT
+			ORD_NO
+		FROM
+			ORDER_INFO
+		WHERE
+			USER_NO = #{userNo}
+		ORDER BY
+			REG_DT
+		DESC LIMIT 1;
 	</select>
 	
 </mapper>
