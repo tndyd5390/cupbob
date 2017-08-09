@@ -58,7 +58,7 @@ $(function(){
 		success : function(data) {
 					var contents = "";
 					$.each(data,function(key, value) {
-						if(value.user_no==<%=ss_user_no%>){
+						if(value.user_no=="<%=ss_user_no%>"){
 							contents += "<li class='list-group-item list-none-line '"+ "id="+value.cmt_no+">";
 							contents += "<div class="+"contentsArea"+">";
 							contents += "<h4 class='reName'>"+value.user_name+"</h4>";
@@ -107,7 +107,7 @@ function cmtDelete(cmt_no){
 						if(data!=""){
 							$.each(data,function(key, value) {
 								console.log(value.user_name);
-								if(value.user_no==<%=ss_user_no%>){
+								if(value.user_no=="<%=ss_user_no%>"){
 									contents += "<li class='list-group-item list-none-line '"+ "id="+value.cmt_no+">";
 									contents += "<div class="+"contentsArea"+">";
 									contents += "<h4 class='reName'>"+value.user_name+"</h4>";
@@ -203,7 +203,7 @@ function cmtUpdateCancle(){
 		success : function(data) {
 			var contents = "";
 			$.each(data,function(key, value) {
-				if(value.user_no==<%=ss_user_no%>){
+				if(value.user_no=="<%=ss_user_no%>"){
 					contents += "<li class='list-group-item list-none-line '"+ "id="+value.cmt_no+">";
 					contents += "<div class="+"contentsArea"+">";
 					contents += "<h4 class='reName'>"+value.user_name+"</h4>";
@@ -243,7 +243,7 @@ function cmtUpdateCancle(){
 		success : function(data) {
 			var contents = "";
 			$.each(data,function(key, value) {
-				if(value.user_no==<%=ss_user_no%>){
+				if(value.user_no=="<%=ss_user_no%>"){
 					contents += "<li class='list-group-item list-none-line '"+ "id="+value.cmt_no+">";
 					contents += "<div class="+"contentsArea"+">";
 					contents += "<h4 class='reName'>"+value.user_name+"</h4>";

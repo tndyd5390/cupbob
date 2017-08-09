@@ -12,7 +12,6 @@
 	String unum = request.getParameter("unum");
 	User_infoDTO uDTO = (User_infoDTO) request.getAttribute("uDTO");
 	List<MilHistoryDTO> mList = (List<MilHistoryDTO>) request.getAttribute("mList");
-	String ss_user_no = (String) session.getAttribute("ss_user_no");
 %>
 <!DOCTYPE html>
 <html>
@@ -41,7 +40,7 @@
 <title>소라네 컵밥 마이페이지</title>
 </head>
 <%
-	if (ss_user_no == "" || !(ss_user_no.equals(unum))) {
+	if (userNo == "" || !(userNo.equals(unum))) {
 		response.sendRedirect("userLogin.do");
 	} else {
 %>
