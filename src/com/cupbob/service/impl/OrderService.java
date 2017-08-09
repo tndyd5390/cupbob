@@ -204,6 +204,8 @@ public class OrderService implements IOrderService {
 			String pName="";
 			String pNameList="";
 			String pPrice="";
+			System.out.println(oDTO.getOrd_no());
+			System.out.println(oDTO.getOrd_stat());
 			Map<String, Integer> prdtMap = new HashMap();
 			Map<String, Integer> priceMap = new HashMap();
 			for(TotalOrderItemDTO aDTO : prdtList){
@@ -231,6 +233,7 @@ public class OrderService implements IOrderService {
 				String key = keyss.next();
 				pPrice += priceMap.get(key) + "원<br>";
 			}
+			System.out.println("prdtSize : " + prdtList.size());
 			if(prdtMap.size() > 1){
 				pName = prdtList.get(0).getPrdt_name() + " 외 " + (prdtList.size()-1) + " 건 ";
 			}else{

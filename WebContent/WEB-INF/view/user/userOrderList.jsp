@@ -30,7 +30,7 @@
 <script type="text/javascript">
 	function doToggle(toggleCount, ordNo){
 		var ord = ordNo.toString();
-		$('#bcTarget_' + toggleCount).barcode(ord, 'int25', {barWidth:2, barHeight:60});
+		$('#bcTarget_' + toggleCount).barcode(ord, 'code128', {barWidth:2, barHeight:60});
 		$('#Toggle' + toggleCount).toggle();
 		$('#Toggle2'+ toggleCount).toggle();
 	}
@@ -170,7 +170,7 @@ div.barCode{
 	<br>
 	<form class="form">
 		<div class="orderHead">주문 내역</div>
-		<div class="input-group">
+	<!-- 	<div class="input-group">
 			<div class="input-group-addon listGroup">
 				<select class="form-control listSelect">
 					<option>선택</option>
@@ -182,7 +182,7 @@ div.barCode{
 			</div>
 		<input type="text" class="form-control listText">
 		<button class="searchButton">검색</button>
-		</div>
+		</div> -->
 		<table class="table table-hover tableFont table-relative">
 			<thead>
 				<th>주문번호</th>
@@ -343,7 +343,7 @@ $(function(){
 	})
 })		
 </script>
-		<button type="button" class="moreButton" id="more_Button">더 보 기</button>
+<!-- 		<button type="button" class="moreButton" id="more_Button">더 보 기</button> -->
 	</form>
 	<br>
 	<br>

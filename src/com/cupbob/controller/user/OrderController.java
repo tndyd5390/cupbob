@@ -248,4 +248,36 @@ public class OrderController {
       log.info(this.getClass() + "useMil end!!!");
       return "user/useMil";
    }
+   
+   @RequestMapping(value = "userOrderList")
+	public String userOrderList(HttpSession session,HttpServletRequest request,HttpServletResponse response,Model model)throws Exception{
+		log.info(this.getClass().getName() + "userOrderList Start !!");
+		String uNum = CmmUtil.nvl(request.getParameter("uNum"));
+		log.info(uNum);
+		
+		List<TotalOrderDTO> totalList = orderService.selectOrderList(uNum);
+		
+		model.addAttribute("totalList", totalList);
+		model.addAttribute("uNum", uNum);
+		
+		log.info(this.getClass().getName() + "userOrderList END !!");
+		return "user/userOrderList";
+	}
+	
+	@RequestMapping(value="orderListMore")
+	public @ResponseBody List<TotalOrderDTO> orderListMore(@RequestParam(value="count") String count,@RequestParam(value="uNum") String user_no) throws Exception{
+		log.info(this.getClass().getName() + " moreButton Start!! ");
+		log.info(count);
+		log.info(user_no);
+		
+		List<TotalOrderDTO> orderListMore = orderService.orderListMore(count,user_no);
+		
+		for(TotalOrderDTO tDTO : orderListMore){
+			System.out.println(tDTO.getOrd_no());
+			System.out.println(tDTO.getPrdt_name());
+		}
+		
+		log.info(this.getClass().getName() + " moreButton END!! ");
+		return orderListMore;
+	}
 }
