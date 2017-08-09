@@ -32,7 +32,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="recommTitle">
-					<img src="userBootstrap/navImage/best.png" width="30px;"> <span><strong><%=menuTxt %></strong></span>
+					 <span><strong><%=menuTxt %></strong></span>
 				</div>
 			</div>
 			<div class="row">
