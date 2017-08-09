@@ -24,7 +24,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
 $(function(){
-	$("#bcTarget").barcode('<%=ordNo%>', "code128", {barWidth:1, barHeight:50});     
+	$("#bcTarget").barcode('<%=ordNo%>', "code128", {barWidth:2, barHeight:60});     
 })
 </script>
 <title>결제 완료 화면</title>
