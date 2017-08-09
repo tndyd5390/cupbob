@@ -14,6 +14,5 @@
 		<typeAlias type="com.cupbob.dto.TotalOrderInfoDTO" alias="TotalOrderInfoDTO"/>
 		<typeAlias type="com.cupbob.dto.TotalOrderItemDTO" alias="TotalOrderItemDTO"/>
 		<typeAlias type="com.cupbob.dto.Chart_DTO" alias="Chart_DTO"/>
-		<typeAlias type="com.cupbob.dto.MilHistoryDTO" alias="MilHistoryDTO"/>
     </typeAliases>
 </configuration>
