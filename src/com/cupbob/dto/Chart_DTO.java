@@ -4,6 +4,18 @@ public class Chart_DTO {
 	private String prdt_name;
 	private String count;
 	private String reg_dt;
+	private String prdt_no;
+	private String price;
+	private String male_count;
+	private String female_count;
+	
+	
+	public String getPrdt_no() {
+		return prdt_no;
+	}
+	public void setPrdt_no(String prdt_no) {
+		this.prdt_no = prdt_no;
+	}
 	public String getReg_dt() {
 		return reg_dt;
 	}
@@ -21,5 +33,23 @@ public class Chart_DTO {
 	}
 	public void setCount(String count) {
 		this.count = count;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public String getMale_count() {
+		return male_count;
+	}
+	public void setMale_count(String male_count) {
+		this.male_count = male_count;
+	}
+	public String getFemale_count() {
+		return female_count;
+	}
+	public void setFemale_count(String female_count) {
+		this.female_count = female_count;
 	}
 }
