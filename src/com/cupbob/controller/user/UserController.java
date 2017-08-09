@@ -164,7 +164,7 @@ public class UserController {
 		List<MilHistoryDTO> mList = userService.getUserMileage(uDTO);
 		
 		if(mList == null){
-			mList = new ArrayList<>();
+			mList = new ArrayList<MilHistoryDTO>();
 		}
 		if(uDTO == null){
 			uDTO = new User_infoDTO();
