@@ -94,7 +94,7 @@
 					</span>
 				</div>
 				<div>
-					<span class="detailNameEng"> bulgogi cupbob 240g </span>
+					<span class="detailNameEng"> <%=CmmUtil.nvl(pDTO.getPrdt_name()) %> </span>
 				</div>
 				<div>
 					<span class="detailTxt"><%=CmmUtil.nvl(pDTO.getContents()) %></span>
@@ -105,7 +105,7 @@
 			<div class="d-Img">
 				<img
 					src="<%="menuImg/" + CmmUtil.nvl(pDTO.getFile_name()) %>"
-					class="menuImg">
+					class="menuIconImg">
 			</div>
 		</div>
 		<div>
