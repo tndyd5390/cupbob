@@ -76,7 +76,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            월간 컵밥 판매
+                            월간 컵밥별 판매
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

@@ -75,12 +75,9 @@
 		});
 	}
 	function orderDirect(){
-		var prdtNo = '<%=CmmUtil.nvl(pDTO.getPrdt_no())%>';
-		var price = '<%=CmmUtil.nvl(pDTO.getPrdt_price())%>';
-		var qty = document.getElementById('itemQty').value;
-		var prdtName = '<%=CmmUtil.nvl(pDTO.getPrdt_name())%>';
-		location.href="userOrderDirect.do?prdtNo=" + prdtNo + "&qty=" + qty + "&price=" + price + "&prdtName=" + prdtName;
-		
+		var f = document.getElementById('f');
+		f.qty.value = document.getElementById('itemQty').value;
+		f.submit();
 	}
 </script>
 </head>
@@ -146,7 +143,13 @@
 					<button class="detailCart" onclick="addTmpBasket();">상품담기</button>
 				</div>
 				<div class="col-xs-6">
+				<form action="userOrderDirect.do" method="post" id="f">
+					<input type="hidden" name="prdtNo" value="<%=CmmUtil.nvl(pDTO.getPrdt_no()) %>">
+					<input type="hidden" name="qty" id="qty">
+					<input type="hidden" name="price" value="<%=CmmUtil.nvl(pDTO.getPrdt_price()) %>">
+					<input type="hidden" name="prdtName" value="<%=CmmUtil.nvl(pDTO.getPrdt_name())%>">
 					<a href="#"><button class="detailSubmit" onclick="orderDirect();">바로결제</button></a>
+				</form>
 				</div>
 			</div>
 		</div>
