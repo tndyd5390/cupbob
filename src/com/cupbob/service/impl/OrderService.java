@@ -20,6 +20,7 @@ import com.cupbob.dto.TotalOrderInfoDTO;
 import com.cupbob.dto.TotalOrderItemDTO;
 import com.cupbob.persistance.mapper.OrderMapper;
 import com.cupbob.service.IOrderService;
+import com.cupbob.util.CmmUtil;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers.CalendarDeserializer;
 @Service("OrderService")
 public class OrderService implements IOrderService {
@@ -136,11 +137,6 @@ public class OrderService implements IOrderService {
 				System.out.println(pName);
 				System.out.println(pPrice);
 			}
-			/*for(int i = 0; i< tItemList.size();i++){
-				prdtName += tItemList.get(i).getPrdt_name() + "</br>";
-				ordAmnt += tItemList.get(i).getOrd_amnt() + "</br>";
-				price += Integer.parseInt(tItemList.get(i).getPrdt_price()) * Integer.parseInt(tItemList.get(i).getOrd_amnt());
-			}*/
 			tDTO.setOrd_no(oDTO.getOrd_no());
 			tDTO.setTotal_ord_price(oDTO.getTotal_ord_price());
 			tDTO.setOrd_dt(oDTO.getOrd_dt());
@@ -152,7 +148,65 @@ public class OrderService implements IOrderService {
 			totalList.add(tDTO);
 		}
 		return totalList;
-	
-		}
-
 	}
+	
+	@Override
+	public List<TotalOrderDTO> orderListMore(String count,String user_no) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("count", count);
+		map.put("user_no", user_no);
+		List<TotalOrderInfoDTO> orderList = orderMapper.selectOrderMore(map);
+		int oCount = 0;
+		List<TotalOrderDTO> totalList = new ArrayList<TotalOrderDTO>();
+		for(TotalOrderInfoDTO oDTO : orderList){
+			oCount ++;
+			TotalOrderDTO tDTO = new TotalOrderDTO();
+			List<TotalOrderItemDTO> prdtList = orderMapper.selectProductList(oDTO.getOrd_no());
+			String pName="";
+			String pNameList="";
+			String pPrice="";
+			Map<String, Integer> prdtMap = new HashMap();
+			Map<String, Integer> priceMap = new HashMap();
+			for(TotalOrderItemDTO aDTO : prdtList){
+				System.out.println(aDTO.getPrdt_name());
+				if(prdtMap.containsKey(aDTO.getPrdt_name())){
+					prdtMap.put(aDTO.getPrdt_name(), prdtMap.get(aDTO.getPrdt_name()) + 1);
+				}else{
+					prdtMap.put(aDTO.getPrdt_name(), 1);
+				}
+			}
+			for(TotalOrderItemDTO aDTO : prdtList){
+				if(priceMap.containsKey(aDTO.getPrdt_name())){
+					priceMap.put(aDTO.getPrdt_name(), priceMap.get(aDTO.getPrdt_name()) + Integer.parseInt(aDTO.getPrdt_price()));
+				}else{
+					priceMap.put(aDTO.getPrdt_name(), Integer.parseInt(aDTO.getPrdt_price()));
+				}
+			}
+			Iterator<String> keys = prdtMap.keySet().iterator();
+			while(keys.hasNext()){
+				String key = keys.next();
+				pNameList += key+ "x" + prdtMap.get(key) + "<br>";
+			}
+			Iterator<String> keyss = priceMap.keySet().iterator();
+			while(keyss.hasNext()){
+				String key = keyss.next();
+				pPrice += priceMap.get(key) + "원<br>";
+			}
+			if(prdtMap.size() > 1){
+				pName = prdtList.get(0).getPrdt_name() + " 외 " + (prdtList.size()-1) + " 건 ";
+			}else{
+				pName = prdtList.get(0).getPrdt_name();
+			}
+			tDTO.setOrd_no(oDTO.getOrd_no());
+			tDTO.setTotal_ord_price(CmmUtil.addComma(oDTO.getTotal_ord_price()));
+			tDTO.setOrd_dt(oDTO.getOrd_dt());
+			tDTO.setOrd_stat(oDTO.getOrd_stat());
+			tDTO.setPrdt_name(pName);
+			tDTO.setPrdt_price(pPrice);
+			tDTO.setOrd_count(oCount);
+			tDTO.setPrdt_name_List(pNameList);
+			totalList.add(tDTO);
+		}
+		return totalList;
+	}
+}

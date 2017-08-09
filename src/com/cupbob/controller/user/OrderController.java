@@ -16,13 +16,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cupbob.dto.Order_infoDTO;
 import com.cupbob.dto.Order_itemDTO;
-import com.cupbob.dto.Product_infoDTO;
 import com.cupbob.dto.TmpBasketDTO;
 import com.cupbob.dto.TotalOrderDTO;
-import com.cupbob.dto.TotalOrderInfoDTO;
 import com.cupbob.service.IOrderService;
 import com.cupbob.util.CmmUtil;
 
@@ -211,9 +211,27 @@ public class OrderController {
 		List<TotalOrderDTO> totalList = orderService.selectOrderList(uNum);
 		
 		model.addAttribute("totalList", totalList);
+		model.addAttribute("uNum", uNum);
 		
 		log.info(this.getClass().getName() + "userOrderList END !!");
 		return "user/userOrderList";
+	}
+	
+	@RequestMapping(value="orderListMore")
+	public @ResponseBody List<TotalOrderDTO> orderListMore(@RequestParam(value="count") String count,@RequestParam(value="uNum") String user_no) throws Exception{
+		log.info(this.getClass().getName() + " moreButton Start!! ");
+		log.info(count);
+		log.info(user_no);
+		
+		List<TotalOrderDTO> orderListMore = orderService.orderListMore(count,user_no);
+		
+		for(TotalOrderDTO tDTO : orderListMore){
+			System.out.println(tDTO.getOrd_no());
+			System.out.println(tDTO.getPrdt_name());
+		}
+		
+		log.info(this.getClass().getName() + " moreButton END!! ");
+		return orderListMore;
 	}
 	
 	@RequestMapping(value="testSQL")

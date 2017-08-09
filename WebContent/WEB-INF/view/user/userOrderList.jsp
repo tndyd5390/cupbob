@@ -8,6 +8,8 @@
 	pageEncoding="UTF-8"%>
 <%
 	List<TotalOrderDTO> totalList = (List<TotalOrderDTO>)request.getAttribute("totalList");
+	String unum = (String) request.getAttribute("uNum");
+	System.out.println(unum);
 	int trCount = 0;
 	int toggleCount = 0;
 %>	
@@ -25,6 +27,14 @@
 <link rel="stylesheet" href="userBootstrap/css/nav.css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+	function doToggle(toggleCount, ordNo){
+		var ord = ordNo.toString();
+		$('#bcTarget_' + toggleCount).barcode(ord, 'int25', {barWidth:2, barHeight:60});
+		$('#Toggle' + toggleCount).toggle();
+		$('#Toggle2'+ toggleCount).toggle();
+	}
+</script>
 <title>Insert title here</title>
 <style>
 	.input-group > input.listText{
@@ -84,6 +94,10 @@
 	background-color : #F9EFD3;
 }
 
+div.barCode{
+	display : none;
+}
+
 	/* 350px 이하 (아이폰5)*/
 @media screen and (max-width: 350px) {
 
@@ -131,22 +145,20 @@
 </style>
 <script>
 <%
-	for(int i=0; i<=totalList.size();i++){
-		trCount += 1;
-		toggleCount += 1;
+	for(int i=0; i<totalList.size();i++){
 %>
 	$(function(){
-	    $('#Toggle<%=toggleCount%>').hide();
-	    $('#tr<%=trCount%>').click(function(){
-	        $('#Toggle<%=toggleCount%>').toggle();
-	        return false;
-	    });
+			$('#bcTarget_<%=i+1%>').barcode('<%=totalList.get(i).getOrd_no()%>', 'code128', {barWidth:2, barHeight:60});     
+	    	$('#tr<%=i+1%>').click(function(){
+	    		console.log()
+	    		$('#Toggle<%=i+1%>').toggle();
+	    		$('#Toggle2<%=i+1%>').toggle();
+	    	})
 	});
 <%
 	}
-	trCount = 0;
-	toggleCount =0;
 %>
+
 </script>
 </head>
 <body>
@@ -179,13 +191,13 @@
 				<th>결제금액</th>
 				<th>주문상태</th>
 			</thead>
-			<tbody>
+			<tbody id="orderList">
 			<%
 				for(TotalOrderDTO tDTO : totalList){
 					String[] prdtName = tDTO.getPrdt_name().split(";");
 					String[] prdtPrice = tDTO.getPrdt_price().split(";");
-					trCount += 1 ;
-					toggleCount += 1;
+					trCount ++;
+					toggleCount ++;
 			%> 
 			<tr id="tr<%=trCount%>">
  				<td><%=tDTO.getOrd_no() %></td>
@@ -229,23 +241,109 @@
  				<%} %>
 				<td><%=tDTO.getOrd_dt() %></td>
 				<td><%=CmmUtil.addComma(tDTO.getTotal_ord_price())%>원</td>
-				<td><%=tDTO.getOrd_stat() %></td> 
+				<%
+					String oStat = tDTO.getOrd_stat();
+					if(oStat.equals("1")){
+				%>
+				<td>접수대기</td>
+				<%
+					}else if(oStat.equals("2")){
+				%> 
+				<td>조리중</td>
+				<%
+					}else if(oStat.equals("3")){
+				%>
+				<td>조리완료</td>
+				<%
+					}else if(oStat.equals("4")){
+				%>
+				<td>수령완료</td>
+				<%
+					}else{
+				%>
+				<td>주문취소</td>
+				<%
+					}
+				%>
 			</tr>
-			
-			<tr id="Toggle<%=toggleCount%>" class="tableToggle">
+			<tr id="Toggle<%=toggleCount%>" class="tableToggle" style="display:none;">
 				<td></td>
 				<td><%=prdtList%></td>
 				<td></td>
 				<td><%=prdtPriceList%></td>
 				<td></td>
+			</tr>
+			<tr id="Toggle2<%=toggleCount%>" style="display:none;">
+				<td colspan="5" height="80px">
+					<center><div id="bcTarget_<%=toggleCount%>"></div></center>
+				</td>
+			</tr>
 			<%
 					}
 				}
 			%>
-			</tr>
 			</tbody>
 		</table>
-		<button class="moreButton">더 보 기</button>
+<script>
+$(function(){
+	var count = 5;
+	$('#more_Button').click(function(){
+		$.ajax({
+			url : 'orderListMore.do',
+			method : 'post',
+			data : {
+				'count' : count,
+				'uNum' : '<%=unum%>'
+			},
+			dataType : 'json',
+			success : function(data){
+				var contents = '';
+				console.log(data)
+				var toggleCount = <%=toggleCount%>;
+				var tmp = toggleCount;
+				$.each(data,function (key,value){
+					toggleCount++;
+					var oStat = value.ord_stat;
+					contents += "<tr id='tr"+toggleCount+"' onclick=\"doToggle(" + toggleCount + "," + value.ord_no + ");\">";
+					contents += "<td>" + value.ord_no + "</td>"
+					contents += "<td>" + value.prdt_name +  "</td>";
+					contents += "<td>" + value.ord_dt +  "</td>";
+					contents += "<td>" + value.total_ord_price + "원 </td>";
+					if(oStat == 1){
+						contents += "<td>접수대기</td>";
+					}else if(oStat == 2){
+						contents += "<td>조리중</td>";
+					}else if(oStat == 3){
+						contents += "<td>조리완료</td>";
+					}else if(oStat == 4){
+						contents += "<td>수령완료</td>";
+					}else{
+						contents += "<td>주문취소</td>";
+					}
+					contents += "</tr>";
+					contents += "<tr id='Toggle"+toggleCount+"' class='tableToggle' style='display:none;'>";
+					contents += "<td></td>"
+					contents += "<td>" + value.prdt_name_List +  "</td>";
+					contents += "<td></td>";
+					contents += "<td>" + value.prdt_price + "</td>";
+					contents += "<td></td>";
+					contents += "</tr>";
+					contents += "<tr id=\"Toggle2" + toggleCount + "\" style=\"display:none;\">";
+					contents += "<td colspan=\"5\" height=\"80px\">";
+					contents += "<center><div id=\"bcTarget_" + toggleCount + "\"></div></center>";
+					contents += "</td></tr>";
+				})
+				$('#orderList').append(contents)
+				if((data).length==0){
+					$('#more_Button').remove();
+				}
+			}
+		})
+	count += 5;
+	})
+})		
+</script>
+		<button type="button" class="moreButton" id="more_Button">더 보 기</button>
 	</form>
 	<br>
 	<br>
