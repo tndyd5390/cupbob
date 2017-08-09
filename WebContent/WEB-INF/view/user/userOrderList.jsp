@@ -35,7 +35,7 @@
 		$('#Toggle2'+ toggleCount).toggle();
 	}
 </script>
-<title>Insert title here</title>
+<title>주문 내역</title>
 <style>
 	.input-group > input.listText{
 		height:40px;
