@@ -7,9 +7,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%	
-
-	
+<%
 	String hour = new SimpleDateFormat("HH").format(new Date());
 	hour = CmmUtil.nvl(hour, "0");
 	String minute = new SimpleDateFormat("mm").format(new Date());
@@ -20,6 +18,8 @@
 	if(tMap == null){
 		tMap = new HashMap();	
 	}
+	String userMil = CmmUtil.nvl((String)request.getAttribute("userMil"));
+	String orderNo = System.currentTimeMillis() + "";
 %>
 <!DOCTYPE html>
 <html>
@@ -38,6 +38,7 @@
 		var checked = document.getElementById('userInfoCheck');
 		if(checked.checked == false){
 			console.log("false");
+			console.log("<%=CmmUtil.nvl((String)session.getAttribute("ss_user_ca"))%>" + "aaa");
 			document.getElementById('CUSTOMER_NAME').value='<%=CmmUtil.nvl((String)session.getAttribute("ss_user_name"))%>';
 			document.getElementById('CUSTOMER_TEL').value='<%=CmmUtil.nvl((String)session.getAttribute("ss_user_ca"))%>';
 			checked.checked = true;
@@ -47,13 +48,33 @@
 			checked.checked = false;
 		}
 	}
+	function changeCustomerName(){
+		var checked = document.getElementById('userInfoCheck');
+		checked.checked = false;
+	}
+	
+	function uncomma(str) {
+	    str = String(str);
+	    return str.replace(/[^\d]+/g, '');
+	}
 	
 	function doSubmitOrder(){
 		var f = document.getElementById('frmPayment');
+		var userUseMil = document.getElementById('userUseMil');
 		if(document.getElementById('CUSTOMER_NAME').value==""){
 			alert("이름을 입력해주세요");
 			document.getElementById('CUSTOMER_NAME').focus();
 			return;
+		}
+		if(document.getElementById('CUSTOMER_TEL').value == ""){
+			alert("연락처를 입력해 주세요.");
+			document.getElementById('CUSTOMER_TEL').focus();
+			return;
+		}
+		if(userUseMil != null){
+			document.getElementById('ETC_DATA1').value = document.getElementById('ETC_DATA1').value +  ";" + "dec-" + uncomma($('#userUseMil').text());
+		}else{
+			document.getElementById('ETC_DATA1').value = document.getElementById('ETC_DATA1').value + ";" + "inc-" + (parseInt(parseInt(uncomma($('#resultPrice').text())) * 0.05));
 		}
 		f.submit();
 	}
@@ -65,6 +86,14 @@
 	function radioCardCheck(){
 		var cardCheckBox = document.getElementsByName('TRAN_TYPE');
 		cardCheckBox[1].checked = true;
+	}
+	function useMil(){
+		var mil = uncomma($('#mileage').text());
+		if(mil<1000){
+			alert('마일리지는 1000원 이상부터 사용 가능합니다.');
+		}else{
+			window.open("useMil.do", "c", "width=350,height=200");
+		}
 	}
 </script>
 <title>소라네 컵밥 주문하기</title>
@@ -84,7 +113,7 @@
 	<!-- 사업자 번호 -->
 	<input type="hidden" id="BUSINESS_NO" name="BUSINESS_NO" value="1068621229" />
 	<!-- 가맹점 주문 번호 -->
-	<input type="hidden" id="TRAN_NO" name="TRAN_NO" value="12345678910" size=20 maxlength=20 />
+	<input type="hidden" id="TRAN_NO" name="TRAN_NO" value="<%=orderNo %>" size=20 maxlength=20 />
 	<!-- 상품 구분 -->
 	<input type="hidden" id="PRODUCTTYPE_1" name="PRODUCTTYPE" value="1" checked="checked"/>
 	<input type="hidden" id="PRODUCTTYPE_2" name="PRODUCTTYPE" value="2" />
@@ -165,7 +194,7 @@
 				</h4>
 		</div>
 		<div class="orderGroup">
-			<input class="form-control orderText" type="text" name="CUSTOMER_NAME" id="CUSTOMER_NAME" value="<%=CmmUtil.nvl((String)session.getAttribute("ss_user_name")) %>">
+			<input class="form-control orderText" type="text" name="CUSTOMER_NAME" id="CUSTOMER_NAME" value="<%=CmmUtil.nvl((String)session.getAttribute("ss_user_name")) %>" onchange="changeCustomerName();">
 		</div>
 		<hr class="orderHr">
 		<div class="orderGroup">
@@ -174,7 +203,7 @@
 				</h4>
 		</div>
 		<div class="orderGroup">
-			<input class="form-control orderText" type="text" name="CUSTOMER_TEL" id="CUSTOMER_TEL" value="<%=CmmUtil.nvl((String)session.getAttribute("ss_user_ca"))%>">
+			<input class="form-control orderText" type="text" name="CUSTOMER_TEL" id="CUSTOMER_TEL" value="<%=CmmUtil.nvl((String)session.getAttribute("ss_user_ca"))%>" onchange="changeCustomerName();">
 		</div>
 		<hr class="orderHr">
 		<div class="orderGroupArea">
@@ -185,7 +214,7 @@
 		</div>
 		<hr class="orderHr">
 		<div class="checkbox icheck-asbestos">
-			<input type="checkbox" id="userInfoCheck" /> <label for="asbestos" onclick="checkBoxControll();">
+			<input type="checkbox" id="userInfoCheck" checked="checked"/> <label for="asbestos" onclick="checkBoxControll();">
 				<p class="checkboxFont" >회원 정보와 동일 합니다.</p>
 			</label>
 		</div>
@@ -212,9 +241,11 @@
 				
 			<%resultPrice += Integer.parseInt(tDTO.getTmpBasketPrdtPrice())*Integer.parseInt(tDTO.getTmpBasketPrdtQty());
 			}%>
+			<p class="orderDetailLeft">사용 가능 마일리지</p><p class="orderDetailRight" id="mileage"><%=CmmUtil.addComma(userMil) %>원</p>
+			<div id="mil"><a href="#"  onclick="useMil();"><div class="orderHead">마일리지 사용</div></a></div>
 			<div class="orderTotalPrice">
 				<p class="totalPriceLeft">결제 예정 금액</p>
-				<p class="totalPriceRight"><%=CmmUtil.nvl(CmmUtil.addComma(resultPrice)) %>원</p>
+				<p class="totalPriceRight" id="resultPrice"><%=CmmUtil.nvl(CmmUtil.addComma(resultPrice)) %>원</p>
 			</div>
 		  <%}%>
 		<div class="radio icheck-asbestos">
@@ -233,4 +264,3 @@
 	<%@include file="/include/footer.jsp"%>
 	</div>
 </body>
-</html>
