@@ -13,11 +13,13 @@ import java.util.Map;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import com.cupbob.dto.MilHistoryDTO;
 import com.cupbob.dto.Order_infoDTO;
 import com.cupbob.dto.Order_itemDTO;
 import com.cupbob.dto.TotalOrderDTO;
 import com.cupbob.dto.TotalOrderInfoDTO;
 import com.cupbob.dto.TotalOrderItemDTO;
+import com.cupbob.dto.User_infoDTO;
 import com.cupbob.persistance.mapper.OrderMapper;
 import com.cupbob.service.IOrderService;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers.CalendarDeserializer;
@@ -109,11 +111,49 @@ public class OrderService implements IOrderService {
 	}
 
 	@Override
-	public boolean insertOrderSuccess(Order_infoDTO oDTO, List<Order_itemDTO> oList) throws Exception {
+	public boolean insertOrderSuccess(Order_infoDTO oDTO, List<Order_itemDTO> oList, Map<String, String> milMap) throws Exception {
 		boolean result = false;
+		boolean updateResult = false;
 		int insertOrderInfo = orderMapper.insertOrderInfo(oDTO);
 		int insertOrderItem = orderMapper.insertOrderItem(oList);
-		if(insertOrderInfo > 0 && insertOrderItem > 0){
+		if(milMap.containsKey("dec")){
+			/**
+			 * 마일리지 감소
+			 */
+			User_infoDTO uDTO = new User_infoDTO();
+			uDTO.setUser_no(oDTO.getUser_no());
+			uDTO.setMileage(milMap.get("dec"));
+			int update = orderMapper.updateUserMilDec(uDTO);
+			MilHistoryDTO mDTO = new MilHistoryDTO();
+			mDTO.setOrd_no(oDTO.getOrd_no());
+			mDTO.setSpend(milMap.get("dec"));
+			mDTO.setUser_no(oDTO.getUser_no());
+			mDTO.setReg_user_no(oDTO.getUser_no());
+			mDTO.setHistory("사용");
+			int insert = orderMapper.insertMilHistory(mDTO);
+			if(update != 0 && insert != 0){
+				updateResult = true;
+			}
+		}else{
+			/**
+			 * 마일리지 증가
+			 */
+			User_infoDTO uDTO = new User_infoDTO();
+			uDTO.setUser_no(oDTO.getUser_no());
+			uDTO.setMileage(milMap.get("inc"));
+			int update = orderMapper.updateUserMilInc(uDTO);
+			MilHistoryDTO mDTO = new MilHistoryDTO();
+			mDTO.setOrd_no(oDTO.getOrd_no());
+			mDTO.setSave(milMap.get("inc"));
+			mDTO.setUser_no(oDTO.getUser_no());
+			mDTO.setReg_user_no(oDTO.getUser_no());
+			mDTO.setHistory("적립");
+			int insert = orderMapper.insertMilHistory(mDTO);
+			if(update != 0 && insert != 0){
+				updateResult = true;
+			}
+		}
+		if(insertOrderInfo > 0 && insertOrderItem > 0 && updateResult){
 			result = true;
 		}
 		return result;
@@ -122,6 +162,11 @@ public class OrderService implements IOrderService {
 	@Override
 	public Order_infoDTO getOrderNo(String userNo) throws Exception {
 		return orderMapper.getOrderNo(userNo);
+	}
+
+	@Override
+	public User_infoDTO getUserMil(String userNo) throws Exception {
+		return orderMapper.getUserMil(userNo);
 	}
 
 }

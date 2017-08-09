@@ -16,6 +16,21 @@ public class Order_infoDTO {
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
+	private String mileage;
+	private String real_ord_price;
+	
+	public String getReal_ord_price() {
+		return real_ord_price;
+	}
+	public void setReal_ord_price(String real_ord_price) {
+		this.real_ord_price = real_ord_price;
+	}
+	public String getMileage() {
+		return mileage;
+	}
+	public void setMileage(String mileage) {
+		this.mileage = mileage;
+	}
 	public String getOrd_no() {
 		return ord_no;
 	}

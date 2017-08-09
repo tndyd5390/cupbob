@@ -40,7 +40,7 @@ public class BoardController {
 			userBoardList = new ArrayList<User_boardDTO>();
 		}
 		
-		log.info(this.getClass().getName() + "board count" +userBoardList.size());
+		log.info(this.getClass().getName() + "글 갯수" +userBoardList.size());
 		
 		model.addAttribute("userBoardList", userBoardList);
 		userBoardList = null;
@@ -91,7 +91,7 @@ public class BoardController {
 		log.info(this.getClass() + "userBoardDetail start!!!");
 		
 		String bnum = CmmUtil.nvl(req.getParameter("bnum"));
-		log.info(this.getClass().getName() + "board bnum : "+bnum);
+		log.info(this.getClass().getName() + "글 번호 : "+bnum);
 		User_boardDTO bDTO = new User_boardDTO();
 		bDTO.setPost_no(bnum);
 		bDTO = boardService.getAdminBoardDetail(bDTO);
@@ -122,7 +122,7 @@ public class BoardController {
 		log.info(this.getClass() + "userBoardDelete start!!!");
 		
 		String bnum = CmmUtil.nvl(req.getParameter("bnum"));
-		log.info(this.getClass().getName() + "board bnum : "+bnum);
+		log.info(this.getClass().getName() + "글 번호 : "+bnum);
 		
 		User_boardDTO bDTO = new User_boardDTO();
 		bDTO.setPost_no(bnum);
@@ -133,10 +133,10 @@ public class BoardController {
 		String url = "";
 		
 		if(result > 0){
-			msg = "삭제가 완료되었습니다.";
+			msg = "�궘�젣�릺�뿀�뒿�땲�떎.";
 			url = "userBoardList.do";
 		}else{
-			msg = "삭제가 실패되었습니다.";
+			msg = "�삤瑜�";
 			url = "userBoardDetail.do?bnum="+bnum;
 		}
 		
@@ -189,10 +189,10 @@ public class BoardController {
 		result = boardService.updateUserBoard(bDTO);
 		String msg, url;
 		if(result){
-			msg = "수정이 완료되었습니다.";
+			msg = "�닔�젙 �릺�뿀�뒿�땲�떎.";
 			url = "userBoardList.do";
 		}else{
-			msg = "수정이 실패되었습니다.";
+			msg = "�삤瑜�";
 			url = "userBoardDetail.do?bnum="+bnum;
 		}
 		model.addAttribute("msg", msg);
