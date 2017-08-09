@@ -157,8 +157,9 @@
 					class="icon_piechart"></i> <span>분석 차트</span>
 
 			</a></li>
-
-
+			<li><a class="" href="adminLog.do"> <i
+					class="icon_piechart"></i> <span>로그 분석</span>
+			</a></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
