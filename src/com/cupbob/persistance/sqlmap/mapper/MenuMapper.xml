@@ -95,4 +95,12 @@
 		where
 			PRDT_NO = #{menuNo}
 	</select>
+	<select id="getUserMil" resultType="User_infoDTO" parameterType="string">
+		SELECT
+			MILEAGE
+		FROM
+			USER_INFO
+		WHERE
+			USER_NO = #{userNo}
+	</select>
 </mapper>

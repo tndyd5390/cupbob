@@ -31,9 +31,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="recommTitle">
-					<img
-						src="https://ncache.ilbe.com/files/attach/new/20141018/377678/90262281/4510097791/a02a9ae58726212e724f45663c21883c.PNG"
-						width="30px;"> <span><strong>추천메뉴</strong></span>
+					<img src="userBootstrap/navImage/best.png" width="30px;"> <span><strong>추천메뉴</strong></span>
 				</div>
 			</div>
 			<div class="row">

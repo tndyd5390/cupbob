@@ -8,7 +8,7 @@
 	</select>
 	
 	<select id="login" resultType="User_infoDTO" parameterType="User_infoDTO">
-		SELECT EMAIL, USER_NAME, USER_NO FROM USER_INFO WHERE EMAIL = 
+		SELECT EMAIL, USER_NAME, USER_NO, CONTACT_ADDR FROM USER_INFO WHERE EMAIL = 
 		#{email} AND PASSWORD = PASSWORD(#{password})
 	</select>
 	

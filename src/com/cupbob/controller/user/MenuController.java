@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cupbob.dto.Product_infoDTO;
 import com.cupbob.dto.TmpBasketDTO;
+import com.cupbob.dto.User_infoDTO;
 import com.cupbob.service.IMenuService;
 import com.cupbob.service.IUserService;
 import com.cupbob.util.CmmUtil;
@@ -197,6 +198,11 @@ public class MenuController {
 	@RequestMapping(value="userDoOrder", method=RequestMethod.GET)
 	public String userDoOrder(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
 		log.info(this.getClass() + ".userDoOrder start!!!");
+		String userNo = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
+		User_infoDTO uDTO = menuService.getUserMil(userNo);
+		if(uDTO == null){
+			uDTO = new User_infoDTO();
+		}
 		Map<String, TmpBasketDTO> tMap = (Map<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
 		if(tMap == null){
 			tMap = new HashMap();
@@ -207,6 +213,7 @@ public class MenuController {
 			model.addAttribute("msg", "주문하실 제품이 없습니다.");
 			model.addAttribute("url", "userMenuList.do");
 		}
+		model.addAttribute("userMil", uDTO.getMileage());
 		log.info(this.getClass() + ".userDoOrder end!!!");
 		return returnURL;
 	}
