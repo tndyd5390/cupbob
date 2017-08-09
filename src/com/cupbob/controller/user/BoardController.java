@@ -133,10 +133,10 @@ public class BoardController {
 		String url = "";
 		
 		if(result > 0){
-			msg = "�궘�젣�릺�뿀�뒿�땲�떎.";
+			msg = "삭제 되었습니다.";
 			url = "userBoardList.do";
 		}else{
-			msg = "�삤瑜�";
+			msg = "삭제 실패!";
 			url = "userBoardDetail.do?bnum="+bnum;
 		}
 		
@@ -189,10 +189,10 @@ public class BoardController {
 		result = boardService.updateUserBoard(bDTO);
 		String msg, url;
 		if(result){
-			msg = "�닔�젙 �릺�뿀�뒿�땲�떎.";
-			url = "userBoardList.do";
+			msg = "수정 되었습니다.";
+			url = "userBoardDetail.do?bnum="+bnum;
 		}else{
-			msg = "�삤瑜�";
+			msg = "수정 실패!";
 			url = "userBoardDetail.do?bnum="+bnum;
 		}
 		model.addAttribute("msg", msg);

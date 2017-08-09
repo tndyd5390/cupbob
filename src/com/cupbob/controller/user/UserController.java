@@ -106,7 +106,7 @@ public class UserController {
 		String url;
 		
 		if(rs > 0){
-			msg = "수정되었습니다";
+			msg = "수정 되었습니다.";
 			url = "userMyPage.do?uNum=" + CmmUtil.nvl(ss_user_no);
 		}else{
 			msg = "수정 실패!";
@@ -138,7 +138,7 @@ public class UserController {
 		String url;
 			
 		if(rs > 0){
-			msg = "삭제되었습니다.";
+			msg = "삭제 되었습니다.";
 			url = "userLogin.do";
 		}else{
 			msg = "삭제 실패!";
@@ -224,7 +224,7 @@ public class UserController {
 		String url;
 		
 		if(uDTO == null){
-			msg = "비밀번호를 다시 확인해 주세요";
+			msg = "비밀번호를 다시 확인해 주세요.";
 			url = "userUpdateCheck.do?uNum="+uNum;
 		}else{
 			msg = "";
@@ -336,7 +336,7 @@ public class UserController {
 		
 		if(uDTO == null){
 			log.info("userEmailFind Fail!!");
-			model.addAttribute("msg","입력하신 정보가 일치하지 않습니다");
+			model.addAttribute("msg","입력하신 정보가 일치하지 않습니다.");
 			model.addAttribute("url","userFind.do");
 		}else{
 			model.addAttribute("msg", "고객님의 아이디는 "+uDTO.getEmail()+" 입니다.");
@@ -393,7 +393,7 @@ public class UserController {
 			log.info(sendEmail.getContent());
 			
 			emailSender.SendEmail(sendEmail);
-			model.addAttribute("msg", "고객님의 임시 비밀번호를 이메일로 발송하였습니다");
+			model.addAttribute("msg", "고객님의 임시 비밀번호를 이메일로 발송하였습니다.");
 			model.addAttribute("url", "userLogin.do");
 		}
 		return "user/userFindAlert";
