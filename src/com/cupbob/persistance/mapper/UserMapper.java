@@ -2,6 +2,7 @@ package com.cupbob.persistance.mapper;
 
 import java.util.List;
 import com.cupbob.config.Mapper;
+import com.cupbob.dto.MilHistoryDTO;
 import com.cupbob.dto.Product_infoDTO;
 import com.cupbob.dto.User_infoDTO;
 
@@ -41,5 +42,7 @@ public interface UserMapper {
 	public List<User_infoDTO> userSearch(User_infoDTO uDTO) throws Exception;
 	
 	public List<Product_infoDTO> getUserMenuList() throws Exception;
-	
+
+
+	public List<MilHistoryDTO> getUserMileage(User_infoDTO uDTO) throws Exception;
 }
