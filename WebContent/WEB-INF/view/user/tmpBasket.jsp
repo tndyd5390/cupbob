@@ -36,6 +36,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <title>소라네 컵밥 장바구니</title>
 <script type="text/javascript">
+var ss_userNo = <%=userNo%>;
 function addComma(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -242,7 +243,14 @@ function addComma(x) {
 		location.href="userMenuList.do";
 	}
 	function doOrder(){
-		location.href="userDoOrder.do";
+		if(ss_userNo==""){
+			alert("로그인이 필요합니다");
+			location.href="userLogin.do";
+			return false;
+		}else{
+			location.href="userDoOrder.do";
+			return true
+		}
 	}
 </script>
 </head>
@@ -291,7 +299,7 @@ function addComma(x) {
 				</div>
 			</div>
 			<div class="col-xs-12">
-				<button class="tmpBasketOrder" onclick="doOrder();">주문 하기</button>
+				<button class="tmpBasketOrder" onclick="return doOrder();">주문 하기</button>
 			</div>
 		<br>
 	</div>
