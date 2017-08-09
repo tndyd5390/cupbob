@@ -19,7 +19,6 @@
 		tMap = new HashMap();	
 	}
 	String userMil = CmmUtil.nvl((String)request.getAttribute("userMil"));
-	System.out.println("userMil : " + userMil);
 	String orderNo = System.currentTimeMillis() + "";
 %>
 <!DOCTYPE html>
@@ -89,7 +88,12 @@
 		cardCheckBox[1].checked = true;
 	}
 	function useMil(){
-		window.open("useMil.do", "c", "width=350,height=200");
+		var mil = uncomma($('#mileage').text());
+		if(mil<1000){
+			alert('마일리지는 1000원 이상부터 사용 가능합니다.');
+		}else{
+			window.open("useMil.do", "c", "width=350,height=200");
+		}
 	}
 </script>
 <title>소라네 컵밥 주문하기</title>
@@ -237,7 +241,7 @@
 				
 			<%resultPrice += Integer.parseInt(tDTO.getTmpBasketPrdtPrice())*Integer.parseInt(tDTO.getTmpBasketPrdtQty());
 			}%>
-			<p class="orderDetailLeft">사용 가능 마일리지</p><p class="orderDetailRight"><%=CmmUtil.addComma(userMil) %>원</p>
+			<p class="orderDetailLeft">사용 가능 마일리지</p><p class="orderDetailRight" id="mileage"><%=CmmUtil.addComma(userMil) %>원</p>
 			<div id="mil"><a href="#"  onclick="useMil();"><div class="orderHead">마일리지 사용</div></a></div>
 			<div class="orderTotalPrice">
 				<p class="totalPriceLeft">결제 예정 금액</p>

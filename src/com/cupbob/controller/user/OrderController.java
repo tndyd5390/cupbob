@@ -150,7 +150,7 @@ public class OrderController {
 				oIDTO.setOrd_no(tran_no);
 				oIDTO.setPrdt_no(orderItem[0]);
 				oIDTO.setOrd_amnt(orderItem[1]);
-				oIDTO.setReg_user_no(etc_data1);
+				oIDTO.setReg_user_no(userNoAndMil[0]);
 				oList.add(oIDTO);
 			}
 			

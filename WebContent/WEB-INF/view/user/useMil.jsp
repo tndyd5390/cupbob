@@ -27,6 +27,10 @@
 	function useMilPop(){
 		var limitMil = parseInt($('#limitMil').text());
 		var useInputMil = parseInt($('#useInputMil').val());
+		if(useInputMil < 1000){
+			alert("마일리지는 1000이상 부터 사용 가능합니다.");
+			return;
+		}
 		if(useInputMil % 100 != 0){
 			alert("마일리지는 100원 단위로 사용가능합니다");
 			return;
