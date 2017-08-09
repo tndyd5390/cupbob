@@ -9,6 +9,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	String userNo = (String) session.getAttribute("ss_user_no");
 	Map<String, TmpBasketDTO> tMap = (Map<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
 	if(tMap == null){
 		tMap = new HashMap();
@@ -239,7 +240,7 @@ function addComma(x) {
 		location.href="userMenuList.do";
 	}
 	function doOrder(){
-		if(ss_userNo==""){
+		if(ss_userNo==null){
 			alert("로그인이 필요합니다");
 			location.href="userLogin.do";
 			return false;
