@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.cupbob.dto.Order_infoDTO;
 import com.cupbob.dto.Order_itemDTO;
 import com.cupbob.dto.TmpBasketDTO;
+import com.cupbob.dto.User_infoDTO;
 import com.cupbob.service.IOrderService;
 import com.cupbob.util.CmmUtil;
 
@@ -109,17 +110,16 @@ public class OrderController {
 		String etc_data1 =CmmUtil.nvl(req.getParameter("ETC_DATA1"));//사용자 번호 넘어올것
 		log.info(this.getClass() + " etc_data1 : " + etc_data1);
 		String etc_data2 =CmmUtil.nvl(req.getParameter("ETC_DATA2"));
-		log.info(this.getClass() + " etc_data2 : " + etc_data2);//수령시간 넘어 올것
+		log.info(this.getClass() + " etc_data2 : " + etc_data2);//수령시간
 		String etc_data3 =CmmUtil.nvl(req.getParameter("ETC_DATA3"));		
-		log.info(this.getClass() + " etc_data3 : " + etc_data3);
-		String now = System.currentTimeMillis() + "";
+		log.info(this.getClass() + " etc_data3 : " + etc_data3);//주문 제품 목록
 		if(rep_code.equals("0000")){
 			/**
 			 * 결제 성공
 			 */
 			Order_infoDTO oDTO = new Order_infoDTO();
-			oDTO.setOrd_no(now);
-			oDTO.setTotal_ord_price(amt);
+			oDTO.setOrd_no(tran_no);
+			oDTO.setReal_ord_price(amt);
 			if(tran_type.equals("PHON")){
 				oDTO.setPayment_tp("p");
 			}else{
@@ -128,20 +128,33 @@ public class OrderController {
 			oDTO.setOrd_stat("1");
 			oDTO.setUsr_rcv_time(etc_data2);
 			oDTO.setRcv_yn("n");
-			oDTO.setUser_no(etc_data1);
-			oDTO.setReg_user_no(etc_data1);
+			String[] userNoAndMil = etc_data1.split(";");
+			String[] mil = userNoAndMil[1].split("-");
+			Map<String, String> milMap = new HashMap();
+			oDTO.setUser_no(userNoAndMil[0]);
+			if(mil[0].equals("dec")){//마일리지를 사용했을 경우 차감
+				oDTO.setMileage(mil[1]);
+				oDTO.setTotal_ord_price((Integer.parseInt(amt) + Integer.parseInt(mil[1])) + "");
+				oDTO.setReg_user_no(userNoAndMil[0]);
+				milMap.put("dec", mil[1]);
+			}else{//마일리지를 사용 안했을 경우 마일리지 증가
+				oDTO.setReg_user_no(userNoAndMil[0]);
+				oDTO.setTotal_ord_price(amt);
+				milMap.put("inc", mil[1]);
+			}
 			String[] orderItems = etc_data3.split("-");
 			List<Order_itemDTO> oList = new ArrayList<Order_itemDTO>();
 			for(int i = 0; i< orderItems.length; i++){
 				String[] orderItem = orderItems[i].split(":");
 				Order_itemDTO oIDTO = new Order_itemDTO();
+				oIDTO.setOrd_no(tran_no);
 				oIDTO.setPrdt_no(orderItem[0]);
 				oIDTO.setOrd_amnt(orderItem[1]);
-				oIDTO.setReg_user_no(etc_data1);
+				oIDTO.setReg_user_no(userNoAndMil[0]);
 				oList.add(oIDTO);
 			}
 			
-			orderService.insertOrderSuccess(oDTO, oList);
+			orderService.insertOrderSuccess(oDTO, oList, milMap);
 		}else{
 			/**
 			 * 
@@ -181,7 +194,7 @@ public class OrderController {
 		return null;
 	}
 	
-	@RequestMapping(value="userOrderDirect", method=RequestMethod.GET)
+	@RequestMapping(value="userOrderDirect", method=RequestMethod.POST)
 	public String userOrderDirect(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
 		log.info(this.getClass() + ".userOrderDirect start!!!");
 		String prdtNo = CmmUtil.nvl(req.getParameter("prdtNo"));
@@ -192,6 +205,11 @@ public class OrderController {
 		log.info(this.getClass() + " price : " + price);
 		String prdtName = CmmUtil.nvl(req.getParameter("prdtName"));
 		log.info(this.getClass() + " prdtName : "  + prdtName);
+		String userNo = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
+		User_infoDTO uDTO = orderService.getUserMil(userNo);//마일리지 가져오기
+		if(uDTO == null){
+			uDTO = new User_infoDTO();
+		}
 		Map<String, TmpBasketDTO> tMap = new HashMap();
 		TmpBasketDTO tDTO = new TmpBasketDTO(prdtNo, qty, price, prdtName);
 		tMap.put(prdtNo, tDTO);
@@ -205,6 +223,7 @@ public class OrderController {
 			log.info(this.getClass() + " session--------------------------------------");
 		}
 		session.setAttribute("ss_tmpBasket", tMap);
+		model.addAttribute("userMil", uDTO.getMileage());//마일리지 가져와서 올리기
 		log.info(this.getClass() + ".userOrderDirect end!!!");
 		return "user/order";
 	}
@@ -216,5 +235,14 @@ public class OrderController {
 		orderService.test();
 		log.info(this.getClass() + ".test end!!!");
 		return null;
+	}
+	@RequestMapping(value="useMil")
+	public String useMil(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
+		log.info(this.getClass() + "useMil start!!!");
+		String userNo = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
+		User_infoDTO uDTO = orderService.getUserMil(userNo);//마일리지 가져오기
+		model.addAttribute("userMil", uDTO.getMileage());//마일리지 가져와서 올리기
+		log.info(this.getClass() + "useMil end!!!");
+		return "user/useMil";
 	}
 }

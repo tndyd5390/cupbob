@@ -3,7 +3,6 @@
 <%
 	String uNum = (String)session.getAttribute("ss_user_no");
 %>
-
 <!DOCTYPE html>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script>
@@ -26,7 +25,6 @@
 			return false;
 		}
 	};
-
 </script>
 <div class="nav_wrapper" style="z-index: 2;">
 		<!--<a class="menu-link" href="#menu"></a>-->
