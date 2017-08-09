@@ -69,7 +69,7 @@ String ss_user_no = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 						})
 						$('#boardList').append(contents)
 						if ((data).length==0) {
-							$('.btn_more').remove();
+							$('.moreContents').remove();
 						}
 					}
 				})
