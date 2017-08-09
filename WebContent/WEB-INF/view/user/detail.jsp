@@ -75,15 +75,11 @@
 		});
 	}
 	function orderDirect(){
-		var prdtNo = '<%=CmmUtil.nvl(pDTO.getPrdt_no())%>';
-		var price = '<%=CmmUtil.nvl(pDTO.getPrdt_price())%>';
-		var qty = document.getElementById('itemQty').value;
-		var prdtName = '<%=CmmUtil.nvl(pDTO.getPrdt_name())%>';
-		location.href="userOrderDirect.do?prdtNo=" + prdtNo + "&qty=" + qty + "&price=" + price + "&prdtName=" + prdtName;
-		
+		var f = document.getElementById('f');
+		f.qty.value = document.getElementById('itemQty').value;
+		f.submit();
 	}
 </script>
-
 </head>
 <body>
 	<%@include file="/include/nav.jsp"%>
@@ -98,7 +94,7 @@
 					</span>
 				</div>
 				<div>
-					<span class="detailNameEng"> <%=CmmUtil.nvl(pDTO.getPrdt_name()) %> 500g </span>
+					<span class="detailNameEng"> bulgogi cupbob 240g </span>
 				</div>
 				<div>
 					<span class="detailTxt"><%=CmmUtil.nvl(pDTO.getContents()) %></span>
@@ -109,7 +105,7 @@
 			<div class="d-Img">
 				<img
 					src="<%="menuImg/" + CmmUtil.nvl(pDTO.getFile_name()) %>"
-					class="menuIconImg">
+					class="menuImg">
 			</div>
 		</div>
 		<div>
@@ -122,7 +118,7 @@
 			</div>
 			<div class="col-xs-6">
 				<ul class="detailListUnstyle">
-					<li><%=CmmUtil.nvl(pDTO.getPrdt_kcal()) + "kcal" %> / 500g</li>
+					<li><%=CmmUtil.nvl(pDTO.getPrdt_kcal()) + "kcal" %> / 0000g</li>
 					<li>120g</li>
 					<li>300mg</li>
 				</ul>
@@ -147,7 +143,13 @@
 					<button class="detailCart" onclick="addTmpBasket();">상품담기</button>
 				</div>
 				<div class="col-xs-6">
+				<form action="userOrderDirect.do" method="post" id="f">
+					<input type="hidden" name="prdtNo" value="<%=CmmUtil.nvl(pDTO.getPrdt_no()) %>">
+					<input type="hidden" name="qty" id="qty">
+					<input type="hidden" name="price" value="<%=CmmUtil.nvl(pDTO.getPrdt_price()) %>">
+					<input type="hidden" name="prdtName" value="<%=CmmUtil.nvl(pDTO.getPrdt_name())%>">
 					<a href="#"><button class="detailSubmit" onclick="orderDirect();">바로결제</button></a>
+				</form>
 				</div>
 			</div>
 		</div>

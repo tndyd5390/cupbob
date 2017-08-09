@@ -7,7 +7,9 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
+<%	
+
+	
 	String hour = new SimpleDateFormat("HH").format(new Date());
 	hour = CmmUtil.nvl(hour, "0");
 	String minute = new SimpleDateFormat("mm").format(new Date());

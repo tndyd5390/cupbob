@@ -231,7 +231,6 @@ public class OrderController {
 	@RequestMapping(value="testSQL")
 	public String test(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
 		log.info(this.getClass() + ".test start!!!");
-		
 		orderService.test();
 		log.info(this.getClass() + ".test end!!!");
 		return null;
