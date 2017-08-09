@@ -37,11 +37,7 @@ function convertContent(str){
 };
 $(function(){
 	$('#cmtCreate').bind('click',function() {
-		
 		var cnts = $('#cnts').val();
-		
-		console.log(pNo);
-		console.log(cnts);
 		if(cnts==""){
 			alert("댓글을 입력하세요");
 			$('#cmtCreate').focus();
@@ -106,7 +102,6 @@ function cmtDelete(cmt_no){
 						var contents = "";
 						if(data!=""){
 							$.each(data,function(key, value) {
-								console.log(value.user_name);
 								if(value.user_no=="<%=ss_user_no%>"){
 									contents += "<li class='list-group-item list-none-line '"+ "id="+value.cmt_no+">";
 									contents += "<div class="+"contentsArea"+">";

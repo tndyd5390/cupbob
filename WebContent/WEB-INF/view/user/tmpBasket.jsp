@@ -39,7 +39,6 @@ function addComma(x) {
 }
 	function tmpPlMi(prdtNo, flag) {
 		var qty = parseInt($('#' + prdtNo + "Cnt").val());
-		console.log(qty);
 		if(qty >= 1){
 			if(flag == 'm'){
 				if(qty == 1){return;}
@@ -57,7 +56,6 @@ function addComma(x) {
 				dataType : "json",
 				success : function(data) {
 					var count = Object.keys(data).length;
-					console.log(data);
 					if(count != 0){
 						var contents = "";
 						var resultPrice = 0;
@@ -176,9 +174,6 @@ function addComma(x) {
 			alert("제품을 선택해 주세요.");
 			return;
 		}
-		for(var i = 0; i< prdtNo.length; i++){
-			console.log(prdtNo[i]);
-		}
 		jQuery.ajaxSettings.traditional = true;
 		$.ajax({
 			url : "userTmpItemSelectedDelete.do",
@@ -188,7 +183,6 @@ function addComma(x) {
 			},
 			dataType : "json",
 			success : function(data) {
-				console.log(data);
 				var count = Object.keys(data).length;
 				if(count != 0){
 					var contents = "";

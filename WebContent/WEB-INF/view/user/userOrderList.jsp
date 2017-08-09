@@ -150,7 +150,6 @@ div.barCode{
 	$(function(){
 			$('#bcTarget_<%=i+1%>').barcode('<%=totalList.get(i).getOrd_no()%>', 'code128', {barWidth:2, barHeight:60});     
 	    	$('#tr<%=i+1%>').click(function(){
-	    		console.log()
 	    		$('#Toggle<%=i+1%>').toggle();
 	    		$('#Toggle2<%=i+1%>').toggle();
 	    	})
@@ -304,7 +303,6 @@ $(function(){
 			dataType : 'json',
 			success : function(data){
 				var contents = '';
-				console.log(data)
 				var toggleCount = <%=toggleCount%>;
 				var tmp = toggleCount;
 				$.each(data,function (key,value){

@@ -79,7 +79,6 @@
 	var ss_userNo = "<%=userNo%>";
 
 	function orderDirect(){
-		console.log(ss_userNo);
 	if(ss_userNo==""){
 		alert("로그인이 필요합니다");
 		location.href="userLogin.do";

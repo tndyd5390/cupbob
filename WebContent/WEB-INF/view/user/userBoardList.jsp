@@ -24,7 +24,6 @@ String ss_user_no = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 					},
 					dataType : "json",
 					success : function(data){
-						console.log(data);
 						var contents = "";
 						$.each(data, function(key,value){
 							contents += "<li class='list-group-item list-none-line'>";
@@ -53,7 +52,6 @@ String ss_user_no = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 					dataType : "json",
 					success : function(data){
 						var contents = "";
-						console.log(data)
 						$.each(data,function (key,value){
 							contents += "<li class='list-group-item list-none-line'>";
 							contents += "<div class='contentsArea'>";
