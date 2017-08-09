@@ -13,4 +13,5 @@ public interface IOrderService {
 	public List<TotalOrderInfoDTO> getAdminOrderRemainTime() throws Exception;
 	public boolean insertOrderSuccess(Order_infoDTO oDTO, List<Order_itemDTO> oList) throws Exception;
 	public int test() throws Exception;
+	public List<TotalOrderDTO> selectOrderList(String user_no) throws Exception;
 }

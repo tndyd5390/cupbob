@@ -16,6 +16,8 @@ public class TotalOrderDTO {
 	private String prdt_price;
 	private String ord_amnt;
 	private String ord_remainTime;
+	private int ord_count;
+	
 	public String getOrd_remainTime() {
 		return ord_remainTime;
 	}
@@ -105,6 +107,12 @@ public class TotalOrderDTO {
 	}
 	public void setOrd_amnt(String ord_amnt) {
 		this.ord_amnt = ord_amnt;
+	}
+	public int getOrd_count() {
+		return ord_count;
+	}
+	public void setOrd_count(int ord_count) {
+		this.ord_count = ord_count;
 	}
 	
 }

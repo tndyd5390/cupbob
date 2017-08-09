@@ -16,4 +16,6 @@ public interface OrderMapper {
 	public int insertOrderInfo(Order_infoDTO oDTO) throws Exception;
 	public int insertOrderItem(List<Order_itemDTO> oList) throws Exception;
 	public int test() throws Exception;
+	public List<TotalOrderInfoDTO> selectOrderList(String user_no) throws Exception;
+	public List<TotalOrderItemDTO> selectProductList(String order_no) throws Exception;
 }

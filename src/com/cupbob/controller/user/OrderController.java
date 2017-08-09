@@ -19,7 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cupbob.dto.Order_infoDTO;
 import com.cupbob.dto.Order_itemDTO;
+import com.cupbob.dto.Product_infoDTO;
 import com.cupbob.dto.TmpBasketDTO;
+import com.cupbob.dto.TotalOrderDTO;
+import com.cupbob.dto.TotalOrderInfoDTO;
 import com.cupbob.service.IOrderService;
 import com.cupbob.util.CmmUtil;
 
@@ -201,6 +204,15 @@ public class OrderController {
 	
 	@RequestMapping(value = "userOrderList")
 	public String userOrderList(HttpSession session,HttpServletRequest request,HttpServletResponse response,Model model)throws Exception{
+		log.info(this.getClass().getName() + "userOrderList Start !!");
+		String uNum = CmmUtil.nvl(request.getParameter("uNum"));
+		log.info(uNum);
+		
+		List<TotalOrderDTO> totalList = orderService.selectOrderList(uNum);
+		
+		model.addAttribute("totalList", totalList);
+		
+		log.info(this.getClass().getName() + "userOrderList END !!");
 		return "user/userOrderList";
 	}
 	

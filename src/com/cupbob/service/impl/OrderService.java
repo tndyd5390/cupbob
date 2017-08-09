@@ -119,4 +119,40 @@ public class OrderService implements IOrderService {
 		return result;
 	}
 
-}
+	@Override
+	public List<TotalOrderDTO> selectOrderList(String user_no) throws Exception{
+		List<TotalOrderInfoDTO> orderList = orderMapper.selectOrderList(user_no);
+		List<TotalOrderDTO> totalList = new ArrayList<TotalOrderDTO>();
+		for(TotalOrderInfoDTO oDTO : orderList){
+			TotalOrderDTO tDTO = new TotalOrderDTO();
+			List<TotalOrderItemDTO> prdtList = orderMapper.selectProductList(oDTO.getOrd_no());
+			String pName="";
+			String pPrice="";
+			int count=0;
+			for(int i=0;i<prdtList.size();i++){
+				pName += prdtList.get(i).getPrdt_name() + ";";
+				pPrice += prdtList.get(i).getPrdt_price() + ";";
+				count+=1;
+				System.out.println(pName);
+				System.out.println(pPrice);
+			}
+			/*for(int i = 0; i< tItemList.size();i++){
+				prdtName += tItemList.get(i).getPrdt_name() + "</br>";
+				ordAmnt += tItemList.get(i).getOrd_amnt() + "</br>";
+				price += Integer.parseInt(tItemList.get(i).getPrdt_price()) * Integer.parseInt(tItemList.get(i).getOrd_amnt());
+			}*/
+			tDTO.setOrd_no(oDTO.getOrd_no());
+			tDTO.setTotal_ord_price(oDTO.getTotal_ord_price());
+			tDTO.setOrd_dt(oDTO.getOrd_dt());
+			tDTO.setOrd_stat(oDTO.getOrd_stat());
+			tDTO.setOrd_count(count);
+			tDTO.setPrdt_name(pName);
+			tDTO.setPrdt_price(pPrice);
+			System.out.println(count);
+			totalList.add(tDTO);
+		}
+		return totalList;
+	
+		}
+
+	}

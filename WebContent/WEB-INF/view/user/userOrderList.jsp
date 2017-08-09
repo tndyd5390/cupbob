@@ -1,5 +1,17 @@
+<%@page import="com.cupbob.util.CmmUtil"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.cupbob.dto.TotalOrderDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	List<TotalOrderDTO> totalList = (List<TotalOrderDTO>)request.getAttribute("totalList");
+	int trCount = 0;
+	int toggleCount = 0;
+%>	
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -67,6 +79,11 @@
 		font-weight:bold;
 		
 	}
+	
+.tableToggle{
+	background-color : #F9EFD3;
+}
+
 	/* 350px 이하 (아이폰5)*/
 @media screen and (max-width: 350px) {
 
@@ -106,12 +123,31 @@
 	}
 }
 
-}
 @media screen and (min-width: 701px) and (max-width: 1500px){
 
 }
+
 	
 </style>
+<script>
+<%
+	for(int i=0; i<=totalList.size();i++){
+		trCount += 1;
+		toggleCount += 1;
+%>
+	$(function(){
+	    $('#Toggle<%=toggleCount%>').hide();
+	    $('#tr<%=trCount%>').click(function(){
+	        $('#Toggle<%=toggleCount%>').toggle();
+	        return false;
+	    });
+	});
+<%
+	}
+	trCount = 0;
+	toggleCount =0;
+%>
+</script>
 </head>
 <body>
 <%@include file="/include/nav.jsp"%>
@@ -137,69 +173,76 @@
 		</div>
 		<table class="table table-hover tableFont table-relative">
 			<thead>
-				<th width=10%>주문번호</th>
-				<th width=25%>주문내역</th>
-				<th width=20%>날짜</th>
-				<th width=20%>결제금액</th>
-				<th width=20%>주문상태</th>
+				<th>주문번호</th>
+				<th>주문내역</th>
+				<th>날짜</th>
+				<th>결제금액</th>
+				<th>주문상태</th>
 			</thead>
 			<tbody>
-			<tr>
-				<td>10000000</td>
-				<td>참치마요컵밥 외 3</td>
-				<td>2017-05-08</td>
-				<td>9500원</td>
-				<td>조리대기</td>
-			<tr>
-			<tr>
-				<td>10000000</td>
-				<td>참치마요컵밥 외 3</td>
-				<td>2017-05-08</td>
-				<td>9500원</td>
-				<td>조리대기</td>
-			<tr>
-			<tr>
-				<td>10000000</td>
-				<td>참치마요컵밥 외 3</td>
-				<td>2017-05-08</td>
-				<td>9500원</td>
-				<td>조리대기</td>
-			<tr>
-			<tr>
-				<td>10000000</td>
-				<td>참치마요컵밥 외 3</td>
-				<td>2017-05-08</td>
-				<td>9500원</td>
-				<td>조리대기</td>
-			<tr>
-			<tr>
-				<td>10000000</td>
-				<td>참치마요컵밥 외 3</td>
-				<td>2017-05-08</td>
-				<td>9500원</td>
-				<td>조리대기</td>
-			<tr>
-			<tr>
-				<td>10000000</td>
-				<td>참치마요컵밥 외 3</td>
-				<td>2017-05-08</td>
-				<td>9500원</td>
-				<td>조리대기</td>
-			<tr>
-			<tr>
-				<td>10000000</td>
-				<td>참치마요컵밥 외 3</td>
-				<td>2017-05-08</td>
-				<td>9500원</td>
-				<td>조리대기</td>
-			<tr>
-			<tr>
-				<td>10000000</td>
-				<td>참치마요컵밥 외 3</td>
-				<td>2017-05-08</td>
-				<td>9500원</td>
-				<td>조리대기</td>
-			<tr>
+			<%
+				for(TotalOrderDTO tDTO : totalList){
+					String[] prdtName = tDTO.getPrdt_name().split(";");
+					String[] prdtPrice = tDTO.getPrdt_price().split(";");
+					trCount += 1 ;
+					toggleCount += 1;
+			%> 
+			<tr id="tr<%=trCount%>">
+ 				<td><%=tDTO.getOrd_no() %></td>
+				<%
+					if(prdtName.length >=1){			
+						String prdtList = "";
+						String prdtPriceList = "";
+						/* for(String tmp : prdtName){
+							  prdtList += tmp  + " X 1 <br>";
+						  }
+						  for(String tmp : prdtPrice){
+							  prdtList1 += tmp + " X 1 <br>";
+						  } */
+						  Map<String, Integer> prdtMap = new HashMap();
+						  Map<String, Integer> priceMap = new HashMap();
+						  for(int i = 0; i< prdtName.length; i++){
+							  if(prdtMap.containsKey(prdtName[i])){
+								  prdtMap.put(prdtName[i], prdtMap.get(prdtName[i]) + 1);
+								  priceMap.put(prdtPrice[i] + "", priceMap.get(prdtPrice[i]) +  Integer.parseInt(prdtPrice[i]));
+							  }else{
+								  prdtMap.put(prdtName[i], 1);
+								  priceMap.put(prdtPrice[i], Integer.parseInt(prdtPrice[i]));
+							  }
+						  }
+						  Iterator<String> keyss = priceMap.keySet().iterator();
+						  while(keyss.hasNext()){
+							  String key = keyss.next();
+							  prdtPriceList = CmmUtil.addComma(priceMap.get(key)) + "원<br>" + prdtPriceList;
+						  }
+						  Iterator<String> keys = prdtMap.keySet().iterator();
+						  while(keys.hasNext()){
+							  String key = keys.next();
+								  int tmp = prdtMap.get(key);
+								  prdtList += key + "x" + tmp + "<br>";		  
+						  }
+				%> 
+ 				<%if(prdtMap.size() > 1){ %>
+ 				<td><%=prdtName[0]%> 외 <%=prdtMap.size()-1%>건</td>
+ 				<%}else{ %>
+ 				<td><%=prdtName[0]%></td>
+ 				<%} %>
+				<td><%=tDTO.getOrd_dt() %></td>
+				<td><%=CmmUtil.addComma(tDTO.getTotal_ord_price())%>원</td>
+				<td><%=tDTO.getOrd_stat() %></td> 
+			</tr>
+			
+			<tr id="Toggle<%=toggleCount%>" class="tableToggle">
+				<td></td>
+				<td><%=prdtList%></td>
+				<td></td>
+				<td><%=prdtPriceList%></td>
+				<td></td>
+			<%
+					}
+				}
+			%>
+			</tr>
 			</tbody>
 		</table>
 		<button class="moreButton">더 보 기</button>

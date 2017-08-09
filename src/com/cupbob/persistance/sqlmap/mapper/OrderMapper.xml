@@ -5,7 +5,7 @@
 		SELECT OI.ORD_NO,
        		OI.TOTAL_ORD_PRICE,
        		OI.PAYMENT_TP,
-       		date_format(OI.ORD_DT, 'YYYY-MM-DD') ORD_DT,
+       		DATE_FORMAT(OI.ORD_DT, '%Y-%m-%d') AS ORD_DT,
        		OI.ORD_STAT,
        		OI.USR_RCV_TIME,
        		OI.RCV_TIME,
@@ -30,6 +30,7 @@
    			AND OI.ORD_NO = #{orderNo}
    			AND OT.PRDT_NO = PI.PRDT_NO;
 	</select>
+	
 	<update id="updateAdminOrderProc" parameterType="hashMap">
 		UPDATE ORDER_INFO SET ORD_STAT = #{statNo} WHERE ORD_NO = #{ordNo}
 	</update>
@@ -70,6 +71,29 @@
  			((SELECT MAX(ORD_NO) FROM ORDER_INFO WHERE USER_NO = #{item.reg_user_no}), #{item.prdt_no}, #{item.ord_amnt}, #{item.reg_user_no}, NOW())
 		</foreach>
 	</insert>
+	
+	<select id="selectOrderList" parameterType="String" resultType="TotalOrderInfoDTO">
+		SELECT ORD_NO,
+       	  TOTAL_ORD_PRICE,
+          DATE_FORMAT(ORD_DT, '%Y-%m-%d') AS ORD_DT,
+          ORD_STAT
+        FROM 
+       	  ORDER_INFO 
+        WHERE USER_NO = #{user_no}
+        ORDER BY ORD_NO DESC
+	</select>
+	
+	<select id="selectProductList" parameterType="String" resultType="TotalOrderItemDTO">
+		SELECT PI.PRDT_NAME,
+      		PI.PRDT_PRICE,
+       		OT.ORD_AMNT
+  		FROM ORDER_INFO OI,
+       		ORDER_ITEM OT,
+       		PRODUCT_INFO PI
+ 		WHERE OT.ORD_NO = OI.ORD_NO
+   			AND OI.ORD_NO = #{orderNo}
+   			AND OT.PRDT_NO = PI.PRDT_NO;
+	</select>
 		
 	
 </mapper>

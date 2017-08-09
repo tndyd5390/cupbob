@@ -87,5 +87,4 @@ public class TotalOrderInfoDTO {
 		this.user_name = user_name;
 	}
 	
-	
 }
