@@ -83,6 +83,7 @@
 		
 	}
 </script>
+
 </head>
 <body>
 	<%@include file="/include/nav.jsp"%>
@@ -97,7 +98,7 @@
 					</span>
 				</div>
 				<div>
-					<span class="detailNameEng"> bulgogi cupbob 240g </span>
+					<span class="detailNameEng"> <%=CmmUtil.nvl(pDTO.getPrdt_name()) %> 500g </span>
 				</div>
 				<div>
 					<span class="detailTxt"><%=CmmUtil.nvl(pDTO.getContents()) %></span>
@@ -108,7 +109,7 @@
 			<div class="d-Img">
 				<img
 					src="<%="menuImg/" + CmmUtil.nvl(pDTO.getFile_name()) %>"
-					class="menuImg">
+					class="menuIconImg">
 			</div>
 		</div>
 		<div>
@@ -121,7 +122,7 @@
 			</div>
 			<div class="col-xs-6">
 				<ul class="detailListUnstyle">
-					<li><%=CmmUtil.nvl(pDTO.getPrdt_kcal()) + "kcal" %> / 0000g</li>
+					<li><%=CmmUtil.nvl(pDTO.getPrdt_kcal()) + "kcal" %> / 500g</li>
 					<li>120g</li>
 					<li>300mg</li>
 				</ul>
