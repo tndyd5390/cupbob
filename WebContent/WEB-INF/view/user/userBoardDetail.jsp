@@ -11,6 +11,7 @@
 	User_boardDTO bDTO = (User_boardDTO) request.getAttribute("bDTO");
 	List<Comment_infoDTO> cList = (List<Comment_infoDTO>) request.getAttribute("cList");
 	String contents = bDTO.getContents();
+	System.out.println(contents);
 	bDTO.setContents(contents);
 %>
 
@@ -294,7 +295,7 @@ function cmtUpdateCancle(){
 			<div class="row">
 				<div class="bodercontent">
 					<!--글 내용-->
-					<%=CmmUtil.nvl(bDTO.getContents())%>
+					<%=CmmUtil.replaceBr(CmmUtil.nvl(bDTO.getContents()))%>
 				</div>
 				<%if(bDTO.getReg_user_no().equals(ss_user_no)){ %>
 				<button class="saButton0" onclick="location.href='userBoardDelete.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>'">삭제</button>
