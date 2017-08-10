@@ -32,7 +32,35 @@
 	</select>
 	
 	<update id="updateAdminOrderProc" parameterType="hashMap">
-		UPDATE ORDER_INFO SET ORD_STAT = #{statNo} WHERE ORD_NO = #{ordNo}
+		<choose>
+			<when test="statNo == 4">
+				UPDATE 
+					ORDER_INFO 
+				SET 
+					ORD_STAT = #{statNo},
+					RCV_TIME = NOW() 
+				WHERE 
+					ORD_NO = #{ordNo}
+			</when>
+			<when test="statNo == 5">
+				UPDATE 
+					ORDER_INFO 
+				SET 
+					ORD_STAT = #{statNo},
+					ORD_CANCEL_YN = 'Y',
+					ORD_CANCEL_TIME = NOW() 
+				WHERE 
+					ORD_NO = #{ordNo}
+			</when>
+			<otherwise>
+				UPDATE 
+					ORDER_INFO 
+				SET 
+					ORD_STAT = #{statNo} 
+				WHERE 
+					ORD_NO = #{ordNo}
+			</otherwise>
+		</choose>
 	</update>
 	
 	<insert id="insertOrderInfo" parameterType="Order_infoDTO">
