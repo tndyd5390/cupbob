@@ -317,7 +317,7 @@ public class UserController {
 		
 		String name = CmmUtil.nvl(request.getParameter("name"));
 		String gender = CmmUtil.nvl(request.getParameter("gender"));
-		String birthday = CmmUtil.nvl(request.getParameter("year"))+CmmUtil.nvl(request.getParameter("month"))+CmmUtil.nvl(request.getParameter("day"));
+		String birthday = CmmUtil.nvl(request.getParameter("year"))+"."+CmmUtil.nvl(request.getParameter("month"))+"."+CmmUtil.nvl(request.getParameter("day"));
 		String contact_addr = CmmUtil.nvl(request.getParameter("contact_addr"));
 		
 		log.info(name);
@@ -359,7 +359,7 @@ public class UserController {
 		String email = CmmUtil.nvl(request.getParameter("email1"))+"@"+CmmUtil.nvl(request.getParameter("email2"));
 		String name = CmmUtil.nvl(request.getParameter("name"));
 		String gender = CmmUtil.nvl(request.getParameter("gender"));
-		String birthday = CmmUtil.nvl(request.getParameter("year"))+CmmUtil.nvl(request.getParameter("month"))+CmmUtil.nvl(request.getParameter("day"));
+		String birthday = CmmUtil.nvl(request.getParameter("year"))+"."+CmmUtil.nvl(request.getParameter("month"))+"."+CmmUtil.nvl(request.getParameter("day"));
 		String contact_addr = CmmUtil.nvl(request.getParameter("contact_addr"));
 		
 		log.info(email);

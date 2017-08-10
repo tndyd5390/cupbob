@@ -75,9 +75,8 @@
 	}
 	table.tableFont > tbody > tr > td{
 		text-align:center;
-		font-size:1px;
+		font-size:10px;
 	}
-	
 	.moreButton{
 		background-color:#3C3C3C;
 		height:40px;
@@ -100,7 +99,14 @@ div.barCode{
 
 	/* 350px 이하 (아이폰5)*/
 @media screen and (max-width: 350px) {
-
+	table.tableFont > thead > tr > th{
+		text-align:center;
+		font-size:8px;
+	}
+	table.tableFont > tbody > tr > td{
+		text-align:center;
+		font-size:8px;
+	}
 }
 /* 351px 이상 370px 이하(갤럭시5) */
 @media screen and (min-width: 351px) and (max-width: 370px){
@@ -122,12 +128,21 @@ div.barCode{
 		padding: 0px 0px;
 		width:28%;
 	}
+	
 }
 /* 371px 이상 400px 이하(아이폰6) */
 @media screen and (min-width: 371px) and (max-width: 400px){
 	.listGroup{
 		padding: 0px 0px;
 		width:31%;
+	}
+		table.tableFont > thead > tr > th{
+		text-align:center;
+		font-size:9px;
+	}
+	table.tableFont > tbody > tr > td{
+		text-align:center;
+		font-size:9px;
 	}
 }
 /* 401px 이상 700px 이하 (아이폰6플러스,넥서스)*/
@@ -138,7 +153,14 @@ div.barCode{
 }
 
 @media screen and (min-width: 701px) and (max-width: 1500px){
-
+		table.tableFont > thead > tr > th{
+		text-align:center;
+		font-size:13px;
+	}
+	table.tableFont > tbody > tr > td{
+		text-align:center;
+		font-size:13px;
+	}
 }
 
 	
@@ -169,7 +191,7 @@ div.barCode{
 	<br>
 	<form class="form">
 		<div class="orderHead">주문 내역</div>
-	<!-- 	<div class="input-group">
+	<!--  	<div class="input-group">
 			<div class="input-group-addon listGroup">
 				<select class="form-control listSelect">
 					<option>선택</option>
@@ -181,7 +203,7 @@ div.barCode{
 			</div>
 		<input type="text" class="form-control listText">
 		<button class="searchButton">검색</button>
-		</div> -->
+		</div>  -->
 		<table class="table table-hover tableFont table-relative">
 			<thead>
 				<th>주문번호</th>
@@ -218,11 +240,12 @@ div.barCode{
 						  Map<String, Integer> priceMap = new HashMap();
 						  for(int i = 0; i< prdtName.length; i++){
 							  if(prdtMap.containsKey(prdtName[i])){
+								  System.out.print(prdtPrice[i]);
 								  prdtMap.put(prdtName[i], prdtMap.get(prdtName[i]) + 1);
 								  priceMap.put(prdtPrice[i] + "", priceMap.get(prdtPrice[i]) +  Integer.parseInt(prdtPrice[i]));
 							  }else{
 								  prdtMap.put(prdtName[i], 1);
-								  priceMap.put(prdtPrice[i], Integer.parseInt(prdtPrice[i]));
+								  priceMap.put(prdtPrice[i],Integer.parseInt(prdtPrice[i]));
 							  }
 						  }
 						  Iterator<String> keyss = priceMap.keySet().iterator();
@@ -290,8 +313,9 @@ div.barCode{
 			</tbody>
 		</table>
 <script>
+var count = 5;
+var toggleCount = 5;
 $(function(){
-	var count = 5;
 	$('#more_Button').click(function(){
 		$.ajax({
 			url : 'orderListMore.do',
@@ -303,8 +327,6 @@ $(function(){
 			dataType : 'json',
 			success : function(data){
 				var contents = '';
-				var toggleCount = <%=toggleCount%>;
-				var tmp = toggleCount;
 				$.each(data,function (key,value){
 					toggleCount++;
 					var oStat = value.ord_stat;
@@ -337,7 +359,9 @@ $(function(){
 					contents += "<center><div id=\"bcTarget_" + toggleCount + "\"></div></center>";
 					contents += "</td></tr>";
 				})
-				$('#orderList').append(contents)
+				console.log(data);
+				console.log(toggleCount);
+				$('#orderList').append(contents);
 				if((data).length==0){
 					$('#more_Button').remove();
 				}
@@ -347,10 +371,10 @@ $(function(){
 	})
 })		
 </script>
-<!-- 		<button type="button" class="moreButton" id="more_Button">더 보 기</button> -->
+		<button type="button" class="moreButton" id="more_Button">더 보 기</button>
 	</form>
 	<br>
-	<br>
-	<%@include file="/include/footer.jsp"%>
+	<br><div align="center">
+	<%@include file="/include/footer.jsp"%></div>
 </body>
 </html>
