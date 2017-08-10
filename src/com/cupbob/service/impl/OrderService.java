@@ -215,6 +215,11 @@ public class OrderService implements IOrderService {
 				}else{
 					prdtMap.put(aDTO.getPrdt_name(), 1);
 				}
+				if(prdtMap.size() > 1){
+					pName = aDTO.getPrdt_name() + " 외 " + (prdtList.size()-1) + " 건 ";
+				}else{
+					pName = aDTO.getPrdt_name();
+				}
 			}
 			for(TotalOrderItemDTO aDTO : prdtList){
 				if(priceMap.containsKey(aDTO.getPrdt_name())){
@@ -233,12 +238,7 @@ public class OrderService implements IOrderService {
 				String key = keyss.next();
 				pPrice += priceMap.get(key) + "원<br>";
 			}
-			System.out.println("prdtSize : " + prdtList.size());
-			if(prdtMap.size() > 1){
-				pName = prdtList.get(0).getPrdt_name() + " 외 " + (prdtList.size()-1) + " 건 ";
-			}else{
-				pName = prdtList.get(0).getPrdt_name();
-			}
+			
 			tDTO.setOrd_no(oDTO.getOrd_no());
 			tDTO.setTotal_ord_price(CmmUtil.addComma(oDTO.getTotal_ord_price()));
 			tDTO.setOrd_dt(oDTO.getOrd_dt());

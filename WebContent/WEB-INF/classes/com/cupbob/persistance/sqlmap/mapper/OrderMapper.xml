@@ -85,7 +85,7 @@
        	  ORDER_INFO 
         WHERE USER_NO = #{user_no}
         ORDER BY ORD_NO DESC
-        LIMIT 6
+        LIMIT 5
 	</select>
 	
 	<select id="selectProductList" parameterType="String" resultType="TotalOrderItemDTO">

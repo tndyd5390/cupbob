@@ -88,7 +88,7 @@
 	</select>
 	<select id="boardContentSearch" parameterType="User_boardDTO" resultType="User_boardDTO">
 		SELECT 
-	B.POST_NO,
+		B.POST_NO,
 		B.TITLE,
 		B.VIEW_CNT,
 		U.USER_NAME,
