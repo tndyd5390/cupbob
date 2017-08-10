@@ -26,4 +26,5 @@ public interface OrderMapper {
 	public List<TotalOrderInfoDTO> selectOrderList(String user_no) throws Exception;
 	public List<TotalOrderItemDTO> selectProductList(String order_no) throws Exception;
 	public List<TotalOrderInfoDTO> selectOrderMore(Map<String,String> map) throws Exception;
+	public int updateOrderCancel(String tid) throws Exception;
 }

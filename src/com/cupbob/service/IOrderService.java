@@ -19,4 +19,5 @@ public interface IOrderService {
 	public int test() throws Exception;
 	public List<TotalOrderDTO> selectOrderList(String user_no) throws Exception;
 	public List<TotalOrderDTO> orderListMore(String count, String uNum) throws Exception;
+	public int updateOrderCancel(String tid) throws Exception;
 }
