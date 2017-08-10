@@ -3,6 +3,7 @@ package com.cupbob.dto;
 public class TotalOrderInfoDTO {
 	private String ord_no;
 	private String total_ord_price;
+	private String real_ord_price;
 	private String payment_tp;
 	private String ord_dt;
 	private String ord_stat;
@@ -13,7 +14,20 @@ public class TotalOrderInfoDTO {
 	private String ord_cancel_time;
 	private String user_name;
 	private String ord_remainTime;
+	private String tid;
 	
+	public String getTid() {
+		return tid;
+	}
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
+	public String getReal_ord_price() {
+		return real_ord_price;
+	}
+	public void setReal_ord_price(String real_ord_price) {
+		this.real_ord_price = real_ord_price;
+	}
 	public String getOrd_remainTime() {
 		return ord_remainTime;
 	}

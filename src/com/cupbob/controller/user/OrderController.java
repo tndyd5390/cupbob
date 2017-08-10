@@ -132,6 +132,7 @@ public class OrderController {
          oDTO.setOrd_stat("1");
          oDTO.setUsr_rcv_time(etc_data2);
          oDTO.setRcv_yn("n");
+         oDTO.setTid(tid);
          String[] userNoAndMil = etc_data1.split(";");
          String[] mil = userNoAndMil[1].split("-");
          Map<String, String> milMap = new HashMap();
@@ -157,7 +158,7 @@ public class OrderController {
             oIDTO.setReg_user_no(userNoAndMil[0]);
             oList.add(oIDTO);
          }
-         
+         session.setAttribute("ss_tmpBasket", "");
          orderService.insertOrderSuccess(oDTO, oList, milMap);
       }else{
          /**
@@ -187,15 +188,6 @@ public class OrderController {
       oDTO = null;
       log.info(this.getClass() + "orderSuccess end!!!");
       return "user/orderSuccess";
-   }
-   
-   //페치누리로 보내는 CANCEL_URL(결제 취소후 가맹점 페이지로 넘어갈 URL)에 대응하는 메소드
-   @RequestMapping(value="orderCancle")
-   public String orderCancle(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
-      log.info(this.getClass() + ".orderCancle start!!!!");
-      
-      log.info(this.getClass() + ".orderCancle end!!!");
-      return null;
    }
    
    @RequestMapping(value="userOrderDirect", method=RequestMethod.POST)

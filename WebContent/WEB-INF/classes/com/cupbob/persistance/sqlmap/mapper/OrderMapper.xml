@@ -12,7 +12,8 @@
        		OI.RCV_YN,
        		OI.ORD_CANCEL_YN,
        		OI.ORD_CANCEL_TIME,
-       		UI.USER_NAME       
+       		UI.USER_NAME,
+       		OI.TID
   		FROM USER_INFO UI,
        		ORDER_INFO OI       
  		WHERE OI.ORD_NO = OI.ORD_NO
@@ -32,7 +33,35 @@
 	</select>
 	
 	<update id="updateAdminOrderProc" parameterType="hashMap">
-		UPDATE ORDER_INFO SET ORD_STAT = #{statNo} WHERE ORD_NO = #{ordNo}
+		<choose>
+			<when test="statNo == 4">
+				UPDATE 
+					ORDER_INFO 
+				SET 
+					ORD_STAT = #{statNo},
+					RCV_TIME = NOW() 
+				WHERE 
+					ORD_NO = #{ordNo}
+			</when>
+			<when test="statNo == 5">
+				UPDATE 
+					ORDER_INFO 
+				SET 
+					ORD_STAT = #{statNo},
+					ORD_CANCEL_YN = 'Y',
+					ORD_CANCEL_TIME = NOW() 
+				WHERE 
+					ORD_NO = #{ordNo}
+			</when>
+			<otherwise>
+				UPDATE 
+					ORDER_INFO 
+				SET 
+					ORD_STAT = #{statNo} 
+				WHERE 
+					ORD_NO = #{ordNo}
+			</otherwise>
+		</choose>
 	</update>
 	
 	<insert id="insertOrderInfo" parameterType="Order_infoDTO">
@@ -48,7 +77,8 @@
 			RCV_YN, 
 			USER_NO,
  			REG_USER_NO, 
- 			REG_DT
+ 			REG_DT,
+ 			TID
 			)
 		VALUES
 			(
@@ -62,7 +92,8 @@
 			 #{rcv_yn}, 
 			 #{user_no},
 			 #{user_no}, 
-			 NOW()
+			 NOW(),
+			 #{tid}
 			);
 	</insert>
 	<insert id="insertOrderItem" parameterType="list">
@@ -159,6 +190,13 @@
  		UPDATE USER_INFO SET MILEAGE = MILEAGE + #{mileage} WHERE USER_NO = #{user_no}
  	</update>
 	
-	
+	<update id="updateOrderCancel" parameterType="string">
+		UPDATE
+			ORDER_INFO
+		SET
+			STAT_NO = 5
+		WHERE
+			TID = #{tid}
+	</update>
 	
 </mapper>

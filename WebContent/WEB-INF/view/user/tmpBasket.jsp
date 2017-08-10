@@ -234,7 +234,7 @@ function addComma(x) {
 		location.href="userMenuList.do";
 	}
 	function doOrder(){
-		if(ss_userNo==null){
+		if(ss_userNo==""){
 			alert("로그인이 필요합니다");
 			location.href="userLogin.do";
 			return false;

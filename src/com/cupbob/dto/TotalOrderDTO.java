@@ -18,7 +18,14 @@ public class TotalOrderDTO {
 	private String ord_remainTime;
 	private String prdt_name_List;
 	private int ord_count;
+	private String tid;
 	
+	public String getTid() {
+		return tid;
+	}
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
 	public String getOrd_remainTime() {
 		return ord_remainTime;
 	}

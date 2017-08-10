@@ -57,6 +57,7 @@ public class OrderService implements IOrderService {
 			tDTO.setPrdt_name(prdtName);
 			tDTO.setPrdt_price(price + "");
 			tDTO.setOrd_amnt(ordAmnt);
+			tDTO.setTid(oDTO.getTid());
 			//====================================
 			//남은 시간 세팅
 			tDTO.setOrd_remainTime(getRemainTime(tDTO.getUsr_rcv_time()));
@@ -258,6 +259,11 @@ public class OrderService implements IOrderService {
 	@Override
 	public User_infoDTO getUserMil(String userNo) throws Exception {
 		return orderMapper.getUserMil(userNo);
+	}
+
+	@Override
+	public int updateOrderCancel(String tid) throws Exception {
+		return orderMapper.updateOrderCancel(tid);
 	}
 
 }
