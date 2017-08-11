@@ -285,7 +285,7 @@ function addComma(x) {
 					<button class="tmpBasketSelectDeleteButton" onclick="tmpBasketSelectedDelete();">선택삭제</button>
 				</div>
 				<div class="col-xs-6" style="padding: 0px 0px 0px 10px;">
-					<button class="tmpBasketKeepShopping" onclick="keepShopping();">계속 dd쇼핑하기</button>
+					<button class="tmpBasketKeepShopping" onclick="keepShopping();">계속 쇼핑하기</button>
 				</div>
 			</div>
 			<div class="col-xs-12">
