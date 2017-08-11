@@ -159,6 +159,7 @@ public class OrderController {
             oIDTO.setReg_user_no(userNoAndMil[0]);
             oList.add(oIDTO);
          }
+         log.info(this.getClass() + " useremail" + CmmUtil.nvl((String)session.getAttribute("ss_user_email")));
          session.setAttribute("ss_tmpBasket", "");
          orderService.insertOrderSuccess(oDTO, oList, milMap);
       }else{
