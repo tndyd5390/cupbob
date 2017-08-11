@@ -83,12 +83,6 @@ public class UserController {
 		String ss_user_no = (String) session.getAttribute("ss_user_no");
 	
 		log.info(uNo);
-		log.info(password);
-		log.info(name);
-		log.info(gender);
-		log.info(birthday);
-		log.info(contact_addr);
-		log.info(ss_user_no);
 		
 		User_infoDTO uDTO = new User_infoDTO();
 		
@@ -252,14 +246,6 @@ public class UserController {
 		String checkBox3 = request.getParameter("checkBox3");
 		
 		log.info(email);
-		log.info(password);
-		log.info(name);
-		log.info(gender);
-		log.info(birthday);
-		log.info(contact_addr);
-		log.info(checkBox1);
-		log.info(checkBox2);
-		log.info(checkBox3);
 		
 		User_infoDTO uDTO = new User_infoDTO();
 		
@@ -321,9 +307,6 @@ public class UserController {
 		String contact_addr = CmmUtil.nvl(request.getParameter("contact_addr"));
 		
 		log.info(name);
-		log.info(gender);
-		log.info(birthday);
-		log.info(contact_addr);
 		
 		User_infoDTO uDTO = new User_infoDTO();
 		
@@ -363,10 +346,6 @@ public class UserController {
 		String contact_addr = CmmUtil.nvl(request.getParameter("contact_addr"));
 		
 		log.info(email);
-		log.info(name);
-		log.info(gender);
-		log.info(birthday);
-		log.info(contact_addr);
 		
 		User_infoDTO uDTO = new User_infoDTO();
 		
@@ -388,9 +367,6 @@ public class UserController {
 			sendEmail.setReciver(email);
 			sendEmail.setSubject("거북목 컵밥 입니다");
 			sendEmail.setContent("고객님의 임시 비밀번호는 " + uDTO.getPassword() + " 입니다.");
-			log.info(sendEmail.getReciver());
-			log.info(sendEmail.getSubject());
-			log.info(sendEmail.getContent());
 			
 			emailSender.SendEmail(sendEmail);
 			model.addAttribute("msg", "고객님의 임시 비밀번호를 이메일로 발송하였습니다.");
