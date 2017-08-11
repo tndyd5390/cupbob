@@ -245,7 +245,7 @@
 				
 			<%resultPrice += Integer.parseInt(tDTO.getTmpBasketPrdtPrice())*Integer.parseInt(tDTO.getTmpBasketPrdtQty());
 			}%>
-			<p class="orderDetailLeft">사용 가능 마일리지</p><p class="orderDetailRight" id="mileage"><%=CmmUtil.addComma(userMil) %>원</p>
+			<p class="orderDetailLeft" style="margin-bottom: 10px;">마일리지</p><p class="orderDetailRight" id="mileage"><%=CmmUtil.addComma(userMil) %>원</p>
 			<div id="mil"><a href="#"  onclick="useMil();"><div class="orderHead">마일리지 사용</div></a></div>
 			<div class="orderTotalPrice">
 				<p class="totalPriceLeft">결제 예정 금액</p>
