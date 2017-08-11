@@ -1,6 +1,8 @@
 package com.cupbob.controller.admin;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,11 +42,38 @@ public class AdminOrderController {
 		if(tList == null){
 			tList = new ArrayList<TotalOrderDTO>();
 		}
+		Collections.sort(tList, new SortOrder());
 		model.addAttribute("TotalOrderList", tList);
 		tList = null;
 		log.info(this.getClass() + "orderList end");
 		return "admin/adminMain";
 	}
+	
+	class SortOrder implements Comparator<TotalOrderDTO>{
+
+		@Override
+		public int compare(TotalOrderDTO t1, TotalOrderDTO t2) {
+			String[] t1Time = t1.getOrd_remainTime().split(":");
+			int t1Hour = Integer.parseInt(t1Time[0]);
+			int t1Min = Integer.parseInt(t1Time[1]);
+			String[] t2Time = t2.getOrd_remainTime().split(":");
+			int t2Hour = Integer.parseInt(t2Time[0]);
+			int t2Min = Integer.parseInt(t2Time[1]);
+			if(t1Hour > t2Hour){
+				return 1;
+			}else if(t1Hour < t2Hour){
+				return -1;
+			}else if(t1Min > t2Min){
+				return 1;
+			}else if(t1Min < t2Min){
+				return -1;
+			}else{
+				return 0;
+			}
+		}
+	}
+		
+	
 	@RequestMapping(value="adminOrderInterval")
 	public @ResponseBody List<TotalOrderDTO> adminOrderInterval(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		log.info(this.getClass() + ".adminOrderInterval start");
@@ -52,6 +81,7 @@ public class AdminOrderController {
 		if(tList == null){
 			tList = new ArrayList<TotalOrderDTO>();
 		}
+		Collections.sort(tList, new SortOrder());
 		log.info(this.getClass() + ".adminOrderInterval tList.size() : " +  tList.size());
 		log.info(this.getClass() + ".adminOrderInterval end");
 		return tList;
