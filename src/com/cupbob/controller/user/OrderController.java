@@ -27,6 +27,7 @@ import com.cupbob.dto.TotalOrderDTO;
 import com.cupbob.dto.User_infoDTO;
 import com.cupbob.service.IOrderService;
 import com.cupbob.util.CmmUtil;
+import com.cupbob.util.PayUtil;
 
 
 @Controller
@@ -184,6 +185,7 @@ public class OrderController {
          oDTO = new Order_infoDTO();
       }
       model.addAttribute("ordNo", CmmUtil.nvl(oDTO.getOrd_no()));
+      session.setAttribute("ss_tmpBasket", null);
       userNo = null;
       oDTO = null;
       log.info(this.getClass() + "orderSuccess end!!!");
@@ -272,4 +274,12 @@ public class OrderController {
 		log.info(this.getClass().getName() + " moreButton END!! ");
 		return orderListMore;
 	}
+	
+	//이거슨 결제 도중 취소 URL이였던 것이였던 것이다
+		@RequestMapping(value="orderCancelResult")
+		public String orderCancelResult(HttpServletRequest request, HttpServletResponse response, Model model, HttpSession session) throws Exception{
+			session.setAttribute("ss_tmpBasket", null);
+			return "redirect:userMenuList.do";
+		
+		}
 }
