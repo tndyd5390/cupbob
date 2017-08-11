@@ -23,4 +23,8 @@ public interface OrderMapper {
 	public int insertMilHistory(MilHistoryDTO mDTO) throws Exception;
 	public int updateUserMilInc(User_infoDTO uDTO) throws Exception;
 	public int test() throws Exception;
+	public List<TotalOrderInfoDTO> selectOrderList(String user_no) throws Exception;
+	public List<TotalOrderItemDTO> selectProductList(String order_no) throws Exception;
+	public List<TotalOrderInfoDTO> selectOrderMore(Map<String,String> map) throws Exception;
+	public int updateOrderCancel(String tid) throws Exception;
 }

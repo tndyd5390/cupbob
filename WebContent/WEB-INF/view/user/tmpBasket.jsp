@@ -9,10 +9,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String userNo = (String)session.getAttribute("ss_user_no");
-	if(CmmUtil.nvl(userNo).equals("")){
-		response.sendRedirect("userLogin.do");
-	}
+	String userNo = (String) session.getAttribute("ss_user_no");
 	Map<String, TmpBasketDTO> tMap = (Map<String, TmpBasketDTO>)session.getAttribute("ss_tmpBasket");
 	if(tMap == null){
 		tMap = new HashMap();
@@ -36,12 +33,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <title>소라네 컵밥 장바구니</title>
 <script type="text/javascript">
+var ss_userNo = "<%=userNo%>";
 function addComma(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 	function tmpPlMi(prdtNo, flag) {
 		var qty = parseInt($('#' + prdtNo + "Cnt").val());
-		console.log(qty);
 		if(qty >= 1){
 			if(flag == 'm'){
 				if(qty == 1){return;}
@@ -59,7 +56,6 @@ function addComma(x) {
 				dataType : "json",
 				success : function(data) {
 					var count = Object.keys(data).length;
-					console.log(data);
 					if(count != 0){
 						var contents = "";
 						var resultPrice = 0;
@@ -178,9 +174,6 @@ function addComma(x) {
 			alert("제품을 선택해 주세요.");
 			return;
 		}
-		for(var i = 0; i< prdtNo.length; i++){
-			console.log(prdtNo[i]);
-		}
 		jQuery.ajaxSettings.traditional = true;
 		$.ajax({
 			url : "userTmpItemSelectedDelete.do",
@@ -190,7 +183,6 @@ function addComma(x) {
 			},
 			dataType : "json",
 			success : function(data) {
-				console.log(data);
 				var count = Object.keys(data).length;
 				if(count != 0){
 					var contents = "";
@@ -242,7 +234,14 @@ function addComma(x) {
 		location.href="userMenuList.do";
 	}
 	function doOrder(){
-		location.href="userDoOrder.do";
+		if(ss_userNo==""){
+			alert("로그인이 필요합니다");
+			location.href="userLogin.do";
+			return false;
+		}else{
+			location.href="userDoOrder.do";
+			return true
+		}
 	}
 </script>
 </head>
@@ -291,7 +290,7 @@ function addComma(x) {
 				</div>
 			</div>
 			<div class="col-xs-12">
-				<button class="tmpBasketOrder" onclick="doOrder();">주문 하기</button>
+				<button class="tmpBasketOrder" onclick="return doOrder();">주문 하기</button>
 			</div>
 		<br>
 	</div>
