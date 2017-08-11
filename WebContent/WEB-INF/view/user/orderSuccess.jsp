@@ -46,8 +46,8 @@ $(function(){
 				<div id="bcTarget"></div>
 				<div class="col-xs-12">
 					<br> 
-					<%
-							if(otList.size()>1){%>
+						<%
+							if(otList.size()>=2){%>
 						<span class="loginSpan1"><%=CmmUtil.nvl(otList.get(0).getPrdt_name())%> 외 <%=otList.size()-1%>건</span>
 							<%
 							}else{

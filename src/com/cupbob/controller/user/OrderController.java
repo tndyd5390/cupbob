@@ -185,9 +185,13 @@ public class OrderController {
       if(oDTO == null){
          oDTO = new Order_infoDTO();
       }
+      log.info(this.getClass() + " ordno =" + oDTO.getOrd_no());
       Order_itemDTO otDTO = new Order_itemDTO();
       otDTO.setOrd_no(oDTO.getOrd_no());
       List<Order_itemDTO> otList = orderService.getOrdItem(otDTO);
+      if(otList ==null){
+    	  otList = new ArrayList<Order_itemDTO>();
+      }
       
       model.addAttribute("ordNo", CmmUtil.nvl(oDTO.getOrd_no()));
       session.setAttribute("ss_tmpBasket", null);
