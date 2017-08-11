@@ -161,7 +161,8 @@ public class OrderController {
          }
          log.info(this.getClass() + " useremail" + CmmUtil.nvl((String)session.getAttribute("ss_user_email")));
          session.setAttribute("ss_tmpBasket", "");
-         log.info("orderss2 ss_user_no = "+session.getAttribute("ss_user_no"));
+         session.setAttribute("ss_user_no", userNoAndMil[0]);
+         log.info("orderss ss_user_no = "+session.getAttribute("ss_user_no"));
          orderService.insertOrderSuccess(oDTO, oList, milMap);
       }else{
          /**
