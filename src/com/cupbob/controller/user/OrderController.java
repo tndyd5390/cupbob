@@ -182,9 +182,10 @@ public class OrderController {
    @RequestMapping(value="orderSuccess")
    public String orderSuccess(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
       log.info(this.getClass() + "orderSuccess start!!!");
-      String userNo = (String)session.getAttribute("ss_user_no");
-      log.info(this.getClass() + "user_no = "+userNo);
-      Order_infoDTO oDTO = orderService.getOrderNo(userNo);
+      String etc_data1 =CmmUtil.nvl(req.getParameter("ETC_DATA1"));//사용자 번호 넘어올것
+      String[] userNo = etc_data1.split(";");
+      log.info(this.getClass() + "user_no = "+userNo[0]);
+      Order_infoDTO oDTO = orderService.getOrderNo(userNo[0]);
       if(oDTO == null){
          oDTO = new Order_infoDTO();
       }
