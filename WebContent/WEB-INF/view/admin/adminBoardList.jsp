@@ -76,7 +76,6 @@
 					}
 				})
 		})
-		
 		$(".btn_more").click(function(){
 			$.ajax({
 				url : "readMore.do",

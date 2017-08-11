@@ -18,7 +18,14 @@ public class Order_infoDTO {
 	private String chg_dt;
 	private String mileage;
 	private String real_ord_price;
+	private String tid;
 	
+	public String getTid() {
+		return tid;
+	}
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
 	public String getReal_ord_price() {
 		return real_ord_price;
 	}

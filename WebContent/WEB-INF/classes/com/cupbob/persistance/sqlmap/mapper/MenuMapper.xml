@@ -59,7 +59,7 @@
 		SELECT 
 			 PRDT_NO,
 			 PRDT_NAME,
-			 FORMAT(PRDT_PRICE,0) AS PRDT_PRICE,
+			 PRDT_PRICE,
 			 CONTENTS,
 			 FILE_NAME,
 			 FILE_PATH,
@@ -102,5 +102,16 @@
 			USER_INFO
 		WHERE
 			USER_NO = #{userNo}
+	</select>
+	<select id="getUserRiceMenuList" resultType="Product_infoDTO">
+		SELECT * FROM PRODUCT_INFO WHERE PRDT_NAME LIKE '%컵밥'
+	</select>
+	
+	<select id="getUserNoodleMenuList" resultType="Product_infoDTO">
+ 		SELECT * FROM PRODUCT_INFO WHERE PRDT_NO = 7 OR PRDT_NO = 6 OR PRDT_NO = 8 OR PRDT_NO = 9 OR PRDT_NO = 10
+	</select>
+	
+	<select id="getUserCokeMenuList" resultType="Product_infoDTO">
+		SELECT * FROM PRODUCT_INFO WHERE PRDT_NO = 11 OR PRDT_NO = 12 OR PRDT_NO = 13
 	</select>
 </mapper>

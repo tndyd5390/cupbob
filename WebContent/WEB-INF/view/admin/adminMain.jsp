@@ -1,3 +1,5 @@
+<%@page import="com.cupbob.util.PayUtil"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="com.cupbob.dto.TotalOrderDTO"%>
 <%@page import="java.util.List"%>
 <%@ page import="com.cupbob.util.CmmUtil" %>
@@ -26,6 +28,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 			$.ajax ({
 				url : "adminOrderInterval.do",  
 				success : function (data) {
+					console.log(data);
 					var count = Object.keys(data).length;
 					if(count != 0){
 					var contents = "";
@@ -51,7 +54,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary btn-sm\" onclick=\"orderProc("+ value.ord_no + ",2);\">접수하기</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"takeFirst();\">조리 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst();\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel('" + value.tid  + "','" + value.payment_tp + "');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -75,7 +78,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td>접수 완료</td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel('" + value.tid  + "','" + value.payment_tp + "');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -94,7 +97,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td>접수 완료</td>";
 								contents += "<td>조리 완료</td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"barcodeProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel('" + value.tid  + "','" + value.payment_tp + "');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -163,7 +166,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary btn-sm\" onclick=\"orderProc("+ value.ord_no + ",2);\">접수하기</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"takeFirst();\">조리 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst();\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel('" + value.tid  + "','" + value.payment_tp + "');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -187,7 +190,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td>접수 완료</td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel('" + value.tid  + "','" + value.payment_tp + "');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -206,7 +209,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td>접수 완료</td>";
 								contents += "<td>조리 완료</td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"barcodeProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel('" + value.tid  + "','" + value.payment_tp + "');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -236,7 +239,6 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 			    }
 			});
 	}
-
 	 
 	function takeFirst(){
 		 alert("접수를 먼저 해야 가능합니다.");
@@ -247,9 +249,20 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		return;
 	} 
 	
-	function orderCancel(ordNo, statNo){
+	function orderCancel(tid, payTp){
 		if(confirm("주문을 취소하시겠습니까?")){
-			$.ajax ({
+			var f = document.getElementById('frmPayment');
+			if(payTp == "p"){
+				payTp = "PHON";
+			}else{
+				payTp = "CARD"
+			}
+			f.TRAN_TYPE.value=payTp;
+			f.TID.value=tid;
+			f.CANCEL_ID.value='<%=CmmUtil.nvl((String)session.getAttribute("ss_user_email"))%>';
+			f.CANCEL_CAUSE.value="non";
+			f.submit();
+			/* $.ajax ({
 				url : "adminOrderCancel.do",
 				type : "post",
 				data : {
@@ -353,7 +366,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 			            alert('Unknow Error.n'+x.responseText);
 			            }
 			    }
-			});
+			}); */
 		}
 	}
 </script>
@@ -453,7 +466,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		                                </td>
 		                                <td align=center>
 			                                <div class="btn-group">
-			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 5);">취소하기</button>
+			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel('<%=CmmUtil.nvl(tDTO.getTid())%>','<%=CmmUtil.nvl(tDTO.getPayment_tp())%>');">취소하기</button>
 			                                </div>
 		                                </td>
                                   <%} else if(ordStat.equals("2")){ %>
@@ -472,7 +485,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		                                </td> 
 		                                <td align=center>
 			                                <div class="btn-group">
-			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 5);">취소하기</button>
+			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel('<%=CmmUtil.nvl(tDTO.getTid())%>', '<%=CmmUtil.nvl(tDTO.getPayment_tp())%>');">취소하기</button>
 			                                </div>
 		                                </td>
                                   <%} else {%>
@@ -489,7 +502,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		                                </td>
 		                                <td align=center>
 			                                <div class="btn-group">
-			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel(<%=CmmUtil.nvl(tDTO.getOrd_no())%>, 5);">취소하기</button>
+			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel('<%=CmmUtil.nvl(tDTO.getTid())%>', '<%=CmmUtil.nvl(tDTO.getPayment_tp())%>');">취소하기</button>
 			                                </div>
 		                                </td> 
                                   <%} %>
@@ -501,7 +514,14 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
                         </div>
                         </div>
                       </section>
-                        <div style="float:right"><a class="btn btn-info" href="" title="선택하신게 삭제됩니다.">삭제</a></div>
+                      <form method="post" name="frmPayment" id="frmPayment" style="display: none;" action="https://pg.paynuri.com/paymentgateway/cancelPayment.do" accept-charset="euc-kr" target="_self">
+                      	<input type="hidden" id="STOREID" name="STOREID" value="1500000088">
+                      	<input type="hidden" id="TRAN_TYPE" name="TRAN_TYPE">
+                      	<input type="hidden" id="KIND" name="KIND" value="0420">
+                      	<input type="hidden" id="TID" name="TID">
+                      	<input type="hidden" id="CANCEL_ID" name="CANCEL_ID">
+                      	<input type="hidden" id="CANCEL_CAUSE" name="CANCEL_CAUSE">
+                      </form>
               </div></div>
               <!-- page end-->
           </section>

@@ -1,9 +1,11 @@
 package com.cupbob.controller.admin;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,10 +18,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cupbob.dto.TotalOrderDTO;
 import com.cupbob.dto.TotalOrderInfoDTO;
 import com.cupbob.service.IOrderService;
+import com.cupbob.util.CmmUtil;
+import com.cupbob.util.PayUtil;
 
 @Controller
 public class AdminOrderController {
@@ -69,7 +74,7 @@ public class AdminOrderController {
 		return tList;
 	}
 	
-	@RequestMapping(value="adminOrderCancel", method=RequestMethod.POST)
+	@RequestMapping(value="adminOrderCancel")
 	public @ResponseBody List<TotalOrderDTO> adminOrderCancel(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		log.info(this.getClass() +  ".adminOrderCancel start!!");
 		String ordNo = req.getParameter("ordNo");
@@ -146,5 +151,30 @@ public class AdminOrderController {
 		
 		return "redirect:barcodeSuccess.do";
 	}
-
+	/*@RequestMapping(value="orderCancel", method=RequestMethod.POST)
+	public void orderCancel(HttpServletRequest request, HttpServletResponse response, Model model, HttpSession session, RedirectAttributes redAtt) throws Exception{
+		log.info(this.getClass() + ".orderCancel start!!");
+		String ordNo = CmmUtil.nvl(request.getParameter("ordNo"));
+		log.info(this.getClass() + " ordNo : " + ordNo);
+		String payTp = CmmUtil.nvl(request.getParameter("parTp"));
+		log.info(this.getClass() + " payTp : " + payTp);
+		if(payTp.equals("p")){
+			payTp = "PHON";
+		}else{
+			payTp = "CARD";
+		}
+		String user_email = CmmUtil.nvl((String)session.getAttribute("ss_user_email"));
+		redAtt.addAttribute("STOREID", "1500000088");
+		redAtt.addAttribute("TRAN_TYPE", payTp);
+		redAtt.addAttribute("KIND", "0420");
+		redAtt.addAttribute("CANCEL_ID", user_email);
+		redAtt.addAttribute("CANCEL_CAUSE","non");
+		
+		log.info(this.getClass() + ".orderCancel end!!");
+		//RequestDispatcher rd = request.getRequestDispatcher("http://www.naver.com");
+		//RequestDispatcher rd = request.getRequestDispatcher("https://pg.paynuri.com/paymentgateway/cancelPayment.do?STOREID=1500000088&TRAN_TYPE=" + payTp + "&KIND=0420&TID=" + ordNo + "&CANCEL_ID=" + user_email + "&CANCEL_CAUSE=NON");
+		//rd.forward(request, response);
+		response.sendRedirect("https://pg.paynuri.com/paymentgateway/cancelPayment.do");
+	}
+	*/
 }

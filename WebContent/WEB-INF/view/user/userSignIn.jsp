@@ -41,7 +41,6 @@ function overlapEmail() {
 				$('p.emailFont').html("가능합니다")
 				ovlapE = true;
 			}
-			console.log(ovlapE)
 		}
 	})
 };

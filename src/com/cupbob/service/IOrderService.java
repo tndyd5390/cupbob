@@ -17,4 +17,7 @@ public interface IOrderService {
 	public Order_infoDTO getOrderNo(String userNo) throws Exception;
 	public User_infoDTO getUserMil(String userNo) throws Exception;
 	public int test() throws Exception;
+	public List<TotalOrderDTO> selectOrderList(String user_no) throws Exception;
+	public List<TotalOrderDTO> orderListMore(String count, String uNum) throws Exception;
+	public int updateOrderCancel(String tid) throws Exception;
 }

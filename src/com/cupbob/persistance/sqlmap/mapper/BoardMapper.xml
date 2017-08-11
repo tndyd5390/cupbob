@@ -72,13 +72,27 @@
 	</delete>
 	
 	<select id="boardTitleSearch" parameterType="User_boardDTO" resultType="User_boardDTO">
-		SELECT * FROM USER_INFO U, USER_BOARD B WHERE U.USER_NO = B.USER_NO AND B.TITLE LIKE CONCAT('%', #{title}, '%')
+		SELECT B.POST_NO,
+		B.TITLE,
+		B.VIEW_CNT,
+		U.USER_NAME,
+		DATE_FORMAT(B.REG_DT, '%Y-%m-%d') AS REG_DT FROM USER_INFO U, USER_BOARD B WHERE U.USER_NO = B.USER_NO AND B.TITLE LIKE CONCAT('%', #{title}, '%')
 	</select>
 	<select id="boardNameSearch" parameterType="User_boardDTO" resultType="User_boardDTO">
-		SELECT * FROM USER_INFO U, USER_BOARD B WHERE U.USER_NO = B.USER_NO AND U.USER_NAME LIKE CONCAT('%', #{user_name}, '%')
+		SELECT 
+		B.POST_NO,
+		B.TITLE,
+		B.VIEW_CNT,
+		U.USER_NAME,
+		DATE_FORMAT(B.REG_DT, '%Y-%m-%d') AS REG_DT FROM USER_INFO U, USER_BOARD B WHERE U.USER_NO = B.USER_NO AND U.USER_NAME LIKE CONCAT('%', #{user_name}, '%')
 	</select>
 	<select id="boardContentSearch" parameterType="User_boardDTO" resultType="User_boardDTO">
-		SELECT * FROM USER_INFO U, USER_BOARD B WHERE U.USER_NO = B.USER_NO AND B.CONTENTS LIKE CONCAT('%', #{contents}, '%')
+		SELECT 
+		B.POST_NO,
+		B.TITLE,
+		B.VIEW_CNT,
+		U.USER_NAME,
+		DATE_FORMAT(B.REG_DT, '%Y-%m-%d') AS REG_DT FROM USER_INFO U, USER_BOARD B WHERE U.USER_NO = B.USER_NO AND B.CONTENTS LIKE CONCAT('%', #{contents}, '%')
 	</select>
 	<select id="getReadMoreList" parameterType="User_boardDTO" resultType="User_boardDTO">
 		SELECT UB.POST_NO,

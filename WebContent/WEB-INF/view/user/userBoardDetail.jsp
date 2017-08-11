@@ -11,6 +11,7 @@
 	User_boardDTO bDTO = (User_boardDTO) request.getAttribute("bDTO");
 	List<Comment_infoDTO> cList = (List<Comment_infoDTO>) request.getAttribute("cList");
 	String contents = bDTO.getContents();
+	System.out.println(contents);
 	bDTO.setContents(contents);
 %>
 
@@ -36,11 +37,7 @@ function convertContent(str){
 };
 $(function(){
 	$('#cmtCreate').bind('click',function() {
-		
 		var cnts = $('#cnts').val();
-		
-		console.log(pNo);
-		console.log(cnts);
 		if(cnts==""){
 			alert("댓글을 입력하세요");
 			$('#cmtCreate').focus();
@@ -57,7 +54,7 @@ $(function(){
 		success : function(data) {
 					var contents = "";
 					$.each(data,function(key, value) {
-						if(value.user_no==<%=ss_user_no%>){
+						if(value.user_no=="<%=ss_user_no%>"){
 							contents += "<li class='list-group-item list-none-line '"+ "id="+value.cmt_no+">";
 							contents += "<div class="+"contentsArea"+">";
 							contents += "<h4 class='reName'>"+value.user_name+"</h4>";
@@ -105,8 +102,7 @@ function cmtDelete(cmt_no){
 						var contents = "";
 						if(data!=""){
 							$.each(data,function(key, value) {
-								console.log(value.user_name);
-								if(value.user_no==<%=ss_user_no%>){
+								if(value.user_no=="<%=ss_user_no%>"){
 									contents += "<li class='list-group-item list-none-line '"+ "id="+value.cmt_no+">";
 									contents += "<div class="+"contentsArea"+">";
 									contents += "<h4 class='reName'>"+value.user_name+"</h4>";
@@ -149,14 +145,14 @@ function cmtUpdate(cmt_no,user_name){
 	if(updateCheck==false){
 		var cmtNo = cmt_no;
 		var userName = user_name;
-		var contents = $('#cmt_'+cmtNo+' > span').html();
+		var contents = $('#cmt_'+cmtNo+' > span').html().replace(/<br>/gi,'\n');
 		var updateForm = "<div  id="+cmtNo+">" +
 		                 "<div class=contentsArea>" + 
 		                 "<h4 class='reName'>"+userName+"</h4> </div> <br>" +
 		                 "<div class=col-xs-12><textarea class='upComText' id='cmtUpdateArea'>"+contents+"</textarea>" +
 		                 "<button class='saButton2' id='cmtUpdateBtn' onclick='cmtUpdateProc("+cmtNo+")'>수정</button> "+
 		                 "<button class='saButton2' id='cmtUpdateCancle' onclick='cmtUpdateCancle()'>취소</button>"+
-		                 "</div> <br> <br> <br>";
+		                 "</div> <br> <br> <br> <br>";
 		$('#'+cmtNo).html(updateForm);
 	}else{
 		alert("하나의 댓글만 수정가능합니다");
@@ -202,7 +198,7 @@ function cmtUpdateCancle(){
 		success : function(data) {
 			var contents = "";
 			$.each(data,function(key, value) {
-				if(value.user_no==<%=ss_user_no%>){
+				if(value.user_no=="<%=ss_user_no%>"){
 					contents += "<li class='list-group-item list-none-line '"+ "id="+value.cmt_no+">";
 					contents += "<div class="+"contentsArea"+">";
 					contents += "<h4 class='reName'>"+value.user_name+"</h4>";
@@ -242,7 +238,7 @@ function cmtUpdateCancle(){
 		success : function(data) {
 			var contents = "";
 			$.each(data,function(key, value) {
-				if(value.user_no==<%=ss_user_no%>){
+				if(value.user_no=="<%=ss_user_no%>"){
 					contents += "<li class='list-group-item list-none-line '"+ "id="+value.cmt_no+">";
 					contents += "<div class="+"contentsArea"+">";
 					contents += "<h4 class='reName'>"+value.user_name+"</h4>";
@@ -294,7 +290,7 @@ function cmtUpdateCancle(){
 			<div class="row">
 				<div class="bodercontent">
 					<!--글 내용-->
-					<%=CmmUtil.nvl(bDTO.getContents())%>
+					<%=CmmUtil.replaceBr(CmmUtil.nvl(bDTO.getContents()))%>
 				</div>
 				<%if(bDTO.getReg_user_no().equals(ss_user_no)){ %>
 				<button class="saButton0" onclick="location.href='userBoardDelete.do?bnum=<%=CmmUtil.nvl(bDTO.getPost_no())%>'">삭제</button>

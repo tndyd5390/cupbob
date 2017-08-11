@@ -17,17 +17,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cupbob.dto.Order_infoDTO;
 import com.cupbob.dto.Order_itemDTO;
 import com.cupbob.dto.TmpBasketDTO;
+import com.cupbob.dto.TotalOrderDTO;
 import com.cupbob.dto.User_infoDTO;
 import com.cupbob.service.IOrderService;
 import com.cupbob.util.CmmUtil;
+import com.cupbob.util.PayUtil;
 
 
 @Controller
 public class OrderController {
+	
    private Logger log = Logger.getLogger(this.getClass());
    @Resource(name="OrderService")
    private IOrderService orderService;
@@ -128,6 +133,7 @@ public class OrderController {
          oDTO.setOrd_stat("1");
          oDTO.setUsr_rcv_time(etc_data2);
          oDTO.setRcv_yn("n");
+         oDTO.setTid(tid);
          String[] userNoAndMil = etc_data1.split(";");
          String[] mil = userNoAndMil[1].split("-");
          Map<String, String> milMap = new HashMap();
@@ -153,7 +159,7 @@ public class OrderController {
             oIDTO.setReg_user_no(userNoAndMil[0]);
             oList.add(oIDTO);
          }
-         
+         session.setAttribute("ss_tmpBasket", "");
          orderService.insertOrderSuccess(oDTO, oList, milMap);
       }else{
          /**
@@ -179,19 +185,11 @@ public class OrderController {
          oDTO = new Order_infoDTO();
       }
       model.addAttribute("ordNo", CmmUtil.nvl(oDTO.getOrd_no()));
+      session.setAttribute("ss_tmpBasket", null);
       userNo = null;
       oDTO = null;
       log.info(this.getClass() + "orderSuccess end!!!");
       return "user/orderSuccess";
-   }
-   
-   //페치누리로 보내는 CANCEL_URL(결제 취소후 가맹점 페이지로 넘어갈 URL)에 대응하는 메소드
-   @RequestMapping(value="orderCancle")
-   public String orderCancle(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
-      log.info(this.getClass() + ".orderCancle start!!!!");
-      
-      log.info(this.getClass() + ".orderCancle end!!!");
-      return null;
    }
    
    @RequestMapping(value="userOrderDirect", method=RequestMethod.POST)
@@ -244,4 +242,44 @@ public class OrderController {
       log.info(this.getClass() + "useMil end!!!");
       return "user/useMil";
    }
+   
+   @RequestMapping(value = "userOrderList")
+	public String userOrderList(HttpSession session,HttpServletRequest request,HttpServletResponse response,Model model)throws Exception{
+		log.info(this.getClass().getName() + "userOrderList Start !!");
+		String uNum = CmmUtil.nvl(request.getParameter("uNum"));
+		log.info(uNum);
+		
+		List<TotalOrderDTO> totalList = orderService.selectOrderList(uNum);
+		
+		model.addAttribute("totalList", totalList);
+		model.addAttribute("uNum", uNum);
+		
+		log.info(this.getClass().getName() + "userOrderList END !!");
+		return "user/userOrderList";
+	}
+	
+	@RequestMapping(value="orderListMore")
+	public @ResponseBody List<TotalOrderDTO> orderListMore(@RequestParam(value="count") String count,@RequestParam(value="uNum") String user_no) throws Exception{
+		log.info(this.getClass().getName() + " moreButton Start!! ");
+		log.info(count);
+		log.info(user_no);
+		
+		List<TotalOrderDTO> orderListMore = orderService.orderListMore(count,user_no);
+		
+		for(TotalOrderDTO tDTO : orderListMore){
+			System.out.println(tDTO.getOrd_no());
+			System.out.println(tDTO.getPrdt_name());
+		}
+		
+		log.info(this.getClass().getName() + " moreButton END!! ");
+		return orderListMore;
+	}
+	
+	//이거슨 결제 도중 취소 URL이였던 것이였던 것이다
+		@RequestMapping(value="orderCancelResult")
+		public String orderCancelResult(HttpServletRequest request, HttpServletResponse response, Model model, HttpSession session) throws Exception{
+			session.setAttribute("ss_tmpBasket", null);
+			return "redirect:userMenuList.do";
+		
+		}
 }

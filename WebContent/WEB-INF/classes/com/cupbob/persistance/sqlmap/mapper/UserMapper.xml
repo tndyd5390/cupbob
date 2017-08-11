@@ -121,5 +121,6 @@
 		DATE_FORMAT(M.REG_DT,'%Y-%m-%d') AS REG_DT
 		FROM USER_INFO U, MIL_HISTORY M
 		WHERE U.USER_NO = M.USER_NO AND U.USER_NO= #{user_no}
+		ORDER BY M.REG_DT DESC
 	</select>
 </mapper> 

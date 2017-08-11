@@ -22,6 +22,7 @@ import com.cupbob.dto.TotalOrderItemDTO;
 import com.cupbob.dto.User_infoDTO;
 import com.cupbob.persistance.mapper.OrderMapper;
 import com.cupbob.service.IOrderService;
+import com.cupbob.util.CmmUtil;
 @Service("OrderService")
 public class OrderService implements IOrderService {
 	@Resource(name="OrderMapper")
@@ -56,6 +57,7 @@ public class OrderService implements IOrderService {
 			tDTO.setPrdt_name(prdtName);
 			tDTO.setPrdt_price(price + "");
 			tDTO.setOrd_amnt(ordAmnt);
+			tDTO.setTid(oDTO.getTid());
 			//====================================
 			//남은 시간 세팅
 			tDTO.setOrd_remainTime(getRemainTime(tDTO.getUsr_rcv_time()));
@@ -159,6 +161,97 @@ public class OrderService implements IOrderService {
 	}
 
 	@Override
+	public List<TotalOrderDTO> selectOrderList(String user_no) throws Exception{
+		List<TotalOrderInfoDTO> orderList = orderMapper.selectOrderList(user_no);
+		List<TotalOrderDTO> totalList = new ArrayList<TotalOrderDTO>();
+		for(TotalOrderInfoDTO oDTO : orderList){
+			TotalOrderDTO tDTO = new TotalOrderDTO();
+			List<TotalOrderItemDTO> prdtList = orderMapper.selectProductList(oDTO.getOrd_no());
+			String pName="";
+			String pPrice="";
+			int count=0;
+			for(int i=0;i<prdtList.size();i++){
+				pName += prdtList.get(i).getPrdt_name() + ";";
+				pPrice += prdtList.get(i).getPrdt_price() + ";";
+				count+=1;
+				System.out.println(pName);
+				System.out.println(pPrice);
+			}
+			tDTO.setOrd_no(oDTO.getOrd_no());
+			tDTO.setTotal_ord_price(oDTO.getTotal_ord_price());
+			tDTO.setOrd_dt(oDTO.getOrd_dt());
+			tDTO.setOrd_stat(oDTO.getOrd_stat());
+			tDTO.setOrd_count(count);
+			tDTO.setPrdt_name(pName);
+			tDTO.setPrdt_price(pPrice);
+			System.out.println(count);
+			totalList.add(tDTO);
+		}
+		return totalList;
+	}
+	
+	@Override
+	public List<TotalOrderDTO> orderListMore(String count,String user_no) throws Exception{
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("count", count);
+		map.put("user_no", user_no);
+		List<TotalOrderInfoDTO> orderList = orderMapper.selectOrderMore(map);
+		int oCount = 0;
+		List<TotalOrderDTO> totalList = new ArrayList<TotalOrderDTO>();
+		for(TotalOrderInfoDTO oDTO : orderList){
+			oCount ++;
+			TotalOrderDTO tDTO = new TotalOrderDTO();
+			List<TotalOrderItemDTO> prdtList = orderMapper.selectProductList(oDTO.getOrd_no());
+			String pName="";
+			String pNameList="";
+			String pPrice="";
+			System.out.println(oDTO.getOrd_no());
+			System.out.println(oDTO.getOrd_stat());
+			Map<String, Integer> prdtMap = new HashMap();
+			Map<String, Integer> priceMap = new HashMap();
+			for(TotalOrderItemDTO aDTO : prdtList){
+				System.out.println(aDTO.getPrdt_name());
+				if(prdtMap.containsKey(aDTO.getPrdt_name())){
+					prdtMap.put(aDTO.getPrdt_name(), prdtMap.get(aDTO.getPrdt_name()) + 1);
+				}else{
+					prdtMap.put(aDTO.getPrdt_name(), 1);
+				}
+				if(prdtMap.size() > 1){
+					pName = aDTO.getPrdt_name() + " 외 " + (prdtList.size()-1) + " 건 ";
+				}else{
+					pName = aDTO.getPrdt_name();
+				}
+			}
+			for(TotalOrderItemDTO aDTO : prdtList){
+				if(priceMap.containsKey(aDTO.getPrdt_name())){
+					priceMap.put(aDTO.getPrdt_name(), priceMap.get(aDTO.getPrdt_name()) + Integer.parseInt(aDTO.getPrdt_price()));
+				}else{
+					priceMap.put(aDTO.getPrdt_name(), Integer.parseInt(aDTO.getPrdt_price()));
+				}
+			}
+			Iterator<String> keys = prdtMap.keySet().iterator();
+			while(keys.hasNext()){
+				String key = keys.next();
+				pNameList += key+ "x" + prdtMap.get(key) + "<br>";
+			}
+			Iterator<String> keyss = priceMap.keySet().iterator();
+			while(keyss.hasNext()){
+				String key = keyss.next();
+				pPrice += priceMap.get(key) + "원<br>";
+			}
+			
+			tDTO.setOrd_no(oDTO.getOrd_no());
+			tDTO.setTotal_ord_price(CmmUtil.addComma(oDTO.getTotal_ord_price()));
+			tDTO.setOrd_dt(oDTO.getOrd_dt());
+			tDTO.setOrd_stat(oDTO.getOrd_stat());
+			tDTO.setPrdt_name(pName);
+			tDTO.setPrdt_price(pPrice);
+			tDTO.setOrd_count(oCount);
+			tDTO.setPrdt_name_List(pNameList);
+			totalList.add(tDTO);
+		}
+		return totalList;
+	}
 	public Order_infoDTO getOrderNo(String userNo) throws Exception {
 		return orderMapper.getOrderNo(userNo);
 	}
@@ -166,6 +259,11 @@ public class OrderService implements IOrderService {
 	@Override
 	public User_infoDTO getUserMil(String userNo) throws Exception {
 		return orderMapper.getUserMil(userNo);
+	}
+
+	@Override
+	public int updateOrderCancel(String tid) throws Exception {
+		return orderMapper.updateOrderCancel(tid);
 	}
 
 }
