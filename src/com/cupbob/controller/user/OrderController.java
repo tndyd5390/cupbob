@@ -1,7 +1,6 @@
  package com.cupbob.controller.user;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -27,7 +26,6 @@ import com.cupbob.dto.TotalOrderDTO;
 import com.cupbob.dto.User_infoDTO;
 import com.cupbob.service.IOrderService;
 import com.cupbob.util.CmmUtil;
-import com.cupbob.util.PayUtil;
 
 
 @Controller
@@ -181,6 +179,7 @@ public class OrderController {
    public String orderSuccess(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
       log.info(this.getClass() + "orderSuccess start!!!");
       String userNo = (String)session.getAttribute("ss_user_no");
+      log.info(this.getClass() + "user_no = "+userNo);
       Order_infoDTO oDTO = orderService.getOrderNo(userNo);
       if(oDTO == null){
          oDTO = new Order_infoDTO();
