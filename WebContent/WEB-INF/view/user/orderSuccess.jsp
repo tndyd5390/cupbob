@@ -52,7 +52,7 @@ $(function(){
 			</div>
 		</div>
 		<div class="col-xs-12">
-			<a href="NewFile.jsp"><button class="goMainP">메인화면으로 가기</button></a>
+			<a href="userMenuList.do"><button class="goMainP">메인화면으로 가기</button></a>
 		</div>
 		<div class="col-xs-12">
 			<button class="detailSubmit">주문내역으로 가기</button>
