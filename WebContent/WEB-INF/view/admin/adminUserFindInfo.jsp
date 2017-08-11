@@ -45,7 +45,7 @@
 				<br>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_calendar"></i></span>
-					<input type="text" name="birthday" class="form-control"	placeholder="생년월일 ex)1994.08.08" onkeyup="return filterNumber(this);">
+					<input type="text" name="birthday" class="form-control"	placeholder="생년월일 ex)940808" onkeypress="InpuOnlyNumber(this)">
 				</div>
 				<br>
 				<button class="btn btn-primary btn-lg btn-block" type="submit">아이디 찾기</button>
@@ -53,7 +53,7 @@
 		</form>
 	</div>
 	<div class="col-sm-6">
-		<form class="login-form" action="adminUserFindPw.do" method="post" name="password1">
+		<form class="login-form" action="adminUserFindPw.do" method="post">
 			<div class="login-wrap">
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_mail_alt"></i></span>
@@ -65,7 +65,7 @@
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_calendar"></i></span>
-					<input type="text" name="birthday" class="form-control"	placeholder="생년월일 ex)1994.08.08" onkeyup="return filterNumber(this);">
+					<input type="text" name="birthday" class="form-control"	placeholder="생년월일 ex)940808" onkeypress="InpuOnlyNumber(this)">
 				</div>
 				<button class="btn btn-primary btn-lg btn-block" type="submit">비밀번호 찾기</button>
 			</div>
@@ -76,17 +76,9 @@
 	</section>
 
 	<script type="text/javascript">
-    function filterNumber(obj) 
+    function InpuOnlyNumber(obj) 
     {
-        var key = event.keyCode;
-        if(!(key==8||key==9||key==144||key==46||key==110||(key >= 48 && key <=57)||(key >= 96 && key <= 105))) 
-        {
-            alert("숫자만 입력 가능합니다.")
-            document.password1.birthday.value=""; 
-            event.returnValue = false;
-        }
-    	
-/*         if (event.keyCode >= 48 && event.keyCode <= 57) { //only number
+        if (event.keyCode >= 48 && event.keyCode <= 57) { //only number
             return true;
         } else {
         	if(event.keyCode == 13){
@@ -94,7 +86,7 @@
         	}
 			event.returnValue = false;        	
             alert("숫자만 입력 가능합니다.")
-        } */
+        }
     }
 	</script>
 

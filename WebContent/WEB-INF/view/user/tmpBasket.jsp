@@ -29,6 +29,7 @@
 <link href="userBootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="userBootstrap/css/turtle.min.css" />
 <link rel="stylesheet" href="userBootstrap/css/nav.css"/>
+<link rel="stylesheet" href="userBootstrap/css/tmpBasket.css?ver=1"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <title>소라네 컵밥 장바구니</title>
 <script type="text/javascript">
@@ -246,9 +247,9 @@ function addComma(x) {
 </head>
 <body>
 	<%@include file="/include/nav.jsp"%>
-		<div class="col-xs-12">
-			<div class="orderHead" style="width: 100%; margin-top: 85px; margin-bottom: 15px;">장바구니</div>
-			</div>
+	<div class="row">
+		<div style="padding-left: 20px; padding-right: 20px; padding-bottom: 10px;">
+			<div class="tmpBasketHead">장바구니</div>
 			<div id="tmpList">
 			<%if(tMap.size() == 0){ %>
 				<div class="col-xs-12" style="text-align: center;">
@@ -278,8 +279,8 @@ function addComma(x) {
 			 </div>
 			<div class="tmpBasketResult">
 				<div class="tmpBasketResultPriceText">결제 예정금액</div>
-				<div class="tmpBasketResultPrice" id="tmpBasketResultPrice" style="margin-bottom: 10px;"><%=CmmUtil.nvl(CmmUtil.addComma(resultPrice)) + "원" %></div>
-			</div><br />
+				<div class="tmpBasketResultPrice" id="tmpBasketResultPrice"><%=CmmUtil.nvl(CmmUtil.addComma(resultPrice)) + "원" %></div>
+			</div>
 			<div class="col-xs-12">
 				<div class="col-xs-6" style="padding: 0px 10px 0px 0px;">
 					<button class="tmpBasketSelectDeleteButton" onclick="tmpBasketSelectedDelete();">선택삭제</button>
@@ -292,6 +293,8 @@ function addComma(x) {
 				<button class="tmpBasketOrder" onclick="return doOrder();">주문 하기</button>
 			</div>
 		<br>
+	</div>
+	</div>
 		<div align="center">
 	<%@include file="/include/footer.jsp"%>
 	</div>

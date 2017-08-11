@@ -69,9 +69,6 @@ public class CmmUtil {
 	}
 	
 	public static String addComma(String value){
-		if("".equals(CmmUtil.nvl(value))){
-			return addComma(0);
-		}
 		return addComma(Integer.parseInt(value));
 	}
 }

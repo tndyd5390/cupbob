@@ -1,8 +1,6 @@
 package com.cupbob.controller.admin;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,38 +40,11 @@ public class AdminOrderController {
 		if(tList == null){
 			tList = new ArrayList<TotalOrderDTO>();
 		}
-		Collections.sort(tList, new SortOrder());
 		model.addAttribute("TotalOrderList", tList);
 		tList = null;
 		log.info(this.getClass() + "orderList end");
 		return "admin/adminMain";
 	}
-	
-	class SortOrder implements Comparator<TotalOrderDTO>{
-
-		@Override
-		public int compare(TotalOrderDTO t1, TotalOrderDTO t2) {
-			String[] t1Time = t1.getOrd_remainTime().split(":");
-			int t1Hour = Integer.parseInt(t1Time[0]);
-			int t1Min = Integer.parseInt(t1Time[1]);
-			String[] t2Time = t2.getOrd_remainTime().split(":");
-			int t2Hour = Integer.parseInt(t2Time[0]);
-			int t2Min = Integer.parseInt(t2Time[1]);
-			if(t1Hour > t2Hour){
-				return 1;
-			}else if(t1Hour < t2Hour){
-				return -1;
-			}else if(t1Min > t2Min){
-				return 1;
-			}else if(t1Min < t2Min){
-				return -1;
-			}else{
-				return 0;
-			}
-		}
-	}
-		
-	
 	@RequestMapping(value="adminOrderInterval")
 	public @ResponseBody List<TotalOrderDTO> adminOrderInterval(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		log.info(this.getClass() + ".adminOrderInterval start");
@@ -81,7 +52,6 @@ public class AdminOrderController {
 		if(tList == null){
 			tList = new ArrayList<TotalOrderDTO>();
 		}
-		Collections.sort(tList, new SortOrder());
 		log.info(this.getClass() + ".adminOrderInterval tList.size() : " +  tList.size());
 		log.info(this.getClass() + ".adminOrderInterval end");
 		return tList;
@@ -207,4 +177,88 @@ public class AdminOrderController {
 		response.sendRedirect("https://pg.paynuri.com/paymentgateway/cancelPayment.do");
 	}
 	*/
+	
+	//이거슨 결제 도중 취소 URL이였던 것이였던 것이다
+	@RequestMapping(value="orderCancelResult")
+	public String orderCancelResult(HttpServletRequest request, HttpServletResponse response, Model model, HttpSession session) throws Exception{
+		request.setCharacterEncoding("EUC-KR");
+		response.setCharacterEncoding("EUC-KR");
+
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//
+			// [공통파라미터]
+			//
+			//////////////////////////////////////////////////////////////////////////////////////////
+
+			String STOREID					= request.getParameter("STOREID");				// 페이누리 가맹점 ID
+			String TRAN_TYPE				= request.getParameter("TRAN_TYPE");			// [CARD | BANK | CASH | PHON]
+			String KIND						= request.getParameter("KIND");					// "0420" (단, 계좌이체의 경우 당일: "0420", 당일아님: "0520")
+			String TID						= request.getParameter("TID");					// 페이누리 거래번호
+			String CANCEL_ID				= new String(request.getParameter("CANCEL_ID").getBytes("8859_1"), "euc-kr");
+			String CANCEL_CAUSE				= new String(request.getParameter("CANCEL_CAUSE").getBytes("8859_1"), "euc-kr");
+
+			String REPLY_CODE = "";
+			String REPLY_MSG = "";
+			String REPLY_AUTH_NO = "";
+
+			HashMap<String, String> hashmapJson = new HashMap<String, String>();
+			HashMap<String, Object> hashmapRes = new HashMap<String, Object>();
+
+			try{
+				hashmapJson.put("STOREID", STOREID);
+				hashmapJson.put("TRAN_TYPE", TRAN_TYPE);
+				hashmapJson.put("KIND", KIND);
+				hashmapJson.put("TID", TID);
+				hashmapJson.put("CANCEL_ID", CANCEL_ID);
+				hashmapJson.put("CANCEL_CAUSE", CANCEL_CAUSE);
+
+				String charSet = "EUC-KR";
+				
+				HashMap<String, String> hashmapResponse = (HashMap<String, String>) PayUtil.callURL("https://pg.paynuri.com/paymentgateway/cancelPayment.do", null, hashmapJson, charSet);
+				if ("200".equals(hashmapResponse.get("httpStatus"))){
+					String responseBody = String.valueOf(hashmapResponse.get("responseBody"));
+					hashmapRes = PayUtil.JsonStringToObject(responseBody);
+				}else{
+					hashmapRes.put("REP_CODE", "9999");
+					hashmapRes.put("REP_MSG", "오류가 발생했습니다.");
+				}
+			}catch (Exception e){
+				hashmapRes.put("REP_CODE", "9999");
+				hashmapRes.put("REP_MSG", "오류가 발생했습니다.");
+			}
+
+			/////////////////////////////////////////////////////////////////////////////////////////
+			//
+			// [결제 응답값]
+			// 이부분에 각 상점 처리 로직을 구현하시면됩니다.
+			// 아래 응답 파라미터를 확인하시고 각 상점에 맞는 처리를 하시면됩니다.
+			//
+			////////////////////////////////////////////////////////////////////////////////////////
+			if("0000".equals(hashmapRes.get("REP_CODE"))) {
+				// ###################################################################################
+				// #
+				// #
+				// #
+				// #							결제성공시 상점 처리로직 구현
+				// #
+				// #
+				// #
+				// ###################################################################################
+				orderService.updateOrderCancel(TID);
+				return "redirect:orderList.do";
+			} else {
+				// ###################################################################################
+				// #
+				// #
+				// #
+			   	// #							결제 실패시 상점 처리로직 구현
+				// #
+				// #
+				// #
+				// ###################################################################################
+				model.addAttribute("msg", "취소되지 않았습니다.");
+				model.addAttribute("url", "orderList.do");
+				return "admin/boardAlert";
+			}
+	}
 }
