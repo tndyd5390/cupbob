@@ -70,7 +70,7 @@ $(function(){
 			<a href="userMenuList.do"><button class="goMainP">메인화면으로 가기</button></a>
 		</div>
 		<div class="col-xs-12">
-			<button class="detailSubmit">주문내역으로 가기</button>
+			<a href="userOrderList.do?uNum=<%=userNo%>"><button class="detailSubmit">주문내역으로 가기</button></a>
 		</div>
 	</div>
 	<br>
