@@ -1,3 +1,5 @@
+<%@page import="com.cupbob.util.PayUtil"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="com.cupbob.dto.TotalOrderDTO"%>
 <%@page import="java.util.List"%>
 <%@ page import="com.cupbob.util.CmmUtil" %>
