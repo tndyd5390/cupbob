@@ -199,4 +199,11 @@
 			TID = #{tid}
 	</update>
 	
+	<select id="getOrdItem" parameterType="Order_InfoDTO" resultType="Order_itemDTO">
+		
+		SELECT P.PRDT_NAME, O.ORD_AMNT
+		FROM ORDER_ITEM O, PRODUCT_INFO P WHERE O.PRDT_NO = P.PRDT_NO AND O.ORD_NO = #{ord_no}
+		
+	</select>
+	
 </mapper>

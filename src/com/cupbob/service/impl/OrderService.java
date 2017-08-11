@@ -262,4 +262,9 @@ public class OrderService implements IOrderService {
 		return orderMapper.updateOrderCancel(tid);
 	}
 
+	@Override
+	public List<Order_itemDTO> getOrdItem(Order_itemDTO otDTO) throws Exception {
+		return orderMapper.getOrdItem(otDTO);
+	}
+
 }

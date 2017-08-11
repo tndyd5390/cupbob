@@ -1,10 +1,15 @@
 <%@page import="java.util.Date"%>
+<%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.cupbob.util.CmmUtil"%>
+<%@page import="com.cupbob.dto.Order_itemDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	String userNo = (String)session.getAttribute("ss_user_no");
+	List<Order_itemDTO> otList = (List<Order_itemDTO>)request.getAttribute("otList");
+
+
 	if(CmmUtil.nvl(userNo).equals("")){
 		response.sendRedirect("userLogin.do");
 	}
@@ -40,7 +45,21 @@ $(function(){
 			<div align=center>
 				<div id="bcTarget"></div>
 				<div class="col-xs-12">
-					<br> <span class="loginSpan1">정성을 다하는 스타벅스밥집</span>
+					<br> 
+					<%
+						for(Order_itemDTO otDTO : otList){
+							if(otList.size()>1){%>
+						<span class="loginSpan1"><%=CmmUtil.nvl(otList.get(0).getPrdt_name())%> 외 <%=otList.size()-1%>건</span>
+							<%
+							}else{
+							%>	
+						<span class="loginSpan1"><%=CmmUtil.nvl(otDTO.getPrdt_name())%></span>
+							<%
+							}
+							%>
+					<%
+						}
+					%>
 				</div>
 			</div>
 		</div>

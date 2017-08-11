@@ -1,4 +1,4 @@
-package com.cupbob.controller.user;
+ package com.cupbob.controller.user;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -185,10 +185,16 @@ public class OrderController {
       if(oDTO == null){
          oDTO = new Order_infoDTO();
       }
+      Order_itemDTO otDTO = new Order_itemDTO();
+      otDTO.setOrd_no(oDTO.getOrd_no());
+      List<Order_itemDTO> otList = orderService.getOrdItem(otDTO);
+      
       model.addAttribute("ordNo", CmmUtil.nvl(oDTO.getOrd_no()));
       session.setAttribute("ss_tmpBasket", null);
+      model.addAttribute("otList", otList);
       userNo = null;
       oDTO = null;
+      otList = null;
       log.info(this.getClass() + "orderSuccess end!!!");
       return "user/orderSuccess";
    }
