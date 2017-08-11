@@ -150,7 +150,7 @@
 	<!-- 리턴 URL  !!!!!!!!!!!!!!!!!!!!!!!!이거는 바꿔줘야하는 파라미터!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 	<input type="hidden" id="RETURN_URL" name="RETURN_URL" value="http://cupbobs.com/orderComplete.do" size=30 maxlength=100 />
 	<!-- 결제 성공  URL !!!!!!!!!!!!!!!!!!!!!!!!이거는 바꿔줘야하는 파라미터!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-	<input type="hidden" id="COMPLETE_URL" name="COMPLETE_URL" value="http://cupbobs.com/orderSuccess.do" size=30 maxlength=100 />
+	<input type="hidden" id="COMPLETE_URL" name="COMPLETE_URL" value="http://cupbobs.com/orderSuccess.do?uNo=<%=CmmUtil.nvl((String)session.getAttribute("ss_user_no"))%>" size=30 maxlength=100 />
 	<!-- 결제도중 취소  URL !!!!!!!!!!!!!!!!!!!!!!!!이거는 바꿔줘야하는 파라미터!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 	<input type="hidden" id="CANCEL_URL" name="CANCEL_URL" value="http://cupbobs.com/orderCancelResult.do" size=30 maxlength=100 />
 	<!-- 여분의 데이터 1 -->

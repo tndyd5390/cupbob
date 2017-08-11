@@ -181,7 +181,7 @@ public class OrderController {
    @RequestMapping(value="orderSuccess")
    public String orderSuccess(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
       log.info(this.getClass() + "orderSuccess start!!!");
-      String userNo = (String) req.getAttribute("user_no");
+      String userNo = CmmUtil.nvl(req.getParameter("uNo"));
       log.info(this.getClass() + "user_no = "+userNo);
       Order_infoDTO oDTO = orderService.getOrderNo(userNo);
       if(oDTO == null){
