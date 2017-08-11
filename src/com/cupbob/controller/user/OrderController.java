@@ -120,6 +120,8 @@ public class OrderController {
          /**
           * 결제 성공
           */
+
+         log.info("orderss ss_user_no = "+session.getAttribute("ss_user_no"));
          Order_infoDTO oDTO = new Order_infoDTO();
          oDTO.setOrd_no(tran_no);
          oDTO.setReal_ord_price(amt);
@@ -159,6 +161,7 @@ public class OrderController {
          }
          log.info(this.getClass() + " useremail" + CmmUtil.nvl((String)session.getAttribute("ss_user_email")));
          session.setAttribute("ss_tmpBasket", "");
+         log.info("orderss2 ss_user_no = "+session.getAttribute("ss_user_no"));
          orderService.insertOrderSuccess(oDTO, oList, milMap);
       }else{
          /**
@@ -216,6 +219,7 @@ public class OrderController {
       log.info(this.getClass() + " prdtName : "  + prdtName);
       String userNo = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
       User_infoDTO uDTO = orderService.getUserMil(userNo);//마일리지 가져오기
+      log.info("ss_user_no1 = "+session.getAttribute("ss_user_no"));
       if(uDTO == null){
          uDTO = new User_infoDTO();
       }
@@ -231,6 +235,7 @@ public class OrderController {
          log.info(this.getClass() + "   prdtNo : " + tMap.get(key).getTmpBasketPrdtPrice());
          log.info(this.getClass() + " session--------------------------------------");
       }
+      log.info("ss_user_no2 = "+session.getAttribute("ss_user_no"));
       session.setAttribute("ss_tmpBasket", tMap);
       model.addAttribute("userMil", uDTO.getMileage());//마일리지 가져와서 올리기
       log.info(this.getClass() + ".userOrderDirect end!!!");
