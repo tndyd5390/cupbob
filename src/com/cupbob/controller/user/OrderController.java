@@ -161,8 +161,7 @@ public class OrderController {
          }
          log.info(this.getClass() + " useremail" + CmmUtil.nvl((String)session.getAttribute("ss_user_email")));
          session.setAttribute("ss_tmpBasket", "");
-         session.setAttribute("ss_user_no", userNoAndMil[0]);
-         log.info("orderss ss_user_no = "+session.getAttribute("ss_user_no"));
+         req.setAttribute("user_no", userNoAndMil[0]);
          orderService.insertOrderSuccess(oDTO, oList, milMap);
       }else{
          /**
@@ -182,10 +181,9 @@ public class OrderController {
    @RequestMapping(value="orderSuccess")
    public String orderSuccess(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
       log.info(this.getClass() + "orderSuccess start!!!");
-      String etc_data1 =CmmUtil.nvl(req.getParameter("ETC_DATA1"));//사용자 번호 넘어올것
-      String[] userNo = etc_data1.split(";");
-      log.info(this.getClass() + "user_no = "+userNo[0]);
-      Order_infoDTO oDTO = orderService.getOrderNo(userNo[0]);
+      String userNo = (String) req.getAttribute("user_no");
+      log.info(this.getClass() + "user_no = "+userNo);
+      Order_infoDTO oDTO = orderService.getOrderNo(userNo);
       if(oDTO == null){
          oDTO = new Order_infoDTO();
       }
