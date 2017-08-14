@@ -246,6 +246,7 @@ function addComma(x) {
 </head>
 <body>
 	<%@include file="/include/nav.jsp"%>
+	<div class="row" style="width: 100%; margin-right: 0px; margin-left: 0px;">
 		<div class="col-xs-12">
 			<div class="orderHead" style="width: 100%; margin-top: 85px; margin-bottom: 15px;">장바구니</div>
 			</div>
@@ -292,6 +293,7 @@ function addComma(x) {
 				<button class="tmpBasketOrder" onclick="return doOrder();">주문 하기</button>
 			</div>
 		<br>
+		</div>
 		<div align="center">
 	<%@include file="/include/footer.jsp"%>
 	</div>
