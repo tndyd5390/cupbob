@@ -175,13 +175,7 @@ public class AdminUserController {
 		if (udto == null) {
 			udto = new User_infoDTO();
 		}
-		log.info("�쑀��踰덊샇 = " + udto.getUser_no());
-		log.info("�씠由� = " + udto.getUser_name());
-		log.info("�씠硫붿씪 = " + udto.getEmail());
-		log.info("�꽦蹂� = " + udto.getGender());
-		log.info("�깮�뀈�썡�씪 = " + udto.getBirthday());
-		log.info("�쟾�솕踰덊샇 = " + udto.getContact_addr());
-
+		log.info("user_no = " + udto.getUser_no());
 		model.addAttribute("udto", udto);
 		udto = null;
 
@@ -246,10 +240,10 @@ public class AdminUserController {
 		
 		uDTO=null;
 		if(result!=0){
-			model.addAttribute("msg","�닔�젙�릺�뿀�뒿�땲�떎.");
+			model.addAttribute("msg","수정 되었습니다.");
 			model.addAttribute("url","adminUserDetail.do?unum="+uNum);
 		}else{
-			model.addAttribute("msg","�떎�뙣�븯���뒿�땲�떎.");
+			model.addAttribute("msg","수정 실패하였습니다.");
 			model.addAttribute("url","adminUserDetail.do?unum="+uNum);
 		}
 		
@@ -266,10 +260,10 @@ public class AdminUserController {
 		User_infoDTO uDTO = new User_infoDTO();
 		uDTO.setAllCheck(del_check);
 		if(userService.deleteUserAllChecked(uDTO)){
-			model.addAttribute("msg","�궘�젣�릺�뿀�뒿�땲�떎.");
+			model.addAttribute("msg","선택 삭제가 완료되었습니다");
 			
 		}else {
-			model.addAttribute("msg","�궘�젣 �떎�뙣�븯���뒿�땲�떎.");
+			model.addAttribute("msg","삭제 실패되었습니다.");
 		}
 		model.addAttribute("url","adminUserList.do");
 		uDTO = null;
@@ -361,13 +355,8 @@ public class AdminUserController {
 			log.info("password = " + udto.getPassword());
 			
 			sandEmail.setReciver(email);
-			System.out.println(sandEmail.getReciver());
-			
-			sandEmail.setSubject("�냼�씪 諛μ쭛 �엯�땲�떎.");
-			System.out.println(sandEmail.getSubject());
-			
-			sandEmail.setContent("�쉶�썝�떂�쓽 �엫�떆 鍮꾨�踰덊샇�뒗" + udto.getPassword() + "�엯�땲�떎.");
-			System.out.println(sandEmail.getContent());
+			sandEmail.setSubject("소라네 컵밥 임시 비밀번호입니다.");
+			sandEmail.setContent("고객님의 임시 비밀번호는 " + udto.getPassword() + "입니다.");
 			
 			emailSender.SendEmail(sandEmail);
 			

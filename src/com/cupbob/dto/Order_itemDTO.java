@@ -9,6 +9,7 @@ public class Order_itemDTO {
 	private String reg_dt;
 	private String chg_user_no;
 	private String chg_dt;
+	private String prdt_name;
 	public String getItem_no() {
 		return item_no;
 	}
@@ -56,6 +57,12 @@ public class Order_itemDTO {
 	}
 	public void setChg_dt(String chg_dt) {
 		this.chg_dt = chg_dt;
+	}
+	public String getPrdt_name() {
+		return prdt_name;
+	}
+	public void setPrdt_name(String prdt_name) {
+		this.prdt_name = prdt_name;
 	}
 	
 }

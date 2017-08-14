@@ -44,6 +44,7 @@ public class MenuController {
 		}
 		model.addAttribute("pList", pList);
 		model.addAttribute("menu", "추천 메뉴");
+		log.info("ss_user_no = " + session.getAttribute("ss_user_no"));
 		pList = null;
 		log.info(this.getClass() + "userMenuList end!!!");
 		return "user/menulist";
@@ -97,9 +98,10 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="userMenuDetail", method=RequestMethod.GET)
-	public String userMenuDetail(HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
+	public String userMenuDetail(HttpSession session, HttpServletRequest req, HttpServletResponse resp, Model model) throws Exception{
 		log.info(this.getClass() + "userMenuDetail start!!!");
 		String menuNo = CmmUtil.nvl(req.getParameter("menuNo"));
+		log.info("ss_user_no = " + session.getAttribute("ss_user_no"));
 		log.info(this.getClass() + ".menuNo = " + menuNo);
 		Product_infoDTO pDTO = menuService.getUserMenuDetail(menuNo);
 		if(pDTO == null){

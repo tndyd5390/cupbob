@@ -2479,7 +2479,7 @@ textarea.upComText {
 /* 360px 占쎌뵠占쎈릭 (占쎈툡占쎌뵠占쎈？5)*/
 @media screen and (max-width: 360px) {
 	textarea.upComText {
-		width: 68%;
+		width: 58%;
 	}
 	input.nameFont {
 		width: 75%;
@@ -3235,12 +3235,12 @@ hr.tmpBasketHr {
 	width: 100%;
 	text-decoration: none;
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .tmpBasketDeleteImg {
 	float: right;
-	width: 65px;
+	width: 40px;
 	height: 40px;
 }
 /*---------------------------------------------------------------------------------------------*/

@@ -1,10 +1,15 @@
 <%@page import="java.util.Date"%>
+<%@page import="java.util.List"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.cupbob.util.CmmUtil"%>
+<%@page import="com.cupbob.dto.Order_itemDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	String userNo = (String)session.getAttribute("ss_user_no");
+	List<Order_itemDTO> otList = (List<Order_itemDTO>)request.getAttribute("otList");
+
+
 	if(CmmUtil.nvl(userNo).equals("")){
 		response.sendRedirect("userLogin.do");
 	}
@@ -35,12 +40,25 @@ $(function(){
 	<br>
 	<br>
 	<br>
+	<br>
+	<br>
+	<br>
 	<div class="container-fluid">
 		<div class="row bottom-padding-20">
 			<div align=center>
 				<div id="bcTarget"></div>
 				<div class="col-xs-12">
-					<br> <span class="loginSpan1">정성을 다하는 스타벅스밥집</span>
+					<br> 
+						<%
+							if(otList.size()>=2){%>
+						<span class="loginSpan1"><%=CmmUtil.nvl(otList.get(0).getPrdt_name())%> 외 <%=otList.size()-1%>건</span>
+							<%
+							}else{
+							%>	
+						<span class="loginSpan1"><%=CmmUtil.nvl(otList.get(0).getPrdt_name())%></span>
+							<%
+							}
+							%>
 				</div>
 			</div>
 		</div>
@@ -52,10 +70,10 @@ $(function(){
 			</div>
 		</div>
 		<div class="col-xs-12">
-			<a href="NewFile.jsp"><button class="goMainP">메인화면으로 가기</button></a>
+			<a href="userMenuList.do"><button class="goMainP">메인화면으로 가기</button></a>
 		</div>
 		<div class="col-xs-12">
-			<button class="detailSubmit">주문내역으로 가기</button>
+			<a href="userOrderList.do?uNum=<%=userNo%>"><button class="detailSubmit">주문내역으로 가기</button></a>
 		</div>
 	</div>
 	<br>

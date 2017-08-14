@@ -1,7 +1,6 @@
-package com.cupbob.controller.user;
+ package com.cupbob.controller.user;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -121,6 +120,8 @@ public class OrderController {
          /**
           * 결제 성공
           */
+
+         log.info("orderss ss_user_no = "+session.getAttribute("ss_user_no"));
          Order_infoDTO oDTO = new Order_infoDTO();
          oDTO.setOrd_no(tran_no);
          oDTO.setReal_ord_price(amt);
@@ -158,7 +159,9 @@ public class OrderController {
             oIDTO.setReg_user_no(userNoAndMil[0]);
             oList.add(oIDTO);
          }
+         log.info(this.getClass() + " useremail" + CmmUtil.nvl((String)session.getAttribute("ss_user_email")));
          session.setAttribute("ss_tmpBasket", "");
+         req.setAttribute("user_no", userNoAndMil[0]);
          orderService.insertOrderSuccess(oDTO, oList, milMap);
       }else{
          /**
@@ -178,14 +181,28 @@ public class OrderController {
    @RequestMapping(value="orderSuccess")
    public String orderSuccess(HttpServletRequest req, HttpServletResponse resp, Model model, HttpSession session) throws Exception{
       log.info(this.getClass() + "orderSuccess start!!!");
-      String userNo = (String)session.getAttribute("ss_user_no");
+      String userNo = CmmUtil.nvl(req.getParameter("uNo")).split("[?]")[0];
+      session.setAttribute("ss_user_no", userNo);
+      log.info(this.getClass() + "user_no = "+userNo);
       Order_infoDTO oDTO = orderService.getOrderNo(userNo);
       if(oDTO == null){
          oDTO = new Order_infoDTO();
       }
+      log.info(this.getClass() + " ordno = " + oDTO.getOrd_no());
+      Order_itemDTO otDTO = new Order_itemDTO();
+      otDTO.setOrd_no(oDTO.getOrd_no());
+      List<Order_itemDTO> otList = orderService.getOrdItem(otDTO);
+      if(otList ==null){
+    	  otList = new ArrayList<Order_itemDTO>();
+      }
+      log.info(this.getClass() + " otListSize = "+ otList.size());
+      
       model.addAttribute("ordNo", CmmUtil.nvl(oDTO.getOrd_no()));
+      model.addAttribute("otList", otList);
+      session.setAttribute("ss_tmpBasket", null);
       userNo = null;
       oDTO = null;
+      otList = null;
       log.info(this.getClass() + "orderSuccess end!!!");
       return "user/orderSuccess";
    }
@@ -203,6 +220,7 @@ public class OrderController {
       log.info(this.getClass() + " prdtName : "  + prdtName);
       String userNo = CmmUtil.nvl((String)session.getAttribute("ss_user_no"));
       User_infoDTO uDTO = orderService.getUserMil(userNo);//마일리지 가져오기
+      log.info("ss_user_no1 = "+session.getAttribute("ss_user_no"));
       if(uDTO == null){
          uDTO = new User_infoDTO();
       }
@@ -218,6 +236,7 @@ public class OrderController {
          log.info(this.getClass() + "   prdtNo : " + tMap.get(key).getTmpBasketPrdtPrice());
          log.info(this.getClass() + " session--------------------------------------");
       }
+      log.info("ss_user_no2 = "+session.getAttribute("ss_user_no"));
       session.setAttribute("ss_tmpBasket", tMap);
       model.addAttribute("userMil", uDTO.getMileage());//마일리지 가져와서 올리기
       log.info(this.getClass() + ".userOrderDirect end!!!");
@@ -272,4 +291,12 @@ public class OrderController {
 		log.info(this.getClass().getName() + " moreButton END!! ");
 		return orderListMore;
 	}
+	
+	//이거슨 결제 도중 취소 URL이였던 것이였던 것이다
+		@RequestMapping(value="orderCancelResult")
+		public String orderCancelResult(HttpServletRequest request, HttpServletResponse response, Model model, HttpSession session) throws Exception{
+			session.setAttribute("ss_tmpBasket", null);
+			return "redirect:userMenuList.do";
+		
+		}
 }

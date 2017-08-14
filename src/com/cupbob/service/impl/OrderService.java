@@ -101,7 +101,6 @@ public class OrderService implements IOrderService {
 		long min = duration/60000;
 		long hour = min/60;
 		min = min-(hour*60);
-		System.out.println("duration: " + duration + ", min : " + (duration/60000));
 		return hour + ":" + min;
 	}
 
@@ -174,8 +173,6 @@ public class OrderService implements IOrderService {
 				pName += prdtList.get(i).getPrdt_name() + ";";
 				pPrice += prdtList.get(i).getPrdt_price() + ";";
 				count+=1;
-				System.out.println(pName);
-				System.out.println(pPrice);
 			}
 			tDTO.setOrd_no(oDTO.getOrd_no());
 			tDTO.setTotal_ord_price(oDTO.getTotal_ord_price());
@@ -184,7 +181,6 @@ public class OrderService implements IOrderService {
 			tDTO.setOrd_count(count);
 			tDTO.setPrdt_name(pName);
 			tDTO.setPrdt_price(pPrice);
-			System.out.println(count);
 			totalList.add(tDTO);
 		}
 		return totalList;
@@ -264,6 +260,11 @@ public class OrderService implements IOrderService {
 	@Override
 	public int updateOrderCancel(String tid) throws Exception {
 		return orderMapper.updateOrderCancel(tid);
+	}
+
+	@Override
+	public List<Order_itemDTO> getOrdItem(Order_itemDTO otDTO) throws Exception {
+		return orderMapper.getOrdItem(otDTO);
 	}
 
 }
