@@ -54,7 +54,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary btn-sm\" onclick=\"orderProc("+ value.ord_no + ",2);\">접수하기</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"takeFirst();\">조리 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst();\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel('" + value.tid  + "','" + value.payment_tp + "');\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",'5');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -78,7 +78,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td>접수 완료</td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel('" + value.tid  + "','" + value.payment_tp + "');\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",'5');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -97,7 +97,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td>접수 완료</td>";
 								contents += "<td>조리 완료</td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"barcodeProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel('" + value.tid  + "','" + value.payment_tp + "');\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",'5');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -166,7 +166,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary btn-sm\" onclick=\"orderProc("+ value.ord_no + ",2);\">접수하기</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"takeFirst();\">조리 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst();\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel('" + value.tid  + "','" + value.payment_tp + "');\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",'5');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -190,7 +190,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td>접수 완료</td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel('" + value.tid  + "','" + value.payment_tp + "');\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",'5');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -209,7 +209,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td>접수 완료</td>";
 								contents += "<td>조리 완료</td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"barcodeProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel('" + value.tid  + "','" + value.payment_tp + "');\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",'5');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -249,9 +249,9 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		return;
 	} 
 	
-	function orderCancel(tid, payTp){
+	function orderCancel(ordNo, statNo){
 		if(confirm("주문을 취소하시겠습니까?")){
-			var f = document.getElementById('frmPayment');
+			<%-- var f = document.getElementById('frmPayment');
 			if(payTp == "p"){
 				payTp = "PHON";
 			}else{
@@ -261,8 +261,9 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 			f.TID.value=tid;
 			f.CANCEL_ID.value='<%=CmmUtil.nvl((String)session.getAttribute("ss_user_email"))%>';
 			f.CANCEL_CAUSE.value="non";
-			f.submit();
-			/* $.ajax ({
+			f.submit(); --%>
+			console.log("cancel");
+			$.ajax ({
 				url : "adminOrderCancel.do",
 				type : "post",
 				data : {
@@ -295,7 +296,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-primary btn-sm\" onclick=\"orderProc("+ value.ord_no + ",2);\">접수하기</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"takeFirst();\">조리 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst();\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",'5');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -319,7 +320,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td>접수 완료</td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-success btn-sm\" onclick=\"orderProc("+ value.ord_no +",3)\">조리 완료</button></div></td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"cookFirst()\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",'5');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -338,7 +339,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 								contents += "<td>접수 완료</td>";
 								contents += "<td>조리 완료</td>";
 								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-warning btn-sm\" onclick=\"barcodeProc(" + value.ord_no + ",4)\">수령 완료</button></div></td>";
-								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",5);\">취소하기</button></div></td>";
+								contents += "<td><div class=\"btn-group\"><button class=\"btn btn-danger btn-sm\" onclick=\"orderCancel(" + value.ord_no  + ",'5');\">취소하기</button></div></td>";
 								contents += "<td>" + value.prdt_price + "</td>";
 								contents += "</tr>"
 								$('#interval').html(contents);
@@ -366,7 +367,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 			            alert('Unknow Error.n'+x.responseText);
 			            }
 			    }
-			}); */
+			});
 		}
 	}
 </script>
@@ -466,7 +467,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		                                </td>
 		                                <td align=center>
 			                                <div class="btn-group">
-			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel('<%=CmmUtil.nvl(tDTO.getTid())%>','<%=CmmUtil.nvl(tDTO.getPayment_tp())%>');">취소하기</button>
+			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel('<%=CmmUtil.nvl(tDTO.getOrd_no())%>','5');">취소하기</button>
 			                                </div>
 		                                </td>
                                   <%} else if(ordStat.equals("2")){ %>
@@ -485,7 +486,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		                                </td> 
 		                                <td align=center>
 			                                <div class="btn-group">
-			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel('<%=CmmUtil.nvl(tDTO.getTid())%>', '<%=CmmUtil.nvl(tDTO.getPayment_tp())%>');">취소하기</button>
+			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel('<%=CmmUtil.nvl(tDTO.getOrd_no())%>','5');">취소하기</button>
 			                                </div>
 		                                </td>
                                   <%} else {%>
@@ -502,7 +503,7 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
 		                                </td>
 		                                <td align=center>
 			                                <div class="btn-group">
-			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel('<%=CmmUtil.nvl(tDTO.getTid())%>', '<%=CmmUtil.nvl(tDTO.getPayment_tp())%>');">취소하기</button>
+			                                    <button class="btn btn-danger btn-sm" onclick="orderCancel('<%=CmmUtil.nvl(tDTO.getOrd_no())%>','5');">취소하기</button>
 			                                </div>
 		                                </td> 
                                   <%} %>

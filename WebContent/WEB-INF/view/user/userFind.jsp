@@ -139,7 +139,7 @@ function doKeyOnlyNumberPhone(event) {
 					<option value="남자">남자</option>
 					<option value="여자">여자</option>
 				</select> <input type="text" class="form-control phone" id="contact_addr"
-					placeholder="휴대폰번호(ex01012345678)" name="contact_addr" onKeyUp="return doKeyOnlyNumberPhone(event);">
+					placeholder="휴대폰번호(ex01012345678)" name="contact_addr"> <!-- onKeyUp="return doKeyOnlyNumberPhone(event);" -->
 			</div>
 			<div class="form-group">
 				<select class="form-control selectYear" name="year" id="year">
@@ -176,7 +176,7 @@ function doKeyOnlyNumberPhone(event) {
 					<option value="남자">남자</option>
 					<option value="여자">여자</option>
 				</select> <input type="text" class="form-control phone" id="contact_addr2"
-					placeholder="휴대폰번호(ex01012345678)" name="contact_addr" onKeyUp="return doKeyOnlyNumberPhone(event);">
+					placeholder="휴대폰번호(ex01012345678)" name="contact_addr" > <!-- onKeyUp="return doKeyOnlyNumberPhone(event);" -->
 			</div>
 			<div class="form-group">
 				<select class="form-control selectYear" name="year" id="year2">

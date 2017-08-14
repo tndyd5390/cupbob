@@ -113,7 +113,7 @@ function doDelete(){
 					}
 				%>
 			</select> <input type="text" class="form-control phone" id="contact_addr" name="contact_addr"
-				placeholder="휴대폰번호(ex01012345678)" onKeyDown="return doKeyOnlyNumberPhone(event);" value="<%=CmmUtil.nvl(uDTO.getContact_addr())%>">
+				placeholder="휴대폰번호(ex01012345678)"   value="<%=CmmUtil.nvl(uDTO.getContact_addr())%>">
 		</div>
 			<div class="form-group">
 			<select class="form-control selectYear" name="year" id="year">
