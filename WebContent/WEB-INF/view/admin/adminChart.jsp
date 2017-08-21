@@ -87,9 +87,15 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 						dt = { 'year' : value.reg_dt, 'male_count' : value.male_count, 'female_count' : value.female_count}
 						arr.push(dt)
 					});
+				    function regSort(a ,b){
+				    	if(a.year == b.year){
+				    		return 0;
+				    	}
+				    	return a.year > b.year ? 1:-1;
+				    };
 					Morris.Bar({
 		            element: 'morris-bar-chart',
-		            data: arr.sort(),
+		            data: arr.sort(regSort),
 		            xkey: 'year',
 		            ykeys: ['male_count', 'female_count'],
 		            labels: ['남성', '여성'],
@@ -98,8 +104,6 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 		        });
 				}
 			})
-			
-			
 
     });
 </script>

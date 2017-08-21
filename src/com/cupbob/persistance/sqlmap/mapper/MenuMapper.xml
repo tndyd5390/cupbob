@@ -3,6 +3,7 @@
 <mapper namespace="com.cupbob.persistance.mapper.MenuMapper">
 	<select id="getAdminMenuList" resultType="Product_infoDTO">
 		SELECT PRDT_NO, PRDT_NAME, PRDT_PRICE, PRDT_KCAL, DATE_FORMAT(REG_DT, '%Y-%m-%d') AS REG_DT FROM PRODUCT_INFO
+		ORDER BY PRDT_NO DESC
 	</select>
 	
 	<insert id="insertAdminMenu" parameterType="Product_infoDTO">
