@@ -9,6 +9,7 @@ import com.cupbob.dto.Product_infoDTO;
 import com.cupbob.dto.User_infoDTO;
 import com.cupbob.persistance.mapper.UserMapper;
 import com.cupbob.service.IUserService;
+import com.cupbob.util.CmmUtil;
 
 
 @Service("UserService")
@@ -53,7 +54,7 @@ public class UserService implements IUserService {
 
 	@Override
 	public int updateUserDetail(User_infoDTO uDTO){
-		if(!uDTO.getPassword().equals("")){
+		if(!CmmUtil.nvl(uDTO.getPassword()).equals("")){
 			userMapper.updatePassword(uDTO);
 		}
 		return userMapper.updateUserDetail(uDTO);
