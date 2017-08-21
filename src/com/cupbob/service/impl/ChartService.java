@@ -69,29 +69,6 @@ public class ChartService implements IChartService {
 			
 		}
 		
-		/*
-		Chart_DTO reDTO = new Chart_DTO();
-		
-		for(int i=0; i<chList.size();i++){
-			if(i>1){
-				if(chList.get(i).getReg_dt().equals(chList.get(i-1).getReg_dt())){
-					int malecount = Integer.parseInt(CmmUtil.nvlInt(chList.get(i).getMale_count()))+Integer.parseInt(CmmUtil.nvlInt(chList.get(i-1).getMale_count()));
-					int femalecount = Integer.parseInt(CmmUtil.nvlInt(chList.get(i).getFemale_count()))+Integer.parseInt(CmmUtil.nvlInt(chList.get(i-1).getFemale_count()));
-					
-					reDTO.setReg_dt(chList.get(i).getReg_dt());
-					reDTO.setMale_count(String.valueOf(malecount));
-					reDTO.setFemale_count(String.valueOf(femalecount));
-					
-					sDTO[i] = reDTO;
-				}else{
-					reDTO.setReg_dt(chList.get(i).getReg_dt());
-					reDTO.setMale_count(chList.get(i).getMale_count());
-					reDTO.setFemale_count(chList.get(i).getMale_count());
-					sDTO[i] = reDTO;
-				}
-			}
-		};
-		*/
 		return chList;
 	}
 }
