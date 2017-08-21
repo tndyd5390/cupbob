@@ -63,10 +63,6 @@ public class ChartService implements IChartService {
 			ctDTO.setMale_count(male);
 			ctDTO.setFemale_count(fmale);
 			chList.add(ctDTO);
-			System.out.println(ctDTO.getReg_dt());
-			System.out.println(ctDTO.getMale_count());
-			System.out.println(ctDTO.getFemale_count());
-			
 		}
 		
 		return chList;
