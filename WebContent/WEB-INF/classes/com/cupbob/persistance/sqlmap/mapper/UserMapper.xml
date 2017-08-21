@@ -7,6 +7,7 @@
 		SELECT USER_NO, USER_NAME,
 		EMAIL, CONTACT_ADDR, DATE_FORMAT(REG_DT,'%Y-%m-%d %T') AS REG_DT FROM
 		USER_INFO
+		ORDER BY USER_NO DESC
 	</select>
 
 	<select id="login" resultType="User_infoDTO" parameterType="User_infoDTO">
