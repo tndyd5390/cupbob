@@ -129,9 +129,9 @@
 			</div>
 			<div class="col-xs-6">
 				<ul class="detailListUnstyle">
-					<li><%=CmmUtil.nvl(pDTO.getPrdt_kcal()) + "kcal" %> / 0000g</li>
-					<li>120g</li>
-					<li>300mg</li>
+					<li><%=CmmUtil.nvl(pDTO.getPrdt_kcal()) + "kcal" %> / 700g</li>
+					<li>29.2g</li>
+					<li>298.9mg</li>
 				</ul>
 			</div>
 		</div>

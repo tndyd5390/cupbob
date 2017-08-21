@@ -28,11 +28,12 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript">
-	function doToggle(toggleCount, ordNo){
+	function doToggle(trOrdNo, ordNo){
 		var ord = ordNo.toString();
-		$('#bcTarget_' + toggleCount).barcode(ord, 'code128', {barWidth:2, barHeight:60});
-		$('#Toggle' + toggleCount).toggle();
-		$('#Toggle2'+ toggleCount).toggle();
+		$('#bcTarget_' + trOrdNo).barcode(ord, 'code128', {barWidth:2, barHeight:60});
+		console.log("asdfasdf");
+		$('#Toggle' + trOrdNo).toggle();
+		$('#Toggle2'+ trOrdNo).toggle();
 	}
 </script>
 <title>주문 내역</title>
@@ -170,10 +171,10 @@ div.barCode{
 	for(int i=0; i<totalList.size();i++){
 %>
 	$(function(){
-			$('#bcTarget_<%=i+1%>').barcode('<%=totalList.get(i).getOrd_no()%>', 'code128', {barWidth:2, barHeight:60});     
-	    	$('#tr<%=i+1%>').click(function(){
-	    		$('#Toggle<%=i+1%>').toggle();
-	    		$('#Toggle2<%=i+1%>').toggle();
+			$('#bcTarget_<%=totalList.get(i).getOrd_no()%>').barcode('<%=totalList.get(i).getOrd_no()%>', 'code128', {barWidth:2, barHeight:60});     
+	    	$('#tr<%=totalList.get(i).getOrd_no()%>').click(function(){
+	    		$('#Toggle<%=totalList.get(i).getOrd_no()%>').toggle();
+	    		$('#Toggle2<%=totalList.get(i).getOrd_no()%>').toggle();
 	    	})
 	});
 <%
@@ -224,7 +225,7 @@ div.barCode{
 					trCount ++;
 					toggleCount ++;
 			%> 
-			<tr id="tr<%=trCount%>">
+			<tr id="tr<%=tDTO.getOrd_no()%>">
  				<td><%=tDTO.getOrd_no() %></td>
 				<%
 					if(prdtName.length >=1){			
@@ -292,16 +293,16 @@ div.barCode{
 					}
 				%>
 			</tr>
-			<tr id="Toggle<%=toggleCount%>" class="tableToggle" style="display:none;">
+			<tr id="Toggle<%=tDTO.getOrd_no()%>" class="tableToggle" style="display:none;">
 				<td></td>
 				<td><%=prdtList%></td>
 				<td></td>
 				<td><%=prdtPriceList%></td>
 				<td></td>
 			</tr>
-			<tr id="Toggle2<%=toggleCount%>" style="display:none;">
+			<tr id="Toggle2<%=tDTO.getOrd_no()%>" style="display:none;">
 				<td colspan="5" height="80px">
-					<center><div id="bcTarget_<%=toggleCount%>"></div></center>
+					<center><div id="bcTarget_<%=tDTO.getOrd_no()%>"></div></center>
 				</td>
 			</tr>
 			<%
@@ -330,7 +331,7 @@ $(function(){
 				$.each(data,function (key,value){
 					toggleCount++;
 					var oStat = value.ord_stat;
-					contents += "<tr id='tr"+toggleCount+"' onclick=\"doToggle(" + toggleCount + "," + value.ord_no + ");\">";
+					contents += "<tr id='tr"+value.ord_no+"' onclick=\"doToggle(" + value.ord_no + "," + value.ord_no + ");\">";
 					contents += "<td>" + value.ord_no + "</td>"
 					contents += "<td>" + value.prdt_name +  "</td>";
 					contents += "<td>" + value.ord_dt +  "</td>";
@@ -347,16 +348,16 @@ $(function(){
 						contents += "<td>주문취소</td>";
 					}
 					contents += "</tr>";
-					contents += "<tr id='Toggle"+toggleCount+"' class='tableToggle' style='display:none;'>";
+					contents += "<tr id='Toggle"+value.ord_no+"' class='tableToggle' style='display:none;'>";
 					contents += "<td></td>"
 					contents += "<td>" + value.prdt_name_List +  "</td>";
 					contents += "<td></td>";
 					contents += "<td>" + value.prdt_price + "</td>";
 					contents += "<td></td>";
 					contents += "</tr>";
-					contents += "<tr id=\"Toggle2" + toggleCount + "\" style=\"display:none;\">";
+					contents += "<tr id=\"Toggle2" + value.ord_no + "\" style=\"display:none;\">";
 					contents += "<td colspan=\"5\" height=\"80px\">";
-					contents += "<center><div id=\"bcTarget_" + toggleCount + "\"></div></center>";
+					contents += "<center><div id=\"bcTarget_" + value.ord_no + "\"></div></center>";
 					contents += "</td></tr>";
 				})
 				console.log(data);
@@ -371,7 +372,13 @@ $(function(){
 	})
 })		
 </script>
+<%
+	if(totalList.size() != 0){
+%>
 		<button type="button" class="moreButton" id="more_Button">더 보 기</button>
+<%
+	}
+%>
 	</form>
 	<br>
 	<br><div align="center">

@@ -207,33 +207,30 @@ public class OrderService implements IOrderService {
 			Map<String, Integer> priceMap = new HashMap();
 			for(TotalOrderItemDTO aDTO : prdtList){
 				System.out.println(aDTO.getPrdt_name());
-				if(prdtMap.containsKey(aDTO.getPrdt_name())){
-					prdtMap.put(aDTO.getPrdt_name(), prdtMap.get(aDTO.getPrdt_name()) + 1);
-				}else{
-					prdtMap.put(aDTO.getPrdt_name(), 1);
-				}
+				prdtMap.put(aDTO.getPrdt_name(), Integer.parseInt(aDTO.getOrd_amnt()));
+				priceMap.put(aDTO.getPrdt_name(), Integer.parseInt(aDTO.getPrdt_price())*Integer.parseInt(aDTO.getOrd_amnt()));
 				if(prdtMap.size() > 1){
 					pName = aDTO.getPrdt_name() + " 외 " + (prdtList.size()-1) + " 건 ";
 				}else{
 					pName = aDTO.getPrdt_name();
 				}
 			}
-			for(TotalOrderItemDTO aDTO : prdtList){
+	/*		for(TotalOrderItemDTO aDTO : prdtList){
 				if(priceMap.containsKey(aDTO.getPrdt_name())){
 					priceMap.put(aDTO.getPrdt_name(), priceMap.get(aDTO.getPrdt_name()) + Integer.parseInt(aDTO.getPrdt_price()));
 				}else{
 					priceMap.put(aDTO.getPrdt_name(), Integer.parseInt(aDTO.getPrdt_price()));
 				}
-			}
+			}*/
 			Iterator<String> keys = prdtMap.keySet().iterator();
 			while(keys.hasNext()){
 				String key = keys.next();
-				pNameList += key+ "x" + prdtMap.get(key) + "<br>";
+				pNameList += key+ " x " + prdtMap.get(key) + "<br>";
 			}
 			Iterator<String> keyss = priceMap.keySet().iterator();
 			while(keyss.hasNext()){
 				String key = keyss.next();
-				pPrice += priceMap.get(key) + "원<br>";
+				pPrice += CmmUtil.addComma(priceMap.get(key)) + "원<br>";
 			}
 			
 			tDTO.setOrd_no(oDTO.getOrd_no());

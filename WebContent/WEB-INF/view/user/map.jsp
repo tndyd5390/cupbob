@@ -25,20 +25,19 @@
 	<div align=center>
 		<div class="orderHead" style="width: 80%;">매 장 위 치</div>
 		<br>
-		
-		<div id="daumRoughmapContainer1501584120057" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 80%"></div>
+
+		<div id="daumRoughmapContainer1502676261626" class="root_daum_roughmap root_daum_roughmap_landing" style="width: 80%"></div>
 
 		<script charset="UTF-8" class="daum_roughmap_loader_script"	src="http://dmaps.daum.net/map_js_init/roughmapLoader.js"></script>
 
 		<script charset="UTF-8">
 			new daum.roughmap.Lander({
-				"timestamp" : "1501584120057",
-				"key" : "ixo3",
+				"timestamp" : "1502676261626",
+				"key" : "j57u",
 			}).render();
 		</script>
-
 	</div>
-
+	<br /><br />
 	<div align="center"><%@include file="/include/footer.jsp"%></div>
 </body>
 </html>

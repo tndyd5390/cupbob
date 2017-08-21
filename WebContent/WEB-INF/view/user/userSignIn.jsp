@@ -202,7 +202,7 @@ function pwCheck() {
 				<option value="남자">남</option>
 				<option value="여자">여</option>
 			</select> <input type="text" class="form-control phone" id="contact_addr"
-				placeholder="휴대폰번호(ex01012345678)" name="contact_addr" onKeyDown="return doKeyOnlyNumberPhone(event);">
+				placeholder="휴대폰번호(ex01012345678)" name="contact_addr">  <!-- onKeyDown="return doKeyOnlyNumberPhone(event);" -->  
 			<p class="nameFont">휴대폰 번호는 아이디 또는 비밀번호를 찾기 위한 정보이므로 정확하게 입력해
 				주세요.</p>
 		</div>
