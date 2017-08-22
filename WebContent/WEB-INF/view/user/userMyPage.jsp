@@ -42,6 +42,7 @@
 <%
 	if (userNo == "" || !(userNo.equals(unum))) {
 		response.sendRedirect("userLogin.do");
+		userNo = "";
 	} else {
 %>
 <body>
