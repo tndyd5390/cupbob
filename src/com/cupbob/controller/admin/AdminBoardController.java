@@ -236,6 +236,7 @@ public class AdminBoardController {
 		}
 	}
 	
+	/* 더보기 ajax 컨트롤러 */
 	@RequestMapping(value="readMore")
 	public @ResponseBody List<User_boardDTO> readMore(@RequestParam(value="count") String count) throws Exception{
 		log.info(this.getClass().getName() + "HI!!");
@@ -252,8 +253,6 @@ public class AdminBoardController {
 		for(User_boardDTO testDTO : readMoreList){
 			System.out.println(testDTO.getTitle());
 		}
-		
 		return readMoreList;
 	}
-	
 }
