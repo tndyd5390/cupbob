@@ -1,7 +1,8 @@
 <%@page import="com.cupbob.util.CmmUtil"%>
 <%@page import="com.cupbob.dto.User_boardDTO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 List<User_boardDTO> bList = (List<User_boardDTO>)request.getAttribute("userBoardList");
 String ss_user_no = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
@@ -129,6 +130,15 @@ String ss_user_no = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 			<%
 				}
 			%>
+			<c:forEach items="${userBoardList}" var="boardList" varStatus="status">
+			<li class="list-group-item list-none-line">
+				<div><c:out value="${boardList.post_no}"/></div>
+				<div><c:out value="${boardList.title}"/></div>
+				<div><c:out value="${boardList.user_name}"/></div>
+				<div><c:out value="${boardList.reg_dt}"/></div>
+				<div><c:out value="${boardList.view_cnt}"/></div>
+			</li>
+			</c:forEach>
 		</ul>
 		<%
 			if (ss_user_no == null || ss_user_no == "") {
