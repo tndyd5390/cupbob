@@ -9,6 +9,7 @@
 <%
 	List<TotalOrderDTO> totalList = (List<TotalOrderDTO>)request.getAttribute("totalList");
 	String unum = (String) request.getAttribute("uNum");
+	String userNo = (String) session.getAttribute("ss_user_no");
 	System.out.println(unum);
 	int trCount = 0;
 	int toggleCount = 0;
@@ -183,6 +184,13 @@ div.barCode{
 
 </script>
 </head>
+<%
+	if (userNo == "" || !(userNo.equals(unum))) {
+		response.sendRedirect("userLogin.do");
+		userNo = "";
+	} else {
+%>
+
 <body>
 <%@include file="/include/nav.jsp"%>
 	<br>
@@ -384,4 +392,6 @@ $(function(){
 	<br><div align="center">
 	<%@include file="/include/footer.jsp"%></div>
 </body>
+
+<% }%>
 </html>
