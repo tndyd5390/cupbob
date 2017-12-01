@@ -52,7 +52,7 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 						arr.push(dt);
 						arr1.push(dt1);
 					});
-					if(rs.length!=0){
+					if(data.length!=0){
 						var myChart = new Chart(ctx, {
 						    type: 'bar',
 						    data: {
@@ -65,17 +65,6 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 						            borderWidth : 1
 						        }]
 						    },
-						    options: {
-		                        responsive: true,
-						    	maintainAspectRatio: false,
-						        scales: {
-						            yAxes: [{
-						                ticks: {
-						                    beginAtZero:true
-						                }
-						            }]
-						        }
-						    }
 						});
 					}else{
 						$('#morris-donut-chart').html("<canvas id='monthChart'></canvas>");
@@ -83,7 +72,7 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 				}
 			});
 			
-			$.ajax({
+			/* $.ajax({
 				url : "weekChart.do",
 				method : "post",
 				dataType : "json",
@@ -91,8 +80,8 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 					var dt = "";
 					var arr = new Array();
 					$.each(data, function(key, value){
-						dt = { 'year' : value.reg_dt, 'count' : value.count}
-						arr.push(dt)
+						dt = { 'year' : value.reg_dt, 'count' : value.count};
+						arr.push(dt);
 					});
 			        Morris.Area({
 			        	  element: 'morris-area-chart',
@@ -102,9 +91,51 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 			        	  labels: ['총 판매량']
 			        	});
 				}
-			})
-			
+			}); */
 			$.ajax({
+				url : "weekChart.do",
+				method : "post",
+				dataType : "json",
+				success : function(data){
+					var dt = "";
+					var dt1 = "";
+					var arr = new Array();
+					var arr1 = new Array();
+					$('#morris-area-chart').html("<canvas id='totalChart'></canvas>");
+					var ctx1 = $('#totalChart').get(0).getContext('2d');
+					$.each(data, function(key, value){
+						dt = value.reg_dt;
+						dt1 = value.count;
+						arr.push(dt);
+						arr1.push(dt1);
+					});
+					var totalChart = new Chart(ctx1, {
+						type : 'line',
+						data : {
+							labels : arr,
+							datasets : [{
+								label : '판매갯수',
+								backgroundColor : 'rgb(23, 119, 203)',
+								data : arr1,
+								fill : false,
+								pointRadius : 10,
+								pointHoberRadius : 15,
+								showLine : false
+							}]
+						},
+						options :{
+							elements :{
+								point : {
+									pointStyle : 'triangle'
+								}
+							} 
+						}
+					})
+				
+				}
+			});
+			
+			/* $.ajax({
 				url : "weekOrdPriceChart.do",
 				method : "post",
 				dataType : "json",
@@ -112,8 +143,8 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 					var dt = "";
 					var arr = new Array();
 					$.each(data, function(key, value){
-						dt = { 'year' : value.reg_dt, 'count' : value.count, 'totalPrice' : value.price}
-						arr.push(dt)
+						dt = { 'year' : value.reg_dt, 'count' : value.count, 'totalPrice' : value.price};
+						arr.push(dt);
 					});
 			        Morris.Line({
 			        	  element: 'morris-line-chart',
@@ -123,9 +154,52 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 			        	  labels: ['총 주문갯수(개)', '총 매출(천원)']
 			        	});
 				}
-			})
-				
+			}); */
+			
 			$.ajax({
+				url : "weekOrdPriceChart.do",
+				method : "post",
+				dataType : "json",
+				success : function(data){
+					var dt = "";
+					var dt1 = "";
+					var dt2 = "";
+					var arr = new Array();
+					var arr1 = new Array();
+					var arr2 = new Array();
+					$('#morris-line-chart').html("<canvas id='priceChart'></canvas>");
+					var ctx1 = $('#priceChart').get(0).getContext('2d');
+					$.each(data, function(key, value){
+						dt = value.reg_dt;
+						dt1 = value.count;
+						dt2 = value.price;
+						arr.push(dt);
+						arr1.push(dt1);
+						arr2.push(dt2);
+					});
+			        var config = {
+			        		type : 'line',
+			        		data : {
+			        			labels : arr,
+				        		datasets: [{
+				        			label : "주문갯수",
+				        			fill : false,
+				        			borderColor : 'rgb(23, 119, 203)',
+				        			backgroundColor : 'rgb(23, 119, 203)',
+				        			data: arr1
+				        		},{
+				        			label : "매출(원)",
+				        			fill : true,
+				        			backgroundColor : 'rgb(255, 177, 193)',
+				        			data : arr2
+				        		}]
+			        		}
+			        };
+			        var priceChart = new Chart(ctx1, config);
+				}
+			});
+				
+			/* $.ajax({
 				url : "weekGenderChart.do",
 				method : "post",
 				dataType : "json",
@@ -152,7 +226,57 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 		            resize: true
 		        });
 				}
-			})
+			}); */
+			
+			$.ajax({
+				url : "weekGenderChart.do",
+				method : "post",
+				dataType : "json",
+				success : function(data){
+					var dt = "";
+					var dt1 = "";
+					var dt2 = "";
+					var arr = new Array();
+					var arr1 = new Array();
+					var arr2 = new Array();
+					$('#morris-bar-chart').html("<canvas id='genderChart'></canvas>");
+					var ctx = $('#genderChart').get(0).getContext('2d');
+					$.each(data, function(key, value){
+						dt = value.reg_dt;
+						dt1 = value.male_count;
+						dt2 = value.female_count;
+						arr.push(dt);
+						arr1.push(dt1);
+						arr2.push(dt2);
+					});
+				    var barChartData = {
+				    	labels : arr,
+				    	datasets : [{
+				    		label : '남성',
+				    		backgroundColor : 'rgb(23, 119, 203)',
+				    		data : arr1
+				    	},{
+				    		label : '여성',
+				    		backgoundColor : 'rgb(255, 177, 193)',
+				    		data : arr2
+				    	}]
+				    };
+				    var genderChart = new Chart(ctx, {
+				    	type : 'bar',
+				    	data : barChartData,
+				    	options:{
+				    		scales : {
+				    			xAxes : [{
+				    				stacked : true
+				    			}],
+				    			yAxes : [{
+				    				stacked : true
+				    			}]
+				    		}
+				    	}
+				    })
+				}
+			});
 
     });
 </script>
