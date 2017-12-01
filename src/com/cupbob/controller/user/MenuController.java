@@ -59,7 +59,7 @@ public class MenuController {
 			pList = new ArrayList<Product_infoDTO>();
 		}
 		model.addAttribute("pList", pList);
-		model.addAttribute("menu", "컵밥");
+		model.addAttribute("menu", "컵밥류");
 		pList = null;
 		log.info(this.getClass() + "userRiceMenuList end!!!");
 		
@@ -260,7 +260,7 @@ public class MenuController {
 		String returnURL = "user/order";
 		if(tMap.size()<1){
 			returnURL = "admin/userAlert";
-			model.addAttribute("msg", "주문하실 제품이 없습니다.");
+			model.addAttribute("msg", "주문하신 제품이 없습니다.");
 			model.addAttribute("url", "userMenuList.do");
 		}
 		model.addAttribute("userMil", uDTO.getMileage());
