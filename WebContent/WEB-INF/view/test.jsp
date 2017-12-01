@@ -99,4 +99,37 @@ response.setCharacterEncoding("EUC-KR");
 		<input type="submit" value="전송">
 	</form>
 </body>
+
+<div class="act-time">
+					<div class="activity-body act-in">
+						<div class="text" style="height: 150px;">
+							<p class="attribution">
+								<a href="#">문주현<!-- 접수자 이름 --></a> 2017.08.21 18:00:00<!-- 접수 날자 -->
+							</p>
+							<p class="attribution" style="display: inline; font-size: 15px;">
+								4차산업혁명 대비 벤처창업아이템 경진대회<!-- 한글 제목 -->
+							</p>
+							<div>
+								<p class="attribution" style="display: inline; font-size: 15px;">
+									Venture start-up item competition against 4th industrial revolution<!-- 영문 제목 -->
+								</p>
+								<div style="display: inline; float: right;">
+									<button class="btn btn-primary" style="width: 90px;">다운로드</button>
+								</div>
+							</div>
+							<br />
+							<div style="float: right;">
+								<select class="form-control" style="width: 300px; display: inline;">
+									<option>합격</option>
+									<option>불합격</option>
+								</select>
+								<button class="btn btn-primary" style="display: inline; width: 90px;">확인</button>
+							</div>
+						</div>
+						<br/>
+					</div>
+				</div>
+
+
+
 </html>
