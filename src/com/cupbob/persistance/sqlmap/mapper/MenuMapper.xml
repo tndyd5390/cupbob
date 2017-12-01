@@ -109,10 +109,10 @@
 	</select>
 	
 	<select id="getUserNoodleMenuList" resultType="Product_infoDTO">
- 		SELECT * FROM PRODUCT_INFO WHERE PRDT_NO = 7 OR PRDT_NO = 6 OR PRDT_NO = 8 OR PRDT_NO = 9 OR PRDT_NO = 10
+ 		SELECT * FROM PRODUCT_INFO WHERE PRDT_NO = 22 OR PRDT_NO = 23
 	</select>
 	
 	<select id="getUserCokeMenuList" resultType="Product_infoDTO">
-		SELECT * FROM PRODUCT_INFO WHERE PRDT_NO = 11 OR PRDT_NO = 12 OR PRDT_NO = 13
+		SELECT * FROM PRODUCT_INFO WHERE PRDT_NO = 24 OR PRDT_NO = 25
 	</select>
 </mapper>
