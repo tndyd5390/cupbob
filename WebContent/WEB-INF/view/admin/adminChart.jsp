@@ -14,9 +14,10 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 <%@include file="/include/head.jsp" %>
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script>
     $(function() {
-			$.ajax({
+			/* $.ajax({
 				url : "monthChart.do",
 				method : "post",
 				dataType : "json",
@@ -31,6 +32,54 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 						element : 'morris-donut-chart',
 						data : arr
 					});				
+				}
+			}); */
+			
+			$.ajax({
+				url : "monthChart.do",
+				method : "post",
+				dataType : "json",
+				success : function(data){
+					$('#morris-donut-chart').html("<canvas id='monthChart'></canvas>");
+					var ctx = $('#monthChart').get(0).getContext('2d');
+					var dt = "";
+					var dt1 = "";
+					var arr = new Array();
+					var arr1 = new Array();
+					$.each(data, function(key,value){
+						dt = value.prdt_name;
+						dt1 = value.count;
+						arr.push(dt);
+						arr1.push(dt1);
+					});
+					if(rs.length!=0){
+						var myChart = new Chart(ctx, {
+						    type: 'bar',
+						    data: {
+						        labels: arr,
+						        datasets: [{
+						            label: '갯수',
+						            data: arr1,
+						            backgroundColor: ['rgb(23, 119, 203)','rgb(54, 162, 235)','rgb(96, 191, 255)'],
+						            borderColor: ['rgb(23, 119, 203)','rgb(54, 162, 235)','rgb(96, 191, 255)'],
+						            borderWidth : 1
+						        }]
+						    },
+						    options: {
+		                        responsive: true,
+						    	maintainAspectRatio: false,
+						        scales: {
+						            yAxes: [{
+						                ticks: {
+						                    beginAtZero:true
+						                }
+						            }]
+						        }
+						    }
+						});
+					}else{
+						$('#morris-donut-chart').html("<canvas id='monthChart'></canvas>");
+					}		
 				}
 			});
 			
