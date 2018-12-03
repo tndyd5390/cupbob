@@ -16,7 +16,9 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script>
+    setTimeout("location.reload()",1000 * 60 * 60 * 6);
     $(function() {
+    	
 			/* $.ajax({
 				url : "monthChart.do",
 				method : "post",

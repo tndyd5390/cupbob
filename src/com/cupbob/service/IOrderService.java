@@ -21,4 +21,5 @@ public interface IOrderService {
 	public List<TotalOrderDTO> orderListMore(String count, String uNum) throws Exception;
 	public int updateOrderCancel(String tid) throws Exception;
 	public List<Order_itemDTO> getOrdItem(Order_itemDTO otDTO) throws Exception;
+	public int insertDummyData(Order_infoDTO oDTO, List<Order_itemDTO> oList) throws Exception;
 }

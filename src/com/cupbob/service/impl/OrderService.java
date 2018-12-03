@@ -59,7 +59,7 @@ public class OrderService implements IOrderService {
 			tDTO.setOrd_amnt(ordAmnt);
 			tDTO.setTid(oDTO.getTid());
 			//====================================
-			//남은 시간 세팅
+			//�궓�� �떆媛� �꽭�똿
 			tDTO.setOrd_remainTime(getRemainTime(tDTO.getUsr_rcv_time()));
 			totalList.add(tDTO);
 		}
@@ -118,7 +118,7 @@ public class OrderService implements IOrderService {
 		int insertOrderItem = orderMapper.insertOrderItem(oList);
 		if(milMap.containsKey("dec")){
 			/**
-			 * 마일리지 감소
+			 * 留덉씪由ъ� 媛먯냼
 			 */
 			User_infoDTO uDTO = new User_infoDTO();
 			uDTO.setUser_no(oDTO.getUser_no());
@@ -129,14 +129,14 @@ public class OrderService implements IOrderService {
 			mDTO.setSpend(milMap.get("dec"));
 			mDTO.setUser_no(oDTO.getUser_no());
 			mDTO.setReg_user_no(oDTO.getUser_no());
-			mDTO.setHistory("사용");
+			mDTO.setHistory("�궗�슜");
 			int insert = orderMapper.insertMilHistory(mDTO);
 			if(update != 0 && insert != 0){
 				updateResult = true;
 			}
 		}else{
 			/**
-			 * 마일리지 증가
+			 * 留덉씪由ъ� 利앷�
 			 */
 			User_infoDTO uDTO = new User_infoDTO();
 			uDTO.setUser_no(oDTO.getUser_no());
@@ -147,7 +147,7 @@ public class OrderService implements IOrderService {
 			mDTO.setSave(milMap.get("inc"));
 			mDTO.setUser_no(oDTO.getUser_no());
 			mDTO.setReg_user_no(oDTO.getUser_no());
-			mDTO.setHistory("적립");
+			mDTO.setHistory("�쟻由�");
 			int insert = orderMapper.insertMilHistory(mDTO);
 			if(update != 0 && insert != 0){
 				updateResult = true;
@@ -210,7 +210,7 @@ public class OrderService implements IOrderService {
 				prdtMap.put(aDTO.getPrdt_name(), Integer.parseInt(aDTO.getOrd_amnt()));
 				priceMap.put(aDTO.getPrdt_name(), Integer.parseInt(aDTO.getPrdt_price())*Integer.parseInt(aDTO.getOrd_amnt()));
 				if(prdtMap.size() > 1){
-					pName = aDTO.getPrdt_name() + " 외 " + (prdtList.size()-1) + " 건 ";
+					pName = aDTO.getPrdt_name() + " �쇅 " + (prdtList.size()-1) + " 嫄� ";
 				}else{
 					pName = aDTO.getPrdt_name();
 				}
@@ -230,7 +230,7 @@ public class OrderService implements IOrderService {
 			Iterator<String> keyss = priceMap.keySet().iterator();
 			while(keyss.hasNext()){
 				String key = keyss.next();
-				pPrice += CmmUtil.addComma(priceMap.get(key)) + "원<br>";
+				pPrice += CmmUtil.addComma(priceMap.get(key)) + "�썝<br>";
 			}
 			
 			tDTO.setOrd_no(oDTO.getOrd_no());
@@ -262,6 +262,13 @@ public class OrderService implements IOrderService {
 	@Override
 	public List<Order_itemDTO> getOrdItem(Order_itemDTO otDTO) throws Exception {
 		return orderMapper.getOrdItem(otDTO);
+	}
+
+	@Override
+	public int insertDummyData(Order_infoDTO oDTO, List<Order_itemDTO> oList) throws Exception {
+		int insertOrderInfo = orderMapper.insertOrderInfo(oDTO);
+		int insertOrderItem = orderMapper.insertOrderItem(oList);
+		return insertOrderInfo + insertOrderItem;
 	}
 
 }
