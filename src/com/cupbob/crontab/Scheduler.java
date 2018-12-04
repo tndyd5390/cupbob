@@ -28,7 +28,7 @@ public class Scheduler {
 	@Resource(name="OrderService")
 	private IOrderService orderService;
 	
-	@Scheduled(cron = "0 57 13 * * *") 
+	@Scheduled(cron = "0 0 02 * * *") 
 	public void cronTest1() throws Exception{ 
 		String[] prdt_no = {"17","18","19","20","21","22","23","24","25","26"};
 		String[] prdt_price = {"3000","3000","3000","2500","3000","2000","2000","1500","1500","3000"};
