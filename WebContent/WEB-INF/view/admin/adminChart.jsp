@@ -16,7 +16,7 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
 	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script>
-    setTimeout("location.reload()",1000 * 60 * 60 * 6);
+    setTimeout("location.reload()",1000 * 60 * 60 * 5);
     $(function() {
     	
 			/* $.ajax({
@@ -287,10 +287,6 @@ String ss_userNo = CmmUtil.nvl((String) session.getAttribute("ss_user_no"));
   </head>
   <body>
   
-<%
-if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
-		response.sendRedirect("adminLogin.do");
-}else{%>
 <%@include file="/include/naviBarAndasideBar.jsp"%> 
       <!--main content start-->
       <section id="main-content">
@@ -386,7 +382,4 @@ if (ss_userEmail==""||!(ss_userEmail.equals("kangseokopo@gmail.com"))) {
     <script src="adminBootstrap/js/scripts.js"></script>
     <script src="adminBootstrap/vendor/raphael/raphael.min.js"></script>
   </body>
-  <%
-}
-  %>
 </html>
